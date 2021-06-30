@@ -151,6 +151,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Comparators
 specifier|public
 specifier|final
@@ -168,16 +170,19 @@ comment|// desired return type. However, *nested* generics introduce a special c
 comment|// think tip it over into being worthwhile.
 annotation|@
 name|Beta
-DECL|method|lexicographical (Comparator<T> comparator)
+DECL|method|lexicographical ( Comparator<T> comparator)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|S
-extends|extends
+expr|extends
 name|T
-parameter_list|>
+operator|>
 name|Comparator
 argument_list|<
 name|Iterable
@@ -186,13 +191,13 @@ name|S
 argument_list|>
 argument_list|>
 name|lexicographical
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|T
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -211,15 +216,18 @@ block|}
 comment|/**    * Returns {@code true} if each element in {@code iterable} after the first is greater than or    * equal to the element that preceded it, according to the specified comparator. Note that this is    * always true when the iterable has fewer than two elements.    */
 annotation|@
 name|Beta
-DECL|method|isInOrder (Iterable<? extends T> iterable, Comparator<T> comparator)
+DECL|method|isInOrder ( Iterable<? extends T> iterable, Comparator<T> comparator)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|boolean
 name|isInOrder
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -227,19 +235,19 @@ extends|extends
 name|T
 argument_list|>
 name|iterable
-parameter_list|,
+operator|,
 name|Comparator
 argument_list|<
 name|T
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|comparator
 argument_list|)
-expr_stmt|;
+block|;
 name|Iterator
 argument_list|<
 name|?
@@ -247,12 +255,12 @@ extends|extends
 name|T
 argument_list|>
 name|it
-init|=
+operator|=
 name|iterable
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|it
@@ -308,23 +316,34 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-block|}
-return|return
+end_class
+
+begin_expr_stmt
+unit|}     return
 literal|true
-return|;
-block|}
+expr_stmt|;
+end_expr_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns {@code true} if each element in {@code iterable} after the first is<i>strictly</i>    * greater than the element that preceded it, according to the specified comparator. Note that    * this is always true when the iterable has fewer than two elements.    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|Beta
 DECL|method|isInStrictOrder ( Iterable<? extends T> iterable, Comparator<T> comparator)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|boolean
 name|isInStrictOrder
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -332,19 +351,19 @@ extends|extends
 name|T
 argument_list|>
 name|iterable
-parameter_list|,
+operator|,
 name|Comparator
 argument_list|<
 name|T
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|comparator
 argument_list|)
-expr_stmt|;
+block|;
 name|Iterator
 argument_list|<
 name|?
@@ -352,12 +371,12 @@ extends|extends
 name|T
 argument_list|>
 name|it
-init|=
+operator|=
 name|iterable
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|it
@@ -412,19 +431,30 @@ name|prev
 operator|=
 name|next
 expr_stmt|;
-block|}
-block|}
+end_expr_stmt
+
+begin_return
+unit|}     }
 return|return
 literal|true
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Returns a {@code Collector} that returns the {@code k} smallest (relative to the specified    * {@code Comparator}) input elements, in ascending order, as an unmodifiable {@code List}. Ties    * are broken arbitrarily.    *    *<p>For example:    *    *<pre>{@code    * Stream.of("foo", "quux", "banana", "elephant")    *     .collect(least(2, comparingInt(String::length)))    * // returns {"foo", "quux"}    * }</pre>    *    *<p>This {@code Collector} uses O(k) memory and takes expected time O(n) (worst-case O(n log    * k)), as opposed to e.g. {@code Stream.sorted(comparator).limit(k)}, which currently takes O(n    * log n) time and O(n) space.    *    * @throws IllegalArgumentException if {@code k< 0}    * @since 22.0    */
-DECL|method|least (int k, Comparator<? super T> comparator)
-specifier|public
+end_comment
+
+begin_expr_stmt
+DECL|method|least ( int k, Comparator<? super T> comparator)
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Collector
 argument_list|<
 name|T
@@ -437,10 +467,10 @@ name|T
 argument_list|>
 argument_list|>
 name|least
-parameter_list|(
+argument_list|(
 name|int
 name|k
-parameter_list|,
+argument_list|,
 name|Comparator
 argument_list|<
 name|?
@@ -448,7 +478,7 @@ super|super
 name|T
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 name|checkNonnegative
 argument_list|(
@@ -456,12 +486,12 @@ name|k
 argument_list|,
 literal|"k"
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|comparator
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|Collector
 operator|.
@@ -494,21 +524,24 @@ name|Characteristics
 operator|.
 name|UNORDERED
 block|)
-function|;
-block|}
-end_class
+expr_stmt|;
+end_expr_stmt
 
 begin_comment
+unit|}
 comment|/**    * Returns a {@code Collector} that returns the {@code k} greatest (relative to the specified    * {@code Comparator}) input elements, in descending order, as an unmodifiable {@code List}. Ties    * are broken arbitrarily.    *    *<p>For example:    *    *<pre>{@code    * Stream.of("foo", "quux", "banana", "elephant")    *     .collect(greatest(2, comparingInt(String::length)))    * // returns {"elephant", "banana"}    * }</pre>    *    *<p>This {@code Collector} uses O(k) memory and takes expected time O(n) (worst-case O(n log    * k)), as opposed to e.g. {@code Stream.sorted(comparator.reversed()).limit(k)}, which currently    * takes O(n log n) time and O(n) space.    *    * @throws IllegalArgumentException if {@code k< 0}    * @since 22.0    */
 end_comment
 
-begin_function
-DECL|method|greatest (int k, Comparator<? super T> comparator)
-specifier|public
+begin_expr_stmt
+DECL|method|greatest ( int k, Comparator<? super T> comparator)
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Collector
 argument_list|<
 name|T
@@ -521,10 +554,10 @@ name|T
 argument_list|>
 argument_list|>
 name|greatest
-parameter_list|(
+argument_list|(
 name|int
 name|k
-parameter_list|,
+argument_list|,
 name|Comparator
 argument_list|<
 name|?
@@ -532,7 +565,7 @@ super|super
 name|T
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|least
@@ -546,7 +579,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
 begin_comment
 comment|/**    * Returns a comparator of {@link Optional} values which treats {@link Optional#empty} as less    * than all other values, and orders the rest using {@code valueComparator} on the contained    * value.    *    * @since 22.0    */
@@ -587,6 +620,16 @@ expr_stmt|;
 return|return
 name|Comparator
 operator|.
+expr|<
+name|Optional
+argument_list|<
+name|T
+argument_list|>
+operator|,
+return|@
+name|Nullable
+name|T
+operator|>
 name|comparing
 argument_list|(
 name|o
@@ -648,6 +691,16 @@ expr_stmt|;
 return|return
 name|Comparator
 operator|.
+expr|<
+name|Optional
+argument_list|<
+name|T
+argument_list|>
+operator|,
+return|@
+name|Nullable
+name|T
+operator|>
 name|comparing
 argument_list|(
 name|o
@@ -723,34 +776,45 @@ begin_comment
 comment|/**    * Returns the minimum of the two values, according to the given comparator. If the values compare    * as equal, the first is returned.    *    *<p>The recommended solution for finding the {@code minimum} of some values depends on the type    * of your data and the number of elements you have. Read more in the Guava User Guide article on    *<a href="https://github.com/google/guava/wiki/CollectionUtilitiesExplained#comparators">{@code    * Comparators}</a>.    *    * @param a first value to compare, returned if less than or equal to b    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> using the given    *     comparator.    * @since 30.0    */
 end_comment
 
-begin_function
+begin_annotation
 annotation|@
 name|Beta
-DECL|method|min (@ullable T a, @Nullable T b, Comparator<T> comparator)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ParametricNullness
+end_annotation
+
+begin_expr_stmt
+DECL|method|min ( @arametricNullness T a, @ParametricNullness T b, Comparator<T> comparator)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|min
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|T
 name|a
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|T
 name|b
-parameter_list|,
+argument_list|,
 name|Comparator
 argument_list|<
 name|T
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -765,13 +829,13 @@ argument_list|)
 operator|<=
 literal|0
 operator|)
-condition|?
+operator|?
 name|a
-else|:
+operator|:
 name|b
 return|;
 block|}
-end_function
+end_expr_stmt
 
 begin_comment
 comment|/**    * Returns the maximum of the two values. If the values compare as 0, the first is returned.    *    *<p>The recommended solution for finding the {@code maximum} of some values depends on the type    * of your data and the number of elements you have. Read more in the Guava User Guide article on    *<a href="https://github.com/google/guava/wiki/CollectionUtilitiesExplained#comparators">{@code    * Comparators}</a>.    *    * @param a first value to compare, returned if greater than or equal to b.    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i>.    * @since 30.0    */
@@ -826,34 +890,45 @@ begin_comment
 comment|/**    * Returns the maximum of the two values, according to the given comparator. If the values compare    * as equal, the first is returned.    *    *<p>The recommended solution for finding the {@code maximum} of some values depends on the type    * of your data and the number of elements you have. Read more in the Guava User Guide article on    *<a href="https://github.com/google/guava/wiki/CollectionUtilitiesExplained#comparators">{@code    * Comparators}</a>.    *    * @param a first value to compare, returned if greater than or equal to b.    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> using the given    *     comparator.    * @since 30.0    */
 end_comment
 
-begin_function
+begin_annotation
 annotation|@
 name|Beta
-DECL|method|max (@ullable T a, @Nullable T b, Comparator<T> comparator)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ParametricNullness
+end_annotation
+
+begin_expr_stmt
+DECL|method|max ( @arametricNullness T a, @ParametricNullness T b, Comparator<T> comparator)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|max
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|T
 name|a
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|T
 name|b
-parameter_list|,
+argument_list|,
 name|Comparator
 argument_list|<
 name|T
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -868,13 +943,13 @@ argument_list|)
 operator|>=
 literal|0
 operator|)
-condition|?
+operator|?
 name|a
-else|:
+operator|:
 name|b
 return|;
 block|}
-end_function
+end_expr_stmt
 
 unit|}
 end_unit

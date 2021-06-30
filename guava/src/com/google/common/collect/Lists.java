@@ -422,6 +422,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -448,6 +458,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Lists
 specifier|public
 specifier|final
@@ -471,15 +483,18 @@ argument_list|)
 DECL|method|newArrayList ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ArrayList
 argument_list|<
 name|E
 argument_list|>
 name|newArrayList
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -501,50 +516,53 @@ argument_list|)
 DECL|method|newArrayList (E... elements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ArrayList
 argument_list|<
 name|E
 argument_list|>
 name|newArrayList
-parameter_list|(
+argument_list|(
 name|E
-modifier|...
+operator|...
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|elements
 argument_list|)
-expr_stmt|;
+block|;
 comment|// for GWT
 comment|// Avoid integer overflow when a large array is passed in
 name|int
 name|capacity
-init|=
+operator|=
 name|computeArrayListCapacity
 argument_list|(
 name|elements
 operator|.
 name|length
 argument_list|)
-decl_stmt|;
+block|;
 name|ArrayList
 argument_list|<
 name|E
 argument_list|>
 name|list
-init|=
+operator|=
 operator|new
 name|ArrayList
 argument_list|<>
 argument_list|(
 name|capacity
 argument_list|)
-decl_stmt|;
+block|;
 name|Collections
 operator|.
 name|addAll
@@ -553,7 +571,7 @@ name|list
 argument_list|,
 name|elements
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|list
 return|;
@@ -566,18 +584,21 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-DECL|method|newArrayList (Iterable<? extends E> elements)
+DECL|method|newArrayList ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ArrayList
 argument_list|<
 name|E
 argument_list|>
 name|newArrayList
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -585,13 +606,13 @@ extends|extends
 name|E
 argument_list|>
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|elements
 argument_list|)
-expr_stmt|;
+block|;
 comment|// for GWT
 comment|// Let ArrayList's sizing logic work, if possible
 return|return
@@ -633,18 +654,21 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-DECL|method|newArrayList (Iterator<? extends E> elements)
+DECL|method|newArrayList ( Iterator<? extends E> elements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ArrayList
 argument_list|<
 name|E
 argument_list|>
 name|newArrayList
-parameter_list|(
+argument_list|(
 name|Iterator
 argument_list|<
 name|?
@@ -652,17 +676,17 @@ extends|extends
 name|E
 argument_list|>
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 name|ArrayList
 argument_list|<
 name|E
 argument_list|>
 name|list
-init|=
+operator|=
 name|newArrayList
 argument_list|()
-decl_stmt|;
+block|;
 name|Iterators
 operator|.
 name|addAll
@@ -671,7 +695,7 @@ name|list
 argument_list|,
 name|elements
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|list
 return|;
@@ -720,21 +744,24 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-DECL|method|newArrayListWithCapacity (int initialArraySize)
+DECL|method|newArrayListWithCapacity ( int initialArraySize)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ArrayList
 argument_list|<
 name|E
 argument_list|>
 name|newArrayListWithCapacity
-parameter_list|(
+argument_list|(
 name|int
 name|initialArraySize
-parameter_list|)
+argument_list|)
 block|{
 name|checkNonnegative
 argument_list|(
@@ -742,7 +769,7 @@ name|initialArraySize
 argument_list|,
 literal|"initialArraySize"
 argument_list|)
-expr_stmt|;
+block|;
 comment|// for GWT.
 return|return
 operator|new
@@ -761,21 +788,24 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-DECL|method|newArrayListWithExpectedSize (int estimatedSize)
+DECL|method|newArrayListWithExpectedSize ( int estimatedSize)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ArrayList
 argument_list|<
 name|E
 argument_list|>
 name|newArrayListWithExpectedSize
-parameter_list|(
+argument_list|(
 name|int
 name|estimatedSize
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -801,15 +831,18 @@ argument_list|)
 DECL|method|newLinkedList ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|LinkedList
 argument_list|<
 name|E
 argument_list|>
 name|newLinkedList
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -826,18 +859,21 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-DECL|method|newLinkedList (Iterable<? extends E> elements)
+DECL|method|newLinkedList ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|LinkedList
 argument_list|<
 name|E
 argument_list|>
 name|newLinkedList
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -845,17 +881,17 @@ extends|extends
 name|E
 argument_list|>
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 name|LinkedList
 argument_list|<
 name|E
 argument_list|>
 name|list
-init|=
+operator|=
 name|newLinkedList
 argument_list|()
-decl_stmt|;
+block|;
 name|Iterables
 operator|.
 name|addAll
@@ -864,7 +900,7 @@ name|list
 argument_list|,
 name|elements
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|list
 return|;
@@ -876,15 +912,18 @@ comment|// CopyOnWriteArrayList
 DECL|method|newCopyOnWriteArrayList ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|CopyOnWriteArrayList
 argument_list|<
 name|E
 argument_list|>
 name|newCopyOnWriteArrayList
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -900,15 +939,18 @@ comment|// CopyOnWriteArrayList
 DECL|method|newCopyOnWriteArrayList ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|CopyOnWriteArrayList
 argument_list|<
 name|E
 argument_list|>
 name|newCopyOnWriteArrayList
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -916,7 +958,7 @@ extends|extends
 name|E
 argument_list|>
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 comment|// We copy elements to an ArrayList first, rather than incurring the
 comment|// quadratic cost of adding them to the COWAL directly.
@@ -927,7 +969,7 @@ extends|extends
 name|E
 argument_list|>
 name|elementsCollection
-init|=
+operator|=
 operator|(
 name|elements
 operator|instanceof
@@ -948,7 +990,7 @@ name|newArrayList
 argument_list|(
 name|elements
 argument_list|)
-decl_stmt|;
+block|;
 return|return
 operator|new
 name|CopyOnWriteArrayList
@@ -959,27 +1001,30 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an unmodifiable list containing the specified first element and backed by the specified    * array of additional elements. Changes to the {@code rest} array will be reflected in the    * returned list. Unlike {@link Arrays#asList}, the returned list is unmodifiable.    *    *<p>This is useful when a varargs method needs to use a signature such as {@code (Foo firstFoo,    * Foo... moreFoos)}, in order to avoid overload ambiguity or to enforce a minimum argument count.    *    *<p>The returned list is serializable and implements {@link RandomAccess}.    *    * @param first the first element    * @param rest an array of additional elements, possibly empty    * @return an unmodifiable list containing the specified elements    */
-DECL|method|asList (@ullable E first, E[] rest)
+DECL|method|asList (@arametricNullness E first, E[] rest)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|List
 argument_list|<
 name|E
 argument_list|>
 name|asList
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|E
 name|first
-parameter_list|,
+argument_list|,
 name|E
 index|[]
 name|rest
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -993,32 +1038,35 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an unmodifiable list containing the specified first and second element, and backed by    * the specified array of additional elements. Changes to the {@code rest} array will be reflected    * in the returned list. Unlike {@link Arrays#asList}, the returned list is unmodifiable.    *    *<p>This is useful when a varargs method needs to use a signature such as {@code (Foo firstFoo,    * Foo secondFoo, Foo... moreFoos)}, in order to avoid overload ambiguity or to enforce a minimum    * argument count.    *    *<p>The returned list is serializable and implements {@link RandomAccess}.    *    * @param first the first element    * @param second the second element    * @param rest an array of additional elements, possibly empty    * @return an unmodifiable list containing the specified elements    */
-DECL|method|asList (@ullable E first, @Nullable E second, E[] rest)
+DECL|method|asList ( @arametricNullness E first, @ParametricNullness E second, E[] rest)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|List
 argument_list|<
 name|E
 argument_list|>
 name|asList
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|E
 name|first
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|E
 name|second
-parameter_list|,
+argument_list|,
 name|E
 index|[]
 name|rest
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1037,53 +1085,55 @@ comment|/** @see Lists#asList(Object, Object[]) */
 DECL|class|OnePlusArrayList
 specifier|private
 specifier|static
-class|class
+name|class
 name|OnePlusArrayList
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractList
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|Serializable
-implements|,
+operator|,
 name|RandomAccess
-block|{
+block|{     @
 DECL|field|first
-specifier|final
-annotation|@
-name|Nullable
+name|ParametricNullness
+name|final
 name|E
 name|first
-decl_stmt|;
+block|;
 DECL|field|rest
-specifier|final
+name|final
 name|E
 index|[]
 name|rest
-decl_stmt|;
-DECL|method|OnePlusArrayList (@ullable E first, E[] rest)
+block|;
+DECL|method|OnePlusArrayList (@arametricNullness E first, E[] rest)
 name|OnePlusArrayList
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|E
 name|first
-parameter_list|,
+argument_list|,
 name|E
 index|[]
 name|rest
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|first
 operator|=
 name|first
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|rest
@@ -1092,15 +1142,14 @@ name|checkNotNull
 argument_list|(
 name|rest
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|size ()
 specifier|public
 name|int
 name|size
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|IntMath
@@ -1115,16 +1164,18 @@ literal|1
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|get (int index)
 specifier|public
 name|E
 name|get
-parameter_list|(
+argument_list|(
 name|int
 name|index
-parameter_list|)
+argument_list|)
 block|{
 comment|// check explicitly so the IOOBE will have the right message
 name|checkElementIndex
@@ -1134,7 +1185,7 @@ argument_list|,
 name|size
 argument_list|()
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|(
 name|index
@@ -1162,75 +1213,82 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+end_class
+
+begin_comment
 comment|/** @see Lists#asList(Object, Object, Object[]) */
+end_comment
+
+begin_expr_stmt
 DECL|class|TwoPlusArrayList
 specifier|private
 specifier|static
-class|class
+name|class
 name|TwoPlusArrayList
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractList
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|Serializable
-implements|,
+operator|,
 name|RandomAccess
-block|{
+block|{     @
 DECL|field|first
-specifier|final
-annotation|@
-name|Nullable
+name|ParametricNullness
+name|final
 name|E
 name|first
-decl_stmt|;
+block|;     @
 DECL|field|second
-specifier|final
-annotation|@
-name|Nullable
+name|ParametricNullness
+name|final
 name|E
 name|second
-decl_stmt|;
+block|;
 DECL|field|rest
-specifier|final
+name|final
 name|E
 index|[]
 name|rest
-decl_stmt|;
-DECL|method|TwoPlusArrayList (@ullable E first, @Nullable E second, E[] rest)
+block|;
+DECL|method|TwoPlusArrayList (@arametricNullness E first, @ParametricNullness E second, E[] rest)
 name|TwoPlusArrayList
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|E
 name|first
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|E
 name|second
-parameter_list|,
+argument_list|,
 name|E
 index|[]
 name|rest
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|first
 operator|=
 name|first
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|second
 operator|=
 name|second
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|rest
@@ -1239,15 +1297,14 @@ name|checkNotNull
 argument_list|(
 name|rest
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|size ()
 specifier|public
 name|int
 name|size
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|IntMath
@@ -1262,16 +1319,18 @@ literal|2
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|get (int index)
 specifier|public
 name|E
 name|get
-parameter_list|(
+argument_list|(
 name|int
 name|index
-parameter_list|)
+argument_list|)
 block|{
 switch|switch
 condition|(
@@ -1309,9 +1368,11 @@ literal|2
 index|]
 return|;
 block|}
-block|}
+end_expr_stmt
+
+begin_decl_stmt
+unit|}      private
 DECL|field|serialVersionUID
-specifier|private
 specifier|static
 specifier|final
 name|long
@@ -1319,10 +1380,16 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns every possible list that can be formed by choosing one element from each of the given    * lists in order; the "n-ary<a href="http://en.wikipedia.org/wiki/Cartesian_product">Cartesian    * product</a>" of the lists. For example:    *    *<pre>{@code    * Lists.cartesianProduct(ImmutableList.of(    *     ImmutableList.of(1, 2),    *     ImmutableList.of("A", "B", "C")))    * }</pre>    *    *<p>returns a list containing six lists in the following order:    *    *<ul>    *<li>{@code ImmutableList.of(1, "A")}    *<li>{@code ImmutableList.of(1, "B")}    *<li>{@code ImmutableList.of(1, "C")}    *<li>{@code ImmutableList.of(2, "A")}    *<li>{@code ImmutableList.of(2, "B")}    *<li>{@code ImmutableList.of(2, "C")}    *</ul>    *    *<p>The result is guaranteed to be in the "traditional", lexicographical order for Cartesian    * products that you would get from nesting for loops:    *    *<pre>{@code    * for (B b0 : lists.get(0)) {    *   for (B b1 : lists.get(1)) {    *     ...    *     ImmutableList<B> tuple = ImmutableList.of(b0, b1, ...);    *     // operate on tuple    *   }    * }    * }</pre>    *    *<p>Note that if any input list is empty, the Cartesian product will also be empty. If no lists    * at all are provided (an empty list), the resulting Cartesian product has one element, an empty    * list (counter-intuitive, but mathematically consistent).    *    *<p><i>Performance notes:</i> while the cartesian product of lists of size {@code m, n, p} is a    * list of size {@code m x n x p}, its actual memory consumption is much smaller. When the    * cartesian product is constructed, the input lists are merely copied. Only as the resulting list    * is iterated are the individual lists created, and these are not retained after iteration.    *    * @param lists the lists to choose elements from, in the order that the elements chosen from    *     those lists should appear in the resulting lists    * @param<B> any common base class shared by all axes (often just {@link Object})    * @return the Cartesian product, as an immutable list containing immutable lists    * @throws IllegalArgumentException if the size of the cartesian product would be greater than    *     {@link Integer#MAX_VALUE}    * @throws NullPointerException if {@code lists}, any one of the {@code lists}, or any element of    *     a provided list is null    * @since 19.0    */
+end_comment
+
+begin_function
 DECL|method|cartesianProduct (List<? extends List<? extends B>> lists)
-specifier|public
+unit|public
 specifier|static
 parameter_list|<
 name|B
@@ -1359,7 +1426,13 @@ name|lists
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns every possible list that can be formed by choosing one element from each of the given    * lists in order; the "n-ary<a href="http://en.wikipedia.org/wiki/Cartesian_product">Cartesian    * product</a>" of the lists. For example:    *    *<pre>{@code    * Lists.cartesianProduct(ImmutableList.of(    *     ImmutableList.of(1, 2),    *     ImmutableList.of("A", "B", "C")))    * }</pre>    *    *<p>returns a list containing six lists in the following order:    *    *<ul>    *<li>{@code ImmutableList.of(1, "A")}    *<li>{@code ImmutableList.of(1, "B")}    *<li>{@code ImmutableList.of(1, "C")}    *<li>{@code ImmutableList.of(2, "A")}    *<li>{@code ImmutableList.of(2, "B")}    *<li>{@code ImmutableList.of(2, "C")}    *</ul>    *    *<p>The result is guaranteed to be in the "traditional", lexicographical order for Cartesian    * products that you would get from nesting for loops:    *    *<pre>{@code    * for (B b0 : lists.get(0)) {    *   for (B b1 : lists.get(1)) {    *     ...    *     ImmutableList<B> tuple = ImmutableList.of(b0, b1, ...);    *     // operate on tuple    *   }    * }    * }</pre>    *    *<p>Note that if any input list is empty, the Cartesian product will also be empty. If no lists    * at all are provided (an empty list), the resulting Cartesian product has one element, an empty    * list (counter-intuitive, but mathematically consistent).    *    *<p><i>Performance notes:</i> while the cartesian product of lists of size {@code m, n, p} is a    * list of size {@code m x n x p}, its actual memory consumption is much smaller. When the    * cartesian product is constructed, the input lists are merely copied. Only as the resulting list    * is iterated are the individual lists created, and these are not retained after iteration.    *    * @param lists the lists to choose elements from, in the order that the elements chosen from    *     those lists should appear in the resulting lists    * @param<B> any common base class shared by all axes (often just {@link Object})    * @return the Cartesian product, as an immutable list containing immutable lists    * @throws IllegalArgumentException if the size of the cartesian product would be greater than    *     {@link Integer#MAX_VALUE}    * @throws NullPointerException if {@code lists}, any one of the {@code lists}, or any element of    *     a provided list is null    * @since 19.0    */
+end_comment
+
+begin_function
 annotation|@
 name|SafeVarargs
 DECL|method|cartesianProduct (List<? extends B>.... lists)
@@ -1399,27 +1472,39 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a list that applies {@code function} to each element of {@code fromList}. The returned    * list is a transformed view of {@code fromList}; changes to {@code fromList} will be reflected    * in the returned list and vice versa.    *    *<p>Since functions are not reversible, the transform is one-way and new items cannot be stored    * in the returned list. The {@code add}, {@code addAll} and {@code set} methods are unsupported    * in the returned list.    *    *<p>The function is applied lazily, invoked when needed. This is necessary for the returned list    * to be a view, but it means that the function will be applied many times for bulk operations    * like {@link List#contains} and {@link List#hashCode}. For this to perform well, {@code    * function} should be fast. To avoid lazy evaluation when the returned list doesn't need to be a    * view, copy the returned list into a new list of your choosing.    *    *<p>If {@code fromList} implements {@link RandomAccess}, so will the returned list. The returned    * list is threadsafe if the supplied list and function are.    *    *<p>If only a {@code Collection} or {@code Iterable} input is available, use {@link    * Collections2#transform} or {@link Iterables#transform}.    *    *<p><b>Note:</b> serializing the returned list is implemented by serializing {@code fromList},    * its contents, and {@code function} --<i>not</i> by serializing the transformed values. This    * can lead to surprising behavior, so serializing the returned list is<b>not recommended</b>.    * Instead, copy the list using {@link ImmutableList#copyOf(Collection)} (for example), then    * serialize the copy. Other methods similar to this do not implement serialization at all for    * this reason.    *    *<p><b>Java 8 users:</b> many use cases for this method are better addressed by {@link    * java.util.stream.Stream#map}. This method is not being deprecated, but we gently encourage you    * to migrate to streams.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|transform ( List<F> fromList, Function<? super F, ? extends T> function)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|F
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|List
 argument_list|<
 name|T
 argument_list|>
 name|transform
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|F
 argument_list|>
 name|fromList
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -1431,7 +1516,7 @@ extends|extends
 name|T
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -1459,35 +1544,47 @@ name|function
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Implementation of a sequential transforming list.    *    * @see Lists#transform    */
+end_comment
+
+begin_expr_stmt
 DECL|class|TransformingSequentialList
 specifier|private
 specifier|static
-class|class
+name|class
 name|TransformingSequentialList
-parameter_list|<
+operator|<
 name|F
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractSequentialList
 argument_list|<
 name|T
 argument_list|>
-implements|implements
+expr|implements
 name|Serializable
 block|{
 DECL|field|fromList
-specifier|final
+name|final
 name|List
 argument_list|<
 name|F
 argument_list|>
 name|fromList
-decl_stmt|;
+block|;
 DECL|field|function
-specifier|final
+name|final
 name|Function
 argument_list|<
 name|?
@@ -1499,16 +1596,16 @@ extends|extends
 name|T
 argument_list|>
 name|function
-decl_stmt|;
+block|;
 DECL|method|TransformingSequentialList (List<F> fromList, Function<? super F, ? extends T> function)
 name|TransformingSequentialList
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|F
 argument_list|>
 name|fromList
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -1520,7 +1617,7 @@ extends|extends
 name|T
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -1530,7 +1627,7 @@ name|checkNotNull
 argument_list|(
 name|fromList
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|function
@@ -1539,30 +1636,28 @@ name|checkNotNull
 argument_list|(
 name|function
 argument_list|)
-expr_stmt|;
-block|}
+block|;     }
 comment|/**      * The default implementation inherited is based on iteration and removal of each element which      * can be overkill. That's why we forward this call directly to the backing list.      */
-annotation|@
+expr|@
 name|Override
 DECL|method|clear ()
 specifier|public
 name|void
 name|clear
-parameter_list|()
+argument_list|()
 block|{
 name|fromList
 operator|.
 name|clear
 argument_list|()
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|size ()
 specifier|public
 name|int
 name|size
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|fromList
@@ -1571,7 +1666,7 @@ name|size
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|listIterator (final int index)
 specifier|public
@@ -1580,11 +1675,11 @@ argument_list|<
 name|T
 argument_list|>
 name|listIterator
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|int
 name|index
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1605,9 +1700,13 @@ argument_list|)
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 name|T
 name|transform
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|F
 name|from
 parameter_list|)
@@ -1621,10 +1720,10 @@ name|from
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|};     }      @
 name|Override
 DECL|method|removeIf (Predicate<? super T> filter)
 specifier|public
@@ -1666,6 +1765,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1675,38 +1777,50 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Implementation of a transforming random access list. We try to make as many of these methods    * pass-through to the source list as possible so that the performance characteristics of the    * source list and transformed list are similar.    *    * @see Lists#transform    */
+end_comment
+
+begin_expr_stmt
 DECL|class|TransformingRandomAccessList
-specifier|private
+unit|private
 specifier|static
-class|class
+name|class
 name|TransformingRandomAccessList
-parameter_list|<
+operator|<
 name|F
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractList
 argument_list|<
 name|T
 argument_list|>
-implements|implements
+expr|implements
 name|RandomAccess
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|fromList
-specifier|final
+name|final
 name|List
 argument_list|<
 name|F
 argument_list|>
 name|fromList
-decl_stmt|;
+block|;
 DECL|field|function
-specifier|final
+name|final
 name|Function
 argument_list|<
 name|?
@@ -1718,16 +1832,16 @@ extends|extends
 name|T
 argument_list|>
 name|function
-decl_stmt|;
+block|;
 DECL|method|TransformingRandomAccessList (List<F> fromList, Function<? super F, ? extends T> function)
 name|TransformingRandomAccessList
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|F
 argument_list|>
 name|fromList
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -1739,7 +1853,7 @@ extends|extends
 name|T
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -1749,7 +1863,7 @@ name|checkNotNull
 argument_list|(
 name|fromList
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|function
@@ -1758,32 +1872,32 @@ name|checkNotNull
 argument_list|(
 name|function
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|clear ()
 specifier|public
 name|void
 name|clear
-parameter_list|()
+argument_list|()
 block|{
 name|fromList
 operator|.
 name|clear
 argument_list|()
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|get (int index)
 specifier|public
 name|T
 name|get
-parameter_list|(
+argument_list|(
 name|int
 name|index
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|function
@@ -1799,7 +1913,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|iterator ()
 specifier|public
@@ -1808,13 +1922,16 @@ argument_list|<
 name|T
 argument_list|>
 name|iterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|listIterator
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|listIterator (int index)
@@ -1867,6 +1984,9 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -1882,6 +2002,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|removeIf (Predicate<? super T> filter)
@@ -1924,8 +2047,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|remove (int index)
 specifier|public
 name|T
@@ -1949,6 +2077,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -1964,6 +2095,9 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1973,14 +2107,23 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns consecutive {@linkplain List#subList(int, int) sublists} of a list, each of the same    * size (the final list may be smaller). For example, partitioning a list containing {@code [a, b,    * c, d, e]} with a partition size of 3 yields {@code [[a, b, c], [d, e]]} -- an outer list    * containing two inner lists of three and two elements, all in the original order.    *    *<p>The outer list is unmodifiable, but reflects the latest state of the source list. The inner    * lists are sublist views of the original list, produced on demand using {@link List#subList(int,    * int)}, and are subject to all the usual caveats about modification as explained in that API.    *    * @param list the list to return consecutive sublists of    * @param size the desired size of each sublist (the last may be smaller)    * @return a list of consecutive sublists    * @throws IllegalArgumentException if {@code partitionSize} is nonpositive    */
+end_comment
+
+begin_expr_stmt
 DECL|method|partition (List<T> list, int size)
-specifier|public
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|List
 argument_list|<
 name|List
@@ -1989,29 +2132,29 @@ name|T
 argument_list|>
 argument_list|>
 name|partition
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|T
 argument_list|>
 name|list
-parameter_list|,
+argument_list|,
 name|int
 name|size
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|list
 argument_list|)
-expr_stmt|;
+block|;
 name|checkArgument
 argument_list|(
 name|size
 operator|>
 literal|0
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|(
 name|list
@@ -2038,15 +2181,21 @@ name|size
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|Partition
 specifier|private
 specifier|static
-class|class
+name|class
 name|Partition
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractList
 argument_list|<
 name|List
@@ -2056,45 +2205,44 @@ argument_list|>
 argument_list|>
 block|{
 DECL|field|list
-specifier|final
+name|final
 name|List
 argument_list|<
 name|T
 argument_list|>
 name|list
-decl_stmt|;
+block|;
 DECL|field|size
-specifier|final
+name|final
 name|int
 name|size
-decl_stmt|;
+block|;
 DECL|method|Partition (List<T> list, int size)
 name|Partition
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|T
 argument_list|>
 name|list
-parameter_list|,
+argument_list|,
 name|int
 name|size
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|list
 operator|=
 name|list
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|size
 operator|=
 name|size
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|get (int index)
 specifier|public
@@ -2103,10 +2251,10 @@ argument_list|<
 name|T
 argument_list|>
 name|get
-parameter_list|(
+argument_list|(
 name|int
 name|index
-parameter_list|)
+argument_list|)
 block|{
 name|checkElementIndex
 argument_list|(
@@ -2115,17 +2263,17 @@ argument_list|,
 name|size
 argument_list|()
 argument_list|)
-expr_stmt|;
+block|;
 name|int
 name|start
-init|=
+operator|=
 name|index
 operator|*
 name|size
-decl_stmt|;
+block|;
 name|int
 name|end
-init|=
+operator|=
 name|Math
 operator|.
 name|min
@@ -2139,7 +2287,7 @@ operator|.
 name|size
 argument_list|()
 argument_list|)
-decl_stmt|;
+block|;
 return|return
 name|list
 operator|.
@@ -2151,13 +2299,13 @@ name|end
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|size ()
 specifier|public
 name|int
 name|size
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|IntMath
@@ -2177,6 +2325,9 @@ name|CEILING
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -2192,35 +2343,40 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-block|}
+end_function
+
+begin_expr_stmt
+unit|}    private
 DECL|class|RandomAccessPartition
-specifier|private
 specifier|static
-class|class
+name|class
 name|RandomAccessPartition
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Partition
 argument_list|<
 name|T
 argument_list|>
-implements|implements
+expr|implements
 name|RandomAccess
 block|{
 DECL|method|RandomAccessPartition (List<T> list, int size)
 name|RandomAccessPartition
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|T
 argument_list|>
 name|list
-parameter_list|,
+argument_list|,
 name|int
 name|size
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -2228,8 +2384,7 @@ name|list
 argument_list|,
 name|size
 argument_list|)
-expr_stmt|;
-block|}
+block|;     }
 block|}
 comment|/**    * Returns a view of the specified string as an immutable list of {@code Character} values.    *    * @since 7.0    */
 DECL|method|charactersOf (String string)
@@ -2240,10 +2395,10 @@ argument_list|<
 name|Character
 argument_list|>
 name|charactersOf
-parameter_list|(
+argument_list|(
 name|String
 name|string
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -2256,7 +2411,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a view of the specified {@code CharSequence} as a {@code List<Character>}, viewing    * {@code sequence} as a sequence of Unicode code units. The view does not support any    * modification operations, but reflects any changes to the underlying character sequence.    *    * @param sequence the character sequence to view as a {@code List} of characters    * @return an {@code List<Character>} view of the character sequence    * @since 7.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|charactersOf (CharSequence sequence)
@@ -2283,6 +2444,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_class
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -2323,13 +2487,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|indexOf (@ullable Object object)
+DECL|method|indexOf (@heckForNull Object object)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2357,13 +2521,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|lastIndexOf (@ullable Object object)
+DECL|method|lastIndexOf (@heckForNull Object object)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2487,6 +2651,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 DECL|class|CharSequenceAsList
 specifier|private
 specifier|static
@@ -2564,25 +2731,34 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns a reversed view of the specified list. For example, {@code    * Lists.reverse(Arrays.asList(1, 2, 3))} returns a list containing {@code 3, 2, 1}. The returned    * list is backed by this list, so changes in the returned list are reflected in this list, and    * vice-versa. The returned list supports all of the optional list operations supported by this    * list.    *    *<p>The returned list is random-access if the specified list is random access.    *    * @since 7.0    */
+end_comment
+
+begin_expr_stmt
 DECL|method|reverse (List<T> list)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|List
 argument_list|<
 name|T
 argument_list|>
 name|reverse
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|T
 argument_list|>
 name|list
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -2591,12 +2767,18 @@ operator|instanceof
 name|ImmutableList
 condition|)
 block|{
-return|return
+comment|// Avoid nullness warnings.
+name|List
+argument_list|<
+name|?
+argument_list|>
+name|reversed
+init|=
 operator|(
 operator|(
 name|ImmutableList
 argument_list|<
-name|T
+name|?
 argument_list|>
 operator|)
 name|list
@@ -2604,8 +2786,33 @@ operator|)
 operator|.
 name|reverse
 argument_list|()
+decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+name|List
+argument_list|<
+name|T
+argument_list|>
+name|result
+init|=
+operator|(
+name|List
+argument_list|<
+name|T
+argument_list|>
+operator|)
+name|reversed
+decl_stmt|;
+return|return
+name|result
 return|;
 block|}
+end_expr_stmt
+
+begin_elseif
 elseif|else
 if|if
 condition|(
@@ -2629,6 +2836,9 @@ name|getForwardList
 argument_list|()
 return|;
 block|}
+end_elseif
+
+begin_elseif
 elseif|else
 if|if
 condition|(
@@ -2646,6 +2856,9 @@ name|list
 argument_list|)
 return|;
 block|}
+end_elseif
+
+begin_else
 else|else
 block|{
 return|return
@@ -2657,16 +2870,21 @@ name|list
 argument_list|)
 return|;
 block|}
-block|}
+end_else
+
+begin_expr_stmt
+unit|}    private
 DECL|class|ReverseList
-specifier|private
 specifier|static
-class|class
+name|class
 name|ReverseList
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractList
 argument_list|<
 name|T
@@ -2674,22 +2892,22 @@ argument_list|>
 block|{
 DECL|field|forwardList
 specifier|private
-specifier|final
+name|final
 name|List
 argument_list|<
 name|T
 argument_list|>
 name|forwardList
-decl_stmt|;
+block|;
 DECL|method|ReverseList (List<T> forwardList)
 name|ReverseList
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|T
 argument_list|>
 name|forwardList
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -2699,15 +2917,14 @@ name|checkNotNull
 argument_list|(
 name|forwardList
 argument_list|)
-expr_stmt|;
-block|}
+block|;     }
 DECL|method|getForwardList ()
 name|List
 argument_list|<
 name|T
 argument_list|>
 name|getForwardList
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|forwardList
@@ -2717,24 +2934,24 @@ DECL|method|reverseIndex (int index)
 specifier|private
 name|int
 name|reverseIndex
-parameter_list|(
+argument_list|(
 name|int
 name|index
-parameter_list|)
+argument_list|)
 block|{
 name|int
 name|size
-init|=
+operator|=
 name|size
 argument_list|()
-decl_stmt|;
+block|;
 name|checkElementIndex
 argument_list|(
 name|index
 argument_list|,
 name|size
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|(
 name|size
@@ -2745,6 +2962,9 @@ operator|-
 name|index
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 DECL|method|reversePosition (int index)
 specifier|private
 name|int
@@ -2773,9 +2993,12 @@ operator|-
 name|index
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|add (int index, @Nullable T element)
+DECL|method|add (int index, @ParametricNullness T element)
 specifier|public
 name|void
 name|add
@@ -2784,7 +3007,7 @@ name|int
 name|index
 parameter_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|T
 name|element
 parameter_list|)
@@ -2802,6 +3025,9 @@ name|element
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -2816,8 +3042,13 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|remove (int index)
 specifier|public
 name|T
@@ -2839,6 +3070,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|removeRange (int fromIndex, int toIndex)
@@ -2864,9 +3098,14 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|set (int index, @Nullable T element)
+annotation|@
+name|ParametricNullness
+DECL|method|set (int index, @ParametricNullness T element)
 specifier|public
 name|T
 name|set
@@ -2875,7 +3114,7 @@ name|int
 name|index
 parameter_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|T
 name|element
 parameter_list|)
@@ -2894,8 +3133,13 @@ name|element
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|get (int index)
 specifier|public
 name|T
@@ -2917,6 +3161,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -2932,6 +3179,9 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|subList (int fromIndex, int toIndex)
@@ -2979,6 +3229,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|iterator ()
@@ -2995,6 +3248,9 @@ name|listIterator
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|listIterator (int index)
@@ -3048,6 +3304,8 @@ specifier|public
 name|void
 name|add
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|T
 name|e
 parameter_list|)
@@ -3099,6 +3357,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|T
 name|next
@@ -3147,6 +3407,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|T
 name|previous
@@ -3218,6 +3480,8 @@ specifier|public
 name|void
 name|set
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|T
 name|e
 parameter_list|)
@@ -3238,59 +3502,63 @@ block|}
 block|}
 return|;
 block|}
-block|}
+end_function
+
+begin_expr_stmt
+unit|}    private
 DECL|class|RandomAccessReverseList
-specifier|private
 specifier|static
-class|class
+name|class
 name|RandomAccessReverseList
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ReverseList
 argument_list|<
 name|T
 argument_list|>
-implements|implements
+expr|implements
 name|RandomAccess
 block|{
 DECL|method|RandomAccessReverseList (List<T> forwardList)
 name|RandomAccessReverseList
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|T
 argument_list|>
 name|forwardList
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|forwardList
 argument_list|)
-expr_stmt|;
-block|}
+block|;     }
 block|}
 comment|/** An implementation of {@link List#hashCode()}. */
 DECL|method|hashCodeImpl (List<?> list)
 specifier|static
 name|int
 name|hashCodeImpl
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|?
 argument_list|>
 name|list
-parameter_list|)
+argument_list|)
 block|{
 comment|// TODO(lowasser): worth optimizing for RandomAccess?
 name|int
 name|hashCode
-init|=
+operator|=
 literal|1
-decl_stmt|;
+block|;
 for|for
 control|(
 name|Object
@@ -3326,13 +3594,22 @@ name|hashCode
 expr_stmt|;
 comment|// needed to deal with GWT integer overflow
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|hashCode
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/** An implementation of {@link List#equals(Object)}. */
-DECL|method|equalsImpl (List<?> thisList, @Nullable Object other)
-specifier|static
+end_comment
+
+begin_function
+DECL|method|equalsImpl (List<?> thisList, @CheckForNull Object other)
+unit|static
 name|boolean
 name|equalsImpl
 parameter_list|(
@@ -3343,7 +3620,7 @@ argument_list|>
 name|thisList
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|other
 parameter_list|)
@@ -3491,24 +3768,33 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/** An implementation of {@link List#addAll(int, Collection)}. */
-DECL|method|addAllImpl (List<E> list, int index, Iterable<? extends E> elements)
+end_comment
+
+begin_expr_stmt
+DECL|method|addAllImpl ( List<E> list, int index, Iterable<? extends E> elements)
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|boolean
 name|addAllImpl
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|E
 argument_list|>
 name|list
-parameter_list|,
+argument_list|,
 name|int
 name|index
-parameter_list|,
+argument_list|,
 name|Iterable
 argument_list|<
 name|?
@@ -3516,26 +3802,26 @@ extends|extends
 name|E
 argument_list|>
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 name|boolean
 name|changed
-init|=
+operator|=
 literal|false
-decl_stmt|;
+block|;
 name|ListIterator
 argument_list|<
 name|E
 argument_list|>
 name|listIterator
-init|=
+operator|=
 name|list
 operator|.
 name|listIterator
 argument_list|(
 name|index
 argument_list|)
-decl_stmt|;
+block|;
 for|for
 control|(
 name|E
@@ -3556,13 +3842,22 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|changed
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/** An implementation of {@link List#indexOf(Object)}. */
-DECL|method|indexOfImpl (List<?> list, @Nullable Object element)
-specifier|static
+end_comment
+
+begin_function
+DECL|method|indexOfImpl (List<?> list, @CheckForNull Object element)
+unit|static
 name|int
 name|indexOfImpl
 parameter_list|(
@@ -3573,7 +3868,7 @@ argument_list|>
 name|list
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -3644,7 +3939,10 @@ literal|1
 return|;
 block|}
 block|}
-DECL|method|indexOfRandomAccess (List<?> list, @Nullable Object element)
+end_function
+
+begin_function
+DECL|method|indexOfRandomAccess (List<?> list, @CheckForNull Object element)
 specifier|private
 specifier|static
 name|int
@@ -3657,7 +3955,7 @@ argument_list|>
 name|list
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -3753,8 +4051,14 @@ operator|-
 literal|1
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** An implementation of {@link List#lastIndexOf(Object)}. */
-DECL|method|lastIndexOfImpl (List<?> list, @Nullable Object element)
+end_comment
+
+begin_function
+DECL|method|lastIndexOfImpl (List<?> list, @CheckForNull Object element)
 specifier|static
 name|int
 name|lastIndexOfImpl
@@ -3766,7 +4070,7 @@ argument_list|>
 name|list
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -3842,7 +4146,10 @@ literal|1
 return|;
 block|}
 block|}
-DECL|method|lastIndexOfRandomAccess (List<?> list, @Nullable Object element)
+end_function
+
+begin_function
+DECL|method|lastIndexOfRandomAccess (List<?> list, @CheckForNull Object element)
 specifier|private
 specifier|static
 name|int
@@ -3855,7 +4162,7 @@ argument_list|>
 name|list
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -3953,27 +4260,36 @@ operator|-
 literal|1
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Returns an implementation of {@link List#listIterator(int)}. */
+end_comment
+
+begin_expr_stmt
 DECL|method|listIteratorImpl (List<E> list, int index)
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListIterator
 argument_list|<
 name|E
 argument_list|>
 name|listIteratorImpl
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|E
 argument_list|>
 name|list
-parameter_list|,
+argument_list|,
 name|int
 name|index
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -3989,38 +4305,47 @@ name|index
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/** An implementation of {@link List#subList(int, int)}. */
-DECL|method|subListImpl (final List<E> list, int fromIndex, int toIndex)
+end_comment
+
+begin_expr_stmt
+DECL|method|subListImpl ( final List<E> list, int fromIndex, int toIndex)
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|List
 argument_list|<
 name|E
 argument_list|>
 name|subListImpl
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|List
 argument_list|<
 name|E
 argument_list|>
 name|list
-parameter_list|,
+argument_list|,
 name|int
 name|fromIndex
-parameter_list|,
+argument_list|,
 name|int
 name|toIndex
-parameter_list|)
+argument_list|)
 block|{
 name|List
 argument_list|<
 name|E
 argument_list|>
 name|wrapper
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|list
@@ -4063,16 +4388,16 @@ return|;
 block|}
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|long
 name|serialVersionUID
-init|=
+operator|=
 literal|0
-decl_stmt|;
-block|}
 expr_stmt|;
-block|}
-else|else
+end_expr_stmt
+
+begin_block
+unit|};     } else
 block|{
 name|wrapper
 operator|=
@@ -4118,6 +4443,9 @@ decl_stmt|;
 block|}
 expr_stmt|;
 block|}
+end_block
+
+begin_return
 return|return
 name|wrapper
 operator|.
@@ -4128,38 +4456,43 @@ argument_list|,
 name|toIndex
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_expr_stmt
+unit|}    private
 DECL|class|AbstractListWrapper
-specifier|private
 specifier|static
-class|class
+name|class
 name|AbstractListWrapper
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractList
 argument_list|<
 name|E
 argument_list|>
 block|{
 DECL|field|backingList
-specifier|final
+name|final
 name|List
 argument_list|<
 name|E
 argument_list|>
 name|backingList
-decl_stmt|;
+block|;
 DECL|method|AbstractListWrapper (List<E> backingList)
 name|AbstractListWrapper
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|E
 argument_list|>
 name|backingList
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -4169,21 +4502,22 @@ name|checkNotNull
 argument_list|(
 name|backingList
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|add (int index, E element)
+DECL|method|add (int index, @ParametricNullness E element)
 specifier|public
 name|void
 name|add
-parameter_list|(
+argument_list|(
 name|int
 name|index
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|element
-parameter_list|)
+argument_list|)
 block|{
 name|backingList
 operator|.
@@ -4193,18 +4527,17 @@ name|index
 argument_list|,
 name|element
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|addAll (int index, Collection<? extends E> c)
 specifier|public
 name|boolean
 name|addAll
-parameter_list|(
+argument_list|(
 name|int
 name|index
-parameter_list|,
+argument_list|,
 name|Collection
 argument_list|<
 name|?
@@ -4212,7 +4545,7 @@ extends|extends
 name|E
 argument_list|>
 name|c
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|backingList
@@ -4225,16 +4558,18 @@ name|c
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|get (int index)
 specifier|public
 name|E
 name|get
-parameter_list|(
+argument_list|(
 name|int
 name|index
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|backingList
@@ -4245,8 +4580,13 @@ name|index
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|remove (int index)
 specifier|public
 name|E
@@ -4265,9 +4605,14 @@ name|index
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|set (int index, E element)
+annotation|@
+name|ParametricNullness
+DECL|method|set (int index, @ParametricNullness E element)
 specifier|public
 name|E
 name|set
@@ -4275,6 +4620,8 @@ parameter_list|(
 name|int
 name|index
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|element
 parameter_list|)
@@ -4290,13 +4637,18 @@ name|element
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|contains (Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -4310,6 +4662,9 @@ name|o
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -4325,58 +4680,65 @@ name|size
 argument_list|()
 return|;
 block|}
-block|}
+end_function
+
+begin_expr_stmt
+unit|}    private
 DECL|class|RandomAccessListWrapper
-specifier|private
 specifier|static
-class|class
+name|class
 name|RandomAccessListWrapper
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractListWrapper
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|RandomAccess
 block|{
 DECL|method|RandomAccessListWrapper (List<E> backingList)
 name|RandomAccessListWrapper
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|E
 argument_list|>
 name|backingList
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|backingList
 argument_list|)
-expr_stmt|;
-block|}
+block|;     }
 block|}
 comment|/** Used to avoid http://bugs.sun.com/view_bug.do?bug_id=6558557 */
 DECL|method|cast (Iterable<T> iterable)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|List
 argument_list|<
 name|T
 argument_list|>
 name|cast
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|iterable
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -4388,8 +4750,8 @@ operator|)
 name|iterable
 return|;
 block|}
-block|}
-end_class
+end_expr_stmt
 
+unit|}
 end_unit
 

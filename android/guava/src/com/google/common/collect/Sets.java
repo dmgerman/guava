@@ -384,6 +384,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -392,9 +402,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -410,6 +420,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Sets
 specifier|public
 specifier|final
@@ -425,30 +437,32 @@ comment|/**    * {@link AbstractSet} substitute without the potentially-quadrati
 DECL|class|ImprovedAbstractSet
 specifier|abstract
 specifier|static
-class|class
+name|class
 name|ImprovedAbstractSet
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractSet
 argument_list|<
 name|E
 argument_list|>
-block|{
-annotation|@
+block|{     @
 name|Override
 DECL|method|removeAll (Collection<?> c)
 specifier|public
 name|boolean
 name|removeAll
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
 argument_list|>
 name|c
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|removeAllImpl
@@ -459,19 +473,19 @@ name|c
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|retainAll (Collection<?> c)
 specifier|public
 name|boolean
 name|retainAll
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
 argument_list|>
 name|c
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|super
@@ -487,8 +501,17 @@ return|;
 comment|// GWT compatibility
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns an immutable set instance containing the given enum elements. Internally, the returned    * set will be backed by an {@link EnumSet}.    *    *<p>The iteration order of the returned set follows the enum's iteration order, not the order in    * which the elements are provided to the method.    *    * @param anElement one of the elements the set should contain    * @param otherElements the rest of the elements the set should contain    * @return an immutable set containing those elements, minus duplicates    */
+end_comment
+
+begin_comment
 comment|// http://code.google.com/p/google-web-toolkit/issues/detail?id=3028
+end_comment
+
+begin_function
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -537,8 +560,17 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable set instance containing the given enum elements. Internally, the returned    * set will be backed by an {@link EnumSet}.    *    *<p>The iteration order of the returned set follows the enum's iteration order, not the order in    * which the elements appear in the given collection.    *    * @param elements the elements, all of the same {@code enum} type, that the set should contain    * @return an immutable set containing those elements, minus duplicates    */
+end_comment
+
+begin_comment
 comment|// http://code.google.com/p/google-web-toolkit/issues/detail?id=3028
+end_comment
+
+begin_function
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -707,7 +739,13 @@ return|;
 block|}
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a new,<i>mutable</i> {@code EnumSet} instance containing the given elements in their    * natural order. This method behaves identically to {@link EnumSet#copyOf(Collection)}, but also    * accepts non-{@code Collection} iterables and empty iterables.    */
+end_comment
+
+begin_function
 DECL|method|newEnumSet ( Iterable<E> iterable, Class<E> elementType)
 specifier|public
 specifier|static
@@ -764,20 +802,32 @@ return|return
 name|set
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// HashSet
+end_comment
+
+begin_comment
 comment|/**    * Creates a<i>mutable</i>, initially empty {@code HashSet} instance.    *    *<p><b>Note:</b> if mutability is not required, use {@link ImmutableSet#of()} instead. If {@code    * E} is an {@link Enum} type, use {@link EnumSet#noneOf} instead. Otherwise, strongly consider    * using a {@code LinkedHashSet} instead, at the cost of increased memory footprint, to get    * deterministic iteration behavior.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code HashSet} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|newHashSet ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|HashSet
 argument_list|<
 name|E
 argument_list|>
 name|newHashSet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -788,37 +838,46 @@ argument_list|>
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a<i>mutable</i> {@code HashSet} instance initially containing the given elements.    *    *<p><b>Note:</b> if elements are non-null and won't be added or removed after this point, use    * {@link ImmutableSet#of()} or {@link ImmutableSet#copyOf(Object[])} instead. If {@code E} is an    * {@link Enum} type, use {@link EnumSet#of(Enum, Enum[])} instead. Otherwise, strongly consider    * using a {@code LinkedHashSet} instead, at the cost of increased memory footprint, to get    * deterministic iteration behavior.    *    *<p>This method is just a small convenience, either for {@code newHashSet(}{@link Arrays#asList    * asList}{@code (...))}, or for creating an empty set then calling {@link Collections#addAll}.    * This method is not actually very useful and will likely be deprecated in the future.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|newHashSet (E... elements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|HashSet
 argument_list|<
 name|E
 argument_list|>
 name|newHashSet
-parameter_list|(
+argument_list|(
 name|E
-modifier|...
+operator|...
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 name|HashSet
 argument_list|<
 name|E
 argument_list|>
 name|set
-init|=
+operator|=
 name|newHashSetWithExpectedSize
 argument_list|(
 name|elements
 operator|.
 name|length
 argument_list|)
-decl_stmt|;
+block|;
 name|Collections
 operator|.
 name|addAll
@@ -827,24 +886,33 @@ name|set
 argument_list|,
 name|elements
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|set
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a<i>mutable</i> {@code HashSet} instance containing the given elements. A very thin    * convenience for creating an empty set then calling {@link Collection#addAll} or {@link    * Iterables#addAll}.    *    *<p><b>Note:</b> if mutability is not required and the elements are non-null, use {@link    * ImmutableSet#copyOf(Iterable)} instead. (Or, change {@code elements} to be a {@link    * FluentIterable} and call {@code elements.toSet()}.)    *    *<p><b>Note:</b> if {@code E} is an {@link Enum} type, use {@link #newEnumSet(Iterable, Class)}    * instead.    *    *<p><b>Note for Java 7 and later:</b> if {@code elements} is a {@link Collection}, you don't    * need this method. Instead, use the {@code HashSet} constructor directly, taking advantage of    * the new<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    *<p>Overall, this method is not very useful and will likely be deprecated in the future.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|newHashSet (Iterable<? extends E> elements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|HashSet
 argument_list|<
 name|E
 argument_list|>
 name|newHashSet
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -852,7 +920,7 @@ extends|extends
 name|E
 argument_list|>
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -887,19 +955,28 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a<i>mutable</i> {@code HashSet} instance containing the given elements. A very thin    * convenience for creating an empty set and then calling {@link Iterators#addAll}.    *    *<p><b>Note:</b> if mutability is not required and the elements are non-null, use {@link    * ImmutableSet#copyOf(Iterator)} instead.    *    *<p><b>Note:</b> if {@code E} is an {@link Enum} type, you should create an {@link EnumSet}    * instead.    *    *<p>Overall, this method is not very useful and will likely be deprecated in the future.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|newHashSet (Iterator<? extends E> elements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|HashSet
 argument_list|<
 name|E
 argument_list|>
 name|newHashSet
-parameter_list|(
+argument_list|(
 name|Iterator
 argument_list|<
 name|?
@@ -907,17 +984,17 @@ extends|extends
 name|E
 argument_list|>
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 name|HashSet
 argument_list|<
 name|E
 argument_list|>
 name|set
-init|=
+operator|=
 name|newHashSet
 argument_list|()
-decl_stmt|;
+block|;
 name|Iterators
 operator|.
 name|addAll
@@ -926,27 +1003,36 @@ name|set
 argument_list|,
 name|elements
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|set
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a new hash set using the smallest initial table size that can hold {@code expectedSize}    * elements without resizing. Note that this is not what {@link HashSet#HashSet(int)} does, but it    * is what most users want and expect it to do.    *    *<p>This behavior can't be broadly guaranteed, but has been tested with OpenJDK 1.7 and 1.8.    *    * @param expectedSize the number of elements you expect to add to the returned set    * @return a new, empty hash set with enough capacity to hold {@code expectedSize} elements    *     without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
-DECL|method|newHashSetWithExpectedSize (int expectedSize)
+end_comment
+
+begin_expr_stmt
+DECL|method|newHashSetWithExpectedSize ( int expectedSize)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|HashSet
 argument_list|<
 name|E
 argument_list|>
 name|newHashSetWithExpectedSize
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -964,7 +1050,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a thread-safe set backed by a hash map. The set is backed by a {@link    * ConcurrentHashMap} instance, and thus carries the same concurrency guarantees.    *    *<p>Unlike {@code HashSet}, this class does NOT allow {@code null} to be used as an element. The    * set is serializable.    *    * @return a new, empty thread-safe {@code Set}    * @since 15.0    */
+end_comment
+
+begin_function
 DECL|method|newConcurrentHashSet ()
 specifier|public
 specifier|static
@@ -994,7 +1086,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates a thread-safe set backed by a hash map and containing the given elements. The set is    * backed by a {@link ConcurrentHashMap} instance, and thus carries the same concurrency    * guarantees.    *    *<p>Unlike {@code HashSet}, this class does NOT allow {@code null} to be used as an element. The    * set is serializable.    *    * @param elements the elements that the set should contain    * @return a new thread-safe set containing those elements (minus duplicates)    * @throws NullPointerException if {@code elements} or any of its contents is null    * @since 15.0    */
+end_comment
+
+begin_function
 DECL|method|newConcurrentHashSet (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -1038,20 +1136,32 @@ return|return
 name|set
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// LinkedHashSet
+end_comment
+
+begin_comment
 comment|/**    * Creates a<i>mutable</i>, empty {@code LinkedHashSet} instance.    *    *<p><b>Note:</b> if mutability is not required, use {@link ImmutableSet#of()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code LinkedHashSet} constructor directly, taking advantage of    * the new<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code LinkedHashSet}    */
+end_comment
+
+begin_expr_stmt
 DECL|method|newLinkedHashSet ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|LinkedHashSet
 argument_list|<
 name|E
 argument_list|>
 name|newLinkedHashSet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -1062,19 +1172,28 @@ argument_list|>
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a<i>mutable</i> {@code LinkedHashSet} instance containing the given elements in order.    *    *<p><b>Note:</b> if mutability is not required and the elements are non-null, use {@link    * ImmutableSet#copyOf(Iterable)} instead.    *    *<p><b>Note for Java 7 and later:</b> if {@code elements} is a {@link Collection}, you don't    * need this method. Instead, use the {@code LinkedHashSet} constructor directly, taking advantage    * of the new<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    *<p>Overall, this method is not very useful and will likely be deprecated in the future.    *    * @param elements the elements that the set should contain, in order    * @return a new {@code LinkedHashSet} containing those elements (minus duplicates)    */
-DECL|method|newLinkedHashSet (Iterable<? extends E> elements)
+end_comment
+
+begin_expr_stmt
+DECL|method|newLinkedHashSet ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|LinkedHashSet
 argument_list|<
 name|E
 argument_list|>
 name|newLinkedHashSet
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -1082,7 +1201,7 @@ extends|extends
 name|E
 argument_list|>
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -1115,10 +1234,13 @@ argument_list|<
 name|E
 argument_list|>
 name|set
-init|=
+operator|=
 name|newLinkedHashSet
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+end_expr_stmt
+
+begin_expr_stmt
 name|Iterables
 operator|.
 name|addAll
@@ -1128,26 +1250,38 @@ argument_list|,
 name|elements
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_return
 return|return
 name|set
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Creates a {@code LinkedHashSet} instance, with a high enough "initial capacity" that it    *<i>should</i> hold {@code expectedSize} elements without growth. This behavior cannot be    * broadly guaranteed, but it is observed to be true for OpenJDK 1.7. It also can't be guaranteed    * that the method isn't inadvertently<i>oversizing</i> the returned set.    *    * @param expectedSize the number of elements you expect to add to the returned set    * @return a new, empty {@code LinkedHashSet} with enough capacity to hold {@code expectedSize}    *     elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    * @since 11.0    */
-DECL|method|newLinkedHashSetWithExpectedSize (int expectedSize)
-specifier|public
+end_comment
+
+begin_expr_stmt
+DECL|method|newLinkedHashSetWithExpectedSize ( int expectedSize)
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|LinkedHashSet
 argument_list|<
 name|E
 argument_list|>
 name|newLinkedHashSetWithExpectedSize
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1165,8 +1299,17 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|// TreeSet
+end_comment
+
+begin_comment
 comment|/**    * Creates a<i>mutable</i>, empty {@code TreeSet} instance sorted by the natural sort ordering of    * its elements.    *    *<p><b>Note:</b> if mutability is not required, use {@link ImmutableSortedSet#of()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code TreeSet} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code TreeSet}    */
+end_comment
+
+begin_function
 DECL|method|newTreeSet ()
 specifier|public
 specifier|static
@@ -1191,7 +1334,13 @@ argument_list|>
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates a<i>mutable</i> {@code TreeSet} instance containing the given elements sorted by their    * natural ordering.    *    *<p><b>Note:</b> if mutability is not required, use {@link ImmutableSortedSet#copyOf(Iterable)}    * instead.    *    *<p><b>Note:</b> If {@code elements} is a {@code SortedSet} with an explicit comparator, this    * method has different behavior than {@link TreeSet#TreeSet(SortedSet)}, which returns a {@code    * TreeSet} with that comparator.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code TreeSet} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    *<p>This method is just a small convenience for creating an empty set and then calling {@link    * Iterables#addAll}. This method is not very useful and will likely be deprecated in the future.    *    * @param elements the elements that the set should contain    * @return a new {@code TreeSet} containing those elements (minus duplicates)    */
+end_comment
+
+begin_function
 DECL|method|newTreeSet (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -1237,19 +1386,28 @@ return|return
 name|set
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates a<i>mutable</i>, empty {@code TreeSet} instance with the given comparator.    *    *<p><b>Note:</b> if mutability is not required, use {@code    * ImmutableSortedSet.orderedBy(comparator).build()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code TreeSet} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>. One caveat to this is that the {@code    * TreeSet} constructor uses a null {@code Comparator} to mean "natural ordering," whereas this    * factory rejects null. Clean your code accordingly.    *    * @param comparator the comparator to use to sort the set    * @return a new, empty {@code TreeSet}    * @throws NullPointerException if {@code comparator} is null    */
-DECL|method|newTreeSet (Comparator<? super E> comparator)
+end_comment
+
+begin_expr_stmt
+DECL|method|newTreeSet ( Comparator<? super E> comparator)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|TreeSet
 argument_list|<
 name|E
 argument_list|>
 name|newTreeSet
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|?
@@ -1257,7 +1415,7 @@ super|super
 name|E
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1273,19 +1431,28 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates an empty {@code Set} that uses identity to determine equality. It compares object    * references, instead of calling {@code equals}, to determine whether a provided object matches    * an element in the set. For example, {@code contains} returns {@code false} when passed an    * object that equals a set member, but isn't the same instance. This behavior is similar to the    * way {@code IdentityHashMap} handles key lookups.    *    * @since 8.0    */
+end_comment
+
+begin_expr_stmt
 DECL|method|newIdentityHashSet ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|newIdentityHashSet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Collections
@@ -1304,22 +1471,37 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates an empty {@code CopyOnWriteArraySet} instance.    *    *<p><b>Note:</b> if you need an immutable empty {@link Set}, use {@link Collections#emptySet}    * instead.    *    * @return a new, empty {@code CopyOnWriteArraySet}    * @since 12.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// CopyOnWriteArraySet
+end_comment
+
+begin_expr_stmt
 DECL|method|newCopyOnWriteArraySet ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|CopyOnWriteArraySet
 argument_list|<
 name|E
 argument_list|>
 name|newCopyOnWriteArraySet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -1330,22 +1512,37 @@ argument_list|>
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a {@code CopyOnWriteArraySet} instance containing the given elements.    *    * @param elements the elements that the set should contain, in order    * @return a new {@code CopyOnWriteArraySet} containing those elements    * @since 12.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// CopyOnWriteArraySet
-DECL|method|newCopyOnWriteArraySet (Iterable<? extends E> elements)
+end_comment
+
+begin_expr_stmt
+DECL|method|newCopyOnWriteArraySet ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|CopyOnWriteArraySet
 argument_list|<
 name|E
 argument_list|>
 name|newCopyOnWriteArraySet
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -1353,7 +1550,7 @@ extends|extends
 name|E
 argument_list|>
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 comment|// We copy elements to an ArrayList first, rather than incurring the
 comment|// quadratic cost of adding them to the COWAS directly.
@@ -1364,7 +1561,7 @@ extends|extends
 name|E
 argument_list|>
 name|elementsCollection
-init|=
+operator|=
 operator|(
 name|elements
 operator|instanceof
@@ -1387,7 +1584,7 @@ name|newArrayList
 argument_list|(
 name|elements
 argument_list|)
-decl_stmt|;
+block|;
 return|return
 operator|new
 name|CopyOnWriteArraySet
@@ -1399,7 +1596,13 @@ name|elementsCollection
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates an {@code EnumSet} consisting of all enum values that are not in the specified    * collection. If the collection is an {@link EnumSet}, this method has the same behavior as    * {@link EnumSet#complementOf}. Otherwise, the specified collection must contain at least one    * element, in order to determine the element type. If the collection could be empty, use {@link    * #complementOf(Collection, Class)} instead of this method.    *    * @param collection the collection whose complement should be stored in the enum set    * @return a new, modifiable {@code EnumSet} containing all values of the enum that aren't present    *     in the given collection    * @throws IllegalArgumentException if {@code collection} is not an {@code EnumSet} instance and    *     contains no elements    */
+end_comment
+
+begin_function
 DECL|method|complementOf (Collection<E> collection)
 specifier|public
 specifier|static
@@ -1483,7 +1686,13 @@ name|type
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates an {@code EnumSet} consisting of all enum values that are not in the specified    * collection. This is equivalent to {@link EnumSet#complementOf}, but can act on any input    * collection, as long as the elements are of enum type.    *    * @param collection the collection whose complement should be stored in the {@code EnumSet}    * @param type the type of the elements in the set    * @return a new, modifiable {@code EnumSet} initially containing all the values of the enum not    *     present in the given collection    */
+end_comment
+
+begin_function
 DECL|method|complementOf ( Collection<E> collection, Class<E> type)
 specifier|public
 specifier|static
@@ -1547,6 +1756,9 @@ name|type
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|makeComplementByHand ( Collection<E> collection, Class<E> type)
 specifier|private
 specifier|static
@@ -1601,21 +1813,33 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a set backed by the specified map. The resulting set displays the same ordering,    * concurrency, and performance characteristics as the backing map. In essence, this factory    * method provides a {@link Set} implementation corresponding to any {@link Map} implementation.    * There is no need to use this method on a {@link Map} implementation that already has a    * corresponding {@link Set} implementation (such as {@link java.util.HashMap} or {@link    * java.util.TreeMap}).    *    *<p>Each method invocation on the set returned by this method results in exactly one method    * invocation on the backing map or its {@code keySet} view, with one exception. The {@code    * addAll} method is implemented as a sequence of {@code put} invocations on the backing map.    *    *<p>The specified map must be empty at the time this method is invoked, and should not be    * accessed directly after this method returns. These conditions are ensured if the map is created    * empty, passed directly to this method, and no reference to the map is retained, as illustrated    * in the following code fragment:    *    *<pre>{@code    * Set<Object> identityHashSet = Sets.newSetFromMap(    *     new IdentityHashMap<Object, Boolean>());    * }</pre>    *    *<p>The returned set is serializable if the backing map is.    *    * @param map the backing map    * @return the set backed by the map    * @throws IllegalArgumentException if {@code map} is not empty    * @deprecated Use {@link Collections#newSetFromMap} instead.    */
+end_comment
+
+begin_annotation
 annotation|@
 name|Deprecated
-DECL|method|newSetFromMap (Map<E, Boolean> map)
+end_annotation
+
+begin_expr_stmt
+DECL|method|newSetFromMap ( Map<E, Boolean> map)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|newSetFromMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|E
@@ -1623,7 +1847,7 @@ argument_list|,
 name|Boolean
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Collections
@@ -1634,17 +1858,26 @@ name|map
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * An unmodifiable view of a set which may be backed by other sets; this view will change as the    * backing sets do. Contains methods to copy the data into a new set which will then remain    * stable. There is usually no reason to retain a reference of type {@code SetView}; typically,    * you either use it as a plain {@link Set}, or immediately invoke {@link #immutableCopy} or    * {@link #copyInto} and forget the {@code SetView} itself.    *    * @since 2.0    */
+end_comment
+
+begin_expr_stmt
 DECL|class|SetView
 specifier|public
 specifier|abstract
 specifier|static
-class|class
+name|class
 name|SetView
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractSet
 argument_list|<
 name|E
@@ -1653,10 +1886,16 @@ block|{
 DECL|method|SetView ()
 specifier|private
 name|SetView
-parameter_list|()
+argument_list|()
 block|{}
 comment|// no subclasses but our own
 comment|/**      * Returns an immutable copy of the current contents of this set view. Does not support null      * elements.      *      *<p><b>Warning:</b> this may have unexpected results if a backing set of this view uses a      * nonstandard notion of equivalence, for example if it is a {@link TreeSet} using a comparator      * that is inconsistent with {@link Object#equals(Object)}.      */
+expr|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// Unsafe, but we can't fix it now.
 DECL|method|immutableCopy ()
 specifier|public
 name|ImmutableSet
@@ -1664,7 +1903,7 @@ argument_list|<
 name|E
 argument_list|>
 name|immutableCopy
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|ImmutableSet
@@ -1678,24 +1917,24 @@ block|}
 comment|/**      * Copies the current contents of this set view into an existing set. This method has equivalent      * behavior to {@code set.addAll(this)}, assuming that all the sets involved are based on the      * same notion of equivalence.      *      * @return a reference to {@code set}, for convenience      */
 comment|// Note: S should logically extend Set<? super E> but can't due to either
 comment|// some javac bug or some weirdness in the spec, not sure which.
-annotation|@
+expr|@
 name|CanIgnoreReturnValue
 DECL|method|copyInto (S set)
 specifier|public
-parameter_list|<
+operator|<
 name|S
-extends|extends
+expr|extends
 name|Set
 argument_list|<
 name|E
 argument_list|>
-parameter_list|>
+operator|>
 name|S
 name|copyInto
-parameter_list|(
+argument_list|(
 name|S
 name|set
-parameter_list|)
+argument_list|)
 block|{
 name|set
 operator|.
@@ -1703,24 +1942,32 @@ name|addAll
 argument_list|(
 name|this
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|set
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**      * Guaranteed to throw an exception and leave the collection unmodified.      *      * @throws UnsupportedOperationException always      * @deprecated Unsupported operation.      */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@
 name|Override
-DECL|method|add (E e)
+DECL|method|add (@arametricNullness E e)
 specifier|public
 specifier|final
 name|boolean
 name|add
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -1731,19 +1978,27 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**      * Guaranteed to throw an exception and leave the collection unmodified.      *      * @throws UnsupportedOperationException always      * @deprecated Unsupported operation.      */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@
 name|Override
-DECL|method|remove (Object object)
+DECL|method|remove (@heckForNull Object object)
 specifier|public
 specifier|final
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -1754,7 +2009,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**      * Guaranteed to throw an exception and leave the collection unmodified.      *      * @throws UnsupportedOperationException always      * @deprecated Unsupported operation.      */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1782,7 +2043,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**      * Guaranteed to throw an exception and leave the collection unmodified.      *      * @throws UnsupportedOperationException always      * @deprecated Unsupported operation.      */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1808,7 +2075,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**      * Guaranteed to throw an exception and leave the collection unmodified.      *      * @throws UnsupportedOperationException always      * @deprecated Unsupported operation.      */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1834,7 +2107,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**      * Guaranteed to throw an exception and leave the collection unmodified.      *      * @throws UnsupportedOperationException always      * @deprecated Unsupported operation.      */
+end_comment
+
+begin_function
 annotation|@
 name|Deprecated
 annotation|@
@@ -1852,7 +2131,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**      * Scope the return type to {@link UnmodifiableIterator} to ensure this is an unmodifiable view.      *      * @since 20.0 (present with return type {@link Iterator} since 2.0)      */
+end_comment
+
+begin_function_decl
 annotation|@
 name|Override
 DECL|method|iterator ()
@@ -1865,21 +2150,30 @@ argument_list|>
 name|iterator
 parameter_list|()
 function_decl|;
-block|}
+end_function_decl
+
+begin_comment
+unit|}
 comment|/**    * Returns an unmodifiable<b>view</b> of the union of two sets. The returned set contains all    * elements that are contained in either backing set. Iterating over the returned set iterates    * first over all the elements of {@code set1}, then over each element of {@code set2}, in order,    * that is not contained in {@code set1}.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based on different    * equivalence relations, for example if {@code set1} is a {@link HashSet} and {@code set2} is a    * {@link TreeSet} or the {@link Map#keySet} of an {@code IdentityHashMap}.    */
-DECL|method|union (final Set<? extends E> set1, final Set<? extends E> set2)
-specifier|public
+end_comment
+
+begin_expr_stmt
+DECL|method|union ( final Set<? extends E> set1, final Set<? extends E> set2)
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|SetView
 argument_list|<
 name|E
 argument_list|>
 name|union
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Set
 argument_list|<
 name|?
@@ -1887,8 +2181,8 @@ extends|extends
 name|E
 argument_list|>
 name|set1
-parameter_list|,
-specifier|final
+operator|,
+name|final
 name|Set
 argument_list|<
 name|?
@@ -1896,7 +2190,7 @@ extends|extends
 name|E
 argument_list|>
 name|set2
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
@@ -1904,14 +2198,14 @@ name|set1
 argument_list|,
 literal|"set1"
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|set2
 argument_list|,
 literal|"set2"
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|SetView
@@ -1958,12 +2252,16 @@ name|size
 operator|++
 expr_stmt|;
 block|}
-block|}
-return|return
+end_expr_stmt
+
+begin_expr_stmt
+unit|}         return
 name|size
-return|;
-block|}
-annotation|@
+expr_stmt|;
+end_expr_stmt
+
+begin_function
+unit|}        @
 name|Override
 specifier|public
 name|boolean
@@ -1982,6 +2280,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 specifier|public
@@ -2030,6 +2331,8 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|E
 name|computeNext
@@ -2090,12 +2393,17 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2116,6 +2424,9 @@ name|object
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 specifier|public
@@ -2152,8 +2463,17 @@ return|return
 name|set
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// see supertype
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -2186,36 +2506,43 @@ name|build
 argument_list|()
 return|;
 block|}
-block|}
-return|;
-block|}
+end_function
+
+begin_comment
+unit|};   }
 comment|/**    * Returns an unmodifiable<b>view</b> of the intersection of two sets. The returned set contains    * all elements that are contained by both backing sets. The iteration order of the returned set    * matches that of {@code set1}.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based on different    * equivalence relations, for example if {@code set1} is a {@link HashSet} and {@code set2} is a    * {@link TreeSet} or the {@link Map#keySet} of an {@code IdentityHashMap}.    *    *<p><b>Note:</b> The returned view performs slightly better when {@code set1} is the smaller of    * the two sets. If you have reason to believe one of your sets will generally be smaller than the    * other, pass it first. Unfortunately, since this method sets the generic type of the returned    * set based on the type of the first set passed, this could in rare cases force you to make a    * cast, for example:    *    *<pre>{@code    * Set<Object> aFewBadObjects = ...    * Set<String> manyBadStrings = ...    *    * // impossible for a non-String to be in the intersection    * SuppressWarnings("unchecked")    * Set<String> badStrings = (Set) Sets.intersection(    *     aFewBadObjects, manyBadStrings);    * }</pre>    *    *<p>This is unfortunate, but should come up only very rarely.    */
-DECL|method|intersection (final Set<E> set1, final Set<?> set2)
-specifier|public
+end_comment
+
+begin_expr_stmt
+DECL|method|intersection ( final Set<E> set1, final Set<?> set2)
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|SetView
 argument_list|<
 name|E
 argument_list|>
 name|intersection
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|set1
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Set
 argument_list|<
 name|?
 argument_list|>
 name|set2
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
@@ -2223,14 +2550,14 @@ name|set1
 argument_list|,
 literal|"set1"
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|set2
 argument_list|,
 literal|"set2"
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|SetView
@@ -2271,6 +2598,8 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|E
 name|computeNext
@@ -2306,16 +2635,22 @@ return|return
 name|e
 return|;
 block|}
-block|}
-return|return
+end_expr_stmt
+
+begin_expr_stmt
+unit|}             return
 name|endOfData
 argument_list|()
-return|;
-block|}
-block|}
-return|;
-block|}
-annotation|@
+expr_stmt|;
+end_expr_stmt
+
+begin_empty_stmt
+unit|}         }
+empty_stmt|;
+end_empty_stmt
+
+begin_function
+unit|}        @
 name|Override
 specifier|public
 name|int
@@ -2354,6 +2689,9 @@ return|return
 name|size
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 specifier|public
@@ -2372,12 +2710,17 @@ name|set1
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2398,6 +2741,9 @@ name|object
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 specifier|public
@@ -2427,36 +2773,43 @@ name|collection
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_function
+
+begin_comment
+unit|};   }
 comment|/**    * Returns an unmodifiable<b>view</b> of the difference of two sets. The returned set contains    * all elements that are contained by {@code set1} and not contained by {@code set2}. {@code set2}    * may also contain elements not present in {@code set1}; these are simply ignored. The iteration    * order of the returned set matches that of {@code set1}.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based on different    * equivalence relations, for example if {@code set1} is a {@link HashSet} and {@code set2} is a    * {@link TreeSet} or the {@link Map#keySet} of an {@code IdentityHashMap}.    */
-DECL|method|difference (final Set<E> set1, final Set<?> set2)
-specifier|public
+end_comment
+
+begin_expr_stmt
+DECL|method|difference ( final Set<E> set1, final Set<?> set2)
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|SetView
 argument_list|<
 name|E
 argument_list|>
 name|difference
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|set1
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Set
 argument_list|<
 name|?
 argument_list|>
 name|set2
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
@@ -2464,14 +2817,14 @@ name|set1
 argument_list|,
 literal|"set1"
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|set2
 argument_list|,
 literal|"set2"
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|SetView
@@ -2512,6 +2865,8 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|E
 name|computeNext
@@ -2548,16 +2903,22 @@ return|return
 name|e
 return|;
 block|}
-block|}
-return|return
+end_expr_stmt
+
+begin_expr_stmt
+unit|}             return
 name|endOfData
 argument_list|()
-return|;
-block|}
-block|}
-return|;
-block|}
-annotation|@
+expr_stmt|;
+end_expr_stmt
+
+begin_empty_stmt
+unit|}         }
+empty_stmt|;
+end_empty_stmt
+
+begin_function
+unit|}        @
 name|Override
 specifier|public
 name|int
@@ -2597,6 +2958,9 @@ return|return
 name|size
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 specifier|public
@@ -2613,12 +2977,17 @@ name|set1
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -2640,23 +3009,30 @@ name|element
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_function
+
+begin_comment
+unit|};   }
 comment|/**    * Returns an unmodifiable<b>view</b> of the symmetric difference of two sets. The returned set    * contains all elements that are contained in either {@code set1} or {@code set2} but not in    * both. The iteration order of the returned set is undefined.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based on different    * equivalence relations, for example if {@code set1} is a {@link HashSet} and {@code set2} is a    * {@link TreeSet} or the {@link Map#keySet} of an {@code IdentityHashMap}.    *    * @since 3.0    */
+end_comment
+
+begin_expr_stmt
 DECL|method|symmetricDifference ( final Set<? extends E> set1, final Set<? extends E> set2)
-specifier|public
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|SetView
 argument_list|<
 name|E
 argument_list|>
 name|symmetricDifference
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Set
 argument_list|<
 name|?
@@ -2664,8 +3040,8 @@ extends|extends
 name|E
 argument_list|>
 name|set1
-parameter_list|,
-specifier|final
+operator|,
+name|final
 name|Set
 argument_list|<
 name|?
@@ -2673,7 +3049,7 @@ extends|extends
 name|E
 argument_list|>
 name|set2
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
@@ -2681,14 +3057,14 @@ name|set1
 argument_list|,
 literal|"set1"
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|set2
 argument_list|,
 literal|"set2"
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|SetView
@@ -2745,6 +3121,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|public
 name|E
 name|computeNext
@@ -2781,23 +3159,25 @@ return|return
 name|elem1
 return|;
 block|}
-block|}
-while|while
-condition|(
+end_expr_stmt
+
+begin_expr_stmt
+unit|}             while
+operator|(
 name|itr2
 operator|.
 name|hasNext
 argument_list|()
-condition|)
+operator|)
 block|{
 name|E
 name|elem2
-init|=
+operator|=
 name|itr2
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
+block|;
 if|if
 condition|(
 operator|!
@@ -2813,16 +3193,22 @@ return|return
 name|elem2
 return|;
 block|}
-block|}
-return|return
+end_expr_stmt
+
+begin_expr_stmt
+unit|}             return
 name|endOfData
 argument_list|()
-return|;
-block|}
-block|}
-return|;
-block|}
-annotation|@
+expr_stmt|;
+end_expr_stmt
+
+begin_empty_stmt
+unit|}         }
+empty_stmt|;
+end_empty_stmt
+
+begin_function
+unit|}        @
 name|Override
 specifier|public
 name|int
@@ -2886,6 +3272,9 @@ return|return
 name|size
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 specifier|public
@@ -2902,12 +3291,17 @@ name|set2
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -2928,29 +3322,39 @@ name|element
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_function
+
+begin_comment
+unit|};   }
 comment|/**    * Returns the elements of {@code unfiltered} that satisfy a predicate. The returned set is a live    * view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting set's iterator does not support {@code remove()}, but all other set methods    * are supported. When given an element that doesn't satisfy the predicate, the set's {@code    * add()} and {@code addAll()} methods throw an {@link IllegalArgumentException}. When methods    * such as {@code removeAll()} and {@code clear()} are called on the filtered set, only elements    * that satisfy the filter will be removed from the underlying set.    *    *<p>The returned set isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered set's methods, such as {@code size()}, iterate across every element in    * the underlying set and determine which elements satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy {@code Iterables.filter(unfiltered, predicate)} and    * use the copy.    *    *<p><b>Warning:</b> {@code predicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals. (See {@link    * Iterables#filter(Iterable, Class)} for related functionality.)    *    *<p><b>Java 8 users:</b> many use cases for this method are better addressed by {@link    * java.util.stream.Stream#filter}. This method is not being deprecated, but we gently encourage    * you to migrate to streams.    */
+end_comment
+
+begin_comment
 comment|// TODO(kevinb): how to omit that last sentence when building GWT javadoc?
-DECL|method|filter (Set<E> unfiltered, Predicate<? super E> predicate)
-specifier|public
+end_comment
+
+begin_expr_stmt
+DECL|method|filter ( Set<E> unfiltered, Predicate<? super E> predicate)
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|filter
-parameter_list|(
+argument_list|(
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -2958,7 +3362,7 @@ super|super
 name|E
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -2982,6 +3386,9 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_if
 if|if
 condition|(
 name|unfiltered
@@ -3046,6 +3453,9 @@ name|combinedPredicate
 argument_list|)
 return|;
 block|}
+end_if
+
+begin_return
 return|return
 operator|new
 name|FilteredSet
@@ -3064,26 +3474,35 @@ name|predicate
 argument_list|)
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Returns the elements of a {@code SortedSet}, {@code unfiltered}, that satisfy a predicate. The    * returned set is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting set's iterator does not support {@code remove()}, but all other set methods    * are supported. When given an element that doesn't satisfy the predicate, the set's {@code    * add()} and {@code addAll()} methods throw an {@link IllegalArgumentException}. When methods    * such as {@code removeAll()} and {@code clear()} are called on the filtered set, only elements    * that satisfy the filter will be removed from the underlying set.    *    *<p>The returned set isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered set's methods, such as {@code size()}, iterate across every element in    * the underlying set and determine which elements satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy {@code Iterables.filter(unfiltered, predicate)} and    * use the copy.    *    *<p><b>Warning:</b> {@code predicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals. (See {@link    * Iterables#filter(Iterable, Class)} for related functionality.)    *    * @since 11.0    */
-DECL|method|filter (SortedSet<E> unfiltered, Predicate<? super E> predicate)
-specifier|public
+end_comment
+
+begin_expr_stmt
+DECL|method|filter ( SortedSet<E> unfiltered, Predicate<? super E> predicate)
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|SortedSet
 argument_list|<
 name|E
 argument_list|>
 name|filter
-parameter_list|(
+argument_list|(
 name|SortedSet
 argument_list|<
 name|E
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -3091,7 +3510,7 @@ super|super
 name|E
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -3157,6 +3576,9 @@ name|combinedPredicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|new
 name|FilteredSortedSet
@@ -3175,12 +3597,18 @@ name|predicate
 argument_list|)
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Returns the elements of a {@code NavigableSet}, {@code unfiltered}, that satisfy a predicate.    * The returned set is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting set's iterator does not support {@code remove()}, but all other set methods    * are supported. When given an element that doesn't satisfy the predicate, the set's {@code    * add()} and {@code addAll()} methods throw an {@link IllegalArgumentException}. When methods    * such as {@code removeAll()} and {@code clear()} are called on the filtered set, only elements    * that satisfy the filter will be removed from the underlying set.    *    *<p>The returned set isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered set's methods, such as {@code size()}, iterate across every element in    * the underlying set and determine which elements satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy {@code Iterables.filter(unfiltered, predicate)} and    * use the copy.    *    *<p><b>Warning:</b> {@code predicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals. (See {@link    * Iterables#filter(Iterable, Class)} for related functionality.)    *    * @since 14.0    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|GwtIncompatible
 comment|// NavigableSet
-annotation|@
+expr|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -3188,21 +3616,24 @@ argument_list|)
 DECL|method|filter ( NavigableSet<E> unfiltered, Predicate<? super E> predicate)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 name|filter
-parameter_list|(
+argument_list|(
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -3210,7 +3641,7 @@ super|super
 name|E
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -3276,6 +3707,9 @@ name|combinedPredicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|new
 name|FilteredNavigableSet
@@ -3294,21 +3728,26 @@ name|predicate
 argument_list|)
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_expr_stmt
+unit|}    private
 DECL|class|FilteredSet
-specifier|private
 specifier|static
-class|class
+name|class
 name|FilteredSet
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|FilteredCollection
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|Set
 argument_list|<
 name|E
@@ -3316,13 +3755,13 @@ argument_list|>
 block|{
 DECL|method|FilteredSet (Set<E> unfiltered, Predicate<? super E> predicate)
 name|FilteredSet
-parameter_list|(
+argument_list|(
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -3330,7 +3769,7 @@ super|super
 name|E
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -3338,20 +3777,19 @@ name|unfiltered
 argument_list|,
 name|predicate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|equalsImpl
@@ -3362,13 +3800,13 @@ name|object
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|hashCodeImpl
@@ -3377,21 +3815,26 @@ name|this
 argument_list|)
 return|;
 block|}
-block|}
+end_expr_stmt
+
+begin_expr_stmt
+unit|}    private
 DECL|class|FilteredSortedSet
-specifier|private
 specifier|static
-class|class
+name|class
 name|FilteredSortedSet
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|FilteredSet
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|SortedSet
 argument_list|<
 name|E
@@ -3399,13 +3842,13 @@ argument_list|>
 block|{
 DECL|method|FilteredSortedSet (SortedSet<E> unfiltered, Predicate<? super E> predicate)
 name|FilteredSortedSet
-parameter_list|(
+argument_list|(
 name|SortedSet
 argument_list|<
 name|E
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -3413,7 +3856,7 @@ super|super
 name|E
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -3421,10 +3864,11 @@ name|unfiltered
 argument_list|,
 name|predicate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
+expr|@
+name|CheckForNull
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -3434,7 +3878,7 @@ super|super
 name|E
 argument_list|>
 name|comparator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -3451,22 +3895,26 @@ name|comparator
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|subSet (E fromElement, E toElement)
+DECL|method|subSet (@arametricNullness E fromElement, @ParametricNullness E toElement)
 specifier|public
 name|SortedSet
 argument_list|<
 name|E
 argument_list|>
 name|subSet
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -3496,9 +3944,12 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headSet (E toElement)
+DECL|method|headSet (@arametricNullness E toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -3506,6 +3957,8 @@ name|E
 argument_list|>
 name|headSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|)
@@ -3536,9 +3989,12 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailSet (E fromElement)
+DECL|method|tailSet (@arametricNullness E fromElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -3546,6 +4002,8 @@ name|E
 argument_list|>
 name|tailSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|)
@@ -3576,8 +4034,13 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|first ()
 specifier|public
 name|E
@@ -3598,8 +4061,13 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|last ()
 specifier|public
 name|E
@@ -3658,24 +4126,29 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-annotation|@
+end_function
+
+begin_expr_stmt
+unit|}    @
 name|GwtIncompatible
 comment|// NavigableSet
 DECL|class|FilteredNavigableSet
 specifier|private
 specifier|static
-class|class
+name|class
 name|FilteredNavigableSet
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|FilteredSortedSet
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|NavigableSet
 argument_list|<
 name|E
@@ -3683,13 +4156,13 @@ argument_list|>
 block|{
 DECL|method|FilteredNavigableSet (NavigableSet<E> unfiltered, Predicate<? super E> predicate)
 name|FilteredNavigableSet
-parameter_list|(
+argument_list|(
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -3697,7 +4170,7 @@ super|super
 name|E
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -3705,15 +4178,14 @@ name|unfiltered
 argument_list|,
 name|predicate
 argument_list|)
-expr_stmt|;
-block|}
+block|;     }
 DECL|method|unfiltered ()
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 name|unfiltered
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -3725,18 +4197,20 @@ operator|)
 name|unfiltered
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-annotation|@
-name|NullableDecl
-DECL|method|lower (E e)
+expr|@
+name|CheckForNull
+DECL|method|lower (@arametricNullness E e)
 specifier|public
 name|E
 name|lower
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Iterators
@@ -3762,15 +4236,20 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|floor (E e)
+name|CheckForNull
+DECL|method|floor (@arametricNullness E e)
 specifier|public
 name|E
 name|floor
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -3799,13 +4278,20 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|ceiling (E e)
+annotation|@
+name|CheckForNull
+DECL|method|ceiling (@arametricNullness E e)
 specifier|public
 name|E
 name|ceiling
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -3831,13 +4317,20 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|higher (E e)
+annotation|@
+name|CheckForNull
+DECL|method|higher (@arametricNullness E e)
 specifier|public
 name|E
 name|higher
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -3863,8 +4356,13 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirst ()
 specifier|public
 name|E
@@ -3883,8 +4381,13 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLast ()
 specifier|public
 name|E
@@ -3906,6 +4409,9 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingSet ()
@@ -3932,6 +4438,9 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingIterator ()
@@ -3958,8 +4467,13 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|last ()
 specifier|public
 name|E
@@ -3981,9 +4495,12 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subSet ( E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
+DECL|method|subSet ( @arametricNullness E fromElement, boolean fromInclusive, @ParametricNullness E toElement, boolean toInclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -3991,12 +4508,16 @@ name|E
 argument_list|>
 name|subSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
 name|boolean
 name|fromInclusive
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|,
@@ -4025,9 +4546,12 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headSet (E toElement, boolean inclusive)
+DECL|method|headSet (@arametricNullness E toElement, boolean inclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -4035,6 +4559,8 @@ name|E
 argument_list|>
 name|headSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|,
@@ -4059,9 +4585,12 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailSet (E fromElement, boolean inclusive)
+DECL|method|tailSet (@arametricNullness E fromElement, boolean inclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -4069,6 +4598,8 @@ name|E
 argument_list|>
 name|tailSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
@@ -4093,10 +4624,16 @@ name|predicate
 argument_list|)
 return|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/**    * Returns every possible list that can be formed by choosing one element from each of the given    * sets in order; the "n-ary<a href="http://en.wikipedia.org/wiki/Cartesian_product">Cartesian    * product</a>" of the sets. For example:    *    *<pre>{@code    * Sets.cartesianProduct(ImmutableList.of(    *     ImmutableSet.of(1, 2),    *     ImmutableSet.of("A", "B", "C")))    * }</pre>    *    *<p>returns a set containing six lists:    *    *<ul>    *<li>{@code ImmutableList.of(1, "A")}    *<li>{@code ImmutableList.of(1, "B")}    *<li>{@code ImmutableList.of(1, "C")}    *<li>{@code ImmutableList.of(2, "A")}    *<li>{@code ImmutableList.of(2, "B")}    *<li>{@code ImmutableList.of(2, "C")}    *</ul>    *    *<p>The result is guaranteed to be in the "traditional", lexicographical order for Cartesian    * products that you would get from nesting for loops:    *    *<pre>{@code    * for (B b0 : sets.get(0)) {    *   for (B b1 : sets.get(1)) {    *     ...    *     ImmutableList<B> tuple = ImmutableList.of(b0, b1, ...);    *     // operate on tuple    *   }    * }    * }</pre>    *    *<p>Note that if any input set is empty, the Cartesian product will also be empty. If no sets at    * all are provided (an empty list), the resulting Cartesian product has one element, an empty    * list (counter-intuitive, but mathematically consistent).    *    *<p><i>Performance notes:</i> while the cartesian product of sets of size {@code m, n, p} is a    * set of size {@code m x n x p}, its actual memory consumption is much smaller. When the    * cartesian set is constructed, the input sets are merely copied. Only as the resulting set is    * iterated are the individual lists created, and these are not retained after iteration.    *    * @param sets the sets to choose elements from, in the order that the elements chosen from those    *     sets should appear in the resulting lists    * @param<B> any common base class shared by all axes (often just {@link Object})    * @return the Cartesian product, as an immutable set containing immutable lists    * @throws NullPointerException if {@code sets}, any one of the {@code sets}, or any element of a    *     provided set is null    * @throws IllegalArgumentException if the cartesian product size exceeds the {@code int} range    * @since 2.0    */
+end_comment
+
+begin_function
 DECL|method|cartesianProduct (List<? extends Set<? extends B>> sets)
-specifier|public
+unit|public
 specifier|static
 parameter_list|<
 name|B
@@ -4133,7 +4670,13 @@ name|sets
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns every possible list that can be formed by choosing one element from each of the given    * sets in order; the "n-ary<a href="http://en.wikipedia.org/wiki/Cartesian_product">Cartesian    * product</a>" of the sets. For example:    *    *<pre>{@code    * Sets.cartesianProduct(    *     ImmutableSet.of(1, 2),    *     ImmutableSet.of("A", "B", "C"))    * }</pre>    *    *<p>returns a set containing six lists:    *    *<ul>    *<li>{@code ImmutableList.of(1, "A")}    *<li>{@code ImmutableList.of(1, "B")}    *<li>{@code ImmutableList.of(1, "C")}    *<li>{@code ImmutableList.of(2, "A")}    *<li>{@code ImmutableList.of(2, "B")}    *<li>{@code ImmutableList.of(2, "C")}    *</ul>    *    *<p>The result is guaranteed to be in the "traditional", lexicographical order for Cartesian    * products that you would get from nesting for loops:    *    *<pre>{@code    * for (B b0 : sets.get(0)) {    *   for (B b1 : sets.get(1)) {    *     ...    *     ImmutableList<B> tuple = ImmutableList.of(b0, b1, ...);    *     // operate on tuple    *   }    * }    * }</pre>    *    *<p>Note that if any input set is empty, the Cartesian product will also be empty. If no sets at    * all are provided (an empty list), the resulting Cartesian product has one element, an empty    * list (counter-intuitive, but mathematically consistent).    *    *<p><i>Performance notes:</i> while the cartesian product of sets of size {@code m, n, p} is a    * set of size {@code m x n x p}, its actual memory consumption is much smaller. When the    * cartesian set is constructed, the input sets are merely copied. Only as the resulting set is    * iterated are the individual lists created, and these are not retained after iteration.    *    * @param sets the sets to choose elements from, in the order that the elements chosen from those    *     sets should appear in the resulting lists    * @param<B> any common base class shared by all axes (often just {@link Object})    * @return the Cartesian product, as an immutable set containing immutable lists    * @throws NullPointerException if {@code sets}, any one of the {@code sets}, or any element of a    *     provided set is null    * @throws IllegalArgumentException if the cartesian product size exceeds the {@code int} range    * @since 2.0    */
+end_comment
+
+begin_function
 annotation|@
 name|SafeVarargs
 DECL|method|cartesianProduct (Set<? extends B>.... sets)
@@ -4173,6 +4716,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|CartesianSet
 specifier|private
 specifier|static
@@ -4480,13 +5026,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -4579,13 +5125,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -4739,7 +5285,13 @@ name|hash
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns the set of all possible subsets of {@code set}. For example, {@code    * powerSet(ImmutableSet.of(1, 2))} returns the set {@code {{}, {1}, {2}, {1, 2}}}.    *    *<p>Elements appear in these subsets in the same iteration order as they appeared in the input    * set. The order in which these subsets appear in the outer set is undefined. Note that the power    * set of the empty set is not the empty set, but a one-element set containing the empty set.    *    *<p>The returned set and its constituent sets use {@code equals} to decide whether two elements    * are identical, even if the input set uses a different concept of equivalence.    *    *<p><i>Performance notes:</i> while the power set of a set with size {@code n} is of size {@code    * 2^n}, its memory usage is only {@code O(n)}. When the power set is constructed, the input set    * is merely copied. Only as the power set is iterated are the individual subsets created, and    * these subsets themselves occupy only a small constant amount of memory.    *    * @param set the set of elements to construct a power set from    * @return the power set, as an immutable set of immutable sets    * @throws IllegalArgumentException if {@code set} has more than 30 unique elements (causing the    *     power set size to exceed the {@code int} range)    * @throws NullPointerException if {@code set} is or contains {@code null}    * @see<a href="http://en.wikipedia.org/wiki/Power_set">Power set article at Wikipedia</a>    * @since 4.0    */
+end_comment
+
+begin_function
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -4780,6 +5332,9 @@ name|set
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|SubSet
 specifier|private
 specifier|static
@@ -4962,13 +5517,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -5002,6 +5557,9 @@ literal|0
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 DECL|class|PowerSet
 specifier|private
 specifier|static
@@ -5158,13 +5716,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object obj)
+DECL|method|contains (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -5208,13 +5766,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -5311,7 +5869,13 @@ literal|")"
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns the set of all subsets of {@code set} of size {@code size}. For example, {@code    * combinations(ImmutableSet.of(1, 2, 3), 2)} returns the set {@code {{1, 2}, {1, 3}, {2, 3}}}.    *    *<p>Elements appear in these subsets in the same iteration order as they appeared in the input    * set. The order in which these subsets appear in the outer set is undefined.    *    *<p>The returned set and its constituent sets use {@code equals} to decide whether two elements    * are identical, even if the input set uses a different concept of equivalence.    *    *<p><i>Performance notes:</i> the memory usage of the returned set is only {@code O(n)}. When    * the result set is constructed, the input set is merely copied. Only as the result set is    * iterated are the individual subsets created. Each of these subsets occupies an additional O(n)    * memory but only for as long as the user retains a reference to it. That is, the set returned by    * {@code combinations} does not retain the individual subsets.    *    * @param set the set of elements to take combinations of    * @param size the number of elements per combination    * @return the set of all combinations of {@code size} elements from {@code set}    * @throws IllegalArgumentException if {@code size} is not between 0 and {@code set.size()}    *     inclusive    * @throws NullPointerException if {@code set} is or contains {@code null}    * @since 23.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|combinations (Set<E> set, final int size)
@@ -5457,7 +6021,7 @@ name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -5545,6 +6109,8 @@ argument_list|)
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|Set
 argument_list|<
@@ -5670,7 +6236,7 @@ name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -5724,6 +6290,8 @@ literal|1
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|E
 name|computeNext
@@ -5834,7 +6402,13 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** An implementation for {@link Set#hashCode()}. */
+end_comment
+
+begin_function
 DECL|method|hashCodeImpl (Set<?> s)
 specifier|static
 name|int
@@ -5885,8 +6459,14 @@ return|return
 name|hashCode
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** An implementation for {@link Set#equals(Object)}. */
-DECL|method|equalsImpl (Set<?> s, @NullableDecl Object object)
+end_comment
+
+begin_function
+DECL|method|equalsImpl (Set<?> s, @CheckForNull Object object)
 specifier|static
 name|boolean
 name|equalsImpl
@@ -5898,7 +6478,7 @@ argument_list|>
 name|s
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -5973,25 +6553,34 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an unmodifiable view of the specified navigable set. This method allows modules to    * provide users with "read-only" access to internal navigable sets. Query operations on the    * returned set "read through" to the specified set, and attempts to modify the returned set,    * whether direct or via its collection views, result in an {@code UnsupportedOperationException}.    *    *<p>The returned navigable set will be serializable if the specified navigable set is    * serializable.    *    * @param set the navigable set for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified navigable set    * @since 12.0    */
-DECL|method|unmodifiableNavigableSet (NavigableSet<E> set)
+end_comment
+
+begin_expr_stmt
+DECL|method|unmodifiableNavigableSet ( NavigableSet<E> set)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 name|unmodifiableNavigableSet
-parameter_list|(
+argument_list|(
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 name|set
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -6008,6 +6597,9 @@ return|return
 name|set
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|new
 name|UnmodifiableNavigableSet
@@ -6018,55 +6610,60 @@ argument_list|(
 name|set
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_expr_stmt
+unit|}    static
 DECL|class|UnmodifiableNavigableSet
-specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|UnmodifiableNavigableSet
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingSortedSet
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|delegate
 specifier|private
-specifier|final
+name|final
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 name|delegate
-decl_stmt|;
+block|;
 DECL|field|unmodifiableDelegate
 specifier|private
-specifier|final
+name|final
 name|SortedSet
 argument_list|<
 name|E
 argument_list|>
 name|unmodifiableDelegate
-decl_stmt|;
+block|;
 DECL|method|UnmodifiableNavigableSet (NavigableSet<E> delegate)
 name|UnmodifiableNavigableSet
-parameter_list|(
+argument_list|(
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -6076,7 +6673,7 @@ name|checkNotNull
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|unmodifiableDelegate
@@ -6087,9 +6684,8 @@ name|unmodifiableSortedSet
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -6098,22 +6694,26 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|unmodifiableDelegate
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|lower (E e)
+expr|@
+name|CheckForNull
+DECL|method|lower (@arametricNullness E e)
 specifier|public
 name|E
 name|lower
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
@@ -6124,13 +6724,20 @@ name|e
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|floor (E e)
+annotation|@
+name|CheckForNull
+DECL|method|floor (@arametricNullness E e)
 specifier|public
 name|E
 name|floor
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -6144,13 +6751,20 @@ name|e
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|ceiling (E e)
+annotation|@
+name|CheckForNull
+DECL|method|ceiling (@arametricNullness E e)
 specifier|public
 name|E
 name|ceiling
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -6164,13 +6778,20 @@ name|e
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|higher (E e)
+annotation|@
+name|CheckForNull
+DECL|method|higher (@arametricNullness E e)
 specifier|public
 name|E
 name|higher
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -6184,8 +6805,13 @@ name|e
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirst ()
 specifier|public
 name|E
@@ -6198,8 +6824,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLast ()
 specifier|public
 name|E
@@ -6212,9 +6843,12 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|descendingSet
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|UnmodifiableNavigableSet
@@ -6223,6 +6857,9 @@ name|E
 argument_list|>
 name|descendingSet
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingSet ()
@@ -6276,6 +6913,9 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingIterator ()
@@ -6299,9 +6939,12 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subSet ( E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
+DECL|method|subSet ( @arametricNullness E fromElement, boolean fromInclusive, @ParametricNullness E toElement, boolean toInclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -6309,12 +6952,16 @@ name|E
 argument_list|>
 name|subSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
 name|boolean
 name|fromInclusive
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|,
@@ -6340,9 +6987,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headSet (E toElement, boolean inclusive)
+DECL|method|headSet (@arametricNullness E toElement, boolean inclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -6350,6 +7000,8 @@ name|E
 argument_list|>
 name|headSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|,
@@ -6371,9 +7023,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailSet (E fromElement, boolean inclusive)
+DECL|method|tailSet (@arametricNullness E fromElement, boolean inclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -6381,6 +7036,8 @@ name|E
 argument_list|>
 name|tailSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
@@ -6402,6 +7059,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -6411,29 +7071,38 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns a synchronized (thread-safe) navigable set backed by the specified navigable set. In    * order to guarantee serial access, it is critical that<b>all</b> access to the backing    * navigable set is accomplished through the returned navigable set (or its views).    *    *<p>It is imperative that the user manually synchronize on the returned sorted set when    * iterating over it or any of its {@code descendingSet}, {@code subSet}, {@code headSet}, or    * {@code tailSet} views.    *    *<pre>{@code    * NavigableSet<E> set = synchronizedNavigableSet(new TreeSet<E>());    *  ...    * synchronized (set) {    *   // Must be in the synchronized block    *   Iterator<E> it = set.iterator();    *   while (it.hasNext()) {    *     foo(it.next());    *   }    * }    * }</pre>    *    *<p>or:    *    *<pre>{@code    * NavigableSet<E> set = synchronizedNavigableSet(new TreeSet<E>());    * NavigableSet<E> set2 = set.descendingSet().headSet(foo);    *  ...    * synchronized (set) { // Note: set, not set2!!!    *   // Must be in the synchronized block    *   Iterator<E> it = set2.descendingIterator();    *   while (it.hasNext())    *     foo(it.next());    *   }    * }    * }</pre>    *    *<p>Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned navigable set will be serializable if the specified navigable set is    * serializable.    *    * @param navigableSet the navigable set to be "wrapped" in a synchronized navigable set.    * @return a synchronized view of the specified navigable set.    * @since 13.0    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|GwtIncompatible
 comment|// NavigableSet
-DECL|method|synchronizedNavigableSet (NavigableSet<E> navigableSet)
+DECL|method|synchronizedNavigableSet ( NavigableSet<E> navigableSet)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 name|synchronizedNavigableSet
-parameter_list|(
+argument_list|(
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 name|navigableSet
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Synchronized
@@ -6444,7 +7113,13 @@ name|navigableSet
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/** Remove each element in an iterable from a set. */
+end_comment
+
+begin_function
 DECL|method|removeAllImpl (Set<?> set, Iterator<?> iterator)
 specifier|static
 name|boolean
@@ -6493,6 +7168,9 @@ return|return
 name|changed
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|removeAllImpl (Set<?> set, Collection<?> collection)
 specifier|static
 name|boolean
@@ -6587,17 +7265,29 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// NavigableSet
+end_comment
+
+begin_expr_stmt
 DECL|class|DescendingSet
 specifier|static
-class|class
+name|class
 name|DescendingSet
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingNavigableSet
 argument_list|<
 name|E
@@ -6605,31 +7295,30 @@ argument_list|>
 block|{
 DECL|field|forward
 specifier|private
-specifier|final
+name|final
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 name|forward
-decl_stmt|;
+block|;
 DECL|method|DescendingSet (NavigableSet<E> forward)
 name|DescendingSet
-parameter_list|(
+argument_list|(
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 name|forward
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|forward
 operator|=
 name|forward
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -6638,22 +7327,26 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|forward
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|lower (E e)
+expr|@
+name|CheckForNull
+DECL|method|lower (@arametricNullness E e)
 specifier|public
 name|E
 name|lower
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|forward
@@ -6664,13 +7357,20 @@ name|e
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|floor (E e)
+annotation|@
+name|CheckForNull
+DECL|method|floor (@arametricNullness E e)
 specifier|public
 name|E
 name|floor
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -6684,13 +7384,20 @@ name|e
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|ceiling (E e)
+annotation|@
+name|CheckForNull
+DECL|method|ceiling (@arametricNullness E e)
 specifier|public
 name|E
 name|ceiling
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -6704,13 +7411,20 @@ name|e
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|higher (E e)
+annotation|@
+name|CheckForNull
+DECL|method|higher (@arametricNullness E e)
 specifier|public
 name|E
 name|higher
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -6724,8 +7438,13 @@ name|e
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirst ()
 specifier|public
 name|E
@@ -6739,8 +7458,13 @@ name|pollLast
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLast ()
 specifier|public
 name|E
@@ -6754,6 +7478,9 @@ name|pollFirst
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingSet ()
@@ -6769,6 +7496,9 @@ return|return
 name|forward
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingIterator ()
@@ -6787,9 +7517,12 @@ name|iterator
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subSet ( E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
+DECL|method|subSet ( @arametricNullness E fromElement, boolean fromInclusive, @ParametricNullness E toElement, boolean toInclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -6797,12 +7530,16 @@ name|E
 argument_list|>
 name|subSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
 name|boolean
 name|fromInclusive
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|,
@@ -6828,9 +7565,12 @@ name|descendingSet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subSet (E fromElement, E toElement)
+DECL|method|subSet (@arametricNullness E fromElement, @ParametricNullness E toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -6838,9 +7578,13 @@ name|E
 argument_list|>
 name|subSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|)
@@ -6854,9 +7598,12 @@ name|toElement
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headSet (E toElement, boolean inclusive)
+DECL|method|headSet (@arametricNullness E toElement, boolean inclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -6864,6 +7611,8 @@ name|E
 argument_list|>
 name|headSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|,
@@ -6885,9 +7634,12 @@ name|descendingSet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headSet (E toElement)
+DECL|method|headSet (@arametricNullness E toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -6895,6 +7647,8 @@ name|E
 argument_list|>
 name|headSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|)
@@ -6906,9 +7660,12 @@ name|toElement
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailSet (E fromElement, boolean inclusive)
+DECL|method|tailSet (@arametricNullness E fromElement, boolean inclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -6916,6 +7673,8 @@ name|E
 argument_list|>
 name|tailSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
@@ -6937,9 +7696,12 @@ name|descendingSet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailSet (E fromElement)
+DECL|method|tailSet (@arametricNullness E fromElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -6947,6 +7709,8 @@ name|E
 argument_list|>
 name|tailSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|)
@@ -6958,6 +7722,9 @@ name|fromElement
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -7019,25 +7786,34 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|// If we inline this, we get a javac error.
+end_comment
+
+begin_expr_stmt
 DECL|method|reverse (Comparator<T> forward)
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Ordering
 argument_list|<
 name|T
 argument_list|>
 name|reverse
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|T
 argument_list|>
 name|forward
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Ordering
@@ -7051,8 +7827,13 @@ name|reverse
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|first ()
 specifier|public
 name|E
@@ -7066,8 +7847,13 @@ name|last
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|last ()
 specifier|public
 name|E
@@ -7081,6 +7867,9 @@ name|first
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|iterator ()
@@ -7099,10 +7888,15 @@ name|descendingIterator
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toArray ()
 specifier|public
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|toArray
@@ -7113,21 +7907,42 @@ name|standardToArray
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_annotation
 annotation|@
 name|Override
+end_annotation
+
+begin_annotation
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+end_annotation
+
+begin_comment
+comment|// b/192354773 in our checker affects toArray declarations
+end_comment
+
+begin_expr_stmt
 DECL|method|toArray (T[] array)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|array
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|standardToArray
@@ -7136,6 +7951,9 @@ name|array
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -7149,9 +7967,15 @@ name|standardToString
 argument_list|()
 return|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/**    * Returns a view of the portion of {@code set} whose elements are contained by {@code range}.    *    *<p>This method delegates to the appropriate methods of {@link NavigableSet} (namely {@link    * NavigableSet#subSet(Object, boolean, Object, boolean) subSet()}, {@link    * NavigableSet#tailSet(Object, boolean) tailSet()}, and {@link NavigableSet#headSet(Object,    * boolean) headSet()}) to actually construct the view. Consult these methods for a full    * description of the returned view's behavior.    *    *<p><b>Warning:</b> {@code Range}s always represent a range of values using the values' natural    * ordering. {@code NavigableSet} on the other hand can specify a custom ordering via a {@link    * Comparator}, which can violate the natural ordering. Using this method (or in general using    * {@code Range}) with unnaturally-ordered sets can lead to unexpected and undefined behavior.    *    * @since 20.0    */
-annotation|@
+end_comment
+
+begin_function
+unit|@
 name|Beta
 annotation|@
 name|GwtIncompatible
@@ -7159,7 +7983,7 @@ comment|// NavigableSet
 DECL|method|subSet ( NavigableSet<K> set, Range<K> range)
 specifier|public
 specifier|static
-parameter_list|<
+argument_list|<
 name|K
 extends|extends
 name|Comparable
@@ -7168,7 +7992,7 @@ name|?
 super|super
 name|K
 argument_list|>
-parameter_list|>
+argument_list|>
 name|NavigableSet
 argument_list|<
 name|K
@@ -7359,8 +8183,8 @@ name|set
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

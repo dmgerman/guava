@@ -49,6 +49,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|NullnessCasts
+operator|.
+name|uncheckedCastNullableTToT
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -216,6 +232,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -224,9 +250,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -237,6 +263,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Tables
 specifier|public
 specifier|final
@@ -249,16 +277,25 @@ name|Tables
 parameter_list|()
 block|{}
 comment|/**    * Returns an immutable cell with the specified row key, column key, and value.    *    *<p>The returned cell is serializable.    *    * @param rowKey the row key to be associated with the returned cell    * @param columnKey the column key to be associated with the returned cell    * @param value the value to be associated with the returned cell    */
-DECL|method|immutableCell ( @ullableDecl R rowKey, @NullableDecl C columnKey, @NullableDecl V value)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|immutableCell ( @arametricNullness R rowKey, @ParametricNullness C columnKey, @ParametricNullness V value)
 name|Cell
 argument_list|<
 name|R
@@ -268,22 +305,22 @@ argument_list|,
 name|V
 argument_list|>
 name|immutableCell
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|R
 name|rowKey
-parameter_list|,
+argument_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|C
 name|columnKey
-parameter_list|,
+argument_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|value
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -300,17 +337,26 @@ return|;
 block|}
 DECL|class|ImmutableCell
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|ImmutableCell
-parameter_list|<
+operator|<
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractCell
 argument_list|<
 name|R
@@ -319,90 +365,90 @@ name|C
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|Serializable
-block|{
+block|{     @
 DECL|field|rowKey
-annotation|@
-name|NullableDecl
+name|ParametricNullness
 specifier|private
-specifier|final
+name|final
 name|R
 name|rowKey
-decl_stmt|;
+block|;     @
 DECL|field|columnKey
-annotation|@
-name|NullableDecl
+name|ParametricNullness
 specifier|private
-specifier|final
+name|final
 name|C
 name|columnKey
-decl_stmt|;
+block|;     @
 DECL|field|value
-annotation|@
-name|NullableDecl
+name|ParametricNullness
 specifier|private
-specifier|final
+name|final
 name|V
 name|value
-decl_stmt|;
-DECL|method|ImmutableCell (@ullableDecl R rowKey, @NullableDecl C columnKey, @NullableDecl V value)
+block|;
+DECL|method|ImmutableCell ( @arametricNullness R rowKey, @ParametricNullness C columnKey, @ParametricNullness V value)
 name|ImmutableCell
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|R
 name|rowKey
-parameter_list|,
+argument_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|C
 name|columnKey
-parameter_list|,
+argument_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|value
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|rowKey
 operator|=
 name|rowKey
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|columnKey
 operator|=
 name|columnKey
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|value
 operator|=
 name|value
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|getRowKey ()
 specifier|public
 name|R
 name|getRowKey
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|rowKey
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|getColumnKey ()
 specifier|public
 name|C
 name|getColumnKey
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|columnKey
@@ -410,6 +456,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|getValue ()
 specifier|public
 name|V
@@ -430,19 +478,31 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+end_class
+
+begin_expr_stmt
 DECL|class|AbstractCell
 specifier|abstract
 specifier|static
-class|class
+name|class
 name|AbstractCell
-parameter_list|<
+operator|<
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Cell
 argument_list|<
 name|R
@@ -455,18 +515,20 @@ block|{
 comment|// needed for serialization
 DECL|method|AbstractCell ()
 name|AbstractCell
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
-DECL|method|equals (Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -549,11 +611,16 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 literal|false
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|hashCode ()
 specifier|public
@@ -577,6 +644,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -602,18 +672,33 @@ name|getValue
 argument_list|()
 return|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/**    * Creates a transposed view of a given table that flips its row and column keys. In other words,    * calling {@code get(columnKey, rowKey)} on the generated table always returns the same value as    * calling {@code get(rowKey, columnKey)} on the original table. Updating the original table    * changes the contents of the transposed table and vice versa.    *    *<p>The returned table supports update operations as long as the input table supports the    * analogous operation with swapped rows and columns. For example, in a {@link HashBasedTable}    * instance, {@code rowKeySet().iterator()} supports {@code remove()} but {@code    * columnKeySet().iterator()} doesn't. With a transposed {@link HashBasedTable}, it's the other    * way around.    */
-DECL|method|transpose (Table<R, C, V> table)
-specifier|public
+end_comment
+
+begin_expr_stmt
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|transpose (Table<R, C, V> table)
 name|Table
 argument_list|<
 name|C
@@ -623,7 +708,7 @@ argument_list|,
 name|V
 argument_list|>
 name|transpose
-parameter_list|(
+argument_list|(
 name|Table
 argument_list|<
 name|R
@@ -633,7 +718,7 @@ argument_list|,
 name|V
 argument_list|>
 name|table
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -641,7 +726,7 @@ name|table
 operator|instanceof
 name|TransposeTable
 operator|)
-condition|?
+operator|?
 operator|(
 operator|(
 name|TransposeTable
@@ -657,7 +742,7 @@ name|table
 operator|)
 operator|.
 name|original
-else|:
+operator|:
 operator|new
 name|TransposeTable
 argument_list|<
@@ -672,19 +757,31 @@ name|table
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|TransposeTable
 specifier|private
 specifier|static
-class|class
+name|class
 name|TransposeTable
-parameter_list|<
+operator|<
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractTable
 argument_list|<
 name|C
@@ -695,7 +792,7 @@ name|V
 argument_list|>
 block|{
 DECL|field|original
-specifier|final
+name|final
 name|Table
 argument_list|<
 name|R
@@ -705,10 +802,10 @@ argument_list|,
 name|V
 argument_list|>
 name|original
-decl_stmt|;
+block|;
 DECL|method|TransposeTable (Table<R, C, V> original)
 name|TransposeTable
-parameter_list|(
+argument_list|(
 name|Table
 argument_list|<
 name|R
@@ -718,7 +815,7 @@ argument_list|,
 name|V
 argument_list|>
 name|original
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -728,25 +825,23 @@ name|checkNotNull
 argument_list|(
 name|original
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|clear ()
 specifier|public
 name|void
 name|clear
-parameter_list|()
+argument_list|()
 block|{
 name|original
 operator|.
 name|clear
 argument_list|()
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|column (R columnKey)
+DECL|method|column (@arametricNullness R columnKey)
 specifier|public
 name|Map
 argument_list|<
@@ -755,10 +850,12 @@ argument_list|,
 name|V
 argument_list|>
 name|column
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|R
 name|columnKey
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|original
@@ -769,7 +866,7 @@ name|columnKey
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|columnKeySet ()
 specifier|public
@@ -778,7 +875,7 @@ argument_list|<
 name|R
 argument_list|>
 name|columnKeySet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|original
@@ -787,6 +884,9 @@ name|rowKeySet
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|columnMap ()
@@ -812,20 +912,23 @@ name|rowMap
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
+DECL|method|contains (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -841,15 +944,18 @@ name|rowKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsColumn (@ullableDecl Object columnKey)
+DECL|method|containsColumn (@heckForNull Object columnKey)
 specifier|public
 name|boolean
 name|containsColumn
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -863,15 +969,18 @@ name|columnKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsRow (@ullableDecl Object rowKey)
+DECL|method|containsRow (@heckForNull Object rowKey)
 specifier|public
 name|boolean
 name|containsRow
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|)
@@ -885,15 +994,18 @@ name|rowKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsValue (@ullableDecl Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -907,20 +1019,25 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -936,19 +1053,30 @@ name|rowKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|put (C rowKey, R columnKey, V value)
+annotation|@
+name|CheckForNull
+DECL|method|put ( @arametricNullness C rowKey, @ParametricNullness R columnKey, @ParametricNullness V value)
 specifier|public
 name|V
 name|put
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|C
 name|rowKey
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|R
 name|columnKey
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -966,6 +1094,9 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|putAll (Table<? extends C, ? extends R, ? extends V> table)
@@ -1001,20 +1132,25 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -1030,9 +1166,12 @@ name|rowKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|row (C rowKey)
+DECL|method|row (@arametricNullness C rowKey)
 specifier|public
 name|Map
 argument_list|<
@@ -1042,6 +1181,8 @@ name|V
 argument_list|>
 name|row
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|C
 name|rowKey
 parameter_list|)
@@ -1055,6 +1196,9 @@ name|rowKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|rowKeySet ()
@@ -1073,6 +1217,9 @@ name|columnKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|rowMap ()
@@ -1098,6 +1245,9 @@ name|columnMap
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -1113,6 +1263,9 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -1131,7 +1284,13 @@ name|values
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// Will cast TRANSPOSE_CELL to a type that always succeeds
+end_comment
+
+begin_decl_stmt
 DECL|field|TRANSPOSE_CELL
 specifier|private
 specifier|static
@@ -1226,7 +1385,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_decl_stmt
+
+begin_empty_stmt
 empty_stmt|;
+end_empty_stmt
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1269,20 +1434,26 @@ name|TRANSPOSE_CELL
 argument_list|)
 return|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/**    * Creates a table that uses the specified backing map and factory. It can generate a table based    * on arbitrary {@link Map} classes.    *    *<p>The {@code factory}-generated and {@code backingMap} classes determine the table iteration    * order. However, the table's {@code row()} method returns instances of a different class than    * {@code factory.get()} does.    *    *<p>Call this method only when the simpler factory methods in classes like {@link    * HashBasedTable} and {@link TreeBasedTable} won't suffice.    *    *<p>The views returned by the {@code Table} methods {@link Table#column}, {@link    * Table#columnKeySet}, and {@link Table#columnMap} have iterators that don't support {@code    * remove()}. Otherwise, all optional operations are supported. Null row keys, columns keys, and    * values are not supported.    *    *<p>Lookups by row key are often faster than lookups by column key, because the data is stored    * in a {@code Map<R, Map<C, V>>}. A method call like {@code column(columnKey).get(rowKey)} still    * runs quickly, since the row key is provided. However, {@code column(columnKey).size()} takes    * longer, since an iteration across all row keys occurs.    *    *<p>Note that this implementation is not synchronized. If multiple threads access this table    * concurrently and one of the threads modifies the table, it must be synchronized externally.    *    *<p>The table is serializable if {@code backingMap}, {@code factory}, the maps generated by    * {@code factory}, and the table contents are all serializable.    *    *<p>Note: the table assumes complete ownership over of {@code backingMap} and the maps returned    * by {@code factory}. Those objects should not be manually updated and they should not use soft,    * weak, or phantom references.    *    * @param backingMap place to store the mapping from each row key to its corresponding column key    *     / value map    * @param factory supplier of new, empty maps that will each hold all column key / value mappings    *     for a given row key    * @throws IllegalArgumentException if {@code backingMap} is not empty    * @since 10.0    */
-annotation|@
+end_comment
+
+begin_function
+unit|@
 name|Beta
 DECL|method|newCustomTable ( Map<R, Map<C, V>> backingMap, Supplier<? extends Map<C, V>> factory)
 specifier|public
 specifier|static
-parameter_list|<
+argument_list|<
 name|R
-parameter_list|,
+argument_list|,
 name|C
-parameter_list|,
+argument_list|,
 name|V
-parameter_list|>
+argument_list|>
 name|Table
 argument_list|<
 name|R
@@ -1345,21 +1516,42 @@ name|factory
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a view of a table where each value is transformed by a function. All other properties    * of the table, such as iteration order, are left intact.    *    *<p>Changes in the underlying table are reflected in this view. Conversely, this view supports    * removal operations, and these are reflected in the underlying table.    *    *<p>It's acceptable for the underlying table to contain null keys, and even null values provided    * that the function is capable of accepting null input. The transformed table might contain null    * values, if the function sometimes gives a null result.    *    *<p>The returned table is not thread-safe or serializable, even if the underlying table is.    *    *<p>The function is applied lazily, invoked when needed. This is necessary for the returned    * table to be a view, but it means that the function will be applied many times for bulk    * operations like {@link Table#containsValue} and {@code Table.toString()}. For this to perform    * well, {@code function} should be fast. To avoid lazy evaluation when the returned table doesn't    * need to be a view, copy the returned table into a new table of your choosing.    *    * @since 10.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|Beta
-DECL|method|transformValues ( Table<R, C, V1> fromTable, Function<? super V1, V2> function)
+end_annotation
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|transformValues ( Table<R, C, V1> fromTable, Function<? super V1, V2> function)
 name|Table
 argument_list|<
 name|R
@@ -1369,7 +1561,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformValues
-parameter_list|(
+argument_list|(
 name|Table
 argument_list|<
 name|R
@@ -1379,7 +1571,7 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromTable
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -1389,7 +1581,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1402,21 +1594,36 @@ name|function
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|TransformedTable
 specifier|private
 specifier|static
-class|class
+name|class
 name|TransformedTable
-parameter_list|<
+operator|<
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractTable
 argument_list|<
 name|R
@@ -1427,7 +1634,7 @@ name|V2
 argument_list|>
 block|{
 DECL|field|fromTable
-specifier|final
+name|final
 name|Table
 argument_list|<
 name|R
@@ -1437,9 +1644,9 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromTable
-decl_stmt|;
+block|;
 DECL|field|function
-specifier|final
+name|final
 name|Function
 argument_list|<
 name|?
@@ -1449,10 +1656,10 @@ argument_list|,
 name|V2
 argument_list|>
 name|function
-decl_stmt|;
+block|;
 DECL|method|TransformedTable (Table<R, C, V1> fromTable, Function<? super V1, V2> function)
 name|TransformedTable
-parameter_list|(
+argument_list|(
 name|Table
 argument_list|<
 name|R
@@ -1462,7 +1669,7 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromTable
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -1472,7 +1679,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -1482,7 +1689,7 @@ name|checkNotNull
 argument_list|(
 name|fromTable
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|function
@@ -1491,21 +1698,24 @@ name|checkNotNull
 argument_list|(
 name|function
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|contains (Object rowKey, Object columnKey)
+DECL|method|contains (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|boolean
 name|contains
-parameter_list|(
+argument_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|rowKey
-parameter_list|,
+argument_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|columnKey
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|fromTable
@@ -1518,22 +1728,29 @@ name|columnKey
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|get (Object rowKey, Object columnKey)
+expr|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|V2
 name|get
-parameter_list|(
+argument_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|rowKey
-parameter_list|,
+argument_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|columnKey
-parameter_list|)
+argument_list|)
 block|{
 comment|// The function is passed a null input only when the table contains a null
 comment|// value.
+comment|// The cast is safe because of the contains() check.
 return|return
 name|contains
 argument_list|(
@@ -1546,6 +1763,8 @@ name|function
 operator|.
 name|apply
 argument_list|(
+name|uncheckedCastNullableTToT
+argument_list|(
 name|fromTable
 operator|.
 name|get
@@ -1555,10 +1774,14 @@ argument_list|,
 name|columnKey
 argument_list|)
 argument_list|)
+argument_list|)
 else|:
 literal|null
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -1574,6 +1797,9 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -1588,19 +1814,30 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|put (R rowKey, C columnKey, V2 value)
+annotation|@
+name|CheckForNull
+DECL|method|put ( @arametricNullness R rowKey, @ParametricNullness C columnKey, @ParametricNullness V2 value)
 specifier|public
 name|V2
 name|put
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|R
 name|rowKey
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|C
 name|columnKey
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|V2
 name|value
 parameter_list|)
@@ -1611,6 +1848,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|putAll (Table<? extends R, ? extends C, ? extends V2> table)
@@ -1641,16 +1881,25 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (Object rowKey, Object columnKey)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|V2
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -1662,10 +1911,13 @@ name|rowKey
 argument_list|,
 name|columnKey
 argument_list|)
+comment|// The cast is safe because of the contains() check.
 condition|?
 name|function
 operator|.
 name|apply
+argument_list|(
+name|uncheckedCastNullableTToT
 argument_list|(
 name|fromTable
 operator|.
@@ -1676,13 +1928,17 @@ argument_list|,
 name|columnKey
 argument_list|)
 argument_list|)
+argument_list|)
 else|:
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|row (R rowKey)
+DECL|method|row (@arametricNullness R rowKey)
 specifier|public
 name|Map
 argument_list|<
@@ -1692,6 +1948,8 @@ name|V2
 argument_list|>
 name|row
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|R
 name|rowKey
 parameter_list|)
@@ -1712,9 +1970,12 @@ name|function
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|column (C columnKey)
+DECL|method|column (@arametricNullness C columnKey)
 specifier|public
 name|Map
 argument_list|<
@@ -1724,6 +1985,8 @@ name|V2
 argument_list|>
 name|column
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|C
 name|columnKey
 parameter_list|)
@@ -1744,6 +2007,9 @@ name|function
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|cellFunction ()
 name|Function
 argument_list|<
@@ -1844,6 +2110,9 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|cellIterator ()
@@ -1879,6 +2148,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|rowKeySet ()
@@ -1897,6 +2169,9 @@ name|rowKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|columnKeySet ()
@@ -1915,6 +2190,9 @@ name|columnKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createValues ()
@@ -1939,6 +2217,9 @@ name|function
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|rowMap ()
@@ -2041,6 +2322,9 @@ name|rowFunction
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|columnMap ()
@@ -2143,18 +2427,33 @@ name|columnFunction
 argument_list|)
 return|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/**    * Returns an unmodifiable view of the specified table. This method allows modules to provide    * users with "read-only" access to internal tables. Query operations on the returned table "read    * through" to the specified table, and attempts to modify the returned table, whether direct or    * via its collection views, result in an {@code UnsupportedOperationException}.    *    *<p>The returned table will be serializable if the specified table is serializable.    *    *<p>Consider using an {@link ImmutableTable}, which is guaranteed never to change.    *    * @since 11.0    */
-DECL|method|unmodifiableTable ( Table<? extends R, ? extends C, ? extends V> table)
-specifier|public
+end_comment
+
+begin_expr_stmt
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|unmodifiableTable (Table<? extends R, ? extends C, ? extends V> table)
 name|Table
 argument_list|<
 name|R
@@ -2164,7 +2463,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unmodifiableTable
-parameter_list|(
+argument_list|(
 name|Table
 argument_list|<
 name|?
@@ -2180,7 +2479,7 @@ extends|extends
 name|V
 argument_list|>
 name|table
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -2191,19 +2490,31 @@ name|table
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|UnmodifiableTable
 specifier|private
 specifier|static
-class|class
+name|class
 name|UnmodifiableTable
-parameter_list|<
+operator|<
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingTable
 argument_list|<
 name|R
@@ -2212,11 +2523,11 @@ name|C
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|Serializable
 block|{
 DECL|field|delegate
-specifier|final
+name|final
 name|Table
 argument_list|<
 name|?
@@ -2232,10 +2543,10 @@ extends|extends
 name|V
 argument_list|>
 name|delegate
-decl_stmt|;
+block|;
 DECL|method|UnmodifiableTable (Table<? extends R, ? extends C, ? extends V> delegate)
 name|UnmodifiableTable
-parameter_list|(
+argument_list|(
 name|Table
 argument_list|<
 name|?
@@ -2251,7 +2562,7 @@ extends|extends
 name|V
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -2261,15 +2572,14 @@ name|checkNotNull
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// safe, covariant cast
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -2282,7 +2592,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -2298,7 +2608,7 @@ operator|)
 name|delegate
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|cellSet ()
 specifier|public
@@ -2314,7 +2624,7 @@ name|V
 argument_list|>
 argument_list|>
 name|cellSet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Collections
@@ -2328,6 +2638,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -2342,9 +2655,12 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|column (@ullableDecl C columnKey)
+DECL|method|column (@arametricNullness C columnKey)
 specifier|public
 name|Map
 argument_list|<
@@ -2355,7 +2671,7 @@ argument_list|>
 name|column
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|C
 name|columnKey
 parameter_list|)
@@ -2374,6 +2690,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|columnKeySet ()
@@ -2397,6 +2716,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|columnMap ()
@@ -2455,25 +2777,30 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|put (@ullableDecl R rowKey, @NullableDecl C columnKey, @NullableDecl V value)
+annotation|@
+name|CheckForNull
+DECL|method|put ( @arametricNullness R rowKey, @ParametricNullness C columnKey, @ParametricNullness V value)
 specifier|public
 name|V
 name|put
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|R
 name|rowKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|C
 name|columnKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -2484,6 +2811,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|putAll (Table<? extends R, ? extends C, ? extends V> table)
@@ -2514,20 +2844,25 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -2538,9 +2873,12 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|row (@ullableDecl R rowKey)
+DECL|method|row (@arametricNullness R rowKey)
 specifier|public
 name|Map
 argument_list|<
@@ -2551,7 +2889,7 @@ argument_list|>
 name|row
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|R
 name|rowKey
 parameter_list|)
@@ -2570,6 +2908,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|rowKeySet ()
@@ -2593,6 +2934,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|rowMap ()
@@ -2651,6 +2995,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -2674,6 +3021,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -2683,20 +3033,35 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns an unmodifiable view of the specified row-sorted table. This method allows modules to    * provide users with "read-only" access to internal tables. Query operations on the returned    * table "read through" to the specified table, and attempts to modify the returned table, whether    * direct or via its collection views, result in an {@code UnsupportedOperationException}.    *    *<p>The returned table will be serializable if the specified table is serializable.    *    * @param table the row-sorted table for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified table    * @since 11.0    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|Beta
-DECL|method|unmodifiableRowSortedTable ( RowSortedTable<R, ? extends C, ? extends V> table)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|unmodifiableRowSortedTable ( RowSortedTable<R, ? extends C, ? extends V> table)
 name|RowSortedTable
 argument_list|<
 name|R
@@ -2706,7 +3071,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unmodifiableRowSortedTable
-parameter_list|(
+argument_list|(
 name|RowSortedTable
 argument_list|<
 name|R
@@ -2720,7 +3085,7 @@ extends|extends
 name|V
 argument_list|>
 name|table
-parameter_list|)
+argument_list|)
 block|{
 comment|/*      * It's not ? extends R, because it's technically not covariant in R. Specifically,      * table.rowMap().comparator() could return a comparator that only works for the ? extends R.      * Collections.unmodifiableSortedMap makes the same distinction.      */
 return|return
@@ -2732,19 +3097,31 @@ name|table
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|UnmodifiableRowSortedMap
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|UnmodifiableRowSortedMap
-parameter_list|<
+operator|<
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|UnmodifiableTable
 argument_list|<
 name|R
@@ -2753,7 +3130,7 @@ name|C
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|RowSortedTable
 argument_list|<
 name|R
@@ -2766,7 +3143,7 @@ block|{
 DECL|method|UnmodifiableRowSortedMap (RowSortedTable<R, ? extends C, ? extends V> delegate)
 specifier|public
 name|UnmodifiableRowSortedMap
-parameter_list|(
+argument_list|(
 name|RowSortedTable
 argument_list|<
 name|R
@@ -2780,15 +3157,14 @@ extends|extends
 name|V
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -2801,7 +3177,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -2820,7 +3196,7 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|rowMap ()
 specifier|public
@@ -2836,7 +3212,7 @@ name|V
 argument_list|>
 argument_list|>
 name|rowMap
-parameter_list|()
+argument_list|()
 block|{
 name|Function
 argument_list|<
@@ -2855,10 +3231,10 @@ name|V
 argument_list|>
 argument_list|>
 name|wrapper
-init|=
+operator|=
 name|unmodifiableWrapper
 argument_list|()
-decl_stmt|;
+block|;
 return|return
 name|Collections
 operator|.
@@ -2879,6 +3255,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|rowKeySet ()
@@ -2903,6 +3282,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -2912,20 +3294,28 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-annotation|@
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    @
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|unmodifiableWrapper ()
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|unmodifiableWrapper ()
 name|Function
 argument_list|<
 name|Map
@@ -2943,7 +3333,7 @@ name|V
 argument_list|>
 argument_list|>
 name|unmodifiableWrapper
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -2952,6 +3342,9 @@ operator|)
 name|UNMODIFIABLE_WRAPPER
 return|;
 block|}
+end_expr_stmt
+
+begin_decl_stmt
 DECL|field|UNMODIFIABLE_WRAPPER
 specifier|private
 specifier|static
@@ -3028,17 +3421,32 @@ return|;
 block|}
 block|}
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/**    * Returns a synchronized (thread-safe) table backed by the specified table. In order to guarantee    * serial access, it is critical that<b>all</b> access to the backing table is accomplished    * through the returned table.    *    *<p>It is imperative that the user manually synchronize on the returned table when accessing any    * of its collection views:    *    *<pre>{@code    * Table<R, C, V> table = Tables.synchronizedTable(HashBasedTable.<R, C, V>create());    * ...    * Map<C, V> row = table.row(rowKey);  // Needn't be in synchronized block    * ...    * synchronized (table) {  // Synchronizing on table, not row!    *   Iterator<Entry<C, V>> i = row.entrySet().iterator(); // Must be in synchronized block    *   while (i.hasNext()) {    *     foo(i.next());    *   }    * }    * }</pre>    *    *<p>Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned table will be serializable if the specified table is serializable.    *    * @param table the table to be wrapped in a synchronized view    * @return a synchronized view of the specified table    * @since 22.0    */
-DECL|method|synchronizedTable (Table<R, C, V> table)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|synchronizedTable (Table<R, C, V> table)
 name|Table
 argument_list|<
 name|R
@@ -3048,7 +3456,7 @@ argument_list|,
 name|V
 argument_list|>
 name|synchronizedTable
-parameter_list|(
+argument_list|(
 name|Table
 argument_list|<
 name|R
@@ -3058,7 +3466,7 @@ argument_list|,
 name|V
 argument_list|>
 name|table
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Synchronized
@@ -3071,7 +3479,10 @@ literal|null
 argument_list|)
 return|;
 block|}
-DECL|method|equalsImpl (Table<?, ?, ?> table, @NullableDecl Object obj)
+end_expr_stmt
+
+begin_function
+DECL|method|equalsImpl (Table<?, ?, ?> table, @CheckForNull Object obj)
 specifier|static
 name|boolean
 name|equalsImpl
@@ -3087,7 +3498,7 @@ argument_list|>
 name|table
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -3155,8 +3566,8 @@ literal|false
 return|;
 block|}
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

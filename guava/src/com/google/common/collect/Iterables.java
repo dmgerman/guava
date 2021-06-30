@@ -292,6 +292,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -318,6 +328,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Iterables
 specifier|public
 specifier|final
@@ -330,19 +342,22 @@ name|Iterables
 parameter_list|()
 block|{}
 comment|/** Returns an unmodifiable view of {@code iterable}. */
-DECL|method|unmodifiableIterable (final Iterable<? extends T> iterable)
+DECL|method|unmodifiableIterable ( final Iterable<? extends T> iterable)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|unmodifiableIterable
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Iterable
 argument_list|<
 name|?
@@ -350,13 +365,13 @@ extends|extends
 name|T
 argument_list|>
 name|iterable
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|iterable
 argument_list|)
-expr_stmt|;
+block|;
 if|if
 condition|(
 name|iterable
@@ -401,7 +416,13 @@ name|iterable
 argument_list|)
 return|;
 block|}
+end_class
+
+begin_comment
 comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since 10.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Deprecated
 DECL|method|unmodifiableIterable (ImmutableCollection<E> iterable)
@@ -430,16 +451,22 @@ name|iterable
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_expr_stmt
 DECL|class|UnmodifiableIterable
 specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|UnmodifiableIterable
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|FluentIterable
 argument_list|<
 name|T
@@ -447,7 +474,7 @@ argument_list|>
 block|{
 DECL|field|iterable
 specifier|private
-specifier|final
+name|final
 name|Iterable
 argument_list|<
 name|?
@@ -455,11 +482,11 @@ extends|extends
 name|T
 argument_list|>
 name|iterable
-decl_stmt|;
+block|;
 DECL|method|UnmodifiableIterable (Iterable<? extends T> iterable)
 specifier|private
 name|UnmodifiableIterable
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -467,16 +494,15 @@ extends|extends
 name|T
 argument_list|>
 name|iterable
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|iterable
 operator|=
 name|iterable
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|iterator ()
 specifier|public
@@ -485,7 +511,7 @@ argument_list|<
 name|T
 argument_list|>
 name|iterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Iterators
@@ -499,13 +525,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|forEach (Consumer<? super T> action)
 specifier|public
 name|void
 name|forEach
-parameter_list|(
+argument_list|(
 name|Consumer
 argument_list|<
 name|?
@@ -513,7 +539,7 @@ super|super
 name|T
 argument_list|>
 name|action
-parameter_list|)
+argument_list|)
 block|{
 name|iterable
 operator|.
@@ -521,15 +547,14 @@ name|forEach
 argument_list|(
 name|action
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// safe upcast, assuming no one has a crazy Spliterator subclass
-annotation|@
+expr|@
 name|Override
 DECL|method|spliterator ()
 specifier|public
@@ -538,7 +563,7 @@ argument_list|<
 name|T
 argument_list|>
 name|spliterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -553,6 +578,9 @@ name|spliterator
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -568,11 +596,20 @@ name|toString
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// no equals and hashCode; it would break the contract!
-block|}
+end_comment
+
+begin_comment
+unit|}
 comment|/** Returns the number of elements in {@code iterable}. */
+end_comment
+
+begin_function
 DECL|method|size (Iterable<?> iterable)
-specifier|public
+unit|public
 specifier|static
 name|int
 name|size
@@ -615,24 +652,37 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns {@code true} if {@code iterable} contains any element {@code o} for which {@code    * Objects.equals(o, element)} would return {@code true}. Otherwise returns {@code false}, even in    * cases where {@link Collection#contains} might throw {@link NullPointerException} or {@link    * ClassCastException}.    */
-DECL|method|contains (Iterable<?> iterable, @Nullable Object element)
+end_comment
+
+begin_comment
+comment|//<? extends @Nullable Object> instead of<?> because of Kotlin b/189937072, discussed in Joiner.
+end_comment
+
+begin_decl_stmt
+DECL|method|contains ( Iterable<? extends @Nullable Object> iterable, @CheckForNull Object element)
 specifier|public
 specifier|static
 name|boolean
 name|contains
-parameter_list|(
+argument_list|(
 name|Iterable
-argument_list|<
-name|?
-argument_list|>
-name|iterable
-parameter_list|,
-annotation|@
+operator|<
+condition|?
+then|extends @
 name|Nullable
 name|Object
+operator|>
+name|iterable
+argument_list|,
+annotation|@
+name|CheckForNull
+name|Object
 name|element
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -680,7 +730,13 @@ name|element
 argument_list|)
 return|;
 block|}
+end_decl_stmt
+
+begin_comment
 comment|/**    * Removes, from an iterable, every element that belongs to the provided collection.    *    *<p>This method calls {@link Collection#removeAll} if {@code iterable} is a collection, and    * {@link Iterators#removeAll} otherwise.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param elementsToRemove the elements to remove    * @return {@code true} if any element was removed from {@code iterable}    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeAll (Iterable<?> removeFrom, Collection<?> elementsToRemove)
@@ -740,7 +796,13 @@ name|elementsToRemove
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Removes, from an iterable, every element that does not belong to the provided collection.    *    *<p>This method calls {@link Collection#retainAll} if {@code iterable} is a collection, and    * {@link Iterators#retainAll} otherwise.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param elementsToRetain the elements to retain    * @return {@code true} if any element was removed from {@code iterable}    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|retainAll (Iterable<?> removeFrom, Collection<?> elementsToRetain)
@@ -800,24 +862,36 @@ name|elementsToRetain
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Removes, from an iterable, every element that satisfies the provided predicate.    *    *<p>Removals may or may not happen immediately as each element is tested against the predicate.    * The behavior of this method is not specified if {@code predicate} is dependent on {@code    * removeFrom}.    *    *<p><b>Java 8 users:</b> if {@code removeFrom} is a {@link Collection}, use {@code    * removeFrom.removeIf(predicate)} instead.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should be removed    * @return {@code true} if any elements were removed from the iterable    * @throws UnsupportedOperationException if the iterable does not support {@code remove()}.    * @since 2.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeIf (Iterable<T> removeFrom, Predicate<? super T> predicate)
+end_annotation
+
+begin_expr_stmt
+DECL|method|removeIf ( Iterable<T> removeFrom, Predicate<? super T> predicate)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|boolean
 name|removeIf
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|removeFrom
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -825,7 +899,7 @@ super|super
 name|T
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -851,6 +925,9 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|Iterators
 operator|.
@@ -864,24 +941,33 @@ argument_list|,
 name|predicate
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/** Removes and returns the first matching element, or returns {@code null} if there is none. */
+end_comment
+
+begin_expr_stmt
+unit|@
+name|CheckForNull
 DECL|method|removeFirstMatching ( Iterable<T> removeFrom, Predicate<? super T> predicate)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-annotation|@
+expr|extends @
 name|Nullable
+name|Object
+operator|>
 name|T
 name|removeFirstMatching
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|removeFrom
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -889,24 +975,24 @@ super|super
 name|T
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|predicate
 argument_list|)
-expr_stmt|;
+block|;
 name|Iterator
 argument_list|<
 name|T
 argument_list|>
 name|iterator
-init|=
+operator|=
 name|removeFrom
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
+block|;
 while|while
 condition|(
 name|iterator
@@ -942,14 +1028,22 @@ return|return
 name|next
 return|;
 block|}
-block|}
-return|return
+end_expr_stmt
+
+begin_expr_stmt
+unit|}     return
 literal|null
-return|;
-block|}
+expr_stmt|;
+end_expr_stmt
+
+begin_comment
+unit|}
 comment|/**    * Determines whether two iterables contain equal elements in the same order. More specifically,    * this method returns {@code true} if {@code iterable1} and {@code iterable2} contain the same    * number of elements and every element of {@code iterable1} is equal to the corresponding element    * of {@code iterable2}.    */
+end_comment
+
+begin_function
 DECL|method|elementsEqual (Iterable<?> iterable1, Iterable<?> iterable2)
-specifier|public
+unit|public
 specifier|static
 name|boolean
 name|elementsEqual
@@ -1041,7 +1135,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a string representation of {@code iterable}, with the format {@code [e1, e2, ..., en]}    * (that is, identical to {@link java.util.Arrays Arrays}{@code    * .toString(Iterables.toArray(iterable))}). Note that for<i>most</i> implementations of {@link    * Collection}, {@code collection.toString()} also gives the same result, but that behavior is not    * generally guaranteed.    */
+end_comment
+
+begin_function
 DECL|method|toString (Iterable<?> iterable)
 specifier|public
 specifier|static
@@ -1067,22 +1167,36 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the single element contained in {@code iterable}.    *    *<p><b>Java 8 users:</b> the {@code Stream} equivalent to this method is {@code    * stream.collect(MoreCollectors.onlyElement())}.    *    * @throws NoSuchElementException if the iterable is empty    * @throws IllegalArgumentException if the iterable contains multiple elements    */
+end_comment
+
+begin_annotation
+annotation|@
+name|ParametricNullness
+end_annotation
+
+begin_expr_stmt
 DECL|method|getOnlyElement (Iterable<T> iterable)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|getOnlyElement
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|iterable
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Iterators
@@ -1096,18 +1210,30 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns the single element contained in {@code iterable}, or {@code defaultValue} if the    * iterable is empty.    *    *<p><b>Java 8 users:</b> the {@code Stream} equivalent to this method is {@code    * stream.collect(MoreCollectors.toOptional()).orElse(defaultValue)}.    *    * @throws IllegalArgumentException if the iterator contains multiple elements    */
-DECL|method|getOnlyElement ( Iterable<? extends T> iterable, @Nullable T defaultValue)
+end_comment
+
+begin_annotation
+annotation|@
+name|ParametricNullness
+end_annotation
+
+begin_expr_stmt
+DECL|method|getOnlyElement ( Iterable<? extends T> iterable, @ParametricNullness T defaultValue)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-annotation|@
+expr|extends @
 name|Nullable
+name|Object
+operator|>
 name|T
 name|getOnlyElement
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -1115,12 +1241,12 @@ extends|extends
 name|T
 argument_list|>
 name|iterable
-parameter_list|,
-annotation|@
-name|Nullable
+operator|,
+condition|@
+name|ParametricNullness
 name|T
 name|defaultValue
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Iterators
@@ -1136,34 +1262,44 @@ name|defaultValue
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Copies an iterable's elements into an array.    *    * @param iterable the iterable to copy    * @param type the type of the elements    * @return a newly-allocated array into which all the elements of the iterable have been copied    */
+end_comment
+
+begin_decl_stmt
 annotation|@
 name|GwtIncompatible
 comment|// Array.newInstance(Class, int)
-DECL|method|toArray (Iterable<? extends T> iterable, Class<T> type)
+comment|/*    * If we could express Class<@Nonnull T>, we could generalize the type parameter to<T extends    * @Nullable Object>, and then we could accept an Iterable<? extends T> and return a plain T[]    * instead of a @Nullable T[].    */
+DECL|method|toArray (Iterable<? extends @Nullable T> iterable, Class<T> type)
 specifier|public
 specifier|static
-parameter_list|<
+argument_list|<
 name|T
-parameter_list|>
+argument_list|>
+annotation|@
+name|Nullable
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|Iterable
-argument_list|<
-name|?
-extends|extends
+operator|<
+condition|?
+then|extends @
+name|Nullable
 name|T
-argument_list|>
+operator|>
 name|iterable
-parameter_list|,
+argument_list|,
 name|Class
 argument_list|<
 name|T
 argument_list|>
 name|type
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|toArray
@@ -1181,15 +1317,21 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_decl_stmt
+
+begin_expr_stmt
 DECL|method|toArray (Iterable<? extends T> iterable, T[] array)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -1197,11 +1339,11 @@ extends|extends
 name|T
 argument_list|>
 name|iterable
-parameter_list|,
+operator|,
 name|T
 index|[]
 name|array
-parameter_list|)
+argument_list|)
 block|{
 name|Collection
 argument_list|<
@@ -1210,12 +1352,12 @@ extends|extends
 name|T
 argument_list|>
 name|collection
-init|=
+operator|=
 name|castOrCopyToCollection
 argument_list|(
 name|iterable
 argument_list|)
-decl_stmt|;
+block|;
 return|return
 name|collection
 operator|.
@@ -1225,9 +1367,17 @@ name|array
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Copies an iterable's elements into an array.    *    * @param iterable the iterable to copy    * @return a newly-allocated array into which all the elements of the iterable have been copied    */
+end_comment
+
+begin_function
 DECL|method|toArray (Iterable<?> iterable)
 specifier|static
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|toArray
@@ -1249,25 +1399,34 @@ name|toArray
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Converts an iterable into a collection. If the iterable is already a collection, it is    * returned. Otherwise, an {@link java.util.ArrayList} is created with the contents of the    * iterable in the same iteration order.    */
-DECL|method|castOrCopyToCollection (Iterable<E> iterable)
+end_comment
+
+begin_expr_stmt
+DECL|method|castOrCopyToCollection ( Iterable<E> iterable)
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 name|castOrCopyToCollection
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|E
 argument_list|>
 name|iterable
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -1275,7 +1434,7 @@ name|iterable
 operator|instanceof
 name|Collection
 operator|)
-condition|?
+operator|?
 operator|(
 name|Collection
 argument_list|<
@@ -1283,7 +1442,7 @@ name|E
 argument_list|>
 operator|)
 name|iterable
-else|:
+operator|:
 name|Lists
 operator|.
 name|newArrayList
@@ -1295,24 +1454,36 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Adds all elements in {@code iterable} to {@code collection}.    *    * @return {@code true} if {@code collection} was modified as a result of this operation.    */
+end_comment
+
+begin_annotation
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|addAll (Collection<T> addTo, Iterable<? extends T> elementsToAdd)
+end_annotation
+
+begin_expr_stmt
+DECL|method|addAll ( Collection<T> addTo, Iterable<? extends T> elementsToAdd)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|boolean
 name|addAll
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|T
 argument_list|>
 name|addTo
-parameter_list|,
+argument_list|,
 name|Iterable
 argument_list|<
 name|?
@@ -1320,7 +1491,7 @@ extends|extends
 name|T
 argument_list|>
 name|elementsToAdd
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -1356,6 +1527,9 @@ name|c
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|Iterators
 operator|.
@@ -1372,10 +1546,16 @@ name|iterator
 argument_list|()
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Returns the number of elements in the specified iterable that equal the specified object. This    * implementation avoids a full iteration when the iterable is a {@link Multiset} or {@link Set}.    *    *<p><b>Java 8 users:</b> In most cases, the {@code Stream} equivalent of this method is {@code    * stream.filter(element::equals).count()}. If {@code element} might be null, use {@code    * stream.filter(Predicate.isEqual(element)).count()} instead.    *    * @see java.util.Collections#frequency(Collection, Object) Collections.frequency(Collection,    *     Object)    */
-DECL|method|frequency (Iterable<?> iterable, @Nullable Object element)
-specifier|public
+end_comment
+
+begin_function
+DECL|method|frequency (Iterable<?> iterable, @CheckForNull Object element)
+unit|public
 specifier|static
 name|int
 name|frequency
@@ -1387,7 +1567,7 @@ argument_list|>
 name|iterable
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -1463,32 +1643,41 @@ name|element
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an iterable whose iterators cycle indefinitely over the elements of {@code iterable}.    *    *<p>That iterator supports {@code remove()} if {@code iterable.iterator()} does. After {@code    * remove()} is called, subsequent cycles omit the removed element, which is no longer in {@code    * iterable}. The iterator's {@code hasNext()} method returns {@code true} until {@code iterable}    * is empty.    *    *<p><b>Warning:</b> Typical uses of the resulting iterator may produce an infinite loop. You    * should use an explicit {@code break} or be certain that you will eventually remove all the    * elements.    *    *<p>To cycle over the iterable {@code n} times, use the following: {@code    * Iterables.concat(Collections.nCopies(n, iterable))}    *    *<p><b>Java 8 users:</b> The {@code Stream} equivalent of this method is {@code    * Stream.generate(() -> iterable).flatMap(Streams::stream)}.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|cycle (final Iterable<T> iterable)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|cycle
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|iterable
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|iterable
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|FluentIterable
@@ -1516,7 +1705,7 @@ name|iterable
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|Spliterator
@@ -1524,7 +1713,7 @@ argument_list|<
 name|T
 argument_list|>
 name|spliterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Stream
@@ -1536,6 +1725,9 @@ lambda|->
 name|iterable
 argument_list|)
 operator|.
+operator|<
+name|T
+operator|>
 name|flatMap
 argument_list|(
 name|Streams
@@ -1547,6 +1739,9 @@ name|spliterator
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 specifier|public
@@ -1563,28 +1758,35 @@ operator|+
 literal|" (cycled)"
 return|;
 block|}
-block|}
-return|;
-block|}
+end_function
+
+begin_comment
+unit|};   }
 comment|/**    * Returns an iterable whose iterators cycle indefinitely over the provided elements.    *    *<p>After {@code remove} is invoked on a generated iterator, the removed element will no longer    * appear in either that iterator or any other iterator created from the same source iterable.    * That is, this method behaves exactly as {@code Iterables.cycle(Lists.newArrayList(elements))}.    * The iterator's {@code hasNext} method returns {@code true} until all of the original elements    * have been removed.    *    *<p><b>Warning:</b> Typical uses of the resulting iterator may produce an infinite loop. You    * should use an explicit {@code break} or be certain that you will eventually remove all the    * elements.    *    *<p>To cycle over the elements {@code n} times, use the following: {@code    * Iterables.concat(Collections.nCopies(n, Arrays.asList(elements)))}    *    *<p><b>Java 8 users:</b> If passing a single element {@code e}, the {@code Stream} equivalent of    * this method is {@code Stream.generate(() -> e)}. Otherwise, put the elements in a collection    * and use {@code Stream.generate(() -> collection).flatMap(Collection::stream)}.    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|SafeVarargs
 DECL|method|cycle (T... elements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|cycle
-parameter_list|(
+argument_list|(
 name|T
-modifier|...
+operator|...
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|cycle
@@ -1598,19 +1800,28 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Combines two iterables into a single iterable. The returned iterable has an iterator that    * traverses the elements in {@code a}, followed by the elements in {@code b}. The source    * iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>Java 8 users:</b> The {@code Stream} equivalent of this method is {@code Stream.concat(a,    * b)}.    */
-DECL|method|concat (Iterable<? extends T> a, Iterable<? extends T> b)
+end_comment
+
+begin_expr_stmt
+DECL|method|concat ( Iterable<? extends T> a, Iterable<? extends T> b)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|concat
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -1618,7 +1829,7 @@ extends|extends
 name|T
 argument_list|>
 name|a
-parameter_list|,
+operator|,
 name|Iterable
 argument_list|<
 name|?
@@ -1626,7 +1837,7 @@ extends|extends
 name|T
 argument_list|>
 name|b
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|FluentIterable
@@ -1639,19 +1850,28 @@ name|b
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Combines three iterables into a single iterable. The returned iterable has an iterator that    * traverses the elements in {@code a}, followed by the elements in {@code b}, followed by the    * elements in {@code c}. The source iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>Java 8 users:</b> The {@code Stream} equivalent of this method is {@code    * Streams.concat(a, b, c)}.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|concat ( Iterable<? extends T> a, Iterable<? extends T> b, Iterable<? extends T> c)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|concat
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -1659,7 +1879,7 @@ extends|extends
 name|T
 argument_list|>
 name|a
-parameter_list|,
+operator|,
 name|Iterable
 argument_list|<
 name|?
@@ -1667,7 +1887,7 @@ extends|extends
 name|T
 argument_list|>
 name|b
-parameter_list|,
+operator|,
 name|Iterable
 argument_list|<
 name|?
@@ -1675,7 +1895,7 @@ extends|extends
 name|T
 argument_list|>
 name|c
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|FluentIterable
@@ -1690,19 +1910,28 @@ name|c
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Combines four iterables into a single iterable. The returned iterable has an iterator that    * traverses the elements in {@code a}, followed by the elements in {@code b}, followed by the    * elements in {@code c}, followed by the elements in {@code d}. The source iterators are not    * polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>Java 8 users:</b> The {@code Stream} equivalent of this method is {@code    * Streams.concat(a, b, c, d)}.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|concat ( Iterable<? extends T> a, Iterable<? extends T> b, Iterable<? extends T> c, Iterable<? extends T> d)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|concat
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -1710,7 +1939,7 @@ extends|extends
 name|T
 argument_list|>
 name|a
-parameter_list|,
+operator|,
 name|Iterable
 argument_list|<
 name|?
@@ -1718,7 +1947,7 @@ extends|extends
 name|T
 argument_list|>
 name|b
-parameter_list|,
+operator|,
 name|Iterable
 argument_list|<
 name|?
@@ -1726,7 +1955,7 @@ extends|extends
 name|T
 argument_list|>
 name|c
-parameter_list|,
+operator|,
 name|Iterable
 argument_list|<
 name|?
@@ -1734,7 +1963,7 @@ extends|extends
 name|T
 argument_list|>
 name|d
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|FluentIterable
@@ -1751,30 +1980,42 @@ name|d
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Combines multiple iterables into a single iterable. The returned iterable has an iterator that    * traverses the elements of each iterable in {@code inputs}. The input iterators are not polled    * until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>Java 8 users:</b> The {@code Stream} equivalent of this method is {@code    * Streams.concat(...)}.    *    * @throws NullPointerException if any of the provided iterables is null    */
+end_comment
+
+begin_annotation
 annotation|@
 name|SafeVarargs
+end_annotation
+
+begin_expr_stmt
 DECL|method|concat (Iterable<? extends T>.... inputs)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|concat
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
 extends|extends
 name|T
 argument_list|>
-modifier|...
+operator|...
 name|inputs
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|FluentIterable
@@ -1785,19 +2026,28 @@ name|inputs
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Combines multiple iterables into a single iterable. The returned iterable has an iterator that    * traverses the elements of each iterable in {@code inputs}. The input iterators are not polled    * until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it. The methods of the returned iterable may throw {@code    * NullPointerException} if any of the input iterators is null.    *    *<p><b>Java 8 users:</b> The {@code Stream} equivalent of this method is {@code    * streamOfStreams.flatMap(s -> s)}.    */
-DECL|method|concat (Iterable<? extends Iterable<? extends T>> inputs)
+end_comment
+
+begin_expr_stmt
+DECL|method|concat ( Iterable<? extends Iterable<? extends T>> inputs)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|concat
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -1810,7 +2060,7 @@ name|T
 argument_list|>
 argument_list|>
 name|inputs
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|FluentIterable
@@ -1821,13 +2071,22 @@ name|inputs
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Divides an iterable into unmodifiable sublists of the given size (the final iterable may be    * smaller). For example, partitioning an iterable containing {@code [a, b, c, d, e]} with a    * partition size of 3 yields {@code [[a, b, c], [d, e]]} -- an outer iterable containing two    * inner lists of three and two elements, all in the original order.    *    *<p>Iterators returned by the returned iterable do not support the {@link Iterator#remove()}    * method. The returned lists implement {@link RandomAccess}, whether or not the input list does.    *    *<p><b>Note:</b> if {@code iterable} is a {@link List}, use {@link Lists#partition(List, int)}    * instead.    *    * @param iterable the iterable to return a partitioned view of    * @param size the desired size of each partition (the last may be smaller)    * @return an iterable of unmodifiable lists containing the elements of {@code iterable} divided    *     into partitions    * @throws IllegalArgumentException if {@code size} is nonpositive    */
-DECL|method|partition (final Iterable<T> iterable, final int size)
+end_comment
+
+begin_expr_stmt
+DECL|method|partition ( final Iterable<T> iterable, final int size)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterable
 argument_list|<
 name|List
@@ -1836,31 +2095,31 @@ name|T
 argument_list|>
 argument_list|>
 name|partition
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|iterable
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|int
 name|size
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|iterable
 argument_list|)
-expr_stmt|;
+block|;
 name|checkArgument
 argument_list|(
 name|size
 operator|>
 literal|0
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|FluentIterable
@@ -1899,16 +2158,23 @@ name|size
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|};   }
 comment|/**    * Divides an iterable into unmodifiable sublists of the given size, padding the final iterable    * with null values if necessary. For example, partitioning an iterable containing {@code [a, b,    * c, d, e]} with a partition size of 3 yields {@code [[a, b, c], [d, e, null]]} -- an outer    * iterable containing two inner lists of three elements each, all in the original order.    *    *<p>Iterators returned by the returned iterable do not support the {@link Iterator#remove()}    * method.    *    * @param iterable the iterable to return a partitioned view of    * @param size the desired size of each partition    * @return an iterable of unmodifiable lists containing the elements of {@code iterable} divided    *     into partitions (the final iterable may have trailing null elements)    * @throws IllegalArgumentException if {@code size} is nonpositive    */
-DECL|method|paddedPartition (final Iterable<T> iterable, final int size)
-specifier|public
+end_comment
+
+begin_expr_stmt
+DECL|method|paddedPartition ( final Iterable<T> iterable, final int size)
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterable
 argument_list|<
 name|List
@@ -1917,31 +2183,31 @@ name|T
 argument_list|>
 argument_list|>
 name|paddedPartition
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|iterable
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|int
 name|size
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|iterable
 argument_list|)
-expr_stmt|;
+block|;
 name|checkArgument
 argument_list|(
 name|size
 operator|>
 literal|0
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|FluentIterable
@@ -1980,30 +2246,37 @@ name|size
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|};   }
 comment|/**    * Returns a view of {@code unfiltered} containing all elements that satisfy the input predicate    * {@code retainIfTrue}. The returned iterable's iterator does not support {@code remove()}.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#filter}.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|filter ( final Iterable<T> unfiltered, final Predicate<? super T> retainIfTrue)
-specifier|public
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|filter
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|unfiltered
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -2011,18 +2284,18 @@ super|super
 name|T
 argument_list|>
 name|retainIfTrue
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|unfiltered
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|retainIfTrue
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|FluentIterable
@@ -2055,12 +2328,12 @@ name|retainIfTrue
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|void
 name|forEach
-parameter_list|(
+argument_list|(
 name|Consumer
 argument_list|<
 name|?
@@ -2068,18 +2341,20 @@ super|super
 name|T
 argument_list|>
 name|action
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|action
 argument_list|)
-expr_stmt|;
+block|;
 name|unfiltered
 operator|.
 name|forEach
 argument_list|(
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|T
 name|a
 parameter_list|)
@@ -2103,11 +2378,15 @@ name|a
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+end_expr_stmt
+
+begin_empty_stmt
+unit|})
+empty_stmt|;
+end_empty_stmt
+
+begin_function
+unit|}        @
 name|Override
 specifier|public
 name|Spliterator
@@ -2131,55 +2410,59 @@ name|retainIfTrue
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_function
+
+begin_comment
+unit|};   }
 comment|/**    * Returns a view of {@code unfiltered} containing all elements that are of the type {@code    * desiredType}. The returned iterable's iterator does not support {@code remove()}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.filter(type::isInstance).map(type::cast)}.    * This does perform a little more work than necessary, so another option is to insert an    * unchecked cast at some later point:    *    *<pre>    * {@code @SuppressWarnings("unchecked") // safe because of ::isInstance check    * ImmutableList<NewType> result =    *     (ImmutableList) stream.filter(NewType.class::isInstance).collect(toImmutableList());}    *</pre>    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-annotation|@
+expr|@
 name|GwtIncompatible
 comment|// Class.isInstance
 DECL|method|filter (final Iterable<?> unfiltered, final Class<T> desiredType)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+operator|>
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|filter
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Iterable
 argument_list|<
 name|?
 argument_list|>
 name|unfiltered
-parameter_list|,
-specifier|final
+operator|,
+name|final
 name|Class
 argument_list|<
 name|T
 argument_list|>
 name|desiredType
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|unfiltered
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|desiredType
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|(
 name|Iterable
@@ -2200,135 +2483,239 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns {@code true} if any element in {@code iterable} satisfies the predicate.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#anyMatch}.    */
-DECL|method|any (Iterable<T> iterable, Predicate<? super T> predicate)
+end_comment
+
+begin_expr_stmt
+DECL|method|any ( Iterable<T> iterable, Predicate<? super T> predicate)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-name|boolean
-name|any
-parameter_list|(
-name|Iterable
-argument_list|<
-name|T
-argument_list|>
-name|iterable
-parameter_list|,
-name|Predicate
-argument_list|<
-name|?
-super|super
-name|T
-argument_list|>
-name|predicate
-parameter_list|)
-block|{
-return|return
-name|Iterators
-operator|.
-name|any
-argument_list|(
-name|iterable
-operator|.
-name|iterator
-argument_list|()
-argument_list|,
-name|predicate
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns {@code true} if every element in {@code iterable} satisfies the predicate. If {@code    * iterable} is empty, {@code true} is returned.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#allMatch}.    */
-DECL|method|all (Iterable<T> iterable, Predicate<? super T> predicate)
-specifier|public
-specifier|static
-parameter_list|<
-name|T
-parameter_list|>
-name|boolean
-name|all
-parameter_list|(
-name|Iterable
-argument_list|<
-name|T
-argument_list|>
-name|iterable
-parameter_list|,
-name|Predicate
-argument_list|<
-name|?
-super|super
-name|T
-argument_list|>
-name|predicate
-parameter_list|)
-block|{
-return|return
-name|Iterators
-operator|.
-name|all
-argument_list|(
-name|iterable
-operator|.
-name|iterator
-argument_list|()
-argument_list|,
-name|predicate
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns the first element in {@code iterable} that satisfies the given predicate; use this    * method only when such an element is known to exist. If it is possible that<i>no</i> element    * will match, use {@link #tryFind} or {@link #find(Iterable, Predicate, Object)} instead.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.filter(predicate).findFirst().get()}    *    * @throws NoSuchElementException if no element in {@code iterable} matches the given predicate    */
-DECL|method|find (Iterable<T> iterable, Predicate<? super T> predicate)
-specifier|public
-specifier|static
-parameter_list|<
-name|T
-parameter_list|>
-name|T
-name|find
-parameter_list|(
-name|Iterable
-argument_list|<
-name|T
-argument_list|>
-name|iterable
-parameter_list|,
-name|Predicate
-argument_list|<
-name|?
-super|super
-name|T
-argument_list|>
-name|predicate
-parameter_list|)
-block|{
-return|return
-name|Iterators
-operator|.
-name|find
-argument_list|(
-name|iterable
-operator|.
-name|iterator
-argument_list|()
-argument_list|,
-name|predicate
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns the first element in {@code iterable} that satisfies the given predicate, or {@code    * defaultValue} if none found. Note that this can usually be handled more naturally using {@code    * tryFind(iterable, predicate).or(defaultValue)}.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * stream.filter(predicate).findFirst().orElse(defaultValue)}    *    * @since 7.0    */
-DECL|method|find ( Iterable<? extends T> iterable, Predicate<? super T> predicate, @Nullable T defaultValue)
-specifier|public
-specifier|static
-parameter_list|<
-name|T
-parameter_list|>
-annotation|@
+expr|extends @
 name|Nullable
+name|Object
+operator|>
+name|boolean
+name|any
+argument_list|(
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+name|iterable
+argument_list|,
+name|Predicate
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|>
+name|predicate
+argument_list|)
+block|{
+return|return
+name|Iterators
+operator|.
+name|any
+argument_list|(
+name|iterable
+operator|.
+name|iterator
+argument_list|()
+argument_list|,
+name|predicate
+argument_list|)
+return|;
+block|}
+end_expr_stmt
+
+begin_comment
+comment|/**    * Returns {@code true} if every element in {@code iterable} satisfies the predicate. If {@code    * iterable} is empty, {@code true} is returned.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#allMatch}.    */
+end_comment
+
+begin_expr_stmt
+DECL|method|all ( Iterable<T> iterable, Predicate<? super T> predicate)
+specifier|public
+specifier|static
+operator|<
+name|T
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+name|boolean
+name|all
+argument_list|(
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+name|iterable
+argument_list|,
+name|Predicate
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|>
+name|predicate
+argument_list|)
+block|{
+return|return
+name|Iterators
+operator|.
+name|all
+argument_list|(
+name|iterable
+operator|.
+name|iterator
+argument_list|()
+argument_list|,
+name|predicate
+argument_list|)
+return|;
+block|}
+end_expr_stmt
+
+begin_comment
+comment|/**    * Returns the first element in {@code iterable} that satisfies the given predicate; use this    * method only when such an element is known to exist. If it is possible that<i>no</i> element    * will match, use {@link #tryFind} or {@link #find(Iterable, Predicate, Object)} instead.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.filter(predicate).findFirst().get()}    *    * @throws NoSuchElementException if no element in {@code iterable} matches the given predicate    */
+end_comment
+
+begin_annotation
+annotation|@
+name|ParametricNullness
+end_annotation
+
+begin_expr_stmt
+DECL|method|find ( Iterable<T> iterable, Predicate<? super T> predicate)
+specifier|public
+specifier|static
+operator|<
+name|T
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|find
-parameter_list|(
+argument_list|(
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+name|iterable
+argument_list|,
+name|Predicate
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|>
+name|predicate
+argument_list|)
+block|{
+return|return
+name|Iterators
+operator|.
+name|find
+argument_list|(
+name|iterable
+operator|.
+name|iterator
+argument_list|()
+argument_list|,
+name|predicate
+argument_list|)
+return|;
+block|}
+end_expr_stmt
+
+begin_comment
+comment|/**    * Returns the first element in {@code iterable} that satisfies the given predicate, or {@code    * defaultValue} if none found. Note that this can usually be handled more naturally using {@code    * tryFind(iterable, predicate).or(defaultValue)}.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * stream.filter(predicate).findFirst().orElse(defaultValue)}    *    * @since 7.0    */
+end_comment
+
+begin_comment
+comment|// The signature we really want here is...
+end_comment
+
+begin_comment
+comment|//
+end_comment
+
+begin_comment
+comment|//<T extends @Nullable Object> @JointlyNullable T find(
+end_comment
+
+begin_comment
+comment|//     Iterable<? extends T> iterable,
+end_comment
+
+begin_comment
+comment|//     Predicate<? super T> predicate,
+end_comment
+
+begin_comment
+comment|//     @JointlyNullable T defaultValue);
+end_comment
+
+begin_comment
+comment|//
+end_comment
+
+begin_comment
+comment|// ...where "@JointlyNullable" is similar to @PolyNull but slightly different:
+end_comment
+
+begin_comment
+comment|//
+end_comment
+
+begin_comment
+comment|// - @PolyNull means "@Nullable or @Nonnull"
+end_comment
+
+begin_comment
+comment|//   (That would be unsound for an input Iterable<@Nullable Foo>. So, if we wanted to use
+end_comment
+
+begin_comment
+comment|//   @PolyNull, we would have to restrict this method to non-null<T>. But it has users who pass
+end_comment
+
+begin_comment
+comment|//   iterables with null elements.)
+end_comment
+
+begin_comment
+comment|//
+end_comment
+
+begin_comment
+comment|// - @JointlyNullable means "@Nullable or no annotation"
+end_comment
+
+begin_annotation
+annotation|@
+name|CheckForNull
+end_annotation
+
+begin_expr_stmt
+DECL|method|find ( Iterable<? extends T> iterable, Predicate<? super T> predicate, @CheckForNull T defaultValue)
+specifier|public
+specifier|static
+operator|<
+name|T
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+name|T
+name|find
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -2336,7 +2723,7 @@ extends|extends
 name|T
 argument_list|>
 name|iterable
-parameter_list|,
+operator|,
 name|Predicate
 argument_list|<
 name|?
@@ -2344,12 +2731,12 @@ super|super
 name|T
 argument_list|>
 name|predicate
-parameter_list|,
-annotation|@
-name|Nullable
+operator|,
+condition|@
+name|CheckForNull
 name|T
 name|defaultValue
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Iterators
@@ -2367,7 +2754,13 @@ name|defaultValue
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns an {@link Optional} containing the first element in {@code iterable} that satisfies the    * given predicate, if such an element exists.    *    *<p><b>Warning:</b> avoid using a {@code predicate} that matches {@code null}. If {@code null}    * is matched in {@code iterable}, a NullPointerException will be thrown.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.filter(predicate).findFirst()}    *    * @since 11.0    */
+end_comment
+
+begin_function
 DECL|method|tryFind (Iterable<T> iterable, Predicate<? super T> predicate)
 specifier|public
 specifier|static
@@ -2409,22 +2802,31 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the index in {@code iterable} of the first element that satisfies the provided {@code    * predicate}, or {@code -1} if the Iterable has no such elements.    *    *<p>More formally, returns the lowest index {@code i} such that {@code    * predicate.apply(Iterables.get(iterable, i))} returns {@code true}, or {@code -1} if there is no    * such index.    *    * @since 2.0    */
-DECL|method|indexOf (Iterable<T> iterable, Predicate<? super T> predicate)
+end_comment
+
+begin_expr_stmt
+DECL|method|indexOf ( Iterable<T> iterable, Predicate<? super T> predicate)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|int
 name|indexOf
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|iterable
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -2432,7 +2834,7 @@ super|super
 name|T
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Iterators
@@ -2448,29 +2850,41 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a view containing the result of applying {@code function} to each element of {@code    * fromIterable}.    *    *<p>The returned iterable's iterator supports {@code remove()} if {@code fromIterable}'s    * iterator does. After a successful {@code remove()} call, {@code fromIterable} no longer    * contains the corresponding element.    *    *<p>If the input {@code Iterable} is known to be a {@code List} or other {@code Collection},    * consider {@link Lists#transform} and {@link Collections2#transform}.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#map}    */
+end_comment
+
+begin_expr_stmt
 DECL|method|transform ( final Iterable<F> fromIterable, final Function<? super F, ? extends T> function)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|F
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|transform
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Iterable
 argument_list|<
 name|F
 argument_list|>
 name|fromIterable
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Function
 argument_list|<
 name|?
@@ -2482,18 +2896,18 @@ extends|extends
 name|T
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|fromIterable
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|function
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|FluentIterable
@@ -2526,12 +2940,12 @@ name|function
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|void
 name|forEach
-parameter_list|(
+argument_list|(
 name|Consumer
 argument_list|<
 name|?
@@ -2539,13 +2953,13 @@ super|super
 name|T
 argument_list|>
 name|action
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|action
 argument_list|)
-expr_stmt|;
+block|;
 name|fromIterable
 operator|.
 name|forEach
@@ -2567,9 +2981,8 @@ name|f
 argument_list|)
 argument_list|)
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;       }
+expr|@
 name|Override
 specifier|public
 name|Spliterator
@@ -2577,7 +2990,7 @@ argument_list|<
 name|T
 argument_list|>
 name|spliterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|CollectSpliterators
@@ -2593,34 +3006,43 @@ name|function
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|};   }
 comment|/**    * Returns the element at the specified position in an iterable.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.skip(position).findFirst().get()} (throws    * {@code NoSuchElementException} if out of bounds)    *    * @param position position of the element to return    * @return the element at the specified position in {@code iterable}    * @throws IndexOutOfBoundsException if {@code position} is negative or greater than or equal to    *     the size of {@code iterable}    */
+end_comment
+
+begin_expr_stmt
+unit|@
+name|ParametricNullness
 DECL|method|get (Iterable<T> iterable, int position)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|get
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|iterable
-parameter_list|,
+argument_list|,
 name|int
 name|position
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|iterable
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|(
 name|iterable
@@ -2656,18 +3078,30 @@ name|position
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns the element at the specified position in an iterable or a default value otherwise.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * stream.skip(position).findFirst().orElse(defaultValue)} (returns the default value if the index    * is out of bounds)    *    * @param position position of the element to return    * @param defaultValue the default value to return if {@code position} is greater than or equal to    *     the size of the iterable    * @return the element at the specified position in {@code iterable} or {@code defaultValue} if    *     {@code iterable} contains fewer than {@code position + 1} elements.    * @throws IndexOutOfBoundsException if {@code position} is negative    * @since 4.0    */
-DECL|method|get ( Iterable<? extends T> iterable, int position, @Nullable T defaultValue)
+end_comment
+
+begin_annotation
+annotation|@
+name|ParametricNullness
+end_annotation
+
+begin_expr_stmt
+DECL|method|get ( Iterable<? extends T> iterable, int position, @ParametricNullness T defaultValue)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-annotation|@
+expr|extends @
 name|Nullable
+name|Object
+operator|>
 name|T
 name|get
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -2675,28 +3109,28 @@ extends|extends
 name|T
 argument_list|>
 name|iterable
-parameter_list|,
+operator|,
 name|int
 name|position
-parameter_list|,
-annotation|@
-name|Nullable
+operator|,
+condition|@
+name|ParametricNullness
 name|T
 name|defaultValue
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|iterable
 argument_list|)
-expr_stmt|;
+block|;
 name|Iterators
 operator|.
 name|checkNonnegative
 argument_list|(
 name|position
 argument_list|)
-expr_stmt|;
+block|;
 if|if
 condition|(
 name|iterable
@@ -2739,6 +3173,9 @@ else|:
 name|defaultValue
 return|;
 block|}
+end_expr_stmt
+
+begin_else
 else|else
 block|{
 name|Iterator
@@ -2774,19 +3211,28 @@ name|defaultValue
 argument_list|)
 return|;
 block|}
-block|}
+end_else
+
+begin_comment
+unit|}
 comment|/**    * Returns the first element in {@code iterable} or {@code defaultValue} if the iterable is empty.    * The {@link Iterators} analog to this method is {@link Iterators#getNext}.    *    *<p>If no default value is desired (and the caller instead wants a {@link    * NoSuchElementException} to be thrown), it is recommended that {@code    * iterable.iterator().next()} is used instead.    *    *<p>To get the only element in a single-element {@code Iterable}, consider using {@link    * #getOnlyElement(Iterable)} or {@link #getOnlyElement(Iterable, Object)} instead.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.findFirst().orElse(defaultValue)}    *    * @param defaultValue the default value to return if the iterable is empty    * @return the first element of {@code iterable} or the default value    * @since 7.0    */
-DECL|method|getFirst (Iterable<? extends T> iterable, @Nullable T defaultValue)
+end_comment
+
+begin_expr_stmt
+unit|@
+name|ParametricNullness
+DECL|method|getFirst ( Iterable<? extends T> iterable, @ParametricNullness T defaultValue)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-annotation|@
+expr|extends @
 name|Nullable
+name|Object
+operator|>
 name|T
 name|getFirst
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -2794,12 +3240,12 @@ extends|extends
 name|T
 argument_list|>
 name|iterable
-parameter_list|,
-annotation|@
-name|Nullable
+operator|,
+condition|@
+name|ParametricNullness
 name|T
 name|defaultValue
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Iterators
@@ -2815,22 +3261,36 @@ name|defaultValue
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns the last element of {@code iterable}. If {@code iterable} is a {@link List} with {@link    * RandomAccess} support, then this operation is guaranteed to be {@code O(1)}.    *    *<p><b>{@code Stream} equivalent:</b> {@link Streams#findLast Streams.findLast(stream).get()}    *    * @return the last element of {@code iterable}    * @throws NoSuchElementException if the iterable is empty    */
+end_comment
+
+begin_annotation
+annotation|@
+name|ParametricNullness
+end_annotation
+
+begin_expr_stmt
 DECL|method|getLast (Iterable<T> iterable)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|getLast
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|iterable
-parameter_list|)
+argument_list|)
 block|{
 comment|// TODO(kevinb): Support a concurrently modified collection?
 if|if
@@ -2868,14 +3328,19 @@ name|NoSuchElementException
 argument_list|()
 throw|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|getLastInNonemptyList
 argument_list|(
 name|list
 argument_list|)
 return|;
-block|}
-return|return
+end_return
+
+begin_expr_stmt
+unit|}      return
 name|Iterators
 operator|.
 name|getLast
@@ -2885,20 +3350,29 @@ operator|.
 name|iterator
 argument_list|()
 argument_list|)
-return|;
-block|}
+expr_stmt|;
+end_expr_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns the last element of {@code iterable} or {@code defaultValue} if the iterable is empty.    * If {@code iterable} is a {@link List} with {@link RandomAccess} support, then this operation is    * guaranteed to be {@code O(1)}.    *    *<p><b>{@code Stream} equivalent:</b> {@code Streams.findLast(stream).orElse(defaultValue)}    *    * @param defaultValue the value to return if {@code iterable} is empty    * @return the last element of {@code iterable} or the default value    * @since 3.0    */
-DECL|method|getLast (Iterable<? extends T> iterable, @Nullable T defaultValue)
+end_comment
+
+begin_expr_stmt
+unit|@
+name|ParametricNullness
+DECL|method|getLast ( Iterable<? extends T> iterable, @ParametricNullness T defaultValue)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-annotation|@
+expr|extends @
 name|Nullable
+name|Object
+operator|>
 name|T
 name|getLast
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -2906,12 +3380,12 @@ extends|extends
 name|T
 argument_list|>
 name|iterable
-parameter_list|,
-annotation|@
-name|Nullable
+operator|,
+condition|@
+name|ParametricNullness
 name|T
 name|defaultValue
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -2950,6 +3424,9 @@ return|return
 name|defaultValue
 return|;
 block|}
+end_expr_stmt
+
+begin_elseif
 elseif|else
 if|if
 condition|(
@@ -2970,8 +3447,10 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-block|}
-return|return
+end_elseif
+
+begin_expr_stmt
+unit|}      return
 name|Iterators
 operator|.
 name|getLast
@@ -2983,23 +3462,30 @@ argument_list|()
 argument_list|,
 name|defaultValue
 argument_list|)
-return|;
-block|}
+expr_stmt|;
+end_expr_stmt
+
+begin_expr_stmt
+unit|}    @
+name|ParametricNullness
 DECL|method|getLastInNonemptyList (List<T> list)
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|getLastInNonemptyList
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|T
 argument_list|>
 name|list
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|list
@@ -3015,36 +3501,45 @@ literal|1
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a view of {@code iterable} that skips its first {@code numberToSkip} elements. If    * {@code iterable} contains fewer than {@code numberToSkip} elements, the returned iterable skips    * all of its elements.    *    *<p>Modifications to the underlying {@link Iterable} before a call to {@code iterator()} are    * reflected in the returned iterator. That is, the iterator skips the first {@code numberToSkip}    * elements that exist when the {@code Iterator} is created, not when {@code skip()} is called.    *    *<p>The returned iterable's iterator supports {@code remove()} if the iterator of the underlying    * iterable supports it. Note that it is<i>not</i> possible to delete the last skipped element by    * immediately calling {@code remove()} on that iterator, as the {@code Iterator} contract states    * that a call to {@code remove()} before a call to {@code next()} will throw an {@link    * IllegalStateException}.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#skip}    *    * @since 3.0    */
-DECL|method|skip (final Iterable<T> iterable, final int numberToSkip)
+end_comment
+
+begin_expr_stmt
+DECL|method|skip ( final Iterable<T> iterable, final int numberToSkip)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|skip
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|iterable
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|int
 name|numberToSkip
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|iterable
 argument_list|)
-expr_stmt|;
+block|;
 name|checkArgument
 argument_list|(
 name|numberToSkip
@@ -3053,7 +3548,7 @@ literal|0
 argument_list|,
 literal|"number to skip cannot be negative"
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|FluentIterable
@@ -3126,18 +3621,21 @@ name|iterator
 argument_list|()
 return|;
 block|}
-specifier|final
+name|final
 name|Iterator
 argument_list|<
 name|T
 argument_list|>
 name|iterator
-init|=
+operator|=
 name|iterable
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+end_expr_stmt
+
+begin_expr_stmt
 name|Iterators
 operator|.
 name|advance
@@ -3147,7 +3645,13 @@ argument_list|,
 name|numberToSkip
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_comment
 comment|/*          * We can't just return the iterator because an immediate call to its          * remove() method would remove one of the skipped elements instead of          * throwing an IllegalStateException.          */
+end_comment
+
+begin_return
 return|return
 operator|new
 name|Iterator
@@ -3177,6 +3681,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|T
 name|next
@@ -3220,8 +3726,10 @@ expr_stmt|;
 block|}
 block|}
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}        @
 name|Override
 specifier|public
 name|Spliterator
@@ -3305,39 +3813,46 @@ argument_list|()
 return|;
 block|}
 block|}
-block|}
-return|;
-block|}
+end_function
+
+begin_comment
+unit|};   }
 comment|/**    * Returns a view of {@code iterable} containing its first {@code limitSize} elements. If {@code    * iterable} contains fewer than {@code limitSize} elements, the returned view contains all of its    * elements. The returned iterable's iterator supports {@code remove()} if {@code iterable}'s    * iterator does.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#limit}    *    * @param iterable the iterable to limit    * @param limitSize the maximum number of elements in the returned iterable    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since 3.0    */
-DECL|method|limit (final Iterable<T> iterable, final int limitSize)
-specifier|public
+end_comment
+
+begin_expr_stmt
+DECL|method|limit ( final Iterable<T> iterable, final int limitSize)
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|limit
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|iterable
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|int
 name|limitSize
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|iterable
 argument_list|)
-expr_stmt|;
+block|;
 name|checkArgument
 argument_list|(
 name|limitSize
@@ -3346,7 +3861,7 @@ literal|0
 argument_list|,
 literal|"limit is negative"
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|FluentIterable
@@ -3379,7 +3894,7 @@ name|limitSize
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|Spliterator
@@ -3387,7 +3902,7 @@ argument_list|<
 name|T
 argument_list|>
 name|spliterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Streams
@@ -3406,35 +3921,42 @@ name|spliterator
 argument_list|()
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|};   }
 comment|/**    * Returns a view of the supplied iterable that wraps each generated {@link Iterator} through    * {@link Iterators#consumingIterator(Iterator)}.    *    *<p>Note: If {@code iterable} is a {@link Queue}, the returned iterable will get entries from    * {@link Queue#remove()} since {@link Queue}'s iteration order is undefined. Calling {@link    * Iterator#hasNext()} on a generated iterator from the returned iterable may cause an item to be    * immediately dequeued for return on a subsequent call to {@link Iterator#next()}.    *    * @param iterable the iterable to wrap    * @return a view of the supplied iterable that wraps each generated iterator through {@link    *     Iterators#consumingIterator(Iterator)}; for queues, an iterable that generates iterators    *     that return and consume the queue's elements in queue order    * @see Iterators#consumingIterator(Iterator)    * @since 2.0    */
-DECL|method|consumingIterable (final Iterable<T> iterable)
-specifier|public
+end_comment
+
+begin_expr_stmt
+DECL|method|consumingIterable ( final Iterable<T> iterable)
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|consumingIterable
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|iterable
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|iterable
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|FluentIterable
@@ -3484,24 +4006,31 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|String
 name|toString
-parameter_list|()
+argument_list|()
 block|{
 return|return
 literal|"Iterables.consumingIterable(...)"
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|};   }
 comment|// Methods only in Iterables, not in Iterators
+end_comment
+
+begin_comment
 comment|/**    * Determines if the given iterable contains no elements.    *    *<p>There is no precise {@link Iterator} equivalent to this method, since one can only ask an    * iterator whether it has any elements<i>remaining</i> (which one does using {@link    * Iterator#hasNext}).    *    *<p><b>{@code Stream} equivalent:</b> {@code !stream.findAny().isPresent()}    *    * @return {@code true} if the iterable contains no elements    */
+end_comment
+
+begin_function
 DECL|method|isEmpty (Iterable<?> iterable)
-specifier|public
+unit|public
 specifier|static
 name|boolean
 name|isEmpty
@@ -3546,22 +4075,34 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an iterable over the merged contents of all given {@code iterables}. Equivalent entries    * will not be de-duplicated.    *    *<p>Callers must ensure that the source {@code iterables} are in non-descending order as this    * method does not sort its input.    *    *<p>For any equivalent elements across all {@code iterables}, it is undefined which element is    * returned first.    *    * @since 11.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|Beta
+end_annotation
+
+begin_expr_stmt
 DECL|method|mergeSorted ( final Iterable<? extends Iterable<? extends T>> iterables, final Comparator<? super T> comparator)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|mergeSorted
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Iterable
 argument_list|<
 name|?
@@ -3574,8 +4115,8 @@ name|T
 argument_list|>
 argument_list|>
 name|iterables
-parameter_list|,
-specifier|final
+operator|,
+name|final
 name|Comparator
 argument_list|<
 name|?
@@ -3583,7 +4124,7 @@ super|super
 name|T
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
@@ -3591,20 +4132,20 @@ name|iterables
 argument_list|,
 literal|"iterables"
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|comparator
 argument_list|,
 literal|"comparator"
 argument_list|)
-expr_stmt|;
+block|;
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|iterable
-init|=
+operator|=
 operator|new
 name|FluentIterable
 argument_list|<
@@ -3646,8 +4187,10 @@ name|comparator
 argument_list|)
 return|;
 block|}
-block|}
-decl_stmt|;
+end_expr_stmt
+
+begin_return
+unit|};
 return|return
 operator|new
 name|UnmodifiableIterable
@@ -3656,14 +4199,26 @@ argument_list|(
 name|iterable
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|// TODO(user): Is this the best place for this? Move to fluent functions?
+end_comment
+
+begin_comment
 comment|// Useful as a public method?
-DECL|method|toIterator ()
-specifier|static
-parameter_list|<
+end_comment
+
+begin_expr_stmt
+unit|static
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|toIterator ()
 name|Function
 argument_list|<
 name|Iterable
@@ -3681,7 +4236,7 @@ name|T
 argument_list|>
 argument_list|>
 name|toIterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -3733,8 +4288,8 @@ block|}
 block|}
 empty_stmt|;
 block|}
-block|}
-end_class
+end_expr_stmt
 
+unit|}
 end_unit
 

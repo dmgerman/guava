@@ -130,6 +130,22 @@ name|Collector
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/** Collectors utilities for {@code common.collect.Table} internals. */
 end_comment
@@ -137,22 +153,27 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|TableCollectors
 specifier|final
 class|class
 name|TableCollectors
 block|{
-DECL|method|toImmutableTable ( Function<? super T, ? extends R> rowFunction, Function<? super T, ? extends C> columnFunction, Function<? super T, ? extends V> valueFunction)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|R
-parameter_list|,
+operator|,
 name|C
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|toImmutableTable ( Function<? super T, ? extends R> rowFunction, Function<? super T, ? extends C> columnFunction, Function<? super T, ? extends V> valueFunction)
 name|Collector
 argument_list|<
 name|T
@@ -169,7 +190,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableTable
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -181,7 +202,7 @@ extends|extends
 name|R
 argument_list|>
 name|rowFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -193,7 +214,7 @@ extends|extends
 name|C
 argument_list|>
 name|columnFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -205,7 +226,7 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
@@ -213,21 +234,21 @@ name|rowFunction
 argument_list|,
 literal|"rowFunction"
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|columnFunction
 argument_list|,
 literal|"columnFunction"
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|valueFunction
 argument_list|,
 literal|"valueFunction"
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|Collector
 operator|.
@@ -300,17 +321,20 @@ name|build
 argument_list|)
 return|;
 block|}
-DECL|method|toImmutableTable ( Function<? super T, ? extends R> rowFunction, Function<? super T, ? extends C> columnFunction, Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|R
-parameter_list|,
+operator|,
 name|C
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|toImmutableTable ( Function<? super T, ? extends R> rowFunction, Function<? super T, ? extends C> columnFunction, Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
 name|Collector
 argument_list|<
 name|T
@@ -327,7 +351,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableTable
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -339,7 +363,7 @@ extends|extends
 name|R
 argument_list|>
 name|rowFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -351,7 +375,7 @@ extends|extends
 name|C
 argument_list|>
 name|columnFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -363,13 +387,13 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|,
+operator|,
 name|BinaryOperator
 argument_list|<
 name|V
 argument_list|>
 name|mergeFunction
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
@@ -377,28 +401,28 @@ name|rowFunction
 argument_list|,
 literal|"rowFunction"
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|columnFunction
 argument_list|,
 literal|"columnFunction"
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|valueFunction
 argument_list|,
 literal|"valueFunction"
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|mergeFunction
 argument_list|,
 literal|"mergeFunction"
 argument_list|)
-expr_stmt|;
+block|;
 comment|/*      * No mutable Table exactly matches the insertion order behavior of ImmutableTable.Builder, but      * the Builder can't efficiently support merging of duplicate values.  Getting around this      * requires some work.      */
 return|return
 name|Collector
@@ -477,19 +501,30 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|toTable ( java.util.function.Function<? super T, ? extends R> rowFunction, java.util.function.Function<? super T, ? extends C> columnFunction, java.util.function.Function<? super T, ? extends V> valueFunction, java.util.function.Supplier<I> tableSupplier)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|I
-extends|extends
+expr|extends
 name|Table
 argument_list|<
 name|R
@@ -498,7 +533,8 @@ name|C
 argument_list|,
 name|V
 argument_list|>
-parameter_list|>
+operator|>
+DECL|method|toTable ( java.util.function.Function<? super T, ? extends R> rowFunction, java.util.function.Function<? super T, ? extends C> columnFunction, java.util.function.Function<? super T, ? extends V> valueFunction, java.util.function.Supplier<I> tableSupplier)
 name|Collector
 argument_list|<
 name|T
@@ -508,7 +544,7 @@ argument_list|,
 name|I
 argument_list|>
 name|toTable
-parameter_list|(
+argument_list|(
 name|java
 operator|.
 name|util
@@ -526,7 +562,7 @@ extends|extends
 name|R
 argument_list|>
 name|rowFunction
-parameter_list|,
+operator|,
 name|java
 operator|.
 name|util
@@ -544,7 +580,7 @@ extends|extends
 name|C
 argument_list|>
 name|columnFunction
-parameter_list|,
+operator|,
 name|java
 operator|.
 name|util
@@ -562,7 +598,7 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|,
+operator|,
 name|java
 operator|.
 name|util
@@ -574,7 +610,7 @@ argument_list|<
 name|I
 argument_list|>
 name|tableSupplier
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|toTable
@@ -606,24 +642,37 @@ name|v2
 argument_list|)
 throw|;
 block|}
-argument_list|,
+operator|,
 name|tableSupplier
-argument_list|)
-return|;
-block|}
-DECL|method|toTable ( java.util.function.Function<? super T, ? extends R> rowFunction, java.util.function.Function<? super T, ? extends C> columnFunction, java.util.function.Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction, java.util.function.Supplier<I> tableSupplier)
-specifier|static
-parameter_list|<
+block|)
+class|;
+end_class
+
+begin_expr_stmt
+unit|}    static
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|I
-extends|extends
+expr|extends
 name|Table
 argument_list|<
 name|R
@@ -632,7 +681,8 @@ name|C
 argument_list|,
 name|V
 argument_list|>
-parameter_list|>
+operator|>
+DECL|method|toTable ( java.util.function.Function<? super T, ? extends R> rowFunction, java.util.function.Function<? super T, ? extends C> columnFunction, java.util.function.Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction, java.util.function.Supplier<I> tableSupplier)
 name|Collector
 argument_list|<
 name|T
@@ -642,7 +692,7 @@ argument_list|,
 name|I
 argument_list|>
 name|toTable
-parameter_list|(
+argument_list|(
 name|java
 operator|.
 name|util
@@ -660,7 +710,7 @@ extends|extends
 name|R
 argument_list|>
 name|rowFunction
-parameter_list|,
+operator|,
 name|java
 operator|.
 name|util
@@ -678,7 +728,7 @@ extends|extends
 name|C
 argument_list|>
 name|columnFunction
-parameter_list|,
+operator|,
 name|java
 operator|.
 name|util
@@ -696,13 +746,13 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|,
+operator|,
 name|BinaryOperator
 argument_list|<
 name|V
 argument_list|>
 name|mergeFunction
-parameter_list|,
+operator|,
 name|java
 operator|.
 name|util
@@ -714,33 +764,33 @@ argument_list|<
 name|I
 argument_list|>
 name|tableSupplier
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|rowFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|columnFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|valueFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|mergeFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|tableSupplier
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|Collector
 operator|.
@@ -829,9 +879,12 @@ return|return
 name|table1
 return|;
 block|}
-block|)
-class|;
-end_class
+end_expr_stmt
+
+begin_empty_stmt
+unit|)
+empty_stmt|;
+end_empty_stmt
 
 begin_class
 unit|}    private
@@ -1254,20 +1307,29 @@ block|}
 block|}
 end_class
 
-begin_function
-DECL|method|mergeTables ( Table<R, C, V> table, R row, C column, V value, BinaryOperator<V> mergeFunction)
+begin_expr_stmt
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|mergeTables ( Table<R, C, V> table, @ParametricNullness R row, @ParametricNullness C column, @ParametricNullness V value, BinaryOperator<V> mergeFunction)
 name|void
 name|mergeTables
-parameter_list|(
+argument_list|(
 name|Table
 argument_list|<
 name|R
@@ -1277,31 +1339,37 @@ argument_list|,
 name|V
 argument_list|>
 name|table
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|R
 name|row
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|C
 name|column
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|V
 name|value
-parameter_list|,
+argument_list|,
 name|BinaryOperator
 argument_list|<
 name|V
 argument_list|>
 name|mergeFunction
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|value
 argument_list|)
-expr_stmt|;
+block|;
 name|V
 name|oldValue
-init|=
+operator|=
 name|table
 operator|.
 name|get
@@ -1310,7 +1378,7 @@ name|row
 argument_list|,
 name|column
 argument_list|)
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|oldValue
@@ -1330,6 +1398,9 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+end_expr_stmt
+
+begin_else
 else|else
 block|{
 name|V
@@ -1376,16 +1447,15 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-end_function
+end_else
 
-begin_constructor
+begin_expr_stmt
+unit|}    private
 DECL|method|TableCollectors ()
-specifier|private
 name|TableCollectors
-parameter_list|()
+argument_list|()
 block|{}
-end_constructor
+end_expr_stmt
 
 unit|}
 end_unit

@@ -1455,6 +1455,13 @@ name|copyOf
 argument_list|(
 name|Maps
 operator|.
+expr|<
+name|Service
+argument_list|,
+name|Long
+argument_list|,
+name|Duration
+operator|>
 name|transformValues
 argument_list|(
 name|startupTimes

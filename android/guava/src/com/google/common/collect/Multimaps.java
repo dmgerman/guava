@@ -5022,7 +5022,7 @@ end_function
 begin_function
 annotation|@
 name|Override
-DECL|method|get (final K key)
+DECL|method|get (@arametricNullness final K key)
 specifier|public
 name|Set
 argument_list|<
@@ -5030,6 +5030,8 @@ name|V
 argument_list|>
 name|get
 parameter_list|(
+annotation|@
+name|ParametricNullness
 specifier|final
 name|K
 name|key
@@ -5090,6 +5092,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|V
 name|next
@@ -6305,7 +6309,7 @@ end_function
 begin_function
 annotation|@
 name|Override
-DECL|method|get (final K key)
+DECL|method|get (@arametricNullness final K key)
 specifier|public
 name|Collection
 argument_list|<
@@ -6313,6 +6317,8 @@ name|V2
 argument_list|>
 name|get
 parameter_list|(
+annotation|@
+name|ParametricNullness
 specifier|final
 name|K
 name|key
@@ -6395,7 +6401,7 @@ end_function
 begin_function
 annotation|@
 name|Override
-DECL|method|put (@arametricNullness K key, V2 value)
+DECL|method|put (@arametricNullness K key, @ParametricNullness V2 value)
 specifier|public
 name|boolean
 name|put
@@ -6405,6 +6411,8 @@ name|ParametricNullness
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|V2
 name|value
 parameter_list|)
@@ -7169,6 +7177,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|K
 name|getElement

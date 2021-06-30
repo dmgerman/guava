@@ -66,6 +66,22 @@ name|SortedSet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Utilities for dealing with sorted collections of all types.  *  * @author Louis Wasserman  */
 end_comment
@@ -73,6 +89,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|SortedIterables
 specifier|final
 class|class
@@ -185,12 +203,15 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// if sortedSet.comparator() is null, the set must be naturally ordered
-DECL|method|comparator (SortedSet<E> sortedSet)
+DECL|method|comparator ( SortedSet<E> sortedSet)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Comparator
 argument_list|<
 name|?
@@ -198,13 +219,13 @@ super|super
 name|E
 argument_list|>
 name|comparator
-parameter_list|(
+argument_list|(
 name|SortedSet
 argument_list|<
 name|E
 argument_list|>
 name|sortedSet
-parameter_list|)
+argument_list|)
 block|{
 name|Comparator
 argument_list|<

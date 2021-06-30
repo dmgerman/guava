@@ -232,6 +232,22 @@ name|TimeUnit
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Static utility methods pertaining to {@link Queue} and {@link Deque} instances. Also see this  * class's counterparts {@link Lists}, {@link Sets}, and {@link Maps}.  *  * @author Kurt Alfred Kluever  * @since 11.0  */
 end_comment
@@ -244,6 +260,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Queues
 specifier|public
 specifier|final
@@ -1480,21 +1498,24 @@ comment|/**    * Returns a synchronized (thread-safe) queue backed by the specif
 DECL|method|synchronizedQueue (Queue<E> queue)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Queue
 argument_list|<
 name|E
 argument_list|>
 name|synchronizedQueue
-parameter_list|(
+argument_list|(
 name|Queue
 argument_list|<
 name|E
 argument_list|>
 name|queue
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Synchronized
@@ -1511,21 +1532,24 @@ comment|/**    * Returns a synchronized (thread-safe) deque backed by the specif
 DECL|method|synchronizedDeque (Deque<E> deque)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Deque
 argument_list|<
 name|E
 argument_list|>
 name|synchronizedDeque
-parameter_list|(
+argument_list|(
 name|Deque
 argument_list|<
 name|E
 argument_list|>
 name|deque
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Synchronized

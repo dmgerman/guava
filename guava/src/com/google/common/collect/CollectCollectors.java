@@ -42,20 +42,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -234,6 +220,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -255,6 +251,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|CollectCollectors
 specifier|final
 class|class
@@ -676,9 +674,9 @@ name|UNORDERED
 argument_list|)
 decl_stmt|;
 DECL|field|set
-specifier|private
 annotation|@
-name|Nullable
+name|CheckForNull
+specifier|private
 name|EnumSet
 argument_list|<
 name|E
@@ -862,11 +860,14 @@ block|}
 comment|// Multisets
 DECL|method|toImmutableMultiset ( Function<? super T, ? extends E> elementFunction, ToIntFunction<? super T> countFunction)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|E
-parameter_list|>
+operator|>
 name|Collector
 argument_list|<
 name|T
@@ -879,7 +880,7 @@ name|E
 argument_list|>
 argument_list|>
 name|toImmutableMultiset
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -891,7 +892,7 @@ extends|extends
 name|E
 argument_list|>
 name|elementFunction
-parameter_list|,
+operator|,
 name|ToIntFunction
 argument_list|<
 name|?
@@ -899,18 +900,18 @@ super|super
 name|T
 argument_list|>
 name|countFunction
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|elementFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|countFunction
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|Collector
 operator|.
@@ -963,8 +964,7 @@ name|multiset2
 argument_list|)
 argument_list|;           return
 name|multiset1
-argument_list|;
-block|}
+argument_list|;         }
 operator|,
 parameter_list|(
 name|Multiset
@@ -984,24 +984,31 @@ name|entrySet
 argument_list|()
 argument_list|)
 block|)
-class|;
+expr_stmt|;
+block|}
 end_class
 
-begin_function
-unit|}    static
-DECL|method|toMultiset ( Function<? super T, E> elementFunction, ToIntFunction<? super T> countFunction, Supplier<M> multisetSupplier)
-parameter_list|<
+begin_expr_stmt
+specifier|static
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|E
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|M
-extends|extends
+expr|extends
 name|Multiset
 argument_list|<
 name|E
 argument_list|>
-parameter_list|>
+operator|>
+DECL|method|toMultiset ( Function<? super T, E> elementFunction, ToIntFunction<? super T> countFunction, Supplier<M> multisetSupplier)
 name|Collector
 argument_list|<
 name|T
@@ -1011,7 +1018,7 @@ argument_list|,
 name|M
 argument_list|>
 name|toMultiset
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -1021,7 +1028,7 @@ argument_list|,
 name|E
 argument_list|>
 name|elementFunction
-parameter_list|,
+operator|,
 name|ToIntFunction
 argument_list|<
 name|?
@@ -1029,29 +1036,29 @@ super|super
 name|T
 argument_list|>
 name|countFunction
-parameter_list|,
+operator|,
 name|Supplier
 argument_list|<
 name|M
 argument_list|>
 name|multisetSupplier
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|elementFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|countFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|multisetSupplier
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|Collector
 operator|.
@@ -1099,30 +1106,29 @@ name|ms2
 argument_list|)
 argument_list|;           return
 name|ms1
-argument_list|;
-block|}
-end_function
-
-begin_empty_stmt
-unit|)
-empty_stmt|;
-end_empty_stmt
+argument_list|;         }
+block|)
+expr_stmt|;
+end_expr_stmt
 
 begin_comment
 unit|}
 comment|// Maps
 end_comment
 
-begin_function
+begin_expr_stmt
 DECL|method|toImmutableMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 unit|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
 name|Collector
 argument_list|<
 name|T
@@ -1137,7 +1143,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableMap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -1149,7 +1155,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -1161,18 +1167,18 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|keyFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|valueFunction
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|Collector
 operator|.
@@ -1228,19 +1234,22 @@ name|build
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
-begin_function
-DECL|method|toImmutableMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|toImmutableMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
 name|Collector
 argument_list|<
 name|T
@@ -1255,7 +1264,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableMap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -1267,7 +1276,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -1279,29 +1288,29 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|,
+operator|,
 name|BinaryOperator
 argument_list|<
 name|V
 argument_list|>
 name|mergeFunction
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|keyFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|valueFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|mergeFunction
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|Collectors
 operator|.
@@ -1328,18 +1337,21 @@ name|copyOf
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
-begin_function
-DECL|method|toImmutableSortedMap ( Comparator<? super K> comparator, Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
+begin_expr_stmt
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|toImmutableSortedMap ( Comparator<? super K> comparator, Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 name|Collector
 argument_list|<
 name|T
@@ -1354,7 +1366,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableSortedMap
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|?
@@ -1362,7 +1374,7 @@ super|super
 name|K
 argument_list|>
 name|comparator
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -1374,7 +1386,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -1386,23 +1398,23 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|comparator
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|keyFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|valueFunction
 argument_list|)
-expr_stmt|;
+block|;
 comment|/*      * We will always fail if there are duplicate keys, and the keys are always sorted by      * the Comparator, so the entries can come in an arbitrary order -- so we report UNORDERED.      */
 return|return
 name|Collector
@@ -1469,18 +1481,21 @@ name|UNORDERED
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
-begin_function
-DECL|method|toImmutableSortedMap ( Comparator<? super K> comparator, Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
+begin_expr_stmt
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|toImmutableSortedMap ( Comparator<? super K> comparator, Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
 name|Collector
 argument_list|<
 name|T
@@ -1495,7 +1510,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableSortedMap
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|?
@@ -1503,7 +1518,7 @@ super|super
 name|K
 argument_list|>
 name|comparator
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -1515,7 +1530,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -1527,34 +1542,34 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|,
+operator|,
 name|BinaryOperator
 argument_list|<
 name|V
 argument_list|>
 name|mergeFunction
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|comparator
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|keyFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|valueFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|mergeFunction
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|Collectors
 operator|.
@@ -1590,18 +1605,21 @@ name|copyOfSorted
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
-begin_function
+begin_expr_stmt
 DECL|method|toImmutableBiMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
 name|Collector
 argument_list|<
 name|T
@@ -1616,7 +1634,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableBiMap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -1628,7 +1646,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -1640,18 +1658,18 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|keyFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|valueFunction
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|Collector
 operator|.
@@ -1715,23 +1733,26 @@ index|]
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
-begin_function
-DECL|method|toImmutableEnumMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
+begin_expr_stmt
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-extends|extends
+expr|extends
 name|Enum
 argument_list|<
 name|K
 argument_list|>
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|toImmutableEnumMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 name|Collector
 argument_list|<
 name|T
@@ -1746,7 +1767,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableEnumMap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -1758,7 +1779,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -1770,18 +1791,18 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|keyFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|valueFunction
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|Collector
 operator|.
@@ -1816,16 +1837,9 @@ literal|", "
 operator|+
 name|v2
 argument_list|)
-argument_list|;
-block|}
-end_function
-
-begin_operator
-unit|)
+argument_list|;                 }
+block|)
 operator|,
-end_operator
-
-begin_expr_stmt
 parameter_list|(
 name|accum
 parameter_list|,
@@ -1833,37 +1847,24 @@ name|t
 parameter_list|)
 lambda|->
 block|{
+comment|/*            * We assign these to variables before calling checkNotNull to work around a bug in our            * nullness checker.            */
 name|K
 name|key
 init|=
-name|checkNotNull
-argument_list|(
 name|keyFunction
 operator|.
 name|apply
 argument_list|(
 name|t
 argument_list|)
-argument_list|,
-literal|"Null key for input %s"
-argument_list|,
-name|t
-argument_list|)
 decl_stmt|;
 name|V
 name|newValue
 init|=
-name|checkNotNull
-argument_list|(
 name|valueFunction
 operator|.
 name|apply
 argument_list|(
-name|t
-argument_list|)
-argument_list|,
-literal|"Null value for input %s"
-argument_list|,
 name|t
 argument_list|)
 decl_stmt|;
@@ -1871,9 +1872,23 @@ name|accum
 operator|.
 name|put
 argument_list|(
+name|checkNotNull
+argument_list|(
 name|key
 argument_list|,
+literal|"Null key for input %s"
+argument_list|,
+name|t
+argument_list|)
+argument_list|,
+name|checkNotNull
+argument_list|(
 name|newValue
+argument_list|,
+literal|"Null value for input %s"
+argument_list|,
+name|t
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1891,28 +1906,28 @@ operator|.
 name|Characteristics
 operator|.
 name|UNORDERED
+block|)
+expr_stmt|;
 end_expr_stmt
 
-begin_empty_stmt
-unit|)
-empty_stmt|;
-end_empty_stmt
-
-begin_function
+begin_expr_stmt
 unit|}    static
-DECL|method|toImmutableEnumMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-extends|extends
+expr|extends
 name|Enum
 argument_list|<
 name|K
 argument_list|>
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|toImmutableEnumMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
 name|Collector
 argument_list|<
 name|T
@@ -1927,7 +1942,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableEnumMap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -1939,7 +1954,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -1951,29 +1966,29 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|,
+operator|,
 name|BinaryOperator
 argument_list|<
 name|V
 argument_list|>
 name|mergeFunction
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|keyFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|valueFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|mergeFunction
 argument_list|)
-expr_stmt|;
+block|;
 comment|// not UNORDERED because we don't know if mergeFunction is commutative
 return|return
 name|Collector
@@ -2000,37 +2015,24 @@ name|t
 parameter_list|)
 lambda|->
 block|{
+comment|/*            * We assign these to variables before calling checkNotNull to work around a bug in our            * nullness checker.            */
 name|K
 name|key
 operator|=
-name|checkNotNull
-argument_list|(
 name|keyFunction
 operator|.
 name|apply
 argument_list|(
 name|t
 argument_list|)
-argument_list|,
-literal|"Null key for input %s"
-argument_list|,
-name|t
-argument_list|)
 argument_list|;
 name|V
 name|newValue
 operator|=
-name|checkNotNull
-argument_list|(
 name|valueFunction
 operator|.
 name|apply
 argument_list|(
-name|t
-argument_list|)
-argument_list|,
-literal|"Null value for input %s"
-argument_list|,
 name|t
 argument_list|)
 argument_list|;
@@ -2038,19 +2040,26 @@ name|accum
 operator|.
 name|put
 argument_list|(
+name|checkNotNull
+argument_list|(
 name|key
 argument_list|,
-name|newValue
+literal|"Null key for input %s"
+argument_list|,
+name|t
 argument_list|)
-argument_list|;
-block|}
-end_function
-
-begin_operator
+argument_list|,
+name|checkNotNull
+argument_list|(
+name|newValue
+argument_list|,
+literal|"Null value for input %s"
+argument_list|,
+name|t
+argument_list|)
+argument_list|)
+argument_list|;         }
 operator|,
-end_operator
-
-begin_expr_stmt
 name|EnumMapAccumulator
 operator|::
 name|combine
@@ -2058,12 +2067,9 @@ operator|,
 name|EnumMapAccumulator
 operator|::
 name|toImmutableMap
+block|)
+expr_stmt|;
 end_expr_stmt
-
-begin_empty_stmt
-unit|)
-empty_stmt|;
-end_empty_stmt
 
 begin_class
 unit|}    private
@@ -2092,6 +2098,8 @@ argument_list|>
 name|mergeFunction
 decl_stmt|;
 DECL|field|map
+annotation|@
+name|CheckForNull
 specifier|private
 name|EnumMap
 argument_list|<
@@ -2264,24 +2272,30 @@ block|}
 block|}
 end_class
 
-begin_function
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_expr_stmt
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-extends|extends
+expr|extends
 name|Comparable
 argument_list|<
 name|?
 super|super
 name|K
 argument_list|>
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
 DECL|method|toImmutableRangeMap ( Function<? super T, Range<K>> keyFunction, Function<? super T, ? extends V> valueFunction)
 name|Collector
 argument_list|<
@@ -2297,7 +2311,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableRangeMap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -2310,7 +2324,7 @@ name|K
 argument_list|>
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -2322,7 +2336,7 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
@@ -2387,22 +2401,25 @@ name|build
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
 begin_comment
 comment|// Multimaps
 end_comment
 
-begin_function
-DECL|method|toImmutableListMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
+begin_expr_stmt
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|toImmutableListMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 name|Collector
 argument_list|<
 name|T
@@ -2417,7 +2434,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableListMultimap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -2429,7 +2446,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -2441,7 +2458,7 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
@@ -2449,14 +2466,14 @@ name|keyFunction
 argument_list|,
 literal|"keyFunction"
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|valueFunction
 argument_list|,
 literal|"valueFunction"
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|Collector
 operator|.
@@ -2510,18 +2527,21 @@ name|build
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
-begin_function
-DECL|method|flatteningToImmutableListMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends Stream<? extends V>> valuesFunction)
+begin_expr_stmt
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|flatteningToImmutableListMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends Stream<? extends V>> valuesFunction)
 name|Collector
 argument_list|<
 name|T
@@ -2536,7 +2556,7 @@ name|V
 argument_list|>
 argument_list|>
 name|flatteningToImmutableListMultimap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -2548,7 +2568,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -2565,18 +2585,18 @@ name|V
 argument_list|>
 argument_list|>
 name|valuesFunction
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|keyFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|valuesFunction
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|Collectors
 operator|.
@@ -2634,18 +2654,21 @@ name|copyOf
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
-begin_function
-DECL|method|toImmutableSetMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
+begin_expr_stmt
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|toImmutableSetMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 name|Collector
 argument_list|<
 name|T
@@ -2660,7 +2683,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableSetMultimap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -2672,7 +2695,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -2684,7 +2707,7 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
@@ -2692,14 +2715,14 @@ name|keyFunction
 argument_list|,
 literal|"keyFunction"
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|valueFunction
 argument_list|,
 literal|"valueFunction"
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|Collector
 operator|.
@@ -2753,18 +2776,21 @@ name|build
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
-begin_function
-DECL|method|flatteningToImmutableSetMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends Stream<? extends V>> valuesFunction)
+begin_expr_stmt
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|flatteningToImmutableSetMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends Stream<? extends V>> valuesFunction)
 name|Collector
 argument_list|<
 name|T
@@ -2779,7 +2805,7 @@ name|V
 argument_list|>
 argument_list|>
 name|flatteningToImmutableSetMultimap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -2791,7 +2817,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -2808,18 +2834,18 @@ name|V
 argument_list|>
 argument_list|>
 name|valuesFunction
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|keyFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|valuesFunction
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|Collectors
 operator|.
@@ -2877,27 +2903,36 @@ name|copyOf
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
-begin_function
-DECL|method|toMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction, Supplier<M> multimapSupplier)
+begin_expr_stmt
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|M
-extends|extends
+expr|extends
 name|Multimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-parameter_list|>
+operator|>
+DECL|method|toMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction, Supplier<M> multimapSupplier)
 name|Collector
 argument_list|<
 name|T
@@ -2907,7 +2942,7 @@ argument_list|,
 name|M
 argument_list|>
 name|toMultimap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -2919,7 +2954,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -2931,29 +2966,29 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|,
+operator|,
 name|Supplier
 argument_list|<
 name|M
 argument_list|>
 name|multimapSupplier
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|keyFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|valueFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|multimapSupplier
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|Collector
 operator|.
@@ -3001,36 +3036,39 @@ name|multimap2
 argument_list|)
 argument_list|;           return
 name|multimap1
-argument_list|;
-block|}
-end_function
+argument_list|;         }
+block|)
+expr_stmt|;
+end_expr_stmt
 
-begin_empty_stmt
-unit|)
-empty_stmt|;
-end_empty_stmt
-
-begin_function
-unit|}    @
-name|Beta
-DECL|method|flatteningToMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends Stream<? extends V>> valueFunction, Supplier<M> multimapSupplier)
-specifier|static
-argument_list|<
+begin_expr_stmt
+unit|}    static
+operator|<
 name|T
-argument_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-argument_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-argument_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|M
-extends|extends
+expr|extends
 name|Multimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-argument_list|>
+operator|>
+DECL|method|flatteningToMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends Stream<? extends V>> valueFunction, Supplier<M> multimapSupplier)
 name|Collector
 argument_list|<
 name|T
@@ -3040,7 +3078,7 @@ argument_list|,
 name|M
 argument_list|>
 name|flatteningToMultimap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -3052,7 +3090,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -3069,29 +3107,29 @@ name|V
 argument_list|>
 argument_list|>
 name|valueFunction
-parameter_list|,
+operator|,
 name|Supplier
 argument_list|<
 name|M
 argument_list|>
 name|multimapSupplier
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|keyFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|valueFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|multimapSupplier
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|Collector
 operator|.
@@ -3144,7 +3182,7 @@ name|add
 argument_list|)
 expr_stmt|;
 block|}
-argument_list|,
+operator|,
 parameter_list|(
 name|multimap1
 parameter_list|,
@@ -3163,11 +3201,13 @@ return|return
 name|multimap1
 return|;
 block|}
-argument_list|)
-return|;
-block|}
-end_function
+end_expr_stmt
 
-unit|}
+begin_empty_stmt
+unit|)
+empty_stmt|;
+end_empty_stmt
+
+unit|} }
 end_unit
 

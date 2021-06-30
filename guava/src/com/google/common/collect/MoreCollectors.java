@@ -33,6 +33,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+operator|.
+name|emptyList
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -121,6 +133,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MoreCollectors
 specifier|public
 specifier|final
@@ -222,16 +236,29 @@ specifier|static
 specifier|final
 name|Collector
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|,
 name|?
 argument_list|,
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 name|ONLY_ELEMENT
 init|=
 name|Collector
 operator|.
+expr|<@
+name|Nullable
+name|Object
+decl_stmt|,
+name|ToOptionalState
+decl_stmt|, @
+name|Nullable
+name|Object
+decl|>
 name|of
 argument_list|(
 name|ToOptionalState
@@ -308,18 +335,24 @@ begin_comment
 comment|/**    * A collector that takes a stream containing exactly one element and returns that element. The    * returned collector throws an {@code IllegalArgumentException} if the stream consists of two or    * more elements, and a {@code NoSuchElementException} if the stream is empty.    */
 end_comment
 
-begin_function
+begin_annotation
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+end_annotation
+
+begin_expr_stmt
 DECL|method|onlyElement ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Collector
 argument_list|<
 name|T
@@ -329,7 +362,7 @@ argument_list|,
 name|T
 argument_list|>
 name|onlyElement
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -338,7 +371,7 @@ operator|)
 name|ONLY_ELEMENT
 return|;
 block|}
-end_function
+end_expr_stmt
 
 begin_comment
 comment|/**    * This atrocity is here to let us report several of the elements in the stream if there were more    * than one, not just two.    */
@@ -367,8 +400,6 @@ name|Object
 name|element
 decl_stmt|;
 DECL|field|extras
-annotation|@
-name|Nullable
 name|List
 argument_list|<
 name|Object
@@ -385,7 +416,8 @@ literal|null
 expr_stmt|;
 name|extras
 operator|=
-literal|null
+name|emptyList
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|multiples (boolean overflow)
@@ -496,10 +528,12 @@ elseif|else
 if|if
 condition|(
 name|extras
-operator|==
-literal|null
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
+comment|// Replace immutable empty list with mutable list.
 name|extras
 operator|=
 operator|new
@@ -584,10 +618,12 @@ block|{
 if|if
 condition|(
 name|extras
-operator|==
-literal|null
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
+comment|// Replace immutable empty list with mutable list.
 name|extras
 operator|=
 operator|new
@@ -605,17 +641,6 @@ operator|.
 name|element
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|other
-operator|.
-name|extras
-operator|!=
-literal|null
-condition|)
-block|{
-name|this
-operator|.
 name|extras
 operator|.
 name|addAll
@@ -625,7 +650,6 @@ operator|.
 name|extras
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|extras
@@ -674,8 +698,9 @@ block|{
 if|if
 condition|(
 name|extras
-operator|==
-literal|null
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 return|return
@@ -719,8 +744,9 @@ elseif|else
 if|if
 condition|(
 name|extras
-operator|==
-literal|null
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 return|return

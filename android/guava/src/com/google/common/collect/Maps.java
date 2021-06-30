@@ -97,6 +97,34 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|NullnessCasts
+operator|.
+name|uncheckedCastNullableTToT
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -560,6 +588,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -568,9 +606,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -586,6 +624,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Maps
 specifier|public
 specifier|final
@@ -611,6 +651,8 @@ argument_list|,
 name|?
 argument_list|>
 argument_list|,
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 block|{
@@ -620,7 +662,7 @@ block|{
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|public
 name|Object
 name|apply
@@ -649,7 +691,7 @@ block|{
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|public
 name|Object
 name|apply
@@ -679,9 +721,12 @@ literal|"unchecked"
 argument_list|)
 DECL|method|keyFunction ()
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Function
 argument_list|<
 name|Entry
@@ -694,7 +739,7 @@ argument_list|,
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -712,9 +757,12 @@ literal|"unchecked"
 argument_list|)
 DECL|method|valueFunction ()
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Function
 argument_list|<
 name|Entry
@@ -727,7 +775,7 @@ argument_list|,
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -738,19 +786,25 @@ operator|.
 name|VALUE
 return|;
 block|}
-DECL|method|keyIterator (Iterator<Entry<K, V>> entryIterator)
+DECL|method|keyIterator ( Iterator<Entry<K, V>> entryIterator)
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterator
 argument_list|<
 name|K
 argument_list|>
 name|keyIterator
-parameter_list|(
+argument_list|(
 name|Iterator
 argument_list|<
 name|Entry
@@ -761,7 +815,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entryIterator
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -782,6 +836,8 @@ argument_list|)
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 name|K
 name|transform
 parameter_list|(
@@ -802,21 +858,32 @@ argument_list|()
 return|;
 block|}
 block|}
-return|;
-block|}
-DECL|method|valueIterator (Iterator<Entry<K, V>> entryIterator)
-specifier|static
-parameter_list|<
+end_class
+
+begin_empty_stmt
+empty_stmt|;
+end_empty_stmt
+
+begin_expr_stmt
+unit|}    static
+DECL|method|valueIterator ( Iterator<Entry<K, V>> entryIterator)
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Iterator
 argument_list|<
 name|V
 argument_list|>
 name|valueIterator
-parameter_list|(
+argument_list|(
 name|Iterator
 argument_list|<
 name|Entry
@@ -827,7 +894,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entryIterator
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -848,6 +915,8 @@ argument_list|)
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 name|V
 name|transform
 parameter_list|(
@@ -867,11 +936,15 @@ name|getValue
 argument_list|()
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|};   }
 comment|/**    * Returns an immutable map instance containing the given entries. Internally, the returned map    * will be backed by an {@link EnumMap}.    *    *<p>The iteration order of the returned map follows the enum's iteration order, not the order in    * which the elements appear in the given map.    *    * @param map the map to make an immutable copy of    * @return an immutable map containing those entries    * @since 14.0    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|GwtCompatible
 argument_list|(
 name|serializable
@@ -881,16 +954,16 @@ argument_list|)
 DECL|method|immutableEnumMap ( Map<K, ? extends V> map)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|Enum
 argument_list|<
 name|K
 argument_list|>
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
 name|ImmutableMap
 argument_list|<
 name|K
@@ -898,7 +971,7 @@ argument_list|,
 name|V
 argument_list|>
 name|immutableEnumMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -908,7 +981,7 @@ extends|extends
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -959,7 +1032,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entryItr
-init|=
+operator|=
 name|map
 operator|.
 name|entrySet
@@ -967,7 +1040,10 @@ argument_list|()
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+end_expr_stmt
+
+begin_if
 if|if
 condition|(
 operator|!
@@ -984,6 +1060,9 @@ name|of
 argument_list|()
 return|;
 block|}
+end_if
+
+begin_decl_stmt
 name|Entry
 argument_list|<
 name|K
@@ -999,6 +1078,9 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 name|K
 name|key1
 init|=
@@ -1007,6 +1089,9 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 name|V
 name|value1
 init|=
@@ -1015,6 +1100,9 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
+end_decl_stmt
+
+begin_expr_stmt
 name|checkEntryNotNull
 argument_list|(
 name|key1
@@ -1022,6 +1110,9 @@ argument_list|,
 name|value1
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_decl_stmt
 name|Class
 argument_list|<
 name|K
@@ -1033,6 +1124,9 @@ operator|.
 name|getDeclaringClass
 argument_list|()
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 name|EnumMap
 argument_list|<
 name|K
@@ -1048,6 +1142,9 @@ argument_list|(
 name|clazz
 argument_list|)
 decl_stmt|;
+end_decl_stmt
+
+begin_expr_stmt
 name|enumMap
 operator|.
 name|put
@@ -1057,6 +1154,9 @@ argument_list|,
 name|value1
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_while
 while|while
 condition|(
 name|entryItr
@@ -1113,6 +1213,9 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+end_while
+
+begin_return
 return|return
 name|ImmutableEnumMap
 operator|.
@@ -1121,16 +1224,28 @@ argument_list|(
 name|enumMap
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Creates a<i>mutable</i>, empty {@code HashMap} instance.    *    *<p><b>Note:</b> if mutability is not required, use {@link ImmutableMap#of()} instead.    *    *<p><b>Note:</b> if {@code K} is an {@code enum} type, use {@link #newEnumMap} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code HashMap} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code HashMap}    */
-DECL|method|newHashMap ()
-specifier|public
+end_comment
+
+begin_expr_stmt
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|newHashMap ()
 name|HashMap
 argument_list|<
 name|K
@@ -1138,7 +1253,7 @@ argument_list|,
 name|V
 argument_list|>
 name|newHashMap
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -1147,15 +1262,27 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a<i>mutable</i> {@code HashMap} instance with the same mappings as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link ImmutableMap#copyOf(Map)} instead.    *    *<p><b>Note:</b> if {@code K} is an {@link Enum} type, use {@link #newEnumMap} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code HashMap} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param map the mappings to be placed in the new map    * @return a new {@code HashMap} initialized with the mappings from {@code map}    */
-DECL|method|newHashMap (Map<? extends K, ? extends V> map)
+end_comment
+
+begin_expr_stmt
+DECL|method|newHashMap ( Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|HashMap
 argument_list|<
 name|K
@@ -1163,7 +1290,7 @@ argument_list|,
 name|V
 argument_list|>
 name|newHashMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|?
@@ -1175,7 +1302,7 @@ extends|extends
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1186,15 +1313,27 @@ name|map
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a {@code HashMap} instance, with a high enough "initial capacity" that it<i>should</i>    * hold {@code expectedSize} elements without growth. This behavior cannot be broadly guaranteed,    * but it is observed to be true for OpenJDK 1.7. It also can't be guaranteed that the method    * isn't inadvertently<i>oversizing</i> the returned map.    *    * @param expectedSize the number of entries you expect to add to the returned map    * @return a new, empty {@code HashMap} with enough capacity to hold {@code expectedSize} entries    *     without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
-DECL|method|newHashMapWithExpectedSize (int expectedSize)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|newHashMapWithExpectedSize (int expectedSize)
 name|HashMap
 argument_list|<
 name|K
@@ -1202,10 +1341,10 @@ argument_list|,
 name|V
 argument_list|>
 name|newHashMapWithExpectedSize
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1219,7 +1358,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a capacity that is sufficient to keep the map from being resized as long as it grows no    * larger than expectedSize and the load factor is â¥ its default (0.75).    */
+end_comment
+
+begin_function
 DECL|method|capacity (int expectedSize)
 specifier|static
 name|int
@@ -1284,15 +1429,27 @@ name|MAX_VALUE
 return|;
 comment|// any large value
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates a<i>mutable</i>, empty, insertion-ordered {@code LinkedHashMap} instance.    *    *<p><b>Note:</b> if mutability is not required, use {@link ImmutableMap#of()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code LinkedHashMap} constructor directly, taking advantage of    * the new<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code LinkedHashMap}    */
-DECL|method|newLinkedHashMap ()
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|newLinkedHashMap ()
 name|LinkedHashMap
 argument_list|<
 name|K
@@ -1300,7 +1457,7 @@ argument_list|,
 name|V
 argument_list|>
 name|newLinkedHashMap
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -1309,15 +1466,27 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a<i>mutable</i>, insertion-ordered {@code LinkedHashMap} instance with the same    * mappings as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link ImmutableMap#copyOf(Map)} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code LinkedHashMap} constructor directly, taking advantage of    * the new<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param map the mappings to be placed in the new map    * @return a new, {@code LinkedHashMap} initialized with the mappings from {@code map}    */
-DECL|method|newLinkedHashMap (Map<? extends K, ? extends V> map)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|newLinkedHashMap (Map<? extends K, ? extends V> map)
 name|LinkedHashMap
 argument_list|<
 name|K
@@ -1325,7 +1494,7 @@ argument_list|,
 name|V
 argument_list|>
 name|newLinkedHashMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|?
@@ -1337,7 +1506,7 @@ extends|extends
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1348,15 +1517,27 @@ name|map
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a {@code LinkedHashMap} instance, with a high enough "initial capacity" that it    *<i>should</i> hold {@code expectedSize} elements without growth. This behavior cannot be    * broadly guaranteed, but it is observed to be true for OpenJDK 1.7. It also can't be guaranteed    * that the method isn't inadvertently<i>oversizing</i> the returned map.    *    * @param expectedSize the number of entries you expect to add to the returned map    * @return a new, empty {@code LinkedHashMap} with enough capacity to hold {@code expectedSize}    *     entries without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    * @since 19.0    */
-DECL|method|newLinkedHashMapWithExpectedSize (int expectedSize)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|newLinkedHashMapWithExpectedSize (int expectedSize)
 name|LinkedHashMap
 argument_list|<
 name|K
@@ -1364,10 +1545,10 @@ argument_list|,
 name|V
 argument_list|>
 name|newLinkedHashMapWithExpectedSize
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1381,7 +1562,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a new empty {@link ConcurrentHashMap} instance.    *    * @since 3.0    */
+end_comment
+
+begin_function
 DECL|method|newConcurrentMap ()
 specifier|public
 specifier|static
@@ -1406,17 +1593,26 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates a<i>mutable</i>, empty {@code TreeMap} instance using the natural ordering of its    * elements.    *    *<p><b>Note:</b> if mutability is not required, use {@link ImmutableSortedMap#of()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code TreeMap} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code TreeMap}    */
+end_comment
+
+begin_expr_stmt
 DECL|method|newTreeMap ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|Comparable
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|TreeMap
 argument_list|<
 name|K
@@ -1424,7 +1620,7 @@ argument_list|,
 name|V
 argument_list|>
 name|newTreeMap
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -1433,15 +1629,27 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a<i>mutable</i> {@code TreeMap} instance with the same mappings as the specified map    * and using the same ordering as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedMap#copyOfSorted(SortedMap)} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code TreeMap} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param map the sorted map whose mappings are to be placed in the new map and whose comparator    *     is to be used to sort the new map    * @return a new {@code TreeMap} initialized with the mappings from {@code map} and using the    *     comparator of {@code map}    */
-DECL|method|newTreeMap (SortedMap<K, ? extends V> map)
+end_comment
+
+begin_expr_stmt
+DECL|method|newTreeMap ( SortedMap<K, ? extends V> map)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|TreeMap
 argument_list|<
 name|K
@@ -1449,7 +1657,7 @@ argument_list|,
 name|V
 argument_list|>
 name|newTreeMap
-parameter_list|(
+argument_list|(
 name|SortedMap
 argument_list|<
 name|K
@@ -1459,7 +1667,7 @@ extends|extends
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1470,19 +1678,31 @@ name|map
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a<i>mutable</i>, empty {@code TreeMap} instance using the given comparator.    *    *<p><b>Note:</b> if mutability is not required, use {@code    * ImmutableSortedMap.orderedBy(comparator).build()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code TreeMap} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param comparator the comparator to sort the keys with    * @return a new, empty {@code TreeMap}    */
-DECL|method|newTreeMap ( @ullableDecl Comparator<C> comparator)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-extends|extends
+expr|extends
 name|C
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|newTreeMap (@heckForNull Comparator<C> comparator)
 name|TreeMap
 argument_list|<
 name|K
@@ -1490,15 +1710,15 @@ argument_list|,
 name|V
 argument_list|>
 name|newTreeMap
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|C
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 comment|// Ideally, the extra type parameter "C" shouldn't be necessary. It is a
 comment|// work-around of a compiler type inference quirk that prevents the
@@ -1514,20 +1734,29 @@ name|comparator
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates an {@code EnumMap} instance.    *    * @param type the key type for this map    * @return a new, empty {@code EnumMap}    */
-DECL|method|newEnumMap (Class<K> type)
+end_comment
+
+begin_expr_stmt
+DECL|method|newEnumMap ( Class<K> type)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|Enum
 argument_list|<
 name|K
 argument_list|>
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|EnumMap
 argument_list|<
 name|K
@@ -1535,13 +1764,13 @@ argument_list|,
 name|V
 argument_list|>
 name|newEnumMap
-parameter_list|(
+argument_list|(
 name|Class
 argument_list|<
 name|K
 argument_list|>
 name|type
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1555,20 +1784,29 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates an {@code EnumMap} with the same mappings as the specified map.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code EnumMap} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param map the map from which to initialize this {@code EnumMap}    * @return a new {@code EnumMap} initialized with the mappings from {@code map}    * @throws IllegalArgumentException if {@code m} is not an {@code EnumMap} instance and contains    *     no mappings    */
-DECL|method|newEnumMap (Map<K, ? extends V> map)
+end_comment
+
+begin_expr_stmt
+DECL|method|newEnumMap ( Map<K, ? extends V> map)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|Enum
 argument_list|<
 name|K
 argument_list|>
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|EnumMap
 argument_list|<
 name|K
@@ -1576,7 +1814,7 @@ argument_list|,
 name|V
 argument_list|>
 name|newEnumMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -1586,7 +1824,7 @@ extends|extends
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1597,15 +1835,27 @@ name|map
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates an {@code IdentityHashMap} instance.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code IdentityHashMap} constructor directly, taking advantage of    * the new<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code IdentityHashMap}    */
-DECL|method|newIdentityHashMap ()
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|newIdentityHashMap ()
 name|IdentityHashMap
 argument_list|<
 name|K
@@ -1613,7 +1863,7 @@ argument_list|,
 name|V
 argument_list|>
 name|newIdentityHashMap
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -1622,20 +1872,35 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Computes the difference between two maps. This difference is an immutable snapshot of the state    * of the maps at the time this method is called. It will never change, even if the maps change at    * a later time.    *    *<p>Since this method uses {@code HashMap} instances internally, the keys of the supplied maps    * must be well-behaved with respect to {@link Object#equals} and {@link Object#hashCode}.    *    *<p><b>Note:</b>If you only need to know whether two maps have the same mappings, call {@code    * left.equals(right)} instead of this method.    *    * @param left the map to treat as the "left" map for purposes of comparison    * @param right the map to treat as the "right" map for purposes of comparison    * @return the difference between the two maps    */
+end_comment
+
+begin_annotation
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|difference ( Map<? extends K, ? extends V> left, Map<? extends K, ? extends V> right)
+end_annotation
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|difference ( Map<? extends K, ? extends V> left, Map<? extends K, ? extends V> right)
 name|MapDifference
 argument_list|<
 name|K
@@ -1643,7 +1908,7 @@ argument_list|,
 name|V
 argument_list|>
 name|difference
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|?
@@ -1655,7 +1920,7 @@ extends|extends
 name|V
 argument_list|>
 name|left
-parameter_list|,
+operator|,
 name|Map
 argument_list|<
 name|?
@@ -1667,7 +1932,7 @@ extends|extends
 name|V
 argument_list|>
 name|right
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -1707,7 +1972,28 @@ name|right
 argument_list|)
 return|;
 block|}
-return|return
+comment|/*      * This cast is safe: The Equivalence-accepting overload of difference() (which we call below)      * has a weird signature because Equivalence is itself a little weird. Still, we know that      * Equivalence.equals() can handle all inputs, and we know that the resulting MapDifference will      * contain only Ks and Vs (as opposed to possibly containing @Nullable objects even when K and V      * are *not* @Nullable).      *      * An alternative to suppressing the warning would be to inline the body of the other      * difference() method into this one.      */
+expr|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+name|MapDifference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|result
+operator|=
+operator|(
+name|MapDifference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+operator|)
 name|difference
 argument_list|(
 name|left
@@ -1719,17 +2005,36 @@ operator|.
 name|equals
 argument_list|()
 argument_list|)
+expr_stmt|;
+end_expr_stmt
+
+begin_return
+return|return
+name|result
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Computes the difference between two maps. This difference is an immutable snapshot of the state    * of the maps at the time this method is called. It will never change, even if the maps change at    * a later time.    *    *<p>Since this method uses {@code HashMap} instances internally, the keys of the supplied maps    * must be well-behaved with respect to {@link Object#equals} and {@link Object#hashCode}.    *    * @param left the map to treat as the "left" map for purposes of comparison    * @param right the map to treat as the "right" map for purposes of comparison    * @param valueEquivalence the equivalence relationship to use to compare values    * @return the difference between the two maps    * @since 10.0    */
+end_comment
+
+begin_comment
+comment|/*    * This method should really be annotated to accept maps with @Nullable value types. Fortunately,    * no existing Google callers appear to pass null values (much less pass null values *and* run a    * nullness checker).    *    * Still, if we decide that we want to make that work, we'd need to introduce a new type parameter    * for the Equivalence input type:    *    *<E, K extends @Nullable Object, V extends @Nullable E> ... difference(..., Equivalence<E> ...)    *    * Maybe we should, even though it will break source compatibility.    *    * Alternatively, this is a case in which it would be useful to be able to express Equivalence<?    * super @Nonnull T>).    *    * As things stand now, though, we have to either:    *    * - require non-null inputs so that we can guarantee non-null outputs    *    * - accept nullable inputs but force users to cope with nullable outputs    *    * And the non-null option is far more useful to existing users.    *    * (Vaguely related: Another thing we could consider is an overload that accepts a BiPredicate:    * https://github.com/google/guava/issues/3913)    */
+end_comment
+
+begin_expr_stmt
 DECL|method|difference ( Map<? extends K, ? extends V> left, Map<? extends K, ? extends V> right, Equivalence<? super V> valueEquivalence)
-specifier|public
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+operator|>
 name|MapDifference
 argument_list|<
 name|K
@@ -1737,7 +2042,7 @@ argument_list|,
 name|V
 argument_list|>
 name|difference
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|?
@@ -1749,7 +2054,7 @@ extends|extends
 name|V
 argument_list|>
 name|left
-parameter_list|,
+operator|,
 name|Map
 argument_list|<
 name|?
@@ -1761,7 +2066,7 @@ extends|extends
 name|V
 argument_list|>
 name|right
-parameter_list|,
+operator|,
 name|Equivalence
 argument_list|<
 name|?
@@ -1769,7 +2074,7 @@ super|super
 name|V
 argument_list|>
 name|valueEquivalence
-parameter_list|)
+argument_list|)
 block|{
 name|Preconditions
 operator|.
@@ -1777,7 +2082,7 @@ name|checkNotNull
 argument_list|(
 name|valueEquivalence
 argument_list|)
-expr_stmt|;
+block|;
 name|Map
 argument_list|<
 name|K
@@ -1785,10 +2090,10 @@ argument_list|,
 name|V
 argument_list|>
 name|onlyOnLeft
-init|=
+operator|=
 name|newLinkedHashMap
 argument_list|()
-decl_stmt|;
+block|;
 name|Map
 argument_list|<
 name|K
@@ -1796,14 +2101,14 @@ argument_list|,
 name|V
 argument_list|>
 name|onlyOnRight
-init|=
+operator|=
 operator|new
 name|LinkedHashMap
 argument_list|<>
 argument_list|(
 name|right
 argument_list|)
-decl_stmt|;
+block|;
 comment|// will whittle it down
 name|Map
 argument_list|<
@@ -1812,10 +2117,10 @@ argument_list|,
 name|V
 argument_list|>
 name|onBoth
-init|=
+operator|=
 name|newLinkedHashMap
 argument_list|()
-decl_stmt|;
+block|;
 name|Map
 argument_list|<
 name|K
@@ -1828,10 +2133,10 @@ name|V
 argument_list|>
 argument_list|>
 name|differences
-init|=
+operator|=
 name|newLinkedHashMap
 argument_list|()
-decl_stmt|;
+block|;
 name|doDifference
 argument_list|(
 name|left
@@ -1848,7 +2153,7 @@ name|onBoth
 argument_list|,
 name|differences
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|MapDifferenceImpl
@@ -1864,15 +2169,27 @@ name|differences
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Computes the difference between two sorted maps, using the comparator of the left map, or    * {@code Ordering.natural()} if the left map uses the natural ordering of its elements. This    * difference is an immutable snapshot of the state of the maps at the time this method is called.    * It will never change, even if the maps change at a later time.    *    *<p>Since this method uses {@code TreeMap} instances internally, the keys of the right map must    * all compare as distinct according to the comparator of the left map.    *    *<p><b>Note:</b>If you only need to know whether two sorted maps have the same mappings, call    * {@code left.equals(right)} instead of this method.    *    * @param left the map to treat as the "left" map for purposes of comparison    * @param right the map to treat as the "right" map for purposes of comparison    * @return the difference between the two maps    * @since 11.0    */
-DECL|method|difference ( SortedMap<K, ? extends V> left, Map<? extends K, ? extends V> right)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|difference ( SortedMap<K, ? extends V> left, Map<? extends K, ? extends V> right)
 name|SortedMapDifference
 argument_list|<
 name|K
@@ -1880,7 +2197,7 @@ argument_list|,
 name|V
 argument_list|>
 name|difference
-parameter_list|(
+argument_list|(
 name|SortedMap
 argument_list|<
 name|K
@@ -1890,7 +2207,7 @@ extends|extends
 name|V
 argument_list|>
 name|left
-parameter_list|,
+argument_list|,
 name|Map
 argument_list|<
 name|?
@@ -1902,18 +2219,18 @@ extends|extends
 name|V
 argument_list|>
 name|right
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|left
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|right
 argument_list|)
-expr_stmt|;
+block|;
 name|Comparator
 argument_list|<
 name|?
@@ -1921,7 +2238,7 @@ super|super
 name|K
 argument_list|>
 name|comparator
-init|=
+operator|=
 name|orNaturalOrder
 argument_list|(
 name|left
@@ -1929,7 +2246,7 @@ operator|.
 name|comparator
 argument_list|()
 argument_list|)
-decl_stmt|;
+block|;
 name|SortedMap
 argument_list|<
 name|K
@@ -1937,14 +2254,14 @@ argument_list|,
 name|V
 argument_list|>
 name|onlyOnLeft
-init|=
+operator|=
 name|Maps
 operator|.
 name|newTreeMap
 argument_list|(
 name|comparator
 argument_list|)
-decl_stmt|;
+block|;
 name|SortedMap
 argument_list|<
 name|K
@@ -1952,21 +2269,21 @@ argument_list|,
 name|V
 argument_list|>
 name|onlyOnRight
-init|=
+operator|=
 name|Maps
 operator|.
 name|newTreeMap
 argument_list|(
 name|comparator
 argument_list|)
-decl_stmt|;
+block|;
 name|onlyOnRight
 operator|.
 name|putAll
 argument_list|(
 name|right
 argument_list|)
-expr_stmt|;
+block|;
 comment|// will whittle it down
 name|SortedMap
 argument_list|<
@@ -1975,14 +2292,14 @@ argument_list|,
 name|V
 argument_list|>
 name|onBoth
-init|=
+operator|=
 name|Maps
 operator|.
 name|newTreeMap
 argument_list|(
 name|comparator
 argument_list|)
-decl_stmt|;
+block|;
 name|SortedMap
 argument_list|<
 name|K
@@ -1995,14 +2312,14 @@ name|V
 argument_list|>
 argument_list|>
 name|differences
-init|=
+operator|=
 name|Maps
 operator|.
 name|newTreeMap
 argument_list|(
 name|comparator
 argument_list|)
-decl_stmt|;
+block|;
 name|doDifference
 argument_list|(
 name|left
@@ -2022,7 +2339,7 @@ name|onBoth
 argument_list|,
 name|differences
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|SortedMapDifferenceImpl
@@ -2038,17 +2355,26 @@ name|differences
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|method|doDifference ( Map<? extends K, ? extends V> left, Map<? extends K, ? extends V> right, Equivalence<? super V> valueEquivalence, Map<K, V> onlyOnLeft, Map<K, V> onlyOnRight, Map<K, V> onBoth, Map<K, MapDifference.ValueDifference<V>> differences)
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|void
 name|doDifference
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|?
@@ -2060,7 +2386,7 @@ extends|extends
 name|V
 argument_list|>
 name|left
-parameter_list|,
+operator|,
 name|Map
 argument_list|<
 name|?
@@ -2072,7 +2398,7 @@ extends|extends
 name|V
 argument_list|>
 name|right
-parameter_list|,
+operator|,
 name|Equivalence
 argument_list|<
 name|?
@@ -2080,7 +2406,7 @@ super|super
 name|V
 argument_list|>
 name|valueEquivalence
-parameter_list|,
+operator|,
 name|Map
 argument_list|<
 name|K
@@ -2088,7 +2414,7 @@ argument_list|,
 name|V
 argument_list|>
 name|onlyOnLeft
-parameter_list|,
+operator|,
 name|Map
 argument_list|<
 name|K
@@ -2096,7 +2422,7 @@ argument_list|,
 name|V
 argument_list|>
 name|onlyOnRight
-parameter_list|,
+operator|,
 name|Map
 argument_list|<
 name|K
@@ -2104,7 +2430,7 @@ argument_list|,
 name|V
 argument_list|>
 name|onBoth
-parameter_list|,
+operator|,
 name|Map
 argument_list|<
 name|K
@@ -2117,7 +2443,7 @@ name|V
 argument_list|>
 argument_list|>
 name|differences
-parameter_list|)
+argument_list|)
 block|{
 for|for
 control|(
@@ -2165,14 +2491,18 @@ name|leftKey
 argument_list|)
 condition|)
 block|{
+comment|/*          * The cast is safe because onlyOnRight contains all the keys of right.          *          * TODO(cpovirk): Consider checking onlyOnRight.containsKey instead of right.containsKey.          * That could change behavior if the input maps use different equivalence relations (and so          * a key that appears once in `right` might appear multiple times in `left`). We don't          * guarantee behavior in that case, anyway, and the current behavior is likely undesirable.          * So that's either a reason to feel free to change it or a reason to not bother thinking          * further about this.          */
 name|V
 name|rightValue
 init|=
+name|uncheckedCastNullableTToT
+argument_list|(
 name|onlyOnRight
 operator|.
 name|remove
 argument_list|(
 name|leftKey
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -2197,6 +2527,9 @@ name|leftValue
 argument_list|)
 expr_stmt|;
 block|}
+end_expr_stmt
+
+begin_else
 else|else
 block|{
 name|differences
@@ -2216,8 +2549,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-else|else
+end_else
+
+begin_block
+unit|} else
 block|{
 name|onlyOnLeft
 operator|.
@@ -2229,16 +2564,24 @@ name|leftValue
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-block|}
-DECL|method|unmodifiableMap (Map<K, ? extends V> map)
+end_block
+
+begin_expr_stmt
+unit|}   }
+DECL|method|unmodifiableMap ( Map<K, ? extends V> map)
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Map
 argument_list|<
 name|K
@@ -2246,7 +2589,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unmodifiableMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -2256,7 +2599,7 @@ extends|extends
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -2284,6 +2627,9 @@ name|map
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_else
 else|else
 block|{
 return|return
@@ -2295,17 +2641,25 @@ name|map
 argument_list|)
 return|;
 block|}
-block|}
+end_else
+
+begin_expr_stmt
+unit|}    static
 DECL|class|MapDifferenceImpl
-specifier|static
-class|class
+name|class
 name|MapDifferenceImpl
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|MapDifference
 argument_list|<
 name|K
@@ -2314,7 +2668,7 @@ name|V
 argument_list|>
 block|{
 DECL|field|onlyOnLeft
-specifier|final
+name|final
 name|Map
 argument_list|<
 name|K
@@ -2322,9 +2676,9 @@ argument_list|,
 name|V
 argument_list|>
 name|onlyOnLeft
-decl_stmt|;
+block|;
 DECL|field|onlyOnRight
-specifier|final
+name|final
 name|Map
 argument_list|<
 name|K
@@ -2332,9 +2686,9 @@ argument_list|,
 name|V
 argument_list|>
 name|onlyOnRight
-decl_stmt|;
+block|;
 DECL|field|onBoth
-specifier|final
+name|final
 name|Map
 argument_list|<
 name|K
@@ -2342,9 +2696,9 @@ argument_list|,
 name|V
 argument_list|>
 name|onBoth
-decl_stmt|;
+block|;
 DECL|field|differences
-specifier|final
+name|final
 name|Map
 argument_list|<
 name|K
@@ -2355,10 +2709,10 @@ name|V
 argument_list|>
 argument_list|>
 name|differences
-decl_stmt|;
+block|;
 DECL|method|MapDifferenceImpl ( Map<K, V> onlyOnLeft, Map<K, V> onlyOnRight, Map<K, V> onBoth, Map<K, ValueDifference<V>> differences)
 name|MapDifferenceImpl
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -2366,7 +2720,7 @@ argument_list|,
 name|V
 argument_list|>
 name|onlyOnLeft
-parameter_list|,
+argument_list|,
 name|Map
 argument_list|<
 name|K
@@ -2374,7 +2728,7 @@ argument_list|,
 name|V
 argument_list|>
 name|onlyOnRight
-parameter_list|,
+argument_list|,
 name|Map
 argument_list|<
 name|K
@@ -2382,7 +2736,7 @@ argument_list|,
 name|V
 argument_list|>
 name|onBoth
-parameter_list|,
+argument_list|,
 name|Map
 argument_list|<
 name|K
@@ -2393,7 +2747,7 @@ name|V
 argument_list|>
 argument_list|>
 name|differences
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -2403,7 +2757,7 @@ name|unmodifiableMap
 argument_list|(
 name|onlyOnLeft
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|onlyOnRight
@@ -2412,7 +2766,7 @@ name|unmodifiableMap
 argument_list|(
 name|onlyOnRight
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|onBoth
@@ -2421,7 +2775,7 @@ name|unmodifiableMap
 argument_list|(
 name|onBoth
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|differences
@@ -2430,15 +2784,14 @@ name|unmodifiableMap
 argument_list|(
 name|differences
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|areEqual ()
 specifier|public
 name|boolean
 name|areEqual
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|onlyOnLeft
@@ -2457,7 +2810,7 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|entriesOnlyOnLeft ()
 specifier|public
@@ -2468,12 +2821,15 @@ argument_list|,
 name|V
 argument_list|>
 name|entriesOnlyOnLeft
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|onlyOnLeft
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entriesOnlyOnRight ()
@@ -2491,6 +2847,9 @@ return|return
 name|onlyOnRight
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entriesInCommon ()
@@ -2508,6 +2867,9 @@ return|return
 name|onBoth
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entriesDiffering ()
@@ -2528,13 +2890,18 @@ return|return
 name|differences
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2625,6 +2992,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -2652,6 +3022,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -2752,59 +3125,65 @@ name|toString
 argument_list|()
 return|;
 block|}
-block|}
+end_function
+
+begin_expr_stmt
+unit|}    static
 DECL|class|ValueDifferenceImpl
-specifier|static
-class|class
+name|class
 name|ValueDifferenceImpl
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|MapDifference
 operator|.
 name|ValueDifference
 argument_list|<
 name|V
 argument_list|>
-block|{
+block|{     @
 DECL|field|left
-annotation|@
-name|NullableDecl
+name|ParametricNullness
 specifier|private
-specifier|final
+name|final
 name|V
 name|left
-decl_stmt|;
+block|;     @
 DECL|field|right
-annotation|@
-name|NullableDecl
+name|ParametricNullness
 specifier|private
-specifier|final
+name|final
 name|V
 name|right
-decl_stmt|;
-DECL|method|create (@ullableDecl V left, @NullableDecl V right)
+block|;
+DECL|method|create ( @arametricNullness V left, @ParametricNullness V right)
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ValueDifference
 argument_list|<
 name|V
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|left
-parameter_list|,
+argument_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|right
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -2819,48 +3198,54 @@ name|right
 argument_list|)
 return|;
 block|}
-DECL|method|ValueDifferenceImpl (@ullableDecl V left, @NullableDecl V right)
+DECL|method|ValueDifferenceImpl (@arametricNullness V left, @ParametricNullness V right)
 specifier|private
 name|ValueDifferenceImpl
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|left
-parameter_list|,
+argument_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|right
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|left
 operator|=
 name|left
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|right
 operator|=
 name|right
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|leftValue ()
 specifier|public
 name|V
 name|leftValue
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|left
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|rightValue ()
 specifier|public
 name|V
@@ -2871,15 +3256,18 @@ return|return
 name|right
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2945,6 +3333,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -2964,6 +3355,9 @@ name|right
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -2984,24 +3378,32 @@ operator|+
 literal|")"
 return|;
 block|}
-block|}
+end_function
+
+begin_expr_stmt
+unit|}    static
 DECL|class|SortedMapDifferenceImpl
-specifier|static
-class|class
+name|class
 name|SortedMapDifferenceImpl
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|MapDifferenceImpl
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|SortedMapDifference
 argument_list|<
 name|K
@@ -3011,7 +3413,7 @@ argument_list|>
 block|{
 DECL|method|SortedMapDifferenceImpl ( SortedMap<K, V> onlyOnLeft, SortedMap<K, V> onlyOnRight, SortedMap<K, V> onBoth, SortedMap<K, ValueDifference<V>> differences)
 name|SortedMapDifferenceImpl
-parameter_list|(
+argument_list|(
 name|SortedMap
 argument_list|<
 name|K
@@ -3019,7 +3421,7 @@ argument_list|,
 name|V
 argument_list|>
 name|onlyOnLeft
-parameter_list|,
+argument_list|,
 name|SortedMap
 argument_list|<
 name|K
@@ -3027,7 +3429,7 @@ argument_list|,
 name|V
 argument_list|>
 name|onlyOnRight
-parameter_list|,
+argument_list|,
 name|SortedMap
 argument_list|<
 name|K
@@ -3035,7 +3437,7 @@ argument_list|,
 name|V
 argument_list|>
 name|onBoth
-parameter_list|,
+argument_list|,
 name|SortedMap
 argument_list|<
 name|K
@@ -3046,7 +3448,7 @@ name|V
 argument_list|>
 argument_list|>
 name|differences
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -3058,9 +3460,8 @@ name|onBoth
 argument_list|,
 name|differences
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|entriesDiffering ()
 specifier|public
@@ -3074,7 +3475,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entriesDiffering
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -3094,7 +3495,7 @@ name|entriesDiffering
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|entriesInCommon ()
 specifier|public
@@ -3105,7 +3506,7 @@ argument_list|,
 name|V
 argument_list|>
 name|entriesInCommon
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -3122,6 +3523,9 @@ name|entriesInCommon
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entriesOnlyOnLeft ()
@@ -3150,6 +3554,9 @@ name|entriesOnlyOnLeft
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entriesOnlyOnRight ()
@@ -3178,18 +3585,27 @@ name|entriesOnlyOnRight
 argument_list|()
 return|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/**    * Returns the specified comparator if not null; otherwise returns {@code Ordering.natural()}.    * This method is an abomination of generics; the only purpose of this method is to contain the    * ugly type-casting in one place.    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|orNaturalOrder (@ullableDecl Comparator<? super E> comparator)
+DECL|method|orNaturalOrder ( @heckForNull Comparator<? super E> comparator)
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Comparator
 argument_list|<
 name|?
@@ -3197,9 +3613,9 @@ super|super
 name|E
 argument_list|>
 name|orNaturalOrder
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -3207,7 +3623,7 @@ super|super
 name|E
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -3234,15 +3650,27 @@ name|natural
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a live {@link Map} view whose keys are the contents of {@code set} and whose values are    * computed on demand using {@code function}. To get an immutable<i>copy</i> instead, use {@link    * #toMap(Iterable, Function)}.    *    *<p>Specifically, for each {@code k} in the backing set, the returned map has an entry mapping    * {@code k} to {@code function.apply(k)}. The {@code keySet}, {@code values}, and {@code    * entrySet} views of the returned map iterate in the same order as the backing set.    *    *<p>Modifications to the backing set are read through to the returned map. The returned map    * supports removal operations if the backing set does. Removal operations write through to the    * backing set. The returned map does not support put operations.    *    *<p><b>Warning:</b> If the function rejects {@code null}, caution is required to make sure the    * set does not contain {@code null}, because the view cannot stop {@code null} from being added    * to the set.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of key type {@code K},    * {@code k.equals(k2)} implies that {@code k2} is also of type {@code K}. Using a key type for    * which this may not hold, such as {@code ArrayList}, may risk a {@code ClassCastException} when    * calling methods on the resulting map view.    *    * @since 14.0    */
-DECL|method|asMap (Set<K> set, Function<? super K, V> function)
+end_comment
+
+begin_expr_stmt
+DECL|method|asMap ( Set<K> set, Function<? super K, V> function)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Map
 argument_list|<
 name|K
@@ -3250,13 +3678,13 @@ argument_list|,
 name|V
 argument_list|>
 name|asMap
-parameter_list|(
+argument_list|(
 name|Set
 argument_list|<
 name|K
 argument_list|>
 name|set
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -3266,7 +3694,7 @@ argument_list|,
 name|V
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -3279,15 +3707,27 @@ name|function
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a view of the sorted set as a map, mapping keys from the set according to the specified    * function.    *    *<p>Specifically, for each {@code k} in the backing set, the returned map has an entry mapping    * {@code k} to {@code function.apply(k)}. The {@code keySet}, {@code values}, and {@code    * entrySet} views of the returned map iterate in the same order as the backing set.    *    *<p>Modifications to the backing set are read through to the returned map. The returned map    * supports removal operations if the backing set does. Removal operations write through to the    * backing set. The returned map does not support put operations.    *    *<p><b>Warning:</b> If the function rejects {@code null}, caution is required to make sure the    * set does not contain {@code null}, because the view cannot stop {@code null} from being added    * to the set.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of key type {@code K},    * {@code k.equals(k2)} implies that {@code k2} is also of type {@code K}. Using a key type for    * which this may not hold, such as {@code ArrayList}, may risk a {@code ClassCastException} when    * calling methods on the resulting map view.    *    * @since 14.0    */
-DECL|method|asMap (SortedSet<K> set, Function<? super K, V> function)
+end_comment
+
+begin_expr_stmt
+DECL|method|asMap ( SortedSet<K> set, Function<? super K, V> function)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|SortedMap
 argument_list|<
 name|K
@@ -3295,13 +3735,13 @@ argument_list|,
 name|V
 argument_list|>
 name|asMap
-parameter_list|(
+argument_list|(
 name|SortedSet
 argument_list|<
 name|K
 argument_list|>
 name|set
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -3311,7 +3751,7 @@ argument_list|,
 name|V
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -3324,18 +3764,36 @@ name|function
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a view of the navigable set as a map, mapping keys from the set according to the    * specified function.    *    *<p>Specifically, for each {@code k} in the backing set, the returned map has an entry mapping    * {@code k} to {@code function.apply(k)}. The {@code keySet}, {@code values}, and {@code    * entrySet} views of the returned map iterate in the same order as the backing set.    *    *<p>Modifications to the backing set are read through to the returned map. The returned map    * supports removal operations if the backing set does. Removal operations write through to the    * backing set. The returned map does not support put operations.    *    *<p><b>Warning:</b> If the function rejects {@code null}, caution is required to make sure the    * set does not contain {@code null}, because the view cannot stop {@code null} from being added    * to the set.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of key type {@code K},    * {@code k.equals(k2)} implies that {@code k2} is also of type {@code K}. Using a key type for    * which this may not hold, such as {@code ArrayList}, may risk a {@code ClassCastException} when    * calling methods on the resulting map view.    *    * @since 14.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// NavigableMap
+end_comment
+
+begin_expr_stmt
 DECL|method|asMap ( NavigableSet<K> set, Function<? super K, V> function)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|NavigableMap
 argument_list|<
 name|K
@@ -3343,13 +3801,13 @@ argument_list|,
 name|V
 argument_list|>
 name|asMap
-parameter_list|(
+argument_list|(
 name|NavigableSet
 argument_list|<
 name|K
 argument_list|>
 name|set
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -3359,7 +3817,7 @@ argument_list|,
 name|V
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -3372,17 +3830,26 @@ name|function
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|AsMapView
 specifier|private
 specifier|static
-class|class
+name|class
 name|AsMapView
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ViewCachingAbstractMap
 argument_list|<
 name|K
@@ -3392,15 +3859,15 @@ argument_list|>
 block|{
 DECL|field|set
 specifier|private
-specifier|final
+name|final
 name|Set
 argument_list|<
 name|K
 argument_list|>
 name|set
-decl_stmt|;
+block|;
 DECL|field|function
-specifier|final
+name|final
 name|Function
 argument_list|<
 name|?
@@ -3410,14 +3877,14 @@ argument_list|,
 name|V
 argument_list|>
 name|function
-decl_stmt|;
+block|;
 DECL|method|backingSet ()
 name|Set
 argument_list|<
 name|K
 argument_list|>
 name|backingSet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|set
@@ -3425,13 +3892,13 @@ return|;
 block|}
 DECL|method|AsMapView (Set<K> set, Function<? super K, V> function)
 name|AsMapView
-parameter_list|(
+argument_list|(
 name|Set
 argument_list|<
 name|K
 argument_list|>
 name|set
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -3441,7 +3908,7 @@ argument_list|,
 name|V
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -3451,7 +3918,7 @@ name|checkNotNull
 argument_list|(
 name|set
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|function
@@ -3460,9 +3927,8 @@ name|checkNotNull
 argument_list|(
 name|function
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|createKeySet ()
 specifier|public
@@ -3471,7 +3937,7 @@ argument_list|<
 name|K
 argument_list|>
 name|createKeySet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|removeOnlySet
@@ -3481,6 +3947,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createValues ()
@@ -3502,6 +3971,9 @@ name|function
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -3518,15 +3990,18 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -3541,15 +4016,20 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -3597,15 +4077,20 @@ literal|null
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object key)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -3651,6 +4136,9 @@ literal|null
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -3666,6 +4154,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createEntrySet ()
@@ -3743,14 +4234,22 @@ name|EntrySetImpl
 argument_list|()
 return|;
 block|}
-block|}
-DECL|method|asMapEntryIterator ( Set<K> set, final Function<? super K, V> function)
-specifier|static
-parameter_list|<
+end_function
+
+begin_expr_stmt
+unit|}    static
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|asMapEntryIterator (Set<K> set, final Function<? super K, V> function)
 name|Iterator
 argument_list|<
 name|Entry
@@ -3761,14 +4260,14 @@ name|V
 argument_list|>
 argument_list|>
 name|asMapEntryIterator
-parameter_list|(
+argument_list|(
 name|Set
 argument_list|<
 name|K
 argument_list|>
 name|set
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Function
 argument_list|<
 name|?
@@ -3778,7 +4277,7 @@ argument_list|,
 name|V
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -3810,6 +4309,8 @@ name|V
 argument_list|>
 name|transform
 parameter_list|(
+annotation|@
+name|ParametricNullness
 specifier|final
 name|K
 name|key
@@ -3829,27 +4330,33 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_expr_stmt
+unit|};   }    private
 DECL|class|SortedAsMapView
-specifier|private
 specifier|static
-class|class
+name|class
 name|SortedAsMapView
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AsMapView
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|SortedMap
 argument_list|<
 name|K
@@ -3859,13 +4366,13 @@ argument_list|>
 block|{
 DECL|method|SortedAsMapView (SortedSet<K> set, Function<? super K, V> function)
 name|SortedAsMapView
-parameter_list|(
+argument_list|(
 name|SortedSet
 argument_list|<
 name|K
 argument_list|>
 name|set
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -3875,7 +4382,7 @@ argument_list|,
 name|V
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -3883,9 +4390,8 @@ name|set
 argument_list|,
 name|function
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|backingSet ()
 name|SortedSet
@@ -3893,7 +4399,7 @@ argument_list|<
 name|K
 argument_list|>
 name|backingSet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -3908,8 +4414,10 @@ name|backingSet
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|CheckForNull
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -3919,7 +4427,7 @@ super|super
 name|K
 argument_list|>
 name|comparator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|backingSet
@@ -3929,6 +4437,9 @@ name|comparator
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -3948,9 +4459,12 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subMap (K fromKey, K toKey)
+DECL|method|subMap (@arametricNullness K fromKey, @ParametricNullness K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -3960,9 +4474,13 @@ name|V
 argument_list|>
 name|subMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -3984,9 +4502,12 @@ name|function
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headMap (K toKey)
+DECL|method|headMap (@arametricNullness K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -3996,6 +4517,8 @@ name|V
 argument_list|>
 name|headMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -4015,9 +4538,12 @@ name|function
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMap (K fromKey)
+DECL|method|tailMap (@arametricNullness K fromKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -4027,6 +4553,8 @@ name|V
 argument_list|>
 name|tailMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|)
@@ -4046,8 +4574,13 @@ name|function
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|firstKey ()
 specifier|public
 name|K
@@ -4062,8 +4595,13 @@ name|first
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|lastKey ()
 specifier|public
 name|K
@@ -4078,22 +4616,30 @@ name|last
 argument_list|()
 return|;
 block|}
-block|}
-annotation|@
+end_function
+
+begin_expr_stmt
+unit|}    @
 name|GwtIncompatible
 comment|// NavigableMap
 DECL|class|NavigableAsMapView
 specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|NavigableAsMapView
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractNavigableMap
 argument_list|<
 name|K
@@ -4104,16 +4650,16 @@ block|{
 comment|/*      * Using AbstractNavigableMap is simpler than extending SortedAsMapView and rewriting all the      * NavigableMap methods.      */
 DECL|field|set
 specifier|private
-specifier|final
+name|final
 name|NavigableSet
 argument_list|<
 name|K
 argument_list|>
 name|set
-decl_stmt|;
+block|;
 DECL|field|function
 specifier|private
-specifier|final
+name|final
 name|Function
 argument_list|<
 name|?
@@ -4123,16 +4669,16 @@ argument_list|,
 name|V
 argument_list|>
 name|function
-decl_stmt|;
+block|;
 DECL|method|NavigableAsMapView (NavigableSet<K> ks, Function<? super K, V> vFunction)
 name|NavigableAsMapView
-parameter_list|(
+argument_list|(
 name|NavigableSet
 argument_list|<
 name|K
 argument_list|>
 name|ks
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -4142,7 +4688,7 @@ argument_list|,
 name|V
 argument_list|>
 name|vFunction
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -4152,7 +4698,7 @@ name|checkNotNull
 argument_list|(
 name|ks
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|function
@@ -4161,11 +4707,10 @@ name|checkNotNull
 argument_list|(
 name|vFunction
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|subMap ( K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
+DECL|method|subMap ( @arametricNullness K fromKey, boolean fromInclusive, @ParametricNullness K toKey, boolean toInclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -4174,19 +4719,23 @@ argument_list|,
 name|V
 argument_list|>
 name|subMap
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
-parameter_list|,
+argument_list|,
 name|boolean
 name|fromInclusive
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
-parameter_list|,
+argument_list|,
 name|boolean
 name|toInclusive
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|asMap
@@ -4208,9 +4757,9 @@ name|function
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|headMap (K toKey, boolean inclusive)
+DECL|method|headMap (@arametricNullness K toKey, boolean inclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -4219,13 +4768,15 @@ argument_list|,
 name|V
 argument_list|>
 name|headMap
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
-parameter_list|,
+argument_list|,
 name|boolean
 name|inclusive
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|asMap
@@ -4243,9 +4794,12 @@ name|function
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMap (K fromKey, boolean inclusive)
+DECL|method|tailMap (@arametricNullness K fromKey, boolean inclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -4255,6 +4809,8 @@ name|V
 argument_list|>
 name|tailMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
@@ -4278,8 +4834,13 @@ name|function
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -4298,17 +4859,20 @@ name|comparator
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|get (@ullableDecl Object key)
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -4355,6 +4919,9 @@ literal|null
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -4369,6 +4936,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entryIterator ()
@@ -4393,6 +4963,9 @@ name|function
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingEntryIterator ()
@@ -4419,6 +4992,9 @@ name|iterator
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|navigableKeySet ()
@@ -4437,6 +5013,9 @@ name|set
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -4452,6 +5031,9 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingMap ()
@@ -4477,26 +5059,31 @@ name|function
 argument_list|)
 return|;
 block|}
-block|}
+end_function
+
+begin_expr_stmt
+unit|}    private
 DECL|method|removeOnlySet (final Set<E> set)
-specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|removeOnlySet
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|set
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -4520,28 +5107,29 @@ return|return
 name|set
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|boolean
 name|add
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|element
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
-annotation|@
+block|;       }
+expr|@
 name|Override
 specifier|public
 name|boolean
 name|addAll
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
@@ -4549,36 +5137,38 @@ extends|extends
 name|E
 argument_list|>
 name|es
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
-block|}
-return|;
-block|}
-DECL|method|removeOnlySortedSet (final SortedSet<E> set)
-specifier|private
+block|;       }
+end_expr_stmt
+
+begin_expr_stmt
+unit|};   }    private
+DECL|method|removeOnlySortedSet ( final SortedSet<E> set)
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|SortedSet
 argument_list|<
 name|E
 argument_list|>
 name|removeOnlySortedSet
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|SortedSet
 argument_list|<
 name|E
 argument_list|>
 name|set
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -4602,28 +5192,29 @@ return|return
 name|set
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|boolean
 name|add
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|element
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
-annotation|@
+block|;       }
+expr|@
 name|Override
 specifier|public
 name|boolean
 name|addAll
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
@@ -4631,15 +5222,14 @@ extends|extends
 name|E
 argument_list|>
 name|es
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
-annotation|@
+block|;       }
+expr|@
 name|Override
 specifier|public
 name|SortedSet
@@ -4647,10 +5237,12 @@ argument_list|<
 name|E
 argument_list|>
 name|headSet
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|removeOnlySortedSet
@@ -4664,6 +5256,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 specifier|public
@@ -4673,9 +5268,13 @@ name|E
 argument_list|>
 name|subSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|)
@@ -4694,6 +5293,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 specifier|public
@@ -4703,6 +5305,8 @@ name|E
 argument_list|>
 name|tailSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|)
@@ -4719,31 +5323,34 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
-annotation|@
+end_function
+
+begin_expr_stmt
+unit|};   }    @
 name|GwtIncompatible
 comment|// NavigableSet
-DECL|method|removeOnlyNavigableSet (final NavigableSet<E> set)
+DECL|method|removeOnlyNavigableSet ( final NavigableSet<E> set)
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 name|removeOnlyNavigableSet
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 name|set
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -4767,28 +5374,29 @@ return|return
 name|set
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|boolean
 name|add
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|element
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
-annotation|@
+block|;       }
+expr|@
 name|Override
 specifier|public
 name|boolean
 name|addAll
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
@@ -4796,15 +5404,14 @@ extends|extends
 name|E
 argument_list|>
 name|es
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
-annotation|@
+block|;       }
+expr|@
 name|Override
 specifier|public
 name|SortedSet
@@ -4812,10 +5419,12 @@ argument_list|<
 name|E
 argument_list|>
 name|headSet
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|removeOnlySortedSet
@@ -4829,6 +5438,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 specifier|public
@@ -4838,6 +5450,8 @@ name|E
 argument_list|>
 name|headSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|,
@@ -4859,6 +5473,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 specifier|public
@@ -4868,9 +5485,13 @@ name|E
 argument_list|>
 name|subSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|)
@@ -4889,6 +5510,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 specifier|public
@@ -4898,12 +5522,16 @@ name|E
 argument_list|>
 name|subSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
 name|boolean
 name|fromInclusive
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|,
@@ -4929,6 +5557,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 specifier|public
@@ -4938,6 +5569,8 @@ name|E
 argument_list|>
 name|tailSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|)
@@ -4954,6 +5587,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 specifier|public
@@ -4963,6 +5599,8 @@ name|E
 argument_list|>
 name|tailSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
@@ -4984,6 +5622,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 specifier|public
@@ -5004,12 +5645,16 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_function
+
+begin_comment
+unit|};   }
 comment|/**    * Returns an immutable map whose keys are the distinct elements of {@code keys} and whose value    * for each key was computed by {@code valueFunction}. The map's iteration order is the order of    * the first appearance of each key in {@code keys}.    *    *<p>When there are multiple instances of a key in {@code keys}, it is unspecified whether {@code    * valueFunction} will be applied to more than one instance of that key and, if it is, which    * result will be mapped to that key in the returned map.    *    *<p>If {@code keys} is a {@link Set}, a live view can be obtained instead of a copy using {@link    * Maps#asMap(Set, Function)}.    *    * @throws NullPointerException if any element of {@code keys} is {@code null}, or if {@code    *     valueFunction} produces {@code null} for any key    * @since 14.0    */
+end_comment
+
+begin_function
 DECL|method|toMap ( Iterable<K> keys, Function<? super K, V> valueFunction)
-specifier|public
+unit|public
 specifier|static
 parameter_list|<
 name|K
@@ -5053,7 +5698,13 @@ name|valueFunction
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable map whose keys are the distinct elements of {@code keys} and whose value    * for each key was computed by {@code valueFunction}. The map's iteration order is the order of    * the first appearance of each key in {@code keys}.    *    *<p>When there are multiple instances of a key in {@code keys}, it is unspecified whether {@code    * valueFunction} will be applied to more than one instance of that key and, if it is, which    * result will be mapped to that key in the returned map.    *    * @throws NullPointerException if any element of {@code keys} is {@code null}, or if {@code    *     valueFunction} produces {@code null} for any key    * @since 14.0    */
+end_comment
+
+begin_function
 DECL|method|toMap ( Iterator<K> keys, Function<? super K, V> valueFunction)
 specifier|public
 specifier|static
@@ -5144,7 +5795,13 @@ name|builder
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a map with the given {@code values}, indexed by keys derived from those values. In    * other words, each input value produces an entry in the map whose key is the result of applying    * {@code keyFunction} to that value. These entries appear in the same order as the input values.    * Example usage:    *    *<pre>{@code    * Color red = new Color("red", 255, 0, 0);    * ...    * ImmutableSet<Color> allColors = ImmutableSet.of(red, green, blue);    *    * Map<String, Color> colorForName =    *     uniqueIndex(allColors, toStringFunction());    * assertThat(colorForName).containsEntry("red", red);    * }</pre>    *    *<p>If your index may associate multiple values with each key, use {@link    * Multimaps#index(Iterable, Function) Multimaps.index}.    *    * @param values the values to use when constructing the {@code Map}    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code keyFunction} on each value    *     in the input collection to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same key for more than one    *     value in the input collection    * @throws NullPointerException if any element of {@code values} is {@code null}, or if {@code    *     keyFunction} produces {@code null} for any value    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|uniqueIndex ( Iterable<V> values, Function<? super V, K> keyFunction)
@@ -5193,7 +5850,13 @@ name|keyFunction
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a map with the given {@code values}, indexed by keys derived from those values. In    * other words, each input value produces an entry in the map whose key is the result of applying    * {@code keyFunction} to that value. These entries appear in the same order as the input values.    * Example usage:    *    *<pre>{@code    * Color red = new Color("red", 255, 0, 0);    * ...    * Iterator<Color> allColors = ImmutableSet.of(red, green, blue).iterator();    *    * Map<String, Color> colorForName =    *     uniqueIndex(allColors, toStringFunction());    * assertThat(colorForName).containsEntry("red", red);    * }</pre>    *    *<p>If your index may associate multiple values with each key, use {@link    * Multimaps#index(Iterator, Function) Multimaps.index}.    *    * @param values the values to use when constructing the {@code Map}    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code keyFunction} on each value    *     in the input collection to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same key for more than one    *     value in the input collection    * @throws NullPointerException if any element of {@code values} is {@code null}, or if {@code    *     keyFunction} produces {@code null} for any value    * @since 10.0    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|uniqueIndex ( Iterator<V> values, Function<? super V, K> keyFunction)
@@ -5309,7 +5972,13 @@ argument_list|)
 throw|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates an {@code ImmutableMap<String, String>} from a {@code Properties} instance. Properties    * normally derive from {@code Map<Object, Object>}, but they typically contain strings, which is    * awkward. This method lets you get a plain-old-{@code Map} out of a {@code Properties}.    *    * @param properties a {@code Properties} object to be converted    * @return an immutable map containing all the entries in {@code properties}    * @throws ClassCastException if any key in {@code properties} is not a {@code String}    * @throws NullPointerException if any key or value in {@code properties} is null    */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.util.Properties
@@ -5363,28 +6032,36 @@ argument_list|()
 condition|;
 control|)
 block|{
+comment|/*        * requireNonNull is safe because propertyNames contains only non-null elements.        *        * Accordingly, we have it annotated as returning `Enumeration<? extends Object>` in our        * prototype checker's JDK. However, the checker still sees the return type as plain        * `Enumeration<?>`, probably because of one of the following two bugs (and maybe those two        * bugs are themselves just symptoms of the same underlying problem):        *        * https://github.com/typetools/checker-framework/issues/3030        *        * https://github.com/typetools/checker-framework/issues/3236        */
 name|String
 name|key
 init|=
 operator|(
 name|String
 operator|)
+name|requireNonNull
+argument_list|(
 name|e
 operator|.
 name|nextElement
 argument_list|()
+argument_list|)
 decl_stmt|;
+comment|/*        * requireNonNull is safe because the key came from propertyNames...        *        * ...except that it's possible for users to insert a string key with a non-string value, and        * in that case, getProperty *will* return null.        *        * TODO(b/192002623): Handle that case: Either:        *        * - Skip non-string keys and values entirely, as proposed in the linked bug.        *        * - Throw ClassCastException instead of NullPointerException, as documented in the current        *   Javadoc. (Note that we can't necessarily "just" change our call to `getProperty` to `get`        *   because `get` does not consult the default properties.)        */
 name|builder
 operator|.
 name|put
 argument_list|(
 name|key
 argument_list|,
+name|requireNonNull
+argument_list|(
 name|properties
 operator|.
 name|getProperty
 argument_list|(
 name|key
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5396,7 +6073,13 @@ name|build
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable map entry with the specified key and value. The {@link Entry#setValue}    * operation throws an {@link UnsupportedOperationException}.    *    *<p>The returned entry is serializable.    *    *<p><b>Java 9 users:</b> consider using {@code java.util.Map.entry(key, value)} if the key and    * value are non-null and the entry does not need to be serializable.    *    * @param key the key to be associated with the returned entry    * @param value the value to be associated with the returned entry    */
+end_comment
+
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -5404,14 +6087,23 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-DECL|method|immutableEntry (@ullableDecl K key, @NullableDecl V value)
+end_annotation
+
+begin_expr_stmt
+DECL|method|immutableEntry ( @arametricNullness K key, @ParametricNullness V value)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Entry
 argument_list|<
 name|K
@@ -5419,17 +6111,17 @@ argument_list|,
 name|V
 argument_list|>
 name|immutableEntry
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
-parameter_list|,
+argument_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|value
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -5442,14 +6134,26 @@ name|value
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns an unmodifiable view of the specified set of entries. The {@link Entry#setValue}    * operation throws an {@link UnsupportedOperationException}, as do any operations that would    * modify the returned set.    *    * @param entrySet the entries for which to return an unmodifiable view    * @return an unmodifiable view of the entries    */
-DECL|method|unmodifiableEntrySet (Set<Entry<K, V>> entrySet)
+end_comment
+
+begin_expr_stmt
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|unmodifiableEntrySet (Set<Entry<K, V>> entrySet)
 name|Set
 argument_list|<
 name|Entry
@@ -5460,7 +6164,7 @@ name|V
 argument_list|>
 argument_list|>
 name|unmodifiableEntrySet
-parameter_list|(
+argument_list|(
 name|Set
 argument_list|<
 name|Entry
@@ -5471,7 +6175,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entrySet
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -5487,14 +6191,26 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns an unmodifiable view of the specified map entry. The {@link Entry#setValue} operation    * throws an {@link UnsupportedOperationException}. This also has the side-effect of redefining    * {@code equals} to comply with the Entry contract, to avoid a possible nefarious implementation    * of equals.    *    * @param entry the entry for which to return an unmodifiable view    * @return an unmodifiable view of the entry    */
-DECL|method|unmodifiableEntry (final Entry<? extends K, ? extends V> entry)
+end_comment
+
+begin_expr_stmt
+DECL|method|unmodifiableEntry ( final Entry<? extends K, ? extends V> entry)
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Entry
 argument_list|<
 name|K
@@ -5502,8 +6218,8 @@ argument_list|,
 name|V
 argument_list|>
 name|unmodifiableEntry
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Entry
 argument_list|<
 name|?
@@ -5515,13 +6231,13 @@ extends|extends
 name|V
 argument_list|>
 name|entry
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|entry
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|AbstractMapEntry
@@ -5534,24 +6250,28 @@ argument_list|()
 block|{
 annotation|@
 name|Override
-specifier|public
-name|K
-name|getKey
-parameter_list|()
-block|{
-return|return
-name|entry
-operator|.
-name|getKey
-argument_list|()
-return|;
-block|}
 annotation|@
+name|ParametricNullness
+specifier|public
+name|K
+name|getKey
+parameter_list|()
+block|{
+return|return
+name|entry
+operator|.
+name|getKey
+argument_list|()
+return|;
+block|}
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 specifier|public
 name|V
 name|getValue
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|entry
@@ -5560,16 +6280,22 @@ name|getValue
 argument_list|()
 return|;
 block|}
-block|}
-return|;
-block|}
-DECL|method|unmodifiableEntryIterator ( final Iterator<Entry<K, V>> entryIterator)
-specifier|static
-parameter_list|<
+end_expr_stmt
+
+begin_expr_stmt
+unit|};   }    static
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|unmodifiableEntryIterator ( final Iterator<Entry<K, V>> entryIterator)
 name|UnmodifiableIterator
 argument_list|<
 name|Entry
@@ -5580,8 +6306,8 @@ name|V
 argument_list|>
 argument_list|>
 name|unmodifiableEntryIterator
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Iterator
 argument_list|<
 name|Entry
@@ -5592,7 +6318,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entryIterator
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -5621,7 +6347,7 @@ name|hasNext
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|Entry
@@ -5631,7 +6357,7 @@ argument_list|,
 name|V
 argument_list|>
 name|next
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|unmodifiableEntry
@@ -5643,20 +6369,30 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|};   }
 comment|/** @see Multimaps#unmodifiableEntries */
+end_comment
+
+begin_expr_stmt
 DECL|class|UnmodifiableEntries
-specifier|static
-class|class
+unit|static
+name|class
 name|UnmodifiableEntries
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingCollection
 argument_list|<
 name|Entry
@@ -5669,7 +6405,7 @@ argument_list|>
 block|{
 DECL|field|entries
 specifier|private
-specifier|final
+name|final
 name|Collection
 argument_list|<
 name|Entry
@@ -5680,10 +6416,10 @@ name|V
 argument_list|>
 argument_list|>
 name|entries
-decl_stmt|;
+block|;
 DECL|method|UnmodifiableEntries (Collection<Entry<K, V>> entries)
 name|UnmodifiableEntries
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|Entry
@@ -5694,16 +6430,15 @@ name|V
 argument_list|>
 argument_list|>
 name|entries
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|entries
 operator|=
 name|entries
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -5717,13 +6452,13 @@ name|V
 argument_list|>
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|entries
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|iterator ()
 specifier|public
@@ -5737,7 +6472,7 @@ name|V
 argument_list|>
 argument_list|>
 name|iterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|unmodifiableEntryIterator
@@ -5749,7 +6484,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|// See java.util.Collections.UnmodifiableEntrySet for details on attacks.
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toArray ()
@@ -5759,26 +6500,59 @@ index|[]
 name|toArray
 parameter_list|()
 block|{
-return|return
+comment|/*        * standardToArray returns `@Nullable Object[]` rather than `Object[]` but only because it can        * be used with collections that may contain null. This collection never contains nulls, so we        * can treat it as a plain `Object[]`.        */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+name|Object
+index|[]
+name|result
+init|=
 name|standardToArray
 argument_list|()
+decl_stmt|;
+return|return
+name|result
 return|;
 block|}
+end_function
+
+begin_annotation
 annotation|@
 name|Override
+end_annotation
+
+begin_annotation
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+end_annotation
+
+begin_comment
+comment|// b/192354773 in our checker affects toArray declarations
+end_comment
+
+begin_expr_stmt
 DECL|method|toArray (T[] array)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|array
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|standardToArray
@@ -5787,25 +6561,37 @@ name|array
 argument_list|)
 return|;
 block|}
-block|}
+end_expr_stmt
+
+begin_comment
+unit|}
 comment|/** @see Maps#unmodifiableEntrySet(Set) */
+end_comment
+
+begin_expr_stmt
 DECL|class|UnmodifiableEntrySet
-specifier|static
-class|class
+unit|static
+name|class
 name|UnmodifiableEntrySet
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|UnmodifiableEntries
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|Set
 argument_list|<
 name|Entry
@@ -5818,7 +6604,7 @@ argument_list|>
 block|{
 DECL|method|UnmodifiableEntrySet (Set<Entry<K, V>> entries)
 name|UnmodifiableEntrySet
-parameter_list|(
+argument_list|(
 name|Set
 argument_list|<
 name|Entry
@@ -5829,27 +6615,26 @@ name|V
 argument_list|>
 argument_list|>
 name|entries
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|entries
 argument_list|)
-expr_stmt|;
-block|}
+block|;     }
 comment|// See java.util.Collections.UnmodifiableEntrySet for details on attacks.
-annotation|@
+expr|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Sets
@@ -5862,13 +6647,13 @@ name|object
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Sets
@@ -5879,10 +6664,16 @@ name|this
 argument_list|)
 return|;
 block|}
-block|}
+end_expr_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns a {@link Converter} that converts values using {@link BiMap#get bimap.get()}, and whose    * inverse view converts values using {@link BiMap#inverse bimap.inverse()}{@code .get()}.    *    *<p>To use a plain {@link Map} as a {@link Function}, see {@link    * com.google.common.base.Functions#forMap(Map)} or {@link    * com.google.common.base.Functions#forMap(Map, Object)}.    *    * @since 16.0    */
+end_comment
+
+begin_function
 DECL|method|asConverter (final BiMap<A, B> bimap)
-specifier|public
+unit|public
 specifier|static
 parameter_list|<
 name|A
@@ -5916,6 +6707,9 @@ name|bimap
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|BiMapConverter
 specifier|private
 specifier|static
@@ -6063,13 +6857,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -6158,15 +6952,27 @@ init|=
 literal|0L
 decl_stmt|;
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns a synchronized (thread-safe) bimap backed by the specified bimap. In order to guarantee    * serial access, it is critical that<b>all</b> access to the backing bimap is accomplished    * through the returned bimap.    *    *<p>It is imperative that the user manually synchronize on the returned map when accessing any    * of its collection views:    *    *<pre>{@code    * BiMap<Long, String> map = Maps.synchronizedBiMap(    *     HashBiMap.<Long, String>create());    * ...    * Set<Long> set = map.keySet();  // Needn't be in synchronized block    * ...    * synchronized (map) {  // Synchronizing on map, not set!    *   Iterator<Long> it = set.iterator(); // Must be in synchronized block    *   while (it.hasNext()) {    *     foo(it.next());    *   }    * }    * }</pre>    *    *<p>Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned bimap will be serializable if the specified bimap is serializable.    *    * @param bimap the bimap to be wrapped in a synchronized view    * @return a synchronized view of the specified bimap    */
-DECL|method|synchronizedBiMap (BiMap<K, V> bimap)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|synchronizedBiMap (BiMap<K, V> bimap)
 name|BiMap
 argument_list|<
 name|K
@@ -6174,7 +6980,7 @@ argument_list|,
 name|V
 argument_list|>
 name|synchronizedBiMap
-parameter_list|(
+argument_list|(
 name|BiMap
 argument_list|<
 name|K
@@ -6182,7 +6988,7 @@ argument_list|,
 name|V
 argument_list|>
 name|bimap
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Synchronized
@@ -6195,15 +7001,27 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns an unmodifiable view of the specified bimap. This method allows modules to provide    * users with "read-only" access to internal bimaps. Query operations on the returned bimap "read    * through" to the specified bimap, and attempts to modify the returned map, whether direct or via    * its collection views, result in an {@code UnsupportedOperationException}.    *    *<p>The returned bimap will be serializable if the specified bimap is serializable.    *    * @param bimap the bimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified bimap    */
-DECL|method|unmodifiableBiMap (BiMap<? extends K, ? extends V> bimap)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|unmodifiableBiMap (BiMap<? extends K, ? extends V> bimap)
 name|BiMap
 argument_list|<
 name|K
@@ -6211,7 +7029,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unmodifiableBiMap
-parameter_list|(
+argument_list|(
 name|BiMap
 argument_list|<
 name|?
@@ -6223,7 +7041,7 @@ extends|extends
 name|V
 argument_list|>
 name|bimap
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -6236,36 +7054,48 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/** @see Maps#unmodifiableBiMap(BiMap) */
+end_comment
+
+begin_expr_stmt
 DECL|class|UnmodifiableBiMap
 specifier|private
 specifier|static
-class|class
+name|class
 name|UnmodifiableBiMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|BiMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|unmodifiableMap
-specifier|final
+name|final
 name|Map
 argument_list|<
 name|K
@@ -6273,9 +7103,9 @@ argument_list|,
 name|V
 argument_list|>
 name|unmodifiableMap
-decl_stmt|;
+block|;
 DECL|field|delegate
-specifier|final
+name|final
 name|BiMap
 argument_list|<
 name|?
@@ -6287,12 +7117,11 @@ extends|extends
 name|V
 argument_list|>
 name|delegate
-decl_stmt|;
+block|;     @
 DECL|field|inverse
-annotation|@
 name|RetainedWith
-annotation|@
-name|NullableDecl
+expr|@
+name|CheckForNull
 name|BiMap
 argument_list|<
 name|V
@@ -6300,20 +7129,19 @@ argument_list|,
 name|K
 argument_list|>
 name|inverse
-decl_stmt|;
+block|;     @
 DECL|field|values
-annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|transient
 name|Set
 argument_list|<
 name|V
 argument_list|>
 name|values
-decl_stmt|;
-DECL|method|UnmodifiableBiMap (BiMap<? extends K, ? extends V> delegate, @NullableDecl BiMap<V, K> inverse)
+block|;
+DECL|method|UnmodifiableBiMap (BiMap<? extends K, ? extends V> delegate, @CheckForNull BiMap<V, K> inverse)
 name|UnmodifiableBiMap
-parameter_list|(
+argument_list|(
 name|BiMap
 argument_list|<
 name|?
@@ -6325,9 +7153,9 @@ extends|extends
 name|V
 argument_list|>
 name|delegate
-parameter_list|,
-annotation|@
-name|NullableDecl
+operator|,
+condition|@
+name|CheckForNull
 name|BiMap
 argument_list|<
 name|V
@@ -6335,7 +7163,7 @@ argument_list|,
 name|K
 argument_list|>
 name|inverse
-parameter_list|)
+argument_list|)
 block|{
 name|unmodifiableMap
 operator|=
@@ -6345,21 +7173,20 @@ name|unmodifiableMap
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|delegate
 operator|=
 name|delegate
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|inverse
 operator|=
 name|inverse
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -6370,33 +7197,38 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|unmodifiableMap
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|forcePut (K key, V value)
+expr|@
+name|CheckForNull
+DECL|method|forcePut (@arametricNullness K key, @ParametricNullness V value)
 specifier|public
 name|V
 name|forcePut
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|V
 name|value
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|inverse ()
 specifier|public
@@ -6407,7 +7239,7 @@ argument_list|,
 name|K
 argument_list|>
 name|inverse
-parameter_list|()
+argument_list|()
 block|{
 name|BiMap
 argument_list|<
@@ -6416,9 +7248,9 @@ argument_list|,
 name|K
 argument_list|>
 name|result
-init|=
+operator|=
 name|inverse
-decl_stmt|;
+block|;
 return|return
 operator|(
 name|result
@@ -6443,6 +7275,9 @@ else|:
 name|result
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -6484,6 +7319,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -6493,18 +7331,33 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns a view of a map where each value is transformed by a function. All other properties of    * the map, such as iteration order, are left intact. For example, the code:    *    *<pre>{@code    * Map<String, Integer> map = ImmutableMap.of("a", 4, "b", 9);    * Function<Integer, Double> sqrt =    *     new Function<Integer, Double>() {    *       public Double apply(Integer in) {    *         return Math.sqrt((int) in);    *       }    *     };    * Map<String, Double> transformed = Maps.transformValues(map, sqrt);    * System.out.println(transformed);    * }</pre>    *    * ... prints {@code {a=2.0, b=3.0}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely, this view supports    * removal operations, and these are reflected in the underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys, and even null values provided    * that the function is capable of accepting null input. The transformed map might contain null    * values, if the function sometimes gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the underlying map is.    *    *<p>The function is applied lazily, invoked when needed. This is necessary for the returned map    * to be a view, but it means that the function will be applied many times for bulk operations    * like {@link Map#containsValue} and {@code Map.toString()}. For this to perform well, {@code    * function} should be fast. To avoid lazy evaluation when the returned map doesn't need to be a    * view, copy the returned map into a new map of your choosing.    */
-DECL|method|transformValues ( Map<K, V1> fromMap, Function<? super V1, V2> function)
-specifier|public
+end_comment
+
+begin_expr_stmt
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|transformValues (Map<K, V1> fromMap, Function<? super V1, V2> function)
 name|Map
 argument_list|<
 name|K
@@ -6512,7 +7365,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformValues
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -6520,7 +7373,7 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMap
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -6530,7 +7383,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|transformEntries
@@ -6544,17 +7397,32 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a view of a sorted map where each value is transformed by a function. All other    * properties of the map, such as iteration order, are left intact. For example, the code:    *    *<pre>{@code    * SortedMap<String, Integer> map = ImmutableSortedMap.of("a", 4, "b", 9);    * Function<Integer, Double> sqrt =    *     new Function<Integer, Double>() {    *       public Double apply(Integer in) {    *         return Math.sqrt((int) in);    *       }    *     };    * SortedMap<String, Double> transformed =    *      Maps.transformValues(map, sqrt);    * System.out.println(transformed);    * }</pre>    *    * ... prints {@code {a=2.0, b=3.0}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely, this view supports    * removal operations, and these are reflected in the underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys, and even null values provided    * that the function is capable of accepting null input. The transformed map might contain null    * values, if the function sometimes gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the underlying map is.    *    *<p>The function is applied lazily, invoked when needed. This is necessary for the returned map    * to be a view, but it means that the function will be applied many times for bulk operations    * like {@link Map#containsValue} and {@code Map.toString()}. For this to perform well, {@code    * function} should be fast. To avoid lazy evaluation when the returned map doesn't need to be a    * view, copy the returned map into a new map of your choosing.    *    * @since 11.0    */
-DECL|method|transformValues ( SortedMap<K, V1> fromMap, Function<? super V1, V2> function)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|transformValues ( SortedMap<K, V1> fromMap, Function<? super V1, V2> function)
 name|SortedMap
 argument_list|<
 name|K
@@ -6562,7 +7430,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformValues
-parameter_list|(
+argument_list|(
 name|SortedMap
 argument_list|<
 name|K
@@ -6570,7 +7438,7 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMap
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -6580,7 +7448,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|transformEntries
@@ -6594,20 +7462,41 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a view of a navigable map where each value is transformed by a function. All other    * properties of the map, such as iteration order, are left intact. For example, the code:    *    *<pre>{@code    * NavigableMap<String, Integer> map = Maps.newTreeMap();    * map.put("a", 4);    * map.put("b", 9);    * Function<Integer, Double> sqrt =    *     new Function<Integer, Double>() {    *       public Double apply(Integer in) {    *         return Math.sqrt((int) in);    *       }    *     };    * NavigableMap<String, Double> transformed =    *      Maps.transformNavigableValues(map, sqrt);    * System.out.println(transformed);    * }</pre>    *    * ... prints {@code {a=2.0, b=3.0}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely, this view supports    * removal operations, and these are reflected in the underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys, and even null values provided    * that the function is capable of accepting null input. The transformed map might contain null    * values, if the function sometimes gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the underlying map is.    *    *<p>The function is applied lazily, invoked when needed. This is necessary for the returned map    * to be a view, but it means that the function will be applied many times for bulk operations    * like {@link Map#containsValue} and {@code Map.toString()}. For this to perform well, {@code    * function} should be fast. To avoid lazy evaluation when the returned map doesn't need to be a    * view, copy the returned map into a new map of your choosing.    *    * @since 13.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// NavigableMap
-DECL|method|transformValues ( NavigableMap<K, V1> fromMap, Function<? super V1, V2> function)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|transformValues ( NavigableMap<K, V1> fromMap, Function<? super V1, V2> function)
 name|NavigableMap
 argument_list|<
 name|K
@@ -6615,7 +7504,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformValues
-parameter_list|(
+argument_list|(
 name|NavigableMap
 argument_list|<
 name|K
@@ -6623,7 +7512,7 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMap
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -6633,7 +7522,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|transformEntries
@@ -6647,17 +7536,32 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a view of a map whose values are derived from the original map's entries. In contrast    * to {@link #transformValues}, this method's entry-transformation logic may depend on the key as    * well as the value.    *    *<p>All other properties of the transformed map, such as iteration order, are left intact. For    * example, the code:    *    *<pre>{@code    * Map<String, Boolean> options =    *     ImmutableMap.of("verbose", true, "sort", false);    * EntryTransformer<String, Boolean, String> flagPrefixer =    *     new EntryTransformer<String, Boolean, String>() {    *       public String transformEntry(String key, Boolean value) {    *         return value ? key : "no" + key;    *       }    *     };    * Map<String, String> transformed =    *     Maps.transformEntries(options, flagPrefixer);    * System.out.println(transformed);    * }</pre>    *    * ... prints {@code {verbose=verbose, sort=nosort}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely, this view supports    * removal operations, and these are reflected in the underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys and null values provided that    * the transformer is capable of accepting null inputs. The transformed map might contain null    * values if the transformer sometimes gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the underlying map is.    *    *<p>The transformer is applied lazily, invoked when needed. This is necessary for the returned    * map to be a view, but it means that the transformer will be applied many times for bulk    * operations like {@link Map#containsValue} and {@link Object#toString}. For this to perform    * well, {@code transformer} should be fast. To avoid lazy evaluation when the returned map    * doesn't need to be a view, copy the returned map into a new map of your choosing.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of {@code    * EntryTransformer} key type {@code K}, {@code k.equals(k2)} implies that {@code k2} is also of    * type {@code K}. Using an {@code EntryTransformer} key type for which this may not hold, such as    * {@code ArrayList}, may risk a {@code ClassCastException} when calling methods on the    * transformed map.    *    * @since 7.0    */
-DECL|method|transformEntries ( Map<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|transformEntries ( Map<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
 name|Map
 argument_list|<
 name|K
@@ -6665,7 +7569,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformEntries
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -6673,7 +7577,7 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMap
-parameter_list|,
+argument_list|,
 name|EntryTransformer
 argument_list|<
 name|?
@@ -6687,7 +7591,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -6700,17 +7604,32 @@ name|transformer
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a view of a sorted map whose values are derived from the original sorted map's entries.    * In contrast to {@link #transformValues}, this method's entry-transformation logic may depend on    * the key as well as the value.    *    *<p>All other properties of the transformed map, such as iteration order, are left intact. For    * example, the code:    *    *<pre>{@code    * Map<String, Boolean> options =    *     ImmutableSortedMap.of("verbose", true, "sort", false);    * EntryTransformer<String, Boolean, String> flagPrefixer =    *     new EntryTransformer<String, Boolean, String>() {    *       public String transformEntry(String key, Boolean value) {    *         return value ? key : "yes" + key;    *       }    *     };    * SortedMap<String, String> transformed =    *     Maps.transformEntries(options, flagPrefixer);    * System.out.println(transformed);    * }</pre>    *    * ... prints {@code {sort=yessort, verbose=verbose}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely, this view supports    * removal operations, and these are reflected in the underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys and null values provided that    * the transformer is capable of accepting null inputs. The transformed map might contain null    * values if the transformer sometimes gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the underlying map is.    *    *<p>The transformer is applied lazily, invoked when needed. This is necessary for the returned    * map to be a view, but it means that the transformer will be applied many times for bulk    * operations like {@link Map#containsValue} and {@link Object#toString}. For this to perform    * well, {@code transformer} should be fast. To avoid lazy evaluation when the returned map    * doesn't need to be a view, copy the returned map into a new map of your choosing.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of {@code    * EntryTransformer} key type {@code K}, {@code k.equals(k2)} implies that {@code k2} is also of    * type {@code K}. Using an {@code EntryTransformer} key type for which this may not hold, such as    * {@code ArrayList}, may risk a {@code ClassCastException} when calling methods on the    * transformed map.    *    * @since 11.0    */
-DECL|method|transformEntries ( SortedMap<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|transformEntries ( SortedMap<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
 name|SortedMap
 argument_list|<
 name|K
@@ -6718,7 +7637,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformEntries
-parameter_list|(
+argument_list|(
 name|SortedMap
 argument_list|<
 name|K
@@ -6726,7 +7645,7 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMap
-parameter_list|,
+argument_list|,
 name|EntryTransformer
 argument_list|<
 name|?
@@ -6740,7 +7659,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -6753,20 +7672,41 @@ name|transformer
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a view of a navigable map whose values are derived from the original navigable map's    * entries. In contrast to {@link #transformValues}, this method's entry-transformation logic may    * depend on the key as well as the value.    *    *<p>All other properties of the transformed map, such as iteration order, are left intact. For    * example, the code:    *    *<pre>{@code    * NavigableMap<String, Boolean> options = Maps.newTreeMap();    * options.put("verbose", false);    * options.put("sort", true);    * EntryTransformer<String, Boolean, String> flagPrefixer =    *     new EntryTransformer<String, Boolean, String>() {    *       public String transformEntry(String key, Boolean value) {    *         return value ? key : ("yes" + key);    *       }    *     };    * NavigableMap<String, String> transformed =    *     LabsMaps.transformNavigableEntries(options, flagPrefixer);    * System.out.println(transformed);    * }</pre>    *    * ... prints {@code {sort=yessort, verbose=verbose}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely, this view supports    * removal operations, and these are reflected in the underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys and null values provided that    * the transformer is capable of accepting null inputs. The transformed map might contain null    * values if the transformer sometimes gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the underlying map is.    *    *<p>The transformer is applied lazily, invoked when needed. This is necessary for the returned    * map to be a view, but it means that the transformer will be applied many times for bulk    * operations like {@link Map#containsValue} and {@link Object#toString}. For this to perform    * well, {@code transformer} should be fast. To avoid lazy evaluation when the returned map    * doesn't need to be a view, copy the returned map into a new map of your choosing.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of {@code    * EntryTransformer} key type {@code K}, {@code k.equals(k2)} implies that {@code k2} is also of    * type {@code K}. Using an {@code EntryTransformer} key type for which this may not hold, such as    * {@code ArrayList}, may risk a {@code ClassCastException} when calling methods on the    * transformed map.    *    * @since 13.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// NavigableMap
-DECL|method|transformEntries ( NavigableMap<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|transformEntries ( NavigableMap<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
 name|NavigableMap
 argument_list|<
 name|K
@@ -6774,7 +7714,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformEntries
-parameter_list|(
+argument_list|(
 name|NavigableMap
 argument_list|<
 name|K
@@ -6782,7 +7722,7 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMap
-parameter_list|,
+argument_list|,
 name|EntryTransformer
 argument_list|<
 name|?
@@ -6796,7 +7736,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -6809,46 +7749,69 @@ name|transformer
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * A transformation of the value of a key-value pair, using both key and value as inputs. To apply    * the transformation to a map, use {@link Maps#transformEntries(Map, EntryTransformer)}.    *    * @param<K> the key type of the input and output entries    * @param<V1> the value type of the input entry    * @param<V2> the value type of the output entry    * @since 7.0    */
+end_comment
+
+begin_expr_stmt
 DECL|interface|EntryTransformer
 specifier|public
-interface|interface
+expr|interface
 name|EntryTransformer
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 block|{
 comment|/**      * Determines an output value based on a key-value pair. This method is<i>generally      * expected</i>, but not absolutely required, to have the following properties:      *      *<ul>      *<li>Its execution does not cause any observable side effects.      *<li>The computation is<i>consistent with equals</i>; that is, {@link Objects#equal      *       Objects.equal}{@code (k1, k2)&&} {@link Objects#equal}{@code (v1, v2)} implies that      *       {@code Objects.equal(transformer.transform(k1, v1), transformer.transform(k2, v2))}.      *</ul>      *      * @throws NullPointerException if the key or value is null and this transformer does not accept      *     null arguments      */
-DECL|method|transformEntry (@ullableDecl K key, @NullableDecl V1 value)
+DECL|method|transformEntry (@arametricNullness K key, @ParametricNullness V1 value)
 name|V2
 name|transformEntry
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
-parameter_list|,
+argument_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V1
 name|value
-parameter_list|)
-function_decl|;
-block|}
+argument_list|)
+block|;   }
 comment|/** Views a function as an entry transformer that ignores the entry key. */
-DECL|method|asEntryTransformer ( final Function<? super V1, V2> function)
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|asEntryTransformer (final Function<? super V1, V2> function)
 name|EntryTransformer
 argument_list|<
 name|K
@@ -6858,8 +7821,8 @@ argument_list|,
 name|V2
 argument_list|>
 name|asEntryTransformer
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Function
 argument_list|<
 name|?
@@ -6869,13 +7832,13 @@ argument_list|,
 name|V2
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|function
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|EntryTransformer
@@ -6890,13 +7853,19 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|V2
 name|transformEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|V1
 name|value
 parameter_list|)
@@ -6910,18 +7879,27 @@ name|value
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
-DECL|method|asValueToValueFunction ( final EntryTransformer<? super K, V1, V2> transformer, final K key)
-specifier|static
-parameter_list|<
+end_expr_stmt
+
+begin_expr_stmt
+unit|};   }    static
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|asValueToValueFunction ( final EntryTransformer<? super K, V1, V2> transformer, @ParametricNullness final K key)
 name|Function
 argument_list|<
 name|V1
@@ -6929,8 +7907,8 @@ argument_list|,
 name|V2
 argument_list|>
 name|asValueToValueFunction
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|EntryTransformer
 argument_list|<
 name|?
@@ -6942,17 +7920,19 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-parameter_list|,
-specifier|final
+operator|,
+condition|@
+name|ParametricNullness
+name|final
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|transformer
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|Function
@@ -6965,12 +7945,14 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|V2
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V1
 name|v1
 parameter_list|)
@@ -6986,19 +7968,32 @@ name|v1
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|};   }
 comment|/** Views an entry transformer as a function from {@code Entry} to values. */
-DECL|method|asEntryToValueFunction ( final EntryTransformer<? super K, ? super V1, V2> transformer)
-specifier|static
-parameter_list|<
+end_comment
+
+begin_expr_stmt
+unit|static
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|asEntryToValueFunction ( final EntryTransformer<? super K, ? super V1, V2> transformer)
 name|Function
 argument_list|<
 name|Entry
@@ -7011,8 +8006,8 @@ argument_list|,
 name|V2
 argument_list|>
 name|asEntryToValueFunction
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|EntryTransformer
 argument_list|<
 name|?
@@ -7026,13 +8021,13 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|transformer
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|Function
@@ -7050,6 +8045,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|V2
 name|apply
@@ -7080,19 +8077,32 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|};   }
 comment|/** Returns a view of an entry transformed by the specified transformer. */
-DECL|method|transformEntry ( final EntryTransformer<? super K, ? super V1, V2> transformer, final Entry<K, V1> entry)
-specifier|static
-parameter_list|<
+end_comment
+
+begin_expr_stmt
+unit|static
+operator|<
 name|V2
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|transformEntry ( final EntryTransformer<? super K, ? super V1, V2> transformer, final Entry<K, V1> entry)
 name|Entry
 argument_list|<
 name|K
@@ -7100,8 +8110,8 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformEntry
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|EntryTransformer
 argument_list|<
 name|?
@@ -7115,8 +8125,8 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-parameter_list|,
-specifier|final
+operator|,
+name|final
 name|Entry
 argument_list|<
 name|K
@@ -7124,18 +8134,18 @@ argument_list|,
 name|V1
 argument_list|>
 name|entry
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|transformer
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|entry
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|AbstractMapEntry
@@ -7148,6 +8158,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|K
 name|getKey
@@ -7160,12 +8172,14 @@ name|getKey
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 specifier|public
 name|V2
 name|getValue
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|transformer
@@ -7184,19 +8198,32 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|};   }
 comment|/** Views an entry transformer as a function from entries to entries. */
-DECL|method|asEntryToEntryFunction ( final EntryTransformer<? super K, ? super V1, V2> transformer)
-specifier|static
-parameter_list|<
+end_comment
+
+begin_expr_stmt
+unit|static
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|asEntryToEntryFunction ( final EntryTransformer<? super K, ? super V1, V2> transformer)
 name|Function
 argument_list|<
 name|Entry
@@ -7214,8 +8241,8 @@ name|V2
 argument_list|>
 argument_list|>
 name|asEntryToEntryFunction
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|EntryTransformer
 argument_list|<
 name|?
@@ -7229,13 +8256,13 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|transformer
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|Function
@@ -7286,21 +8313,30 @@ name|entry
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_expr_stmt
+unit|};   }    static
 DECL|class|TransformedEntriesMap
-specifier|static
-class|class
+name|class
 name|TransformedEntriesMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|IteratorBasedAbstractMap
 argument_list|<
 name|K
@@ -7309,7 +8345,7 @@ name|V2
 argument_list|>
 block|{
 DECL|field|fromMap
-specifier|final
+name|final
 name|Map
 argument_list|<
 name|K
@@ -7317,9 +8353,9 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMap
-decl_stmt|;
+block|;
 DECL|field|transformer
-specifier|final
+name|final
 name|EntryTransformer
 argument_list|<
 name|?
@@ -7333,10 +8369,10 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-decl_stmt|;
+block|;
 DECL|method|TransformedEntriesMap ( Map<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
 name|TransformedEntriesMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -7344,7 +8380,7 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMap
-parameter_list|,
+argument_list|,
 name|EntryTransformer
 argument_list|<
 name|?
@@ -7358,7 +8394,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -7368,7 +8404,7 @@ name|checkNotNull
 argument_list|(
 name|fromMap
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|transformer
@@ -7377,15 +8413,14 @@ name|checkNotNull
 argument_list|(
 name|transformer
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|size ()
 specifier|public
 name|int
 name|size
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|fromMap
@@ -7394,16 +8429,18 @@ name|size
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
-parameter_list|(
+argument_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|fromMap
@@ -7414,7 +8451,13 @@ name|key
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|// safe as long as the user followed the<b>Warning</b> in the javadoc
+end_comment
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -7422,11 +8465,15 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
-DECL|method|get (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V2
 name|get
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -7441,8 +8488,8 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
-return|return
-operator|(
+if|if
+condition|(
 name|value
 operator|!=
 literal|null
@@ -7453,8 +8500,10 @@ name|containsKey
 argument_list|(
 name|key
 argument_list|)
-operator|)
-condition|?
+condition|)
+block|{
+comment|// The cast is safe because of the containsKey check.
+return|return
 name|transformer
 operator|.
 name|transformEntry
@@ -7464,13 +8513,24 @@ name|K
 operator|)
 name|key
 argument_list|,
+name|uncheckedCastNullableTToT
+argument_list|(
 name|value
 argument_list|)
-else|:
+argument_list|)
+return|;
+block|}
+return|return
 literal|null
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// safe as long as the user followed the<b>Warning</b> in the javadoc
+end_comment
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -7478,11 +8538,15 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
-DECL|method|remove (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|V2
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -7494,6 +8558,7 @@ name|containsKey
 argument_list|(
 name|key
 argument_list|)
+comment|// The cast is safe because of the containsKey check.
 condition|?
 name|transformer
 operator|.
@@ -7504,6 +8569,8 @@ name|K
 operator|)
 name|key
 argument_list|,
+name|uncheckedCastNullableTToT
+argument_list|(
 name|fromMap
 operator|.
 name|remove
@@ -7511,10 +8578,14 @@ argument_list|(
 name|key
 argument_list|)
 argument_list|)
+argument_list|)
 else|:
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -7529,6 +8600,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -7547,6 +8621,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entryIterator ()
@@ -7591,6 +8668,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -7611,19 +8691,30 @@ name|this
 argument_list|)
 return|;
 block|}
-block|}
+end_function
+
+begin_expr_stmt
+unit|}    static
 DECL|class|TransformedEntriesSortedMap
-specifier|static
-class|class
+name|class
 name|TransformedEntriesSortedMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|TransformedEntriesMap
 argument_list|<
 name|K
@@ -7632,7 +8723,7 @@ name|V1
 argument_list|,
 name|V2
 argument_list|>
-implements|implements
+expr|implements
 name|SortedMap
 argument_list|<
 name|K
@@ -7649,7 +8740,7 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMap
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -7665,7 +8756,7 @@ return|;
 block|}
 DECL|method|TransformedEntriesSortedMap ( SortedMap<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
 name|TransformedEntriesSortedMap
-parameter_list|(
+argument_list|(
 name|SortedMap
 argument_list|<
 name|K
@@ -7673,7 +8764,7 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMap
-parameter_list|,
+argument_list|,
 name|EntryTransformer
 argument_list|<
 name|?
@@ -7687,7 +8778,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -7695,10 +8786,11 @@ name|fromMap
 argument_list|,
 name|transformer
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
+expr|@
+name|CheckForNull
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -7708,7 +8800,7 @@ super|super
 name|K
 argument_list|>
 name|comparator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|fromMap
@@ -7718,8 +8810,13 @@ name|comparator
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|firstKey ()
 specifier|public
 name|K
@@ -7734,9 +8831,12 @@ name|firstKey
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headMap (K toKey)
+DECL|method|headMap (@arametricNullness K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -7746,6 +8846,8 @@ name|V2
 argument_list|>
 name|headMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -7765,8 +8867,13 @@ name|transformer
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|lastKey ()
 specifier|public
 name|K
@@ -7781,9 +8888,12 @@ name|lastKey
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subMap (K fromKey, K toKey)
+DECL|method|subMap (@arametricNullness K fromKey, @ParametricNullness K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -7793,9 +8903,13 @@ name|V2
 argument_list|>
 name|subMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -7817,9 +8931,12 @@ name|transformer
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMap (K fromKey)
+DECL|method|tailMap (@arametricNullness K fromKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -7829,6 +8946,8 @@ name|V2
 argument_list|>
 name|tailMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|)
@@ -7848,23 +8967,34 @@ name|transformer
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_function
+
+begin_expr_stmt
+unit|}    @
 name|GwtIncompatible
 comment|// NavigableMap
 DECL|class|TransformedEntriesNavigableMap
 specifier|private
 specifier|static
-class|class
+name|class
 name|TransformedEntriesNavigableMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|TransformedEntriesSortedMap
 argument_list|<
 name|K
@@ -7873,7 +9003,7 @@ name|V1
 argument_list|,
 name|V2
 argument_list|>
-implements|implements
+expr|implements
 name|NavigableMap
 argument_list|<
 name|K
@@ -7883,7 +9013,7 @@ argument_list|>
 block|{
 DECL|method|TransformedEntriesNavigableMap ( NavigableMap<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
 name|TransformedEntriesNavigableMap
-parameter_list|(
+argument_list|(
 name|NavigableMap
 argument_list|<
 name|K
@@ -7891,7 +9021,7 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMap
-parameter_list|,
+argument_list|,
 name|EntryTransformer
 argument_list|<
 name|?
@@ -7905,7 +9035,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -7913,11 +9043,12 @@ name|fromMap
 argument_list|,
 name|transformer
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|ceilingEntry (K key)
+expr|@
+name|CheckForNull
+DECL|method|ceilingEntry (@arametricNullness K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -7926,10 +9057,12 @@ argument_list|,
 name|V2
 argument_list|>
 name|ceilingEntry
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|transformEntry
@@ -7944,16 +9077,20 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|ceilingKey (K key)
+expr|@
+name|CheckForNull
+DECL|method|ceilingKey (@arametricNullness K key)
 specifier|public
 name|K
 name|ceilingKey
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|fromMap
@@ -7965,6 +9102,9 @@ name|key
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingKeySet ()
@@ -7984,6 +9124,9 @@ name|descendingKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingMap ()
@@ -8010,8 +9153,13 @@ name|transformer
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|firstEntry ()
 specifier|public
 name|Entry
@@ -8034,9 +9182,14 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|floorEntry (K key)
+annotation|@
+name|CheckForNull
+DECL|method|floorEntry (@arametricNullness K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -8046,6 +9199,8 @@ name|V2
 argument_list|>
 name|floorEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -8063,13 +9218,20 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|floorKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|floorKey (@arametricNullness K key)
 specifier|public
 name|K
 name|floorKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -8084,9 +9246,12 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headMap (K toKey)
+DECL|method|headMap (@arametricNullness K toKey)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -8096,6 +9261,8 @@ name|V2
 argument_list|>
 name|headMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -8109,9 +9276,12 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headMap (K toKey, boolean inclusive)
+DECL|method|headMap (@arametricNullness K toKey, boolean inclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -8121,6 +9291,8 @@ name|V2
 argument_list|>
 name|headMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|,
@@ -8145,9 +9317,14 @@ name|transformer
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|higherEntry (K key)
+annotation|@
+name|CheckForNull
+DECL|method|higherEntry (@arametricNullness K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -8157,6 +9334,8 @@ name|V2
 argument_list|>
 name|higherEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -8174,13 +9353,20 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|higherKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|higherKey (@arametricNullness K key)
 specifier|public
 name|K
 name|higherKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -8195,8 +9381,13 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lastEntry ()
 specifier|public
 name|Entry
@@ -8219,9 +9410,14 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|lowerEntry (K key)
+annotation|@
+name|CheckForNull
+DECL|method|lowerEntry (@arametricNullness K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -8231,6 +9427,8 @@ name|V2
 argument_list|>
 name|lowerEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -8248,13 +9446,20 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|lowerKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|lowerKey (@arametricNullness K key)
 specifier|public
 name|K
 name|lowerKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -8269,6 +9474,9 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|navigableKeySet ()
@@ -8288,8 +9496,13 @@ name|navigableKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirstEntry ()
 specifier|public
 name|Entry
@@ -8312,8 +9525,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLastEntry ()
 specifier|public
 name|Entry
@@ -8336,9 +9554,12 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subMap ( K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
+DECL|method|subMap ( @arametricNullness K fromKey, boolean fromInclusive, @ParametricNullness K toKey, boolean toInclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -8348,12 +9569,16 @@ name|V2
 argument_list|>
 name|subMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
 name|boolean
 name|fromInclusive
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|,
@@ -8382,9 +9607,12 @@ name|transformer
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subMap (K fromKey, K toKey)
+DECL|method|subMap (@arametricNullness K fromKey, @ParametricNullness K toKey)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -8394,9 +9622,13 @@ name|V2
 argument_list|>
 name|subMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -8414,9 +9646,12 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMap (K fromKey)
+DECL|method|tailMap (@arametricNullness K fromKey)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -8426,6 +9661,8 @@ name|V2
 argument_list|>
 name|tailMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|)
@@ -8439,9 +9676,12 @@ literal|true
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMap (K fromKey, boolean inclusive)
+DECL|method|tailMap (@arametricNullness K fromKey, boolean inclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -8451,6 +9691,8 @@ name|V2
 argument_list|>
 name|tailMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
@@ -8475,9 +9717,12 @@ name|transformer
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
-name|NullableDecl
-DECL|method|transformEntry (@ullableDecl Entry<K, V1> entry)
+name|CheckForNull
+DECL|method|transformEntry (@heckForNull Entry<K, V1> entry)
 specifier|private
 name|Entry
 argument_list|<
@@ -8488,7 +9733,7 @@ argument_list|>
 name|transformEntry
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Entry
 argument_list|<
 name|K
@@ -8517,6 +9762,9 @@ name|entry
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|fromMap ()
@@ -8545,12 +9793,17 @@ name|fromMap
 argument_list|()
 return|;
 block|}
-block|}
-DECL|method|keyPredicateOnEntries (Predicate<? super K> keyPredicate)
-specifier|static
-parameter_list|<
+end_function
+
+begin_expr_stmt
+unit|}    static
+DECL|method|keyPredicateOnEntries ( Predicate<? super K> keyPredicate)
+operator|<
 name|K
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|Entry
@@ -8561,7 +9814,7 @@ name|?
 argument_list|>
 argument_list|>
 name|keyPredicateOnEntries
-parameter_list|(
+argument_list|(
 name|Predicate
 argument_list|<
 name|?
@@ -8569,7 +9822,7 @@ super|super
 name|K
 argument_list|>
 name|keyPredicate
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|compose
@@ -8586,11 +9839,17 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|valuePredicateOnEntries (Predicate<? super V> valuePredicate)
+end_expr_stmt
+
+begin_expr_stmt
+DECL|method|valuePredicateOnEntries ( Predicate<? super V> valuePredicate)
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|Entry
@@ -8601,7 +9860,7 @@ name|V
 argument_list|>
 argument_list|>
 name|valuePredicateOnEntries
-parameter_list|(
+argument_list|(
 name|Predicate
 argument_list|<
 name|?
@@ -8609,7 +9868,7 @@ super|super
 name|V
 argument_list|>
 name|valuePredicate
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|compose
@@ -8626,15 +9885,27 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a map containing the mappings in {@code unfiltered} whose keys satisfy a predicate. The    * returned map is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a key that doesn't satisfy the predicate, the map's {@code put()} and    * {@code putAll()} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings whose keys satisfy the filter will be removed from the underlying    * map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|filterKeys ( Map<K, V> unfiltered, final Predicate<? super K> keyPredicate)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Map
 argument_list|<
 name|K
@@ -8642,7 +9913,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterKeys
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -8650,8 +9921,8 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -8659,13 +9930,13 @@ super|super
 name|K
 argument_list|>
 name|keyPredicate
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|keyPredicate
 argument_list|)
-expr_stmt|;
+block|;
 name|Predicate
 argument_list|<
 name|Entry
@@ -8676,12 +9947,12 @@ name|?
 argument_list|>
 argument_list|>
 name|entryPredicate
-init|=
+operator|=
 name|keyPredicateOnEntries
 argument_list|(
 name|keyPredicate
 argument_list|)
-decl_stmt|;
+block|;
 return|return
 operator|(
 name|unfiltered
@@ -8723,15 +9994,27 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a sorted map containing the mappings in {@code unfiltered} whose keys satisfy a    * predicate. The returned map is a live view of {@code unfiltered}; changes to one affect the    * other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a key that doesn't satisfy the predicate, the map's {@code put()} and    * {@code putAll()} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings whose keys satisfy the filter will be removed from the underlying    * map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals.    *    * @since 11.0    */
+end_comment
+
+begin_expr_stmt
 DECL|method|filterKeys ( SortedMap<K, V> unfiltered, final Predicate<? super K> keyPredicate)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|SortedMap
 argument_list|<
 name|K
@@ -8739,7 +10022,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterKeys
-parameter_list|(
+argument_list|(
 name|SortedMap
 argument_list|<
 name|K
@@ -8747,8 +10030,8 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -8756,7 +10039,7 @@ super|super
 name|K
 argument_list|>
 name|keyPredicate
-parameter_list|)
+argument_list|)
 block|{
 comment|// TODO(lowasser): Return a subclass of Maps.FilteredKeyMap for slightly better
 comment|// performance.
@@ -8777,18 +10060,36 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a navigable map containing the mappings in {@code unfiltered} whose keys satisfy a    * predicate. The returned map is a live view of {@code unfiltered}; changes to one affect the    * other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a key that doesn't satisfy the predicate, the map's {@code put()} and    * {@code putAll()} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings whose keys satisfy the filter will be removed from the underlying    * map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals.    *    * @since 14.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// NavigableMap
-DECL|method|filterKeys ( NavigableMap<K, V> unfiltered, final Predicate<? super K> keyPredicate)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|filterKeys ( NavigableMap<K, V> unfiltered, final Predicate<? super K> keyPredicate)
 name|NavigableMap
 argument_list|<
 name|K
@@ -8796,7 +10097,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterKeys
-parameter_list|(
+argument_list|(
 name|NavigableMap
 argument_list|<
 name|K
@@ -8804,8 +10105,8 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -8813,7 +10114,7 @@ super|super
 name|K
 argument_list|>
 name|keyPredicate
-parameter_list|)
+argument_list|)
 block|{
 comment|// TODO(lowasser): Return a subclass of Maps.FilteredKeyMap for slightly better
 comment|// performance.
@@ -8834,15 +10135,27 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a bimap containing the mappings in {@code unfiltered} whose keys satisfy a predicate.    * The returned bimap is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting bimap's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the bimap    * and its views. When given a key that doesn't satisfy the predicate, the bimap's {@code put()},    * {@code forcePut()} and {@code putAll()} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * bimap or its views, only mappings that satisfy the filter will be removed from the underlying    * bimap.    *    *<p>The returned bimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered bimap's methods, such as {@code size()}, iterate across every key in    * the underlying bimap and determine which satisfy the filter. When a live view is<i>not</i>    * needed, it may be faster to copy the filtered bimap and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}.    *    * @since 14.0    */
+end_comment
+
+begin_expr_stmt
 DECL|method|filterKeys ( BiMap<K, V> unfiltered, final Predicate<? super K> keyPredicate)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|BiMap
 argument_list|<
 name|K
@@ -8850,7 +10163,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterKeys
-parameter_list|(
+argument_list|(
 name|BiMap
 argument_list|<
 name|K
@@ -8858,8 +10171,8 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -8867,13 +10180,13 @@ super|super
 name|K
 argument_list|>
 name|keyPredicate
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|keyPredicate
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|filterEntries
 argument_list|(
@@ -8891,15 +10204,27 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a map containing the mappings in {@code unfiltered} whose values satisfy a predicate.    * The returned map is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a value that doesn't satisfy the predicate, the map's {@code put()},    * {@code putAll()}, and {@link Entry#setValue} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings whose values satisfy the filter will be removed from the underlying    * map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code valuePredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|filterValues ( Map<K, V> unfiltered, final Predicate<? super V> valuePredicate)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Map
 argument_list|<
 name|K
@@ -8907,7 +10232,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterValues
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -8915,8 +10240,8 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -8924,7 +10249,7 @@ super|super
 name|V
 argument_list|>
 name|valuePredicate
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|filterEntries
@@ -8943,15 +10268,27 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a sorted map containing the mappings in {@code unfiltered} whose values satisfy a    * predicate. The returned map is a live view of {@code unfiltered}; changes to one affect the    * other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a value that doesn't satisfy the predicate, the map's {@code put()},    * {@code putAll()}, and {@link Entry#setValue} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings whose values satisfy the filter will be removed from the underlying    * map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code valuePredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals.    *    * @since 11.0    */
-DECL|method|filterValues ( SortedMap<K, V> unfiltered, final Predicate<? super V> valuePredicate)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|filterValues ( SortedMap<K, V> unfiltered, final Predicate<? super V> valuePredicate)
 name|SortedMap
 argument_list|<
 name|K
@@ -8959,7 +10296,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterValues
-parameter_list|(
+argument_list|(
 name|SortedMap
 argument_list|<
 name|K
@@ -8967,8 +10304,8 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -8976,7 +10313,7 @@ super|super
 name|V
 argument_list|>
 name|valuePredicate
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|filterEntries
@@ -8995,18 +10332,36 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a navigable map containing the mappings in {@code unfiltered} whose values satisfy a    * predicate. The returned map is a live view of {@code unfiltered}; changes to one affect the    * other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a value that doesn't satisfy the predicate, the map's {@code put()},    * {@code putAll()}, and {@link Entry#setValue} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings whose values satisfy the filter will be removed from the underlying    * map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code valuePredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals.    *    * @since 14.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// NavigableMap
-DECL|method|filterValues ( NavigableMap<K, V> unfiltered, final Predicate<? super V> valuePredicate)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|filterValues ( NavigableMap<K, V> unfiltered, final Predicate<? super V> valuePredicate)
 name|NavigableMap
 argument_list|<
 name|K
@@ -9014,7 +10369,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterValues
-parameter_list|(
+argument_list|(
 name|NavigableMap
 argument_list|<
 name|K
@@ -9022,8 +10377,8 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -9031,7 +10386,7 @@ super|super
 name|V
 argument_list|>
 name|valuePredicate
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|filterEntries
@@ -9050,15 +10405,27 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a bimap containing the mappings in {@code unfiltered} whose values satisfy a predicate.    * The returned bimap is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting bimap's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the bimap    * and its views. When given a value that doesn't satisfy the predicate, the bimap's {@code    * put()}, {@code forcePut()} and {@code putAll()} methods throw an {@link    * IllegalArgumentException}. Similarly, the map's entries have a {@link Entry#setValue} method    * that throws an {@link IllegalArgumentException} when the provided value doesn't satisfy the    * predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * bimap or its views, only mappings that satisfy the filter will be removed from the underlying    * bimap.    *    *<p>The returned bimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered bimap's methods, such as {@code size()}, iterate across every value in    * the underlying bimap and determine which satisfy the filter. When a live view is<i>not</i>    * needed, it may be faster to copy the filtered bimap and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}.    *    * @since 14.0    */
+end_comment
+
+begin_expr_stmt
 DECL|method|filterValues ( BiMap<K, V> unfiltered, final Predicate<? super V> valuePredicate)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|BiMap
 argument_list|<
 name|K
@@ -9066,7 +10433,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterValues
-parameter_list|(
+argument_list|(
 name|BiMap
 argument_list|<
 name|K
@@ -9074,8 +10441,8 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -9083,7 +10450,7 @@ super|super
 name|V
 argument_list|>
 name|valuePredicate
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|filterEntries
@@ -9102,15 +10469,27 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a map containing the mappings in {@code unfiltered} that satisfy a predicate. The    * returned map is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a key/value pair that doesn't satisfy the predicate, the map's {@code    * put()} and {@code putAll()} methods throw an {@link IllegalArgumentException}. Similarly, the    * map's entries have a {@link Entry#setValue} method that throws an {@link    * IllegalArgumentException} when the existing key and the provided value don't satisfy the    * predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings that satisfy the filter will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|filterEntries ( Map<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Map
 argument_list|<
 name|K
@@ -9118,7 +10497,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterEntries
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -9126,7 +10505,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -9139,13 +10518,13 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|entryPredicate
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|(
 name|unfiltered
@@ -9185,15 +10564,27 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a sorted map containing the mappings in {@code unfiltered} that satisfy a predicate.    * The returned map is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a key/value pair that doesn't satisfy the predicate, the map's {@code    * put()} and {@code putAll()} methods throw an {@link IllegalArgumentException}. Similarly, the    * map's entries have a {@link Entry#setValue} method that throws an {@link    * IllegalArgumentException} when the existing key and the provided value don't satisfy the    * predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings that satisfy the filter will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}.    *    * @since 11.0    */
-DECL|method|filterEntries ( SortedMap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|filterEntries ( SortedMap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 name|SortedMap
 argument_list|<
 name|K
@@ -9201,7 +10592,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterEntries
-parameter_list|(
+argument_list|(
 name|SortedMap
 argument_list|<
 name|K
@@ -9209,7 +10600,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -9222,13 +10613,13 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|entryPredicate
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|(
 name|unfiltered
@@ -9268,18 +10659,36 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a sorted map containing the mappings in {@code unfiltered} that satisfy a predicate.    * The returned map is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a key/value pair that doesn't satisfy the predicate, the map's {@code    * put()} and {@code putAll()} methods throw an {@link IllegalArgumentException}. Similarly, the    * map's entries have a {@link Entry#setValue} method that throws an {@link    * IllegalArgumentException} when the existing key and the provided value don't satisfy the    * predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings that satisfy the filter will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}.    *    * @since 14.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// NavigableMap
-DECL|method|filterEntries ( NavigableMap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|filterEntries ( NavigableMap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 name|NavigableMap
 argument_list|<
 name|K
@@ -9287,7 +10696,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterEntries
-parameter_list|(
+argument_list|(
 name|NavigableMap
 argument_list|<
 name|K
@@ -9295,7 +10704,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -9308,13 +10717,13 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|entryPredicate
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|(
 name|unfiltered
@@ -9354,15 +10763,27 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a bimap containing the mappings in {@code unfiltered} that satisfy a predicate. The    * returned bimap is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting bimap's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the bimap    * and its views. When given a key/value pair that doesn't satisfy the predicate, the bimap's    * {@code put()}, {@code forcePut()} and {@code putAll()} methods throw an {@link    * IllegalArgumentException}. Similarly, the map's entries have an {@link Entry#setValue} method    * that throws an {@link IllegalArgumentException} when the existing key and the provided value    * don't satisfy the predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * bimap or its views, only mappings that satisfy the filter will be removed from the underlying    * bimap.    *    *<p>The returned bimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered bimap's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying bimap and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered bimap and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}.    *    * @since 14.0    */
+end_comment
+
+begin_expr_stmt
 DECL|method|filterEntries ( BiMap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|BiMap
 argument_list|<
 name|K
@@ -9370,7 +10791,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterEntries
-parameter_list|(
+argument_list|(
 name|BiMap
 argument_list|<
 name|K
@@ -9378,7 +10799,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -9391,18 +10812,18 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|unfiltered
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|entryPredicate
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|(
 name|unfiltered
@@ -9439,15 +10860,27 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Support {@code clear()}, {@code removeAll()}, and {@code retainAll()} when filtering a filtered    * map.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|filterFiltered ( AbstractFilteredMap<K, V> map, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Map
 argument_list|<
 name|K
@@ -9455,7 +10888,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterFiltered
-parameter_list|(
+argument_list|(
 name|AbstractFilteredMap
 argument_list|<
 name|K
@@ -9463,7 +10896,7 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -9476,7 +10909,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -9508,15 +10941,27 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Support {@code clear()}, {@code removeAll()}, and {@code retainAll()} when filtering a filtered    * sorted map.    */
-DECL|method|filterFiltered ( FilteredEntrySortedMap<K, V> map, Predicate<? super Entry<K, V>> entryPredicate)
+end_comment
+
+begin_expr_stmt
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|filterFiltered ( FilteredEntrySortedMap<K, V> map, Predicate<? super Entry<K, V>> entryPredicate)
 name|SortedMap
 argument_list|<
 name|K
@@ -9524,7 +10969,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterFiltered
-parameter_list|(
+argument_list|(
 name|FilteredEntrySortedMap
 argument_list|<
 name|K
@@ -9532,7 +10977,7 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -9545,7 +10990,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|)
+argument_list|)
 block|{
 name|Predicate
 argument_list|<
@@ -9557,7 +11002,7 @@ name|V
 argument_list|>
 argument_list|>
 name|predicate
-init|=
+operator|=
 name|Predicates
 operator|.
 expr|<
@@ -9576,7 +11021,7 @@ name|predicate
 argument_list|,
 name|entryPredicate
 argument_list|)
-decl_stmt|;
+block|;
 return|return
 operator|new
 name|FilteredEntrySortedMap
@@ -9591,18 +11036,36 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Support {@code clear()}, {@code removeAll()}, and {@code retainAll()} when filtering a filtered    * navigable map.    */
+end_comment
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// NavigableMap
-DECL|method|filterFiltered ( FilteredEntryNavigableMap<K, V> map, Predicate<? super Entry<K, V>> entryPredicate)
+end_comment
+
+begin_expr_stmt
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|filterFiltered ( FilteredEntryNavigableMap<K, V> map, Predicate<? super Entry<K, V>> entryPredicate)
 name|NavigableMap
 argument_list|<
 name|K
@@ -9610,7 +11073,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterFiltered
-parameter_list|(
+argument_list|(
 name|FilteredEntryNavigableMap
 argument_list|<
 name|K
@@ -9618,7 +11081,7 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -9631,7 +11094,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|)
+argument_list|)
 block|{
 name|Predicate
 argument_list|<
@@ -9643,7 +11106,7 @@ name|V
 argument_list|>
 argument_list|>
 name|predicate
-init|=
+operator|=
 name|Predicates
 operator|.
 expr|<
@@ -9662,7 +11125,7 @@ name|entryPredicate
 argument_list|,
 name|entryPredicate
 argument_list|)
-decl_stmt|;
+block|;
 return|return
 operator|new
 name|FilteredEntryNavigableMap
@@ -9676,15 +11139,27 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Support {@code clear()}, {@code removeAll()}, and {@code retainAll()} when filtering a filtered    * map.    */
-DECL|method|filterFiltered ( FilteredEntryBiMap<K, V> map, Predicate<? super Entry<K, V>> entryPredicate)
+end_comment
+
+begin_expr_stmt
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|filterFiltered ( FilteredEntryBiMap<K, V> map, Predicate<? super Entry<K, V>> entryPredicate)
 name|BiMap
 argument_list|<
 name|K
@@ -9692,7 +11167,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterFiltered
-parameter_list|(
+argument_list|(
 name|FilteredEntryBiMap
 argument_list|<
 name|K
@@ -9700,7 +11175,7 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -9713,7 +11188,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|)
+argument_list|)
 block|{
 name|Predicate
 argument_list|<
@@ -9725,7 +11200,7 @@ name|V
 argument_list|>
 argument_list|>
 name|predicate
-init|=
+operator|=
 name|Predicates
 operator|.
 expr|<
@@ -9744,7 +11219,7 @@ name|predicate
 argument_list|,
 name|entryPredicate
 argument_list|)
-decl_stmt|;
+block|;
 return|return
 operator|new
 name|FilteredEntryBiMap
@@ -9759,18 +11234,27 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|AbstractFilteredMap
 specifier|private
 specifier|abstract
 specifier|static
-class|class
+name|class
 name|AbstractFilteredMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ViewCachingAbstractMap
 argument_list|<
 name|K
@@ -9779,7 +11263,7 @@ name|V
 argument_list|>
 block|{
 DECL|field|unfiltered
-specifier|final
+name|final
 name|Map
 argument_list|<
 name|K
@@ -9787,9 +11271,9 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-decl_stmt|;
+block|;
 DECL|field|predicate
-specifier|final
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -9802,10 +11286,10 @@ name|V
 argument_list|>
 argument_list|>
 name|predicate
-decl_stmt|;
+block|;
 DECL|method|AbstractFilteredMap (Map<K, V> unfiltered, Predicate<? super Entry<K, V>> predicate)
 name|AbstractFilteredMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -9813,7 +11297,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -9826,51 +11310,54 @@ name|V
 argument_list|>
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|unfiltered
 operator|=
 name|unfiltered
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|predicate
 operator|=
 name|predicate
-expr_stmt|;
-block|}
-DECL|method|apply (@ullableDecl Object key, @NullableDecl V value)
+block|;     }
+DECL|method|apply (@heckForNull Object key, @ParametricNullness V value)
 name|boolean
 name|apply
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
-parameter_list|,
+argument_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|value
-parameter_list|)
+argument_list|)
 block|{
-comment|// This method is called only when the key is in the map, implying that
-comment|// key is a K.
-annotation|@
+comment|// This method is called only when the key is in the map (or about to be added to the map),
+comment|// implying that key is a K.
+block|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"unchecked"
+block|,
+literal|"nullness"
+block|}
 argument_list|)
 name|K
 name|k
-init|=
+operator|=
 operator|(
 name|K
 operator|)
 name|key
-decl_stmt|;
+block|;
 return|return
 name|predicate
 operator|.
@@ -9887,19 +11374,25 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|put (K key, V value)
+expr|@
+name|CheckForNull
+DECL|method|put (@arametricNullness K key, @ParametricNullness V value)
 specifier|public
 name|V
 name|put
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|V
 name|value
-parameter_list|)
+argument_list|)
 block|{
 name|checkArgument
 argument_list|(
@@ -9910,7 +11403,7 @@ argument_list|,
 name|value
 argument_list|)
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|unfiltered
 operator|.
@@ -9922,6 +11415,9 @@ name|value
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|putAll (Map<? extends K, ? extends V> map)
@@ -9987,13 +11483,18 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -10019,13 +11520,20 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|get (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -10061,6 +11569,9 @@ else|:
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -10077,13 +11588,20 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -10104,6 +11622,9 @@ else|:
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createValues ()
@@ -10127,19 +11648,27 @@ name|predicate
 argument_list|)
 return|;
 block|}
-block|}
+end_function
+
+begin_expr_stmt
+unit|}    private
 DECL|class|FilteredMapValues
-specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|FilteredMapValues
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Maps
 operator|.
 name|Values
@@ -10150,7 +11679,7 @@ name|V
 argument_list|>
 block|{
 DECL|field|unfiltered
-specifier|final
+name|final
 name|Map
 argument_list|<
 name|K
@@ -10158,9 +11687,9 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-decl_stmt|;
+block|;
 DECL|field|predicate
-specifier|final
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -10173,10 +11702,10 @@ name|V
 argument_list|>
 argument_list|>
 name|predicate
-decl_stmt|;
+block|;
 DECL|method|FilteredMapValues ( Map<K, V> filteredMap, Map<K, V> unfiltered, Predicate<? super Entry<K, V>> predicate)
 name|FilteredMapValues
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -10184,7 +11713,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filteredMap
-parameter_list|,
+argument_list|,
 name|Map
 argument_list|<
 name|K
@@ -10192,7 +11721,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -10205,36 +11734,37 @@ name|V
 argument_list|>
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|filteredMap
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|unfiltered
 operator|=
 name|unfiltered
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|predicate
 operator|=
 name|predicate
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|remove (Object o)
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 name|boolean
 name|remove
-parameter_list|(
+argument_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
-parameter_list|)
+argument_list|)
 block|{
 name|Iterator
 argument_list|<
@@ -10246,7 +11776,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entryItr
-init|=
+operator|=
 name|unfiltered
 operator|.
 name|entrySet
@@ -10254,7 +11784,7 @@ argument_list|()
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
+block|;
 while|while
 condition|(
 name|entryItr
@@ -10308,11 +11838,16 @@ literal|true
 return|;
 block|}
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 literal|false
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|removeAll (Collection<?> collection)
 specifier|public
@@ -10406,6 +11941,9 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|retainAll (Collection<?> collection)
@@ -10501,10 +12039,15 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toArray ()
 specifier|public
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|toArray
@@ -10524,21 +12067,42 @@ name|toArray
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_annotation
 annotation|@
 name|Override
+end_annotation
+
+begin_annotation
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+end_annotation
+
+begin_comment
+comment|// b/192354773 in our checker affects toArray declarations
+end_comment
+
+begin_expr_stmt
 DECL|method|toArray (T[] array)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|array
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Lists
@@ -10555,18 +12119,26 @@ name|array
 argument_list|)
 return|;
 block|}
-block|}
+end_expr_stmt
+
+begin_expr_stmt
+unit|}    private
 DECL|class|FilteredKeyMap
-specifier|private
 specifier|static
-class|class
+name|class
 name|FilteredKeyMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractFilteredMap
 argument_list|<
 name|K
@@ -10575,7 +12147,7 @@ name|V
 argument_list|>
 block|{
 DECL|field|keyPredicate
-specifier|final
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -10583,10 +12155,10 @@ super|super
 name|K
 argument_list|>
 name|keyPredicate
-decl_stmt|;
+block|;
 DECL|method|FilteredKeyMap ( Map<K, V> unfiltered, Predicate<? super K> keyPredicate, Predicate<? super Entry<K, V>> entryPredicate)
 name|FilteredKeyMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -10594,7 +12166,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -10602,7 +12174,7 @@ super|super
 name|K
 argument_list|>
 name|keyPredicate
-parameter_list|,
+operator|,
 name|Predicate
 argument_list|<
 name|?
@@ -10615,7 +12187,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -10623,15 +12195,14 @@ name|unfiltered
 argument_list|,
 name|entryPredicate
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|keyPredicate
 operator|=
 name|keyPredicate
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|createEntrySet ()
 specifier|protected
@@ -10645,7 +12216,7 @@ name|V
 argument_list|>
 argument_list|>
 name|createEntrySet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Sets
@@ -10661,7 +12232,7 @@ name|predicate
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|createKeySet ()
 name|Set
@@ -10669,7 +12240,7 @@ argument_list|<
 name|K
 argument_list|>
 name|createKeySet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Sets
@@ -10685,8 +12256,17 @@ name|keyPredicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|// The cast is called only when the key is in the unfiltered map, implying
+end_comment
+
+begin_comment
 comment|// that key is a K.
+end_comment
+
+begin_function
 annotation|@
 name|Override
 annotation|@
@@ -10694,11 +12274,13 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -10722,17 +12304,25 @@ name|key
 argument_list|)
 return|;
 block|}
-block|}
+end_function
+
+begin_expr_stmt
+unit|}    static
 DECL|class|FilteredEntryMap
-specifier|static
-class|class
+name|class
 name|FilteredEntryMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractFilteredMap
 argument_list|<
 name|K
@@ -10742,7 +12332,7 @@ argument_list|>
 block|{
 comment|/**      * Entries in this set satisfy the predicate, but they don't validate the input to {@code      * Entry.setValue()}.      */
 DECL|field|filteredEntrySet
-specifier|final
+name|final
 name|Set
 argument_list|<
 name|Entry
@@ -10753,10 +12343,10 @@ name|V
 argument_list|>
 argument_list|>
 name|filteredEntrySet
-decl_stmt|;
+block|;
 DECL|method|FilteredEntryMap (Map<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 name|FilteredEntryMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -10764,7 +12354,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -10777,7 +12367,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -10785,7 +12375,7 @@ name|unfiltered
 argument_list|,
 name|entryPredicate
 argument_list|)
-expr_stmt|;
+block|;
 name|filteredEntrySet
 operator|=
 name|Sets
@@ -10799,9 +12389,8 @@ argument_list|()
 argument_list|,
 name|predicate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|createEntrySet ()
 specifier|protected
@@ -10815,7 +12404,7 @@ name|V
 argument_list|>
 argument_list|>
 name|createEntrySet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -10823,13 +12412,13 @@ name|EntrySet
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|WeakOuter
 DECL|class|EntrySet
 specifier|private
-class|class
+name|class
 name|EntrySet
-extends|extends
+expr|extends
 name|ForwardingSet
 argument_list|<
 name|Entry
@@ -10839,8 +12428,7 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|>
-block|{
-annotation|@
+block|{       @
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -10854,13 +12442,13 @@ name|V
 argument_list|>
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|filteredEntrySet
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|iterator ()
 specifier|public
@@ -10874,7 +12462,7 @@ name|V
 argument_list|>
 argument_list|>
 name|iterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -10947,15 +12535,19 @@ return|return
 name|entry
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 specifier|public
 name|V
 name|setValue
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|V
 name|newValue
-parameter_list|)
+argument_list|)
 block|{
 name|checkArgument
 argument_list|(
@@ -10967,7 +12559,7 @@ argument_list|,
 name|newValue
 argument_list|)
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|super
 operator|.
@@ -10977,13 +12569,15 @@ name|newValue
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
-block|}
-return|;
-block|}
-block|}
+end_expr_stmt
+
+begin_empty_stmt
+unit|};           }         }
+empty_stmt|;
+end_empty_stmt
+
+begin_function
+unit|}     }
 annotation|@
 name|Override
 DECL|method|createKeySet ()
@@ -11000,16 +12594,25 @@ name|KeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_expr_stmt
 DECL|method|removeAllKeys ( Map<K, V> map, Predicate<? super Entry<K, V>> entryPredicate, Collection<?> keyCollection)
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|boolean
 name|removeAllKeys
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -11017,7 +12620,7 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -11030,13 +12633,13 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|,
+operator|,
 name|Collection
 argument_list|<
 name|?
 argument_list|>
 name|keyCollection
-parameter_list|)
+argument_list|)
 block|{
 name|Iterator
 argument_list|<
@@ -11048,7 +12651,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entryItr
-init|=
+operator|=
 name|map
 operator|.
 name|entrySet
@@ -11056,12 +12659,12 @@ argument_list|()
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
+block|;
 name|boolean
 name|result
-init|=
+operator|=
 literal|false
-decl_stmt|;
+block|;
 while|while
 condition|(
 name|entryItr
@@ -11113,21 +12716,31 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-block|}
-return|return
+end_expr_stmt
+
+begin_expr_stmt
+unit|}       return
 name|result
-return|;
-block|}
+expr_stmt|;
+end_expr_stmt
+
+begin_expr_stmt
+unit|}      static
 DECL|method|retainAllKeys ( Map<K, V> map, Predicate<? super Entry<K, V>> entryPredicate, Collection<?> keyCollection)
-specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|boolean
 name|retainAllKeys
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -11135,7 +12748,7 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -11148,13 +12761,13 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|,
+operator|,
 name|Collection
 argument_list|<
 name|?
 argument_list|>
 name|keyCollection
-parameter_list|)
+argument_list|)
 block|{
 name|Iterator
 argument_list|<
@@ -11166,7 +12779,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entryItr
-init|=
+operator|=
 name|map
 operator|.
 name|entrySet
@@ -11174,12 +12787,12 @@ argument_list|()
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
+block|;
 name|boolean
 name|result
-init|=
+operator|=
 literal|false
-decl_stmt|;
+block|;
 while|while
 condition|(
 name|entryItr
@@ -11232,13 +12845,20 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-block|}
-return|return
+end_expr_stmt
+
+begin_expr_stmt
+unit|}       return
 name|result
-return|;
-block|}
-annotation|@
+expr_stmt|;
+end_expr_stmt
+
+begin_macro
+unit|}      @
 name|WeakOuter
+end_macro
+
+begin_class
 DECL|class|KeySet
 class|class
 name|KeySet
@@ -11266,11 +12886,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object o)
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -11352,6 +12974,8 @@ annotation|@
 name|Override
 DECL|method|toArray ()
 specifier|public
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|toArray
@@ -11373,19 +12997,28 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// b/192354773 in our checker affects toArray declarations
 DECL|method|toArray (T[] array)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|array
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Lists
@@ -11403,25 +13036,33 @@ argument_list|)
 return|;
 block|}
 block|}
-block|}
+end_class
+
+begin_expr_stmt
+unit|}    private
 DECL|class|FilteredEntrySortedMap
-specifier|private
 specifier|static
-class|class
+name|class
 name|FilteredEntrySortedMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|FilteredEntryMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|SortedMap
 argument_list|<
 name|K
@@ -11431,7 +13072,7 @@ argument_list|>
 block|{
 DECL|method|FilteredEntrySortedMap ( SortedMap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 name|FilteredEntrySortedMap
-parameter_list|(
+argument_list|(
 name|SortedMap
 argument_list|<
 name|K
@@ -11439,7 +13080,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -11452,7 +13093,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -11460,8 +13101,7 @@ name|unfiltered
 argument_list|,
 name|entryPredicate
 argument_list|)
-expr_stmt|;
-block|}
+block|;     }
 DECL|method|sortedMap ()
 name|SortedMap
 argument_list|<
@@ -11470,7 +13110,7 @@ argument_list|,
 name|V
 argument_list|>
 name|sortedMap
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -11484,7 +13124,7 @@ operator|)
 name|unfiltered
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|keySet ()
 specifier|public
@@ -11493,7 +13133,7 @@ argument_list|<
 name|K
 argument_list|>
 name|keySet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -11508,6 +13148,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createKeySet ()
@@ -11524,6 +13167,9 @@ name|SortedKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|SortedKeySet
@@ -11539,6 +13185,8 @@ argument_list|>
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -11560,7 +13208,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|subSet (K fromElement, K toElement)
+DECL|method|subSet ( @arametricNullness K fromElement, @ParametricNullness K toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -11568,9 +13216,13 @@ name|K
 argument_list|>
 name|subSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromElement
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toElement
 parameter_list|)
@@ -11595,7 +13247,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|headSet (K toElement)
+DECL|method|headSet (@arametricNullness K toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -11603,6 +13255,8 @@ name|K
 argument_list|>
 name|headSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toElement
 parameter_list|)
@@ -11625,7 +13279,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|tailSet (K fromElement)
+DECL|method|tailSet (@arametricNullness K fromElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -11633,6 +13287,8 @@ name|K
 argument_list|>
 name|tailSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromElement
 parameter_list|)
@@ -11655,6 +13311,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|first ()
 specifier|public
 name|K
@@ -11668,6 +13326,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|last ()
 specifier|public
 name|K
@@ -11680,8 +13340,13 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -11701,8 +13366,13 @@ name|comparator
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|firstKey ()
 specifier|public
 name|K
@@ -11721,8 +13391,13 @@ name|next
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|lastKey ()
 specifier|public
 name|K
@@ -11754,17 +13429,21 @@ operator|.
 name|lastKey
 argument_list|()
 decl_stmt|;
+comment|// The cast is safe because the key is taken from the map.
 if|if
 condition|(
 name|apply
 argument_list|(
 name|key
 argument_list|,
+name|uncheckedCastNullableTToT
+argument_list|(
 name|unfiltered
 operator|.
 name|get
 argument_list|(
 name|key
+argument_list|)
 argument_list|)
 argument_list|)
 condition|)
@@ -11785,9 +13464,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headMap (K toKey)
+DECL|method|headMap (@arametricNullness K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -11797,6 +13479,8 @@ name|V
 argument_list|>
 name|headMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -11818,9 +13502,12 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subMap (K fromKey, K toKey)
+DECL|method|subMap (@arametricNullness K fromKey, @ParametricNullness K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -11830,9 +13517,13 @@ name|V
 argument_list|>
 name|subMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -11856,9 +13547,12 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMap (K fromKey)
+DECL|method|tailMap (@arametricNullness K fromKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -11868,6 +13562,8 @@ name|V
 argument_list|>
 name|tailMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|)
@@ -11889,21 +13585,29 @@ name|predicate
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_function
+
+begin_expr_stmt
+unit|}    @
 name|GwtIncompatible
 comment|// NavigableMap
 DECL|class|FilteredEntryNavigableMap
 specifier|private
 specifier|static
-class|class
+name|class
 name|FilteredEntryNavigableMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractNavigableMap
 argument_list|<
 name|K
@@ -11914,7 +13618,7 @@ block|{
 comment|/*      * It's less code to extend AbstractNavigableMap and forward the filtering logic to      * FilteredEntryMap than to extend FilteredEntrySortedMap and reimplement all the NavigableMap      * methods.      */
 DECL|field|unfiltered
 specifier|private
-specifier|final
+name|final
 name|NavigableMap
 argument_list|<
 name|K
@@ -11922,10 +13626,10 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-decl_stmt|;
+block|;
 DECL|field|entryPredicate
 specifier|private
-specifier|final
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -11938,10 +13642,10 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-decl_stmt|;
+block|;
 DECL|field|filteredDelegate
 specifier|private
-specifier|final
+name|final
 name|Map
 argument_list|<
 name|K
@@ -11949,10 +13653,10 @@ argument_list|,
 name|V
 argument_list|>
 name|filteredDelegate
-decl_stmt|;
+block|;
 DECL|method|FilteredEntryNavigableMap ( NavigableMap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 name|FilteredEntryNavigableMap
-parameter_list|(
+argument_list|(
 name|NavigableMap
 argument_list|<
 name|K
@@ -11960,7 +13664,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -11973,7 +13677,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -11983,13 +13687,13 @@ name|checkNotNull
 argument_list|(
 name|unfiltered
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|entryPredicate
 operator|=
 name|entryPredicate
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|filteredDelegate
@@ -12002,10 +13706,11 @@ name|unfiltered
 argument_list|,
 name|entryPredicate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
+expr|@
+name|CheckForNull
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -12015,7 +13720,7 @@ super|super
 name|K
 argument_list|>
 name|comparator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|unfiltered
@@ -12024,7 +13729,7 @@ name|comparator
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|navigableKeySet ()
 specifier|public
@@ -12033,7 +13738,7 @@ argument_list|<
 name|K
 argument_list|>
 name|navigableKeySet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -12075,18 +13780,18 @@ name|collection
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|boolean
 name|retainAll
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
 argument_list|>
 name|collection
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|FilteredEntryMap
@@ -12101,10 +13806,10 @@ name|collection
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|};     }      @
 name|Override
 DECL|method|values ()
 specifier|public
@@ -12128,6 +13833,9 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entryIterator ()
@@ -12160,6 +13868,9 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingEntryIterator ()
@@ -12195,6 +13906,9 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -12210,6 +13924,9 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -12233,17 +13950,20 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|get (@ullableDecl Object key)
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -12257,15 +13977,18 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -12279,16 +14002,25 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|put (K key, V value)
+annotation|@
+name|CheckForNull
+DECL|method|put (@arametricNullness K key, @ParametricNullness V value)
 specifier|public
 name|V
 name|put
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -12304,15 +14036,20 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object key)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -12326,6 +14063,9 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|putAll (Map<? extends K, ? extends V> m)
@@ -12354,6 +14094,9 @@ name|m
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -12368,6 +14111,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entrySet ()
@@ -12391,8 +14137,13 @@ name|entrySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirstEntry ()
 specifier|public
 name|Entry
@@ -12418,8 +14169,13 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLastEntry ()
 specifier|public
 name|Entry
@@ -12448,6 +14204,9 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingMap ()
@@ -12473,9 +14232,12 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subMap ( K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
+DECL|method|subMap ( @arametricNullness K fromKey, boolean fromInclusive, @ParametricNullness K toKey, boolean toInclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -12485,12 +14247,16 @@ name|V
 argument_list|>
 name|subMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
 name|boolean
 name|fromInclusive
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|,
@@ -12518,9 +14284,12 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headMap (K toKey, boolean inclusive)
+DECL|method|headMap (@arametricNullness K toKey, boolean inclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -12530,6 +14299,8 @@ name|V
 argument_list|>
 name|headMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|,
@@ -12553,9 +14324,12 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMap (K fromKey, boolean inclusive)
+DECL|method|tailMap (@arametricNullness K fromKey, boolean inclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -12565,6 +14339,8 @@ name|V
 argument_list|>
 name|tailMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
@@ -12588,37 +14364,44 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
-block|}
+end_function
+
+begin_expr_stmt
+unit|}    static
 DECL|class|FilteredEntryBiMap
-specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|FilteredEntryBiMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|FilteredEntryMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|BiMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-block|{
+block|{     @
 DECL|field|inverse
-annotation|@
 name|RetainedWith
 specifier|private
-specifier|final
+name|final
 name|BiMap
 argument_list|<
 name|V
@@ -12626,15 +14409,21 @@ argument_list|,
 name|K
 argument_list|>
 name|inverse
-decl_stmt|;
-DECL|method|inversePredicate ( final Predicate<? super Entry<K, V>> forwardPredicate)
+block|;
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+block|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|inversePredicate ( final Predicate<? super Entry<K, V>> forwardPredicate)
 name|Predicate
 argument_list|<
 name|Entry
@@ -12645,8 +14434,8 @@ name|K
 argument_list|>
 argument_list|>
 name|inversePredicate
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -12659,7 +14448,7 @@ name|V
 argument_list|>
 argument_list|>
 name|forwardPredicate
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -12712,11 +14501,13 @@ argument_list|)
 return|;
 block|}
 block|}
-return|;
-block|}
+expr_stmt|;
+end_expr_stmt
+
+begin_expr_stmt
+unit|}      FilteredEntryBiMap
 DECL|method|FilteredEntryBiMap (BiMap<K, V> delegate, Predicate<? super Entry<K, V>> predicate)
-name|FilteredEntryBiMap
-parameter_list|(
+operator|(
 name|BiMap
 argument_list|<
 name|K
@@ -12724,7 +14515,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|,
+operator|,
 name|Predicate
 argument_list|<
 name|?
@@ -12737,7 +14528,7 @@ name|V
 argument_list|>
 argument_list|>
 name|predicate
-parameter_list|)
+operator|)
 block|{
 name|super
 argument_list|(
@@ -12745,7 +14536,7 @@ name|delegate
 argument_list|,
 name|predicate
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|inverse
@@ -12766,12 +14557,11 @@ argument_list|)
 argument_list|,
 name|this
 argument_list|)
-expr_stmt|;
-block|}
+block|;     }
 DECL|method|FilteredEntryBiMap ( BiMap<K, V> delegate, Predicate<? super Entry<K, V>> predicate, BiMap<V, K> inverse)
 specifier|private
 name|FilteredEntryBiMap
-parameter_list|(
+argument_list|(
 name|BiMap
 argument_list|<
 name|K
@@ -12779,7 +14569,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -12792,7 +14582,7 @@ name|V
 argument_list|>
 argument_list|>
 name|predicate
-parameter_list|,
+operator|,
 name|BiMap
 argument_list|<
 name|V
@@ -12800,7 +14590,7 @@ argument_list|,
 name|K
 argument_list|>
 name|inverse
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -12808,14 +14598,13 @@ name|delegate
 argument_list|,
 name|predicate
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|inverse
 operator|=
 name|inverse
-expr_stmt|;
-block|}
+block|;     }
 DECL|method|unfiltered ()
 name|BiMap
 argument_list|<
@@ -12824,7 +14613,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -12838,20 +14627,25 @@ operator|)
 name|unfiltered
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|forcePut (@ullableDecl K key, @NullableDecl V value)
+annotation|@
+name|CheckForNull
+DECL|method|forcePut (@arametricNullness K key, @ParametricNullness V value)
 specifier|public
 name|V
 name|forcePut
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -12878,6 +14672,9 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|inverse ()
@@ -12895,6 +14692,9 @@ return|return
 name|inverse
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -12913,19 +14713,31 @@ name|keySet
 argument_list|()
 return|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/**    * Returns an unmodifiable view of the specified navigable map. Query operations on the returned    * map read through to the specified map, and attempts to modify the returned map, whether direct    * or via its views, result in an {@code UnsupportedOperationException}.    *    *<p>The returned navigable map will be serializable if the specified navigable map is    * serializable.    *    *<p>This method's signature will not permit you to convert a {@code NavigableMap<? extends K,    * V>} to a {@code NavigableMap<K, V>}. If it permitted this, the returned map's {@code    * comparator()} method might return a {@code Comparator<? extends K>}, which works only on a    * particular subtype of {@code K}, but promise that it's a {@code Comparator<? super K>}, which    * must work on any type of {@code K}.    *    * @param map the navigable map for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified navigable map    * @since 12.0    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|GwtIncompatible
 comment|// NavigableMap
-DECL|method|unmodifiableNavigableMap ( NavigableMap<K, ? extends V> map)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|unmodifiableNavigableMap (NavigableMap<K, ? extends V> map)
 name|NavigableMap
 argument_list|<
 name|K
@@ -12933,7 +14745,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unmodifiableNavigableMap
-parameter_list|(
+argument_list|(
 name|NavigableMap
 argument_list|<
 name|K
@@ -12943,13 +14755,13 @@ extends|extends
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
+block|;
 if|if
 condition|(
 name|map
@@ -12985,6 +14797,9 @@ return|return
 name|result
 return|;
 block|}
+end_expr_stmt
+
+begin_else
 else|else
 block|{
 return|return
@@ -12996,17 +14811,25 @@ name|map
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
-name|NullableDecl
-DECL|method|unmodifiableOrNull (@ullableDecl Entry<K, ? extends V> entry)
+end_else
+
+begin_expr_stmt
+unit|}    @
+name|CheckForNull
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|unmodifiableOrNull (@heckForNull Entry<K, ? extends V> entry)
 name|Entry
 argument_list|<
 name|K
@@ -13014,9 +14837,9 @@ argument_list|,
 name|V
 argument_list|>
 name|unmodifiableOrNull
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Entry
 argument_list|<
 name|K
@@ -13026,7 +14849,7 @@ extends|extends
 name|V
 argument_list|>
 name|entry
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -13045,38 +14868,53 @@ name|entry
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// NavigableMap
+end_comment
+
+begin_expr_stmt
 DECL|class|UnmodifiableNavigableMap
 specifier|static
-class|class
+name|class
 name|UnmodifiableNavigableMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingSortedMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|NavigableMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|delegate
 specifier|private
-specifier|final
+name|final
 name|NavigableMap
 argument_list|<
 name|K
@@ -13086,10 +14924,10 @@ extends|extends
 name|V
 argument_list|>
 name|delegate
-decl_stmt|;
+block|;
 DECL|method|UnmodifiableNavigableMap (NavigableMap<K, ? extends V> delegate)
 name|UnmodifiableNavigableMap
-parameter_list|(
+argument_list|(
 name|NavigableMap
 argument_list|<
 name|K
@@ -13099,18 +14937,17 @@ extends|extends
 name|V
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|delegate
 operator|=
 name|delegate
-expr_stmt|;
-block|}
+block|;     }
 DECL|method|UnmodifiableNavigableMap ( NavigableMap<K, ? extends V> delegate, UnmodifiableNavigableMap<K, V> descendingMap)
 name|UnmodifiableNavigableMap
-parameter_list|(
+argument_list|(
 name|NavigableMap
 argument_list|<
 name|K
@@ -13120,7 +14957,7 @@ extends|extends
 name|V
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 name|UnmodifiableNavigableMap
 argument_list|<
 name|K
@@ -13128,22 +14965,21 @@ argument_list|,
 name|V
 argument_list|>
 name|descendingMap
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|delegate
 operator|=
 name|delegate
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|descendingMap
 operator|=
 name|descendingMap
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -13154,7 +14990,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Collections
@@ -13165,9 +15001,11 @@ name|delegate
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|lowerEntry (K key)
+expr|@
+name|CheckForNull
+DECL|method|lowerEntry (@arametricNullness K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -13176,10 +15014,12 @@ argument_list|,
 name|V
 argument_list|>
 name|lowerEntry
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|unmodifiableOrNull
@@ -13193,13 +15033,20 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|lowerKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|lowerKey (@arametricNullness K key)
 specifier|public
 name|K
 name|lowerKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -13213,9 +15060,14 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|floorEntry (K key)
+annotation|@
+name|CheckForNull
+DECL|method|floorEntry (@arametricNullness K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -13225,6 +15077,8 @@ name|V
 argument_list|>
 name|floorEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -13241,13 +15095,20 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|floorKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|floorKey (@arametricNullness K key)
 specifier|public
 name|K
 name|floorKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -13261,9 +15122,14 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|ceilingEntry (K key)
+annotation|@
+name|CheckForNull
+DECL|method|ceilingEntry (@arametricNullness K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -13273,6 +15139,8 @@ name|V
 argument_list|>
 name|ceilingEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -13289,13 +15157,20 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|ceilingKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|ceilingKey (@arametricNullness K key)
 specifier|public
 name|K
 name|ceilingKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -13309,9 +15184,14 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|higherEntry (K key)
+annotation|@
+name|CheckForNull
+DECL|method|higherEntry (@arametricNullness K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -13321,6 +15201,8 @@ name|V
 argument_list|>
 name|higherEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -13337,13 +15219,20 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|higherKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|higherKey (@arametricNullness K key)
 specifier|public
 name|K
 name|higherKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -13357,8 +15246,13 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|firstEntry ()
 specifier|public
 name|Entry
@@ -13380,8 +15274,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lastEntry ()
 specifier|public
 name|Entry
@@ -13403,8 +15302,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirstEntry ()
 specifier|public
 specifier|final
@@ -13423,8 +15327,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLastEntry ()
 specifier|public
 specifier|final
@@ -13443,9 +15352,12 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|descendingMap
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|UnmodifiableNavigableMap
@@ -13456,6 +15368,9 @@ name|V
 argument_list|>
 name|descendingMap
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingMap ()
@@ -13503,6 +15418,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -13519,6 +15437,9 @@ name|navigableKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|navigableKeySet ()
@@ -13542,6 +15463,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingKeySet ()
@@ -13565,9 +15489,12 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subMap (K fromKey, K toKey)
+DECL|method|subMap (@arametricNullness K fromKey, @ParametricNullness K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -13577,9 +15504,13 @@ name|V
 argument_list|>
 name|subMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -13597,9 +15528,12 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subMap ( K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
+DECL|method|subMap ( @arametricNullness K fromKey, boolean fromInclusive, @ParametricNullness K toKey, boolean toInclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -13609,12 +15543,16 @@ name|V
 argument_list|>
 name|subMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
 name|boolean
 name|fromInclusive
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|,
@@ -13642,9 +15580,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headMap (K toKey)
+DECL|method|headMap (@arametricNullness K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -13654,6 +15595,8 @@ name|V
 argument_list|>
 name|headMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -13667,9 +15610,12 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headMap (K toKey, boolean inclusive)
+DECL|method|headMap (@arametricNullness K toKey, boolean inclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -13679,6 +15625,8 @@ name|V
 argument_list|>
 name|headMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|,
@@ -13702,9 +15650,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMap (K fromKey)
+DECL|method|tailMap (@arametricNullness K fromKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -13714,6 +15665,8 @@ name|V
 argument_list|>
 name|tailMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|)
@@ -13727,9 +15680,12 @@ literal|true
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMap (K fromKey, boolean inclusive)
+DECL|method|tailMap (@arametricNullness K fromKey, boolean inclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -13739,6 +15695,8 @@ name|V
 argument_list|>
 name|tailMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
@@ -13762,19 +15720,31 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/**    * Returns a synchronized (thread-safe) navigable map backed by the specified navigable map. In    * order to guarantee serial access, it is critical that<b>all</b> access to the backing    * navigable map is accomplished through the returned navigable map (or its views).    *    *<p>It is imperative that the user manually synchronize on the returned navigable map when    * iterating over any of its collection views, or the collections views of any of its {@code    * descendingMap}, {@code subMap}, {@code headMap} or {@code tailMap} views.    *    *<pre>{@code    * NavigableMap<K, V> map = synchronizedNavigableMap(new TreeMap<K, V>());    *    * // Needn't be in synchronized block    * NavigableSet<K> set = map.navigableKeySet();    *    * synchronized (map) { // Synchronizing on map, not set!    *   Iterator<K> it = set.iterator(); // Must be in synchronized block    *   while (it.hasNext()) {    *     foo(it.next());    *   }    * }    * }</pre>    *    *<p>or:    *    *<pre>{@code    * NavigableMap<K, V> map = synchronizedNavigableMap(new TreeMap<K, V>());    * NavigableMap<K, V> map2 = map.subMap(foo, false, bar, true);    *    * // Needn't be in synchronized block    * NavigableSet<K> set2 = map2.descendingKeySet();    *    * synchronized (map) { // Synchronizing on map, not map2 or set2!    *   Iterator<K> it = set2.iterator(); // Must be in synchronized block    *   while (it.hasNext()) {    *     foo(it.next());    *   }    * }    * }</pre>    *    *<p>Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned navigable map will be serializable if the specified navigable map is    * serializable.    *    * @param navigableMap the navigable map to be "wrapped" in a synchronized navigable map.    * @return a synchronized view of the specified navigable map.    * @since 13.0    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|GwtIncompatible
 comment|// NavigableMap
-DECL|method|synchronizedNavigableMap ( NavigableMap<K, V> navigableMap)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|synchronizedNavigableMap (NavigableMap<K, V> navigableMap)
 name|NavigableMap
 argument_list|<
 name|K
@@ -13782,7 +15752,7 @@ argument_list|,
 name|V
 argument_list|>
 name|synchronizedNavigableMap
-parameter_list|(
+argument_list|(
 name|NavigableMap
 argument_list|<
 name|K
@@ -13790,7 +15760,7 @@ argument_list|,
 name|V
 argument_list|>
 name|navigableMap
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Synchronized
@@ -13801,20 +15771,35 @@ name|navigableMap
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * {@code AbstractMap} extension that makes it easy to cache customized keySet, values, and    * entrySet views.    */
+end_comment
+
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_expr_stmt
 DECL|class|ViewCachingAbstractMap
 specifier|abstract
 specifier|static
-class|class
+name|class
 name|ViewCachingAbstractMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractMap
 argument_list|<
 name|K
@@ -13835,11 +15820,10 @@ name|V
 argument_list|>
 argument_list|>
 name|createEntrySet
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;      @
 DECL|field|entrySet
-annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|Set
@@ -13852,8 +15836,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entrySet
-decl_stmt|;
-annotation|@
+block|;      @
 name|Override
 DECL|method|entrySet ()
 specifier|public
@@ -13867,7 +15850,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entrySet
-parameter_list|()
+argument_list|()
 block|{
 name|Set
 argument_list|<
@@ -13879,9 +15862,9 @@ name|V
 argument_list|>
 argument_list|>
 name|result
-init|=
+operator|=
 name|entrySet
-decl_stmt|;
+block|;
 return|return
 operator|(
 name|result
@@ -13898,8 +15881,8 @@ name|result
 return|;
 block|}
 DECL|field|keySet
-annotation|@
-name|NullableDecl
+expr|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|Set
@@ -13907,7 +15890,10 @@ argument_list|<
 name|K
 argument_list|>
 name|keySet
-decl_stmt|;
+expr_stmt|;
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -13942,6 +15928,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|createKeySet ()
 name|Set
 argument_list|<
@@ -13959,9 +15948,12 @@ name|this
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|values
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|Collection
@@ -13970,6 +15962,9 @@ name|V
 argument_list|>
 name|values
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -14004,6 +15999,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|createValues ()
 name|Collection
 argument_list|<
@@ -14021,34 +16019,41 @@ name|this
 argument_list|)
 return|;
 block|}
-block|}
+end_function
+
+begin_expr_stmt
+unit|}    abstract
 DECL|class|IteratorBasedAbstractMap
-specifier|abstract
 specifier|static
-class|class
+name|class
 name|IteratorBasedAbstractMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-block|{
-annotation|@
+block|{     @
 name|Override
 DECL|method|size ()
 specifier|public
 specifier|abstract
 name|int
 name|size
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 DECL|method|entryIterator ()
 specifier|abstract
 name|Iterator
@@ -14061,9 +16066,8 @@ name|V
 argument_list|>
 argument_list|>
 name|entryIterator
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;      @
 name|Override
 DECL|method|entrySet ()
 specifier|public
@@ -14077,7 +16081,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entrySet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -14106,7 +16110,7 @@ operator|.
 name|this
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|Iterator
@@ -14119,17 +16123,17 @@ name|V
 argument_list|>
 argument_list|>
 name|iterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|entryIterator
 argument_list|()
 return|;
 block|}
-block|}
-return|;
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|};     }      @
 name|Override
 DECL|method|clear ()
 specifier|public
@@ -14146,16 +16150,27 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/**    * Delegates to {@link Map#get}. Returns {@code null} on {@code ClassCastException} and {@code    * NullPointerException}.    */
-DECL|method|safeGet (Map<?, V> map, @NullableDecl Object key)
+end_comment
+
+begin_expr_stmt
+unit|@
+name|CheckForNull
+DECL|method|safeGet (Map<?, V> map, @CheckForNull Object key)
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|V
 name|safeGet
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|?
@@ -14163,18 +16178,18 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|,
-annotation|@
-name|NullableDecl
+operator|,
+condition|@
+name|CheckForNull
 name|Object
 name|key
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
+block|;
 try|try
 block|{
 return|return
@@ -14186,6 +16201,9 @@ name|key
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_catch
 catch|catch
 parameter_list|(
 name|ClassCastException
@@ -14198,10 +16216,16 @@ return|return
 literal|null
 return|;
 block|}
-block|}
+end_catch
+
+begin_comment
+unit|}
 comment|/**    * Delegates to {@link Map#containsKey}. Returns {@code false} on {@code ClassCastException} and    * {@code NullPointerException}.    */
-DECL|method|safeContainsKey (Map<?, ?> map, Object key)
-specifier|static
+end_comment
+
+begin_function
+DECL|method|safeContainsKey (Map<?, ?> map, @CheckForNull Object key)
+unit|static
 name|boolean
 name|safeContainsKey
 parameter_list|(
@@ -14213,6 +16237,8 @@ name|?
 argument_list|>
 name|map
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -14246,15 +16272,29 @@ literal|false
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Delegates to {@link Map#remove}. Returns {@code null} on {@code ClassCastException} and {@code    * NullPointerException}.    */
-DECL|method|safeRemove (Map<?, V> map, Object key)
+end_comment
+
+begin_annotation
+annotation|@
+name|CheckForNull
+end_annotation
+
+begin_expr_stmt
+DECL|method|safeRemove (Map<?, V> map, @CheckForNull Object key)
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|V
 name|safeRemove
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|?
@@ -14262,16 +16302,18 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|,
+operator|,
+condition|@
+name|CheckForNull
 name|Object
 name|key
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
+block|;
 try|try
 block|{
 return|return
@@ -14283,6 +16325,9 @@ name|key
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_catch
 catch|catch
 parameter_list|(
 name|ClassCastException
@@ -14295,10 +16340,16 @@ return|return
 literal|null
 return|;
 block|}
-block|}
+end_catch
+
+begin_comment
+unit|}
 comment|/** An admittedly inefficient implementation of {@link Map#containsKey}. */
-DECL|method|containsKeyImpl (Map<?, ?> map, @NullableDecl Object key)
-specifier|static
+end_comment
+
+begin_function
+DECL|method|containsKeyImpl (Map<?, ?> map, @CheckForNull Object key)
+unit|static
 name|boolean
 name|containsKeyImpl
 parameter_list|(
@@ -14311,7 +16362,7 @@ argument_list|>
 name|map
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -14336,8 +16387,14 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** An implementation of {@link Map#containsValue}. */
-DECL|method|containsValueImpl (Map<?, ?> map, @NullableDecl Object value)
+end_comment
+
+begin_function
+DECL|method|containsValueImpl (Map<?, ?> map, @CheckForNull Object value)
 specifier|static
 name|boolean
 name|containsValueImpl
@@ -14351,7 +16408,7 @@ argument_list|>
 name|map
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -14376,17 +16433,29 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Implements {@code Collection.contains} safely for forwarding collections of map entries. If    * {@code o} is an instance of {@code Entry}, it is wrapped using {@link #unmodifiableEntry} to    * protect against a possible nefarious equals method.    *    *<p>Note that {@code c} is the backing (delegate) collection, rather than the forwarding    * collection.    *    * @param c the delegate (unwrapped) collection of map entries    * @param o the object that might be contained in {@code c}    * @return {@code true} if {@code c} contains {@code o}    */
-DECL|method|containsEntryImpl (Collection<Entry<K, V>> c, Object o)
+end_comment
+
+begin_expr_stmt
+DECL|method|containsEntryImpl ( Collection<Entry<K, V>> c, @CheckForNull Object o)
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|boolean
 name|containsEntryImpl
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|Entry
@@ -14397,10 +16466,12 @@ name|V
 argument_list|>
 argument_list|>
 name|c
-parameter_list|,
+argument_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|o
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -14416,6 +16487,9 @@ return|return
 literal|false
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|c
 operator|.
@@ -14435,18 +16509,30 @@ name|o
 argument_list|)
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Implements {@code Collection.remove} safely for forwarding collections of map entries. If    * {@code o} is an instance of {@code Entry}, it is wrapped using {@link #unmodifiableEntry} to    * protect against a possible nefarious equals method.    *    *<p>Note that {@code c} is backing (delegate) collection, rather than the forwarding collection.    *    * @param c the delegate (unwrapped) collection of map entries    * @param o the object to remove from {@code c}    * @return {@code true} if {@code c} was changed    */
-DECL|method|removeEntryImpl (Collection<Entry<K, V>> c, Object o)
-specifier|static
-parameter_list|<
+end_comment
+
+begin_expr_stmt
+DECL|method|removeEntryImpl ( Collection<Entry<K, V>> c, @CheckForNull Object o)
+unit|static
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|boolean
 name|removeEntryImpl
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|Entry
@@ -14457,10 +16543,12 @@ name|V
 argument_list|>
 argument_list|>
 name|c
-parameter_list|,
+argument_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|o
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -14476,6 +16564,9 @@ return|return
 literal|false
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|c
 operator|.
@@ -14495,10 +16586,16 @@ name|o
 argument_list|)
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/** An implementation of {@link Map#equals}. */
-DECL|method|equalsImpl (Map<?, ?> map, Object object)
-specifier|static
+end_comment
+
+begin_function
+DECL|method|equalsImpl (Map<?, ?> map, @CheckForNull Object object)
+unit|static
 name|boolean
 name|equalsImpl
 parameter_list|(
@@ -14510,6 +16607,8 @@ name|?
 argument_list|>
 name|map
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -14570,7 +16669,13 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** An implementation of {@link Map#toString}. */
+end_comment
+
+begin_function
 DECL|method|toStringImpl (Map<?, ?> map)
 specifier|static
 name|String
@@ -14678,17 +16783,29 @@ name|toString
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** An implementation of {@link Map#putAll}. */
-DECL|method|putAllImpl (Map<K, V> self, Map<? extends K, ? extends V> map)
+end_comment
+
+begin_expr_stmt
+DECL|method|putAllImpl ( Map<K, V> self, Map<? extends K, ? extends V> map)
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|void
 name|putAllImpl
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -14696,7 +16813,7 @@ argument_list|,
 name|V
 argument_list|>
 name|self
-parameter_list|,
+argument_list|,
 name|Map
 argument_list|<
 name|?
@@ -14708,7 +16825,7 @@ extends|extends
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 for|for
 control|(
@@ -14746,28 +16863,35 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-block|}
+end_expr_stmt
+
+begin_expr_stmt
+unit|}    static
 DECL|class|KeySet
-specifier|static
-class|class
+name|class
 name|KeySet
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Sets
 operator|.
 name|ImprovedAbstractSet
 argument_list|<
 name|K
 argument_list|>
-block|{
+block|{     @
 DECL|field|map
-annotation|@
 name|Weak
-specifier|final
+name|final
 name|Map
 argument_list|<
 name|K
@@ -14775,10 +16899,10 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-decl_stmt|;
+block|;
 DECL|method|KeySet (Map<K, V> map)
 name|KeySet
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -14786,7 +16910,7 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -14796,8 +16920,7 @@ name|checkNotNull
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
-block|}
+block|;     }
 DECL|method|map ()
 name|Map
 argument_list|<
@@ -14806,13 +16929,13 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|map
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|iterator ()
 specifier|public
@@ -14821,7 +16944,7 @@ argument_list|<
 name|K
 argument_list|>
 name|iterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|keyIterator
@@ -14837,6 +16960,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -14853,6 +16979,9 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -14869,13 +16998,18 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|contains (Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -14890,13 +17024,18 @@ name|o
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (Object o)
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -14925,6 +17064,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -14940,19 +17082,24 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-annotation|@
-name|NullableDecl
-DECL|method|keyOrNull (@ullableDecl Entry<K, ?> entry)
+end_function
+
+begin_expr_stmt
+unit|}    @
+name|CheckForNull
+DECL|method|keyOrNull (@heckForNull Entry<K, ?> entry)
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|K
 name|keyOrNull
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Entry
 argument_list|<
 name|K
@@ -14960,7 +17107,7 @@ argument_list|,
 name|?
 argument_list|>
 name|entry
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -14977,18 +17124,27 @@ name|getKey
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_annotation
 annotation|@
-name|NullableDecl
-DECL|method|valueOrNull (@ullableDecl Entry<?, V> entry)
+name|CheckForNull
+end_annotation
+
+begin_expr_stmt
+DECL|method|valueOrNull (@heckForNull Entry<?, V> entry)
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|V
 name|valueOrNull
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Entry
 argument_list|<
 name|?
@@ -14996,7 +17152,7 @@ argument_list|,
 name|V
 argument_list|>
 name|entry
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -15013,23 +17169,32 @@ name|getValue
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|SortedKeySet
 specifier|static
-class|class
+name|class
 name|SortedKeySet
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|KeySet
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|SortedSet
 argument_list|<
 name|K
@@ -15037,7 +17202,7 @@ argument_list|>
 block|{
 DECL|method|SortedKeySet (SortedMap<K, V> map)
 name|SortedKeySet
-parameter_list|(
+argument_list|(
 name|SortedMap
 argument_list|<
 name|K
@@ -15045,15 +17210,14 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|map ()
 name|SortedMap
@@ -15063,7 +17227,7 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -15080,8 +17244,10 @@ name|map
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|CheckForNull
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -15091,7 +17257,7 @@ super|super
 name|K
 argument_list|>
 name|comparator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|map
@@ -15101,9 +17267,12 @@ name|comparator
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subSet (K fromElement, K toElement)
+DECL|method|subSet (@arametricNullness K fromElement, @ParametricNullness K toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -15111,9 +17280,13 @@ name|K
 argument_list|>
 name|subSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromElement
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toElement
 parameter_list|)
@@ -15135,9 +17308,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headSet (K toElement)
+DECL|method|headSet (@arametricNullness K toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -15145,6 +17321,8 @@ name|K
 argument_list|>
 name|headSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toElement
 parameter_list|)
@@ -15164,9 +17342,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailSet (K fromElement)
+DECL|method|tailSet (@arametricNullness K fromElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -15174,6 +17355,8 @@ name|K
 argument_list|>
 name|tailSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromElement
 parameter_list|)
@@ -15193,8 +17376,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|first ()
 specifier|public
 name|K
@@ -15209,8 +17397,13 @@ name|firstKey
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|last ()
 specifier|public
 name|K
@@ -15225,27 +17418,35 @@ name|lastKey
 argument_list|()
 return|;
 block|}
-block|}
-annotation|@
+end_function
+
+begin_expr_stmt
+unit|}    @
 name|GwtIncompatible
 comment|// NavigableMap
 DECL|class|NavigableKeySet
 specifier|static
-class|class
+name|class
 name|NavigableKeySet
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SortedKeySet
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|NavigableSet
 argument_list|<
 name|K
@@ -15253,7 +17454,7 @@ argument_list|>
 block|{
 DECL|method|NavigableKeySet (NavigableMap<K, V> map)
 name|NavigableKeySet
-parameter_list|(
+argument_list|(
 name|NavigableMap
 argument_list|<
 name|K
@@ -15261,15 +17462,14 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|map ()
 name|NavigableMap
@@ -15279,7 +17479,7 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -15293,16 +17493,20 @@ operator|)
 name|map
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|lower (K e)
+expr|@
+name|CheckForNull
+DECL|method|lower (@arametricNullness K e)
 specifier|public
 name|K
 name|lower
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|e
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|map
@@ -15314,13 +17518,20 @@ name|e
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|floor (K e)
+annotation|@
+name|CheckForNull
+DECL|method|floor (@arametricNullness K e)
 specifier|public
 name|K
 name|floor
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|e
 parameter_list|)
@@ -15335,13 +17546,20 @@ name|e
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|ceiling (K e)
+annotation|@
+name|CheckForNull
+DECL|method|ceiling (@arametricNullness K e)
 specifier|public
 name|K
 name|ceiling
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|e
 parameter_list|)
@@ -15356,13 +17574,20 @@ name|e
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|higher (K e)
+annotation|@
+name|CheckForNull
+DECL|method|higher (@arametricNullness K e)
 specifier|public
 name|K
 name|higher
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|e
 parameter_list|)
@@ -15377,8 +17602,13 @@ name|e
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirst ()
 specifier|public
 name|K
@@ -15396,8 +17626,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLast ()
 specifier|public
 name|K
@@ -15415,6 +17650,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingSet ()
@@ -15434,6 +17672,9 @@ name|descendingKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingIterator ()
@@ -15453,9 +17694,12 @@ name|iterator
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subSet ( K fromElement, boolean fromInclusive, K toElement, boolean toInclusive)
+DECL|method|subSet ( @arametricNullness K fromElement, boolean fromInclusive, @ParametricNullness K toElement, boolean toInclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -15463,12 +17707,16 @@ name|K
 argument_list|>
 name|subSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromElement
 parameter_list|,
 name|boolean
 name|fromInclusive
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toElement
 parameter_list|,
@@ -15495,9 +17743,12 @@ name|navigableKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subSet (K fromElement, K toElement)
+DECL|method|subSet (@arametricNullness K fromElement, @ParametricNullness K toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -15505,9 +17756,13 @@ name|K
 argument_list|>
 name|subSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromElement
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toElement
 parameter_list|)
@@ -15525,9 +17780,12 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headSet (K toElement, boolean inclusive)
+DECL|method|headSet (@arametricNullness K toElement, boolean inclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -15535,6 +17793,8 @@ name|K
 argument_list|>
 name|headSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toElement
 parameter_list|,
@@ -15557,9 +17817,12 @@ name|navigableKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headSet (K toElement)
+DECL|method|headSet (@arametricNullness K toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -15567,6 +17830,8 @@ name|K
 argument_list|>
 name|headSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toElement
 parameter_list|)
@@ -15580,9 +17845,12 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailSet (K fromElement, boolean inclusive)
+DECL|method|tailSet (@arametricNullness K fromElement, boolean inclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -15590,6 +17858,8 @@ name|K
 argument_list|>
 name|tailSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromElement
 parameter_list|,
@@ -15612,9 +17882,12 @@ name|navigableKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailSet (K fromElement)
+DECL|method|tailSet (@arametricNullness K fromElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -15622,6 +17895,8 @@ name|K
 argument_list|>
 name|tailSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromElement
 parameter_list|)
@@ -15635,26 +17910,33 @@ literal|true
 argument_list|)
 return|;
 block|}
-block|}
+end_function
+
+begin_expr_stmt
+unit|}    static
 DECL|class|Values
-specifier|static
-class|class
+name|class
 name|Values
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractCollection
 argument_list|<
 name|V
 argument_list|>
-block|{
+block|{     @
 DECL|field|map
-annotation|@
 name|Weak
-specifier|final
+name|final
 name|Map
 argument_list|<
 name|K
@@ -15662,10 +17944,10 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-decl_stmt|;
+block|;
 DECL|method|Values (Map<K, V> map)
 name|Values
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -15673,7 +17955,7 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -15683,10 +17965,9 @@ name|checkNotNull
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
-block|}
+block|;     }
 DECL|method|map ()
-specifier|final
+name|final
 name|Map
 argument_list|<
 name|K
@@ -15694,13 +17975,13 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|map
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|iterator ()
 specifier|public
@@ -15709,7 +17990,7 @@ argument_list|<
 name|V
 argument_list|>
 name|iterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|valueIterator
@@ -15725,13 +18006,18 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (Object o)
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -15806,6 +18092,9 @@ literal|false
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|removeAll (Collection<?> c)
@@ -15907,6 +18196,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|retainAll (Collection<?> c)
@@ -16008,6 +18300,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -16024,6 +18319,9 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -16040,15 +18338,18 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -16063,6 +18364,9 @@ name|o
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -16078,18 +18382,26 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-block|}
+end_function
+
+begin_expr_stmt
+unit|}    abstract
 DECL|class|EntrySet
-specifier|abstract
 specifier|static
-class|class
+name|class
 name|EntrySet
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Sets
 operator|.
 name|ImprovedAbstractSet
@@ -16111,15 +18423,14 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;      @
 name|Override
 DECL|method|size ()
 specifier|public
 name|int
 name|size
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|map
@@ -16129,31 +18440,32 @@ name|size
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|clear ()
 specifier|public
 name|void
 name|clear
-parameter_list|()
+argument_list|()
 block|{
 name|map
 argument_list|()
 operator|.
 name|clear
 argument_list|()
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|contains (Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
-parameter_list|(
+argument_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -16229,11 +18541,16 @@ argument_list|)
 operator|)
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 literal|false
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|isEmpty ()
 specifier|public
@@ -16249,23 +18566,33 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (Object o)
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
 block|{
+comment|/*        * `o instanceof Entry` is guaranteed by `contains`, but we check it here to satisfy our        * nullness checker.        */
 if|if
 condition|(
 name|contains
 argument_list|(
 name|o
 argument_list|)
+operator|&&
+name|o
+operator|instanceof
+name|Entry
 condition|)
 block|{
 name|Entry
@@ -16306,6 +18633,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|removeAll (Collection<?> c)
@@ -16356,6 +18686,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|retainAll (Collection<?> c)
@@ -16393,6 +18726,8 @@ block|{
 comment|// if the iterators don't support remove
 name|Set
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 name|keys
@@ -16415,12 +18750,17 @@ range|:
 name|c
 control|)
 block|{
+comment|/*            * `o instanceof Entry` is guaranteed by `contains`, but we check it here to satisfy our            * nullness checker.            */
 if|if
 condition|(
 name|contains
 argument_list|(
 name|o
 argument_list|)
+operator|&&
+name|o
+operator|instanceof
+name|Entry
 condition|)
 block|{
 name|Entry
@@ -16467,28 +18807,36 @@ argument_list|)
 return|;
 block|}
 block|}
-block|}
-annotation|@
+end_function
+
+begin_expr_stmt
+unit|}    @
 name|GwtIncompatible
 comment|// NavigableMap
 DECL|class|DescendingMap
 specifier|abstract
 specifier|static
-class|class
+name|class
 name|DescendingMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|NavigableMap
 argument_list|<
 name|K
@@ -16505,13 +18853,12 @@ argument_list|,
 name|V
 argument_list|>
 name|forward
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;      @
 name|Override
 DECL|method|delegate ()
 specifier|protected
-specifier|final
+name|final
 name|Map
 argument_list|<
 name|K
@@ -16519,7 +18866,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|forward
@@ -16527,8 +18874,8 @@ argument_list|()
 return|;
 block|}
 DECL|field|comparator
-annotation|@
-name|NullableDecl
+expr|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|Comparator
@@ -16538,7 +18885,10 @@ super|super
 name|K
 argument_list|>
 name|comparator
-decl_stmt|;
+expr_stmt|;
+end_expr_stmt
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -16620,25 +18970,34 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// If we inline this, we get a javac error.
+end_comment
+
+begin_expr_stmt
 DECL|method|reverse (Comparator<T> forward)
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Ordering
 argument_list|<
 name|T
 argument_list|>
 name|reverse
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|T
 argument_list|>
 name|forward
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Ordering
@@ -16652,8 +19011,13 @@ name|reverse
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|firstKey ()
 specifier|public
 name|K
@@ -16668,8 +19032,13 @@ name|lastKey
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|lastKey ()
 specifier|public
 name|K
@@ -16684,9 +19053,14 @@ name|firstKey
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|lowerEntry (K key)
+annotation|@
+name|CheckForNull
+DECL|method|lowerEntry (@arametricNullness K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -16696,6 +19070,8 @@ name|V
 argument_list|>
 name|lowerEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -16710,13 +19086,20 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|lowerKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|lowerKey (@arametricNullness K key)
 specifier|public
 name|K
 name|lowerKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -16731,9 +19114,14 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|floorEntry (K key)
+annotation|@
+name|CheckForNull
+DECL|method|floorEntry (@arametricNullness K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -16743,6 +19131,8 @@ name|V
 argument_list|>
 name|floorEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -16757,13 +19147,20 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|floorKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|floorKey (@arametricNullness K key)
 specifier|public
 name|K
 name|floorKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -16778,9 +19175,14 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|ceilingEntry (K key)
+annotation|@
+name|CheckForNull
+DECL|method|ceilingEntry (@arametricNullness K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -16790,6 +19192,8 @@ name|V
 argument_list|>
 name|ceilingEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -16804,13 +19208,20 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|ceilingKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|ceilingKey (@arametricNullness K key)
 specifier|public
 name|K
 name|ceilingKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -16825,9 +19236,14 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|higherEntry (K key)
+annotation|@
+name|CheckForNull
+DECL|method|higherEntry (@arametricNullness K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -16837,6 +19253,8 @@ name|V
 argument_list|>
 name|higherEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -16851,13 +19269,20 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|higherKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|higherKey (@arametricNullness K key)
 specifier|public
 name|K
 name|higherKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -16872,8 +19297,13 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|firstEntry ()
 specifier|public
 name|Entry
@@ -16893,8 +19323,13 @@ name|lastEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lastEntry ()
 specifier|public
 name|Entry
@@ -16914,8 +19349,13 @@ name|firstEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirstEntry ()
 specifier|public
 name|Entry
@@ -16935,8 +19375,13 @@ name|pollLastEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLastEntry ()
 specifier|public
 name|Entry
@@ -16956,6 +19401,9 @@ name|pollFirstEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingMap ()
@@ -16974,9 +19422,12 @@ name|forward
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|entrySet
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|Set
@@ -16990,6 +19441,9 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entrySet ()
@@ -17034,6 +19488,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_function_decl
 DECL|method|entryIterator ()
 specifier|abstract
 name|Iterator
@@ -17048,6 +19505,9 @@ argument_list|>
 name|entryIterator
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_function
 DECL|method|createEntrySet ()
 name|Set
 argument_list|<
@@ -17117,6 +19577,9 @@ name|EntrySetImpl
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -17133,9 +19596,12 @@ name|navigableKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|navigableKeySet
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|NavigableSet
@@ -17144,6 +19610,9 @@ name|K
 argument_list|>
 name|navigableKeySet
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|navigableKeySet ()
@@ -17182,6 +19651,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingKeySet ()
@@ -17201,9 +19673,12 @@ name|navigableKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subMap ( K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
+DECL|method|subMap ( @arametricNullness K fromKey, boolean fromInclusive, @ParametricNullness K toKey, boolean toInclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -17213,12 +19688,16 @@ name|V
 argument_list|>
 name|subMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
 name|boolean
 name|fromInclusive
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|,
@@ -17245,9 +19724,12 @@ name|descendingMap
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subMap (K fromKey, K toKey)
+DECL|method|subMap (@arametricNullness K fromKey, @ParametricNullness K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -17257,9 +19739,13 @@ name|V
 argument_list|>
 name|subMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -17277,9 +19763,12 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headMap (K toKey, boolean inclusive)
+DECL|method|headMap (@arametricNullness K toKey, boolean inclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -17289,6 +19778,8 @@ name|V
 argument_list|>
 name|headMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|,
@@ -17311,9 +19802,12 @@ name|descendingMap
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headMap (K toKey)
+DECL|method|headMap (@arametricNullness K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -17323,6 +19817,8 @@ name|V
 argument_list|>
 name|headMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -17336,9 +19832,12 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMap (K fromKey, boolean inclusive)
+DECL|method|tailMap (@arametricNullness K fromKey, boolean inclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -17348,6 +19847,8 @@ name|V
 argument_list|>
 name|tailMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
@@ -17370,9 +19871,12 @@ name|descendingMap
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMap (K fromKey)
+DECL|method|tailMap (@arametricNullness K fromKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -17382,6 +19886,8 @@ name|V
 argument_list|>
 name|tailMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|)
@@ -17395,6 +19901,9 @@ literal|true
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -17415,6 +19924,9 @@ name|this
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -17428,10 +19940,16 @@ name|standardToString
 argument_list|()
 return|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/** Returns a map from the ith element of list to i. */
+end_comment
+
+begin_function
 DECL|method|indexMap (Collection<E> list)
-specifier|static
+unit|static
 parameter_list|<
 name|E
 parameter_list|>
@@ -17503,27 +20021,45 @@ name|build
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a view of the portion of {@code map} whose keys are contained by {@code range}.    *    *<p>This method delegates to the appropriate methods of {@link NavigableMap} (namely {@link    * NavigableMap#subMap(Object, boolean, Object, boolean) subMap()}, {@link    * NavigableMap#tailMap(Object, boolean) tailMap()}, and {@link NavigableMap#headMap(Object,    * boolean) headMap()}) to actually construct the view. Consult these methods for a full    * description of the returned view's behavior.    *    *<p><b>Warning:</b> {@code Range}s always represent a range of values using the values' natural    * ordering. {@code NavigableMap} on the other hand can specify a custom ordering via a {@link    * Comparator}, which can violate the natural ordering. Using this method (or in general using    * {@code Range}) with unnaturally-ordered maps can lead to unexpected and undefined behavior.    *    * @since 20.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|Beta
+end_annotation
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// NavigableMap
-DECL|method|subMap ( NavigableMap<K, V> map, Range<K> range)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|Comparable
 argument_list|<
 name|?
 super|super
 name|K
 argument_list|>
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|subMap (NavigableMap<K, V> map, Range<K> range)
 name|NavigableMap
 argument_list|<
 name|K
@@ -17531,7 +20067,7 @@ argument_list|,
 name|V
 argument_list|>
 name|subMap
-parameter_list|(
+argument_list|(
 name|NavigableMap
 argument_list|<
 name|K
@@ -17539,13 +20075,13 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|,
+argument_list|,
 name|Range
 argument_list|<
 name|K
 argument_list|>
 name|range
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -17718,8 +20254,8 @@ name|map
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_expr_stmt
 
+unit|}
 end_unit
 
