@@ -2413,7 +2413,7 @@ name|LONG_DELAY_MS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns the number of milliseconds since time given by startNanoTime, which must have been    * previously returned from a call to {@link System.nanoTime()}.    */
+comment|/**    * Returns the number of milliseconds since time given by startNanoTime, which must have been    * previously returned from a call to {@link System#nanoTime()}.    */
 DECL|method|millisElapsedSince (long startNanoTime)
 name|long
 name|millisElapsedSince
