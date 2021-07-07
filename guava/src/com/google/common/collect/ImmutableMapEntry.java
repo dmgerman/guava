@@ -48,17 +48,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -70,6 +64,8 @@ begin_class
 annotation|@
 name|GwtIncompatible
 comment|// unnecessary
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableMapEntry
 class|class
 name|ImmutableMapEntry
@@ -86,7 +82,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**    * Creates an {@code ImmutableMapEntry} array to hold parameterized entries. The result must never    * be upcast back to ImmutableMapEntry[] (or Object[], etc.), or allowed to escape the class.    */
+comment|/**    * Creates an {@code ImmutableMapEntry} array to hold parameterized entries. The result must never    * be upcast back to ImmutableMapEntry[] (or Object[], etc.), or allowed to escape the class.    *    *<p>The returned array has all its elements set to their initial null values. However, we don't    * declare it as {@code @Nullable ImmutableMapEntry[]} because our checker doesn't require newly    * created arrays to have a {@code @Nullable} element type even when they're created directly with    * {@code new ImmutableMapEntry[...]}, so it seems silly to insist on that only here.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -174,7 +170,7 @@ expr_stmt|;
 comment|// null check would be redundant
 block|}
 annotation|@
-name|Nullable
+name|CheckForNull
 DECL|method|getNextInKeyBucket ()
 name|ImmutableMapEntry
 argument_list|<
@@ -190,7 +186,7 @@ literal|null
 return|;
 block|}
 annotation|@
-name|Nullable
+name|CheckForNull
 DECL|method|getNextInValueBucket ()
 name|ImmutableMapEntry
 argument_list|<
@@ -232,7 +228,10 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+comment|/*      * Yes, we sometimes set nextInKeyBucket to null, even for this "non-terminal" entry. We don't      * do that with a plain NonTerminalImmutableMapEntry, but we do do it with the BiMap-specific      * subclass below. That's because the Entry might be non-terminal in the key bucket but terminal      * in the value bucket (or vice versa).      */
 DECL|field|nextInKeyBucket
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|final
 specifier|transient
@@ -244,7 +243,7 @@ name|V
 argument_list|>
 name|nextInKeyBucket
 decl_stmt|;
-DECL|method|NonTerminalImmutableMapEntry (K key, V value, ImmutableMapEntry<K, V> nextInKeyBucket)
+DECL|method|NonTerminalImmutableMapEntry ( K key, V value, @CheckForNull ImmutableMapEntry<K, V> nextInKeyBucket)
 name|NonTerminalImmutableMapEntry
 parameter_list|(
 name|K
@@ -253,6 +252,8 @@ parameter_list|,
 name|V
 name|value
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -278,10 +279,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|getNextInKeyBucket ()
 specifier|final
-annotation|@
-name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -327,6 +328,8 @@ name|V
 argument_list|>
 block|{
 DECL|field|nextInValueBucket
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|final
 specifier|transient
@@ -338,7 +341,7 @@ name|V
 argument_list|>
 name|nextInValueBucket
 decl_stmt|;
-DECL|method|NonTerminalImmutableBiMapEntry ( K key, V value, ImmutableMapEntry<K, V> nextInKeyBucket, ImmutableMapEntry<K, V> nextInValueBucket)
+DECL|method|NonTerminalImmutableBiMapEntry ( K key, V value, @CheckForNull ImmutableMapEntry<K, V> nextInKeyBucket, @CheckForNull ImmutableMapEntry<K, V> nextInValueBucket)
 name|NonTerminalImmutableBiMapEntry
 parameter_list|(
 name|K
@@ -347,6 +350,8 @@ parameter_list|,
 name|V
 name|value
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -355,6 +360,8 @@ name|V
 argument_list|>
 name|nextInKeyBucket
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -383,7 +390,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|CheckForNull
 DECL|method|getNextInValueBucket ()
 name|ImmutableMapEntry
 argument_list|<

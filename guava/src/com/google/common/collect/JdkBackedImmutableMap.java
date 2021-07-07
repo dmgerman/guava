@@ -49,6 +49,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -86,6 +98,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -112,6 +134,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|JdkBackedImmutableMap
 specifier|final
 class|class
@@ -130,7 +154,7 @@ name|V
 argument_list|>
 block|{
 comment|/**    * Creates an {@code ImmutableMap} backed by a JDK HashMap. Used when probable hash flooding is    * detected. This implementation may replace the entries in entryArray with its own entry objects    * (though they will have the same key/value contents), and will take ownership of entryArray.    */
-DECL|method|create (int n, Entry<K, V>[] entryArray)
+DECL|method|create (int n, @Nullable Entry<K, V>[] entryArray)
 specifier|static
 parameter_list|<
 name|K
@@ -148,6 +172,8 @@ parameter_list|(
 name|int
 name|n
 parameter_list|,
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -188,6 +214,7 @@ name|i
 operator|++
 control|)
 block|{
+comment|// requireNonNull is safe because the first `n` elements have been filled in.
 name|entryArray
 index|[
 name|i
@@ -195,10 +222,13 @@ index|]
 operator|=
 name|makeImmutable
 argument_list|(
+name|requireNonNull
+argument_list|(
 name|entryArray
 index|[
 name|i
 index|]
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|V
@@ -355,13 +385,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)

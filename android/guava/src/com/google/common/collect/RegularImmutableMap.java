@@ -65,6 +65,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -126,6 +138,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -134,9 +156,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -156,6 +178,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|RegularImmutableMap
 specifier|final
 class|class
@@ -289,6 +313,8 @@ argument_list|)
 decl_stmt|;
 comment|/*    * This is an implementation of ImmutableMap optimized especially for Android, which does not like    * objects per entry.  Instead we use an open-addressed hash table.  This design is basically    * equivalent to RegularImmutableSet, save that instead of having a hash table containing the    * elements directly and null for empty positions, we store indices of the keys in the hash table,    * and ABSENT for empty positions.  We then look up the keys in alternatingKeysAndValues.    *    * (The index actually stored is the index of the key in alternatingKeysAndValues, which is    * double the index of the entry in entrySet.asList.)    *    * The basic data structure is described in https://en.wikipedia.org/wiki/Open_addressing.    * The pointer to a key is stored in hashTable[Hashing.smear(key.hashCode()) % table.length],    * save that if that location is already full, we try the next index, and the next, until we    * find an empty table position.  Since the table has a power-of-two size, we use    *& (table.length - 1) instead of % table.length, though.    */
 DECL|field|hashTable
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|final
 specifier|transient
@@ -300,6 +326,8 @@ annotation|@
 name|VisibleForTesting
 specifier|final
 specifier|transient
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|alternatingKeysAndValues
@@ -316,7 +344,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|create (int n, Object[] alternatingKeysAndValues)
+DECL|method|create ( int n, @Nullable Object[] alternatingKeysAndValues)
 specifier|static
 parameter_list|<
 name|K
@@ -334,6 +362,8 @@ parameter_list|(
 name|int
 name|n
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|alternatingKeysAndValues
@@ -366,17 +396,24 @@ operator|==
 literal|1
 condition|)
 block|{
+comment|// requireNonNull is safe because the first `2*n` elements have been filled in.
 name|checkEntryNotNull
+argument_list|(
+name|requireNonNull
 argument_list|(
 name|alternatingKeysAndValues
 index|[
 literal|0
 index|]
+argument_list|)
 argument_list|,
+name|requireNonNull
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 literal|1
 index|]
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -449,11 +486,15 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a hash table for the specified keys and values, and ensures that neither keys nor    * values are null.    */
-DECL|method|createHashTable ( Object[] alternatingKeysAndValues, int n, int tableSize, int keyOffset)
+annotation|@
+name|CheckForNull
+DECL|method|createHashTable ( @ullable Object[] alternatingKeysAndValues, int n, int tableSize, int keyOffset)
 specifier|static
 name|Object
 name|createHashTable
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|alternatingKeysAndValues
@@ -476,19 +517,26 @@ literal|1
 condition|)
 block|{
 comment|// for n=1 we don't create a hash table, but we need to do the checkEntryNotNull check!
+comment|// requireNonNull is safe because the first `2*n` elements have been filled in.
 name|checkEntryNotNull
+argument_list|(
+name|requireNonNull
 argument_list|(
 name|alternatingKeysAndValues
 index|[
 name|keyOffset
 index|]
+argument_list|)
 argument_list|,
+name|requireNonNull
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 name|keyOffset
 operator|^
 literal|1
 index|]
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -553,23 +601,30 @@ name|i
 operator|+
 name|keyOffset
 decl_stmt|;
+comment|// requireNonNull is safe because the first `2*n` elements have been filled in.
 name|Object
 name|key
 init|=
+name|requireNonNull
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 name|keyIndex
 index|]
+argument_list|)
 decl_stmt|;
 name|Object
 name|value
 init|=
+name|requireNonNull
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 name|keyIndex
 operator|^
 literal|1
 index|]
+argument_list|)
 decl_stmt|;
 name|checkEntryNotNull
 argument_list|(
@@ -636,14 +691,14 @@ block|}
 elseif|else
 if|if
 condition|(
+name|key
+operator|.
+name|equals
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 name|previousKeyIndex
 index|]
-operator|.
-name|equals
-argument_list|(
-name|key
 argument_list|)
 condition|)
 block|{
@@ -718,23 +773,30 @@ name|i
 operator|+
 name|keyOffset
 decl_stmt|;
+comment|// requireNonNull is safe because the first `2*n` elements have been filled in.
 name|Object
 name|key
 init|=
+name|requireNonNull
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 name|keyIndex
 index|]
+argument_list|)
 decl_stmt|;
 name|Object
 name|value
 init|=
+name|requireNonNull
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 name|keyIndex
 operator|^
 literal|1
 index|]
+argument_list|)
 decl_stmt|;
 name|checkEntryNotNull
 argument_list|(
@@ -801,14 +863,14 @@ block|}
 elseif|else
 if|if
 condition|(
+name|key
+operator|.
+name|equals
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 name|previousKeyIndex
 index|]
-operator|.
-name|equals
-argument_list|(
-name|key
 argument_list|)
 condition|)
 block|{
@@ -877,23 +939,30 @@ name|i
 operator|+
 name|keyOffset
 decl_stmt|;
+comment|// requireNonNull is safe because the first `2*n` elements have been filled in.
 name|Object
 name|key
 init|=
+name|requireNonNull
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 name|keyIndex
 index|]
+argument_list|)
 decl_stmt|;
 name|Object
 name|value
 init|=
+name|requireNonNull
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 name|keyIndex
 operator|^
 literal|1
 index|]
+argument_list|)
 decl_stmt|;
 name|checkEntryNotNull
 argument_list|(
@@ -953,14 +1022,14 @@ block|}
 elseif|else
 if|if
 condition|(
+name|key
+operator|.
+name|equals
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 name|previousKeyIndex
 index|]
-operator|.
-name|equals
-argument_list|(
-name|key
 argument_list|)
 condition|)
 block|{
@@ -984,7 +1053,7 @@ name|hashTable
 return|;
 block|}
 block|}
-DECL|method|duplicateKeyException ( Object key, Object value, Object[] alternatingKeysAndValues, int previousKeyIndex)
+DECL|method|duplicateKeyException ( Object key, Object value, @Nullable Object[] alternatingKeysAndValues, int previousKeyIndex)
 specifier|private
 specifier|static
 name|IllegalArgumentException
@@ -996,6 +1065,8 @@ parameter_list|,
 name|Object
 name|value
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|alternatingKeysAndValues
@@ -1034,13 +1105,17 @@ index|]
 argument_list|)
 return|;
 block|}
-DECL|method|RegularImmutableMap (Object hashTable, Object[] alternatingKeysAndValues, int size)
+DECL|method|RegularImmutableMap ( @heckForNull Object hashTable, @Nullable Object[] alternatingKeysAndValues, int size)
 specifier|private
 name|RegularImmutableMap
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|hashTable
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|alternatingKeysAndValues
@@ -1088,22 +1163,21 @@ argument_list|)
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|get (@ullableDecl Object key)
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
 block|{
-return|return
-operator|(
-name|V
-operator|)
+name|Object
+name|result
+init|=
 name|get
 argument_list|(
 name|hashTable
@@ -1116,20 +1190,43 @@ literal|0
 argument_list|,
 name|key
 argument_list|)
+decl_stmt|;
+comment|/*      * We can't simply cast the result of `RegularImmutableMap.get` to V because of a bug in our      * nullness checker (resulting from https://github.com/jspecify/checker-framework/issues/8).      */
+if|if
+condition|(
+name|result
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|null
 return|;
 block|}
-DECL|method|get ( @ullableDecl Object hashTableObject, @NullableDecl Object[] alternatingKeysAndValues, int size, int keyOffset, @NullableDecl Object key)
+else|else
+block|{
+return|return
+operator|(
+name|V
+operator|)
+name|result
+return|;
+block|}
+block|}
+annotation|@
+name|CheckForNull
+DECL|method|get ( @heckForNull Object hashTableObject, @Nullable Object[] alternatingKeysAndValues, int size, int keyOffset, @CheckForNull Object key)
 specifier|static
 name|Object
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|hashTableObject
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 index|[]
 name|alternatingKeysAndValues
@@ -1141,7 +1238,7 @@ name|int
 name|keyOffset
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1165,23 +1262,30 @@ operator|==
 literal|1
 condition|)
 block|{
+comment|// requireNonNull is safe because the first 2 elements have been filled in.
 return|return
+name|requireNonNull
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 name|keyOffset
 index|]
+argument_list|)
 operator|.
 name|equals
 argument_list|(
 name|key
 argument_list|)
 condition|?
+name|requireNonNull
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 name|keyOffset
 operator|^
 literal|1
 index|]
+argument_list|)
 else|:
 literal|null
 return|;
@@ -1275,14 +1379,14 @@ block|}
 elseif|else
 if|if
 condition|(
+name|key
+operator|.
+name|equals
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 name|keyIndex
 index|]
-operator|.
-name|equals
-argument_list|(
-name|key
 argument_list|)
 condition|)
 block|{
@@ -1375,14 +1479,14 @@ block|}
 elseif|else
 if|if
 condition|(
+name|key
+operator|.
+name|equals
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 name|keyIndex
 index|]
-operator|.
-name|equals
-argument_list|(
-name|key
 argument_list|)
 condition|)
 block|{
@@ -1464,14 +1568,14 @@ block|}
 elseif|else
 if|if
 condition|(
+name|key
+operator|.
+name|equals
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 name|keyIndex
 index|]
-operator|.
-name|equals
-argument_list|(
-name|key
 argument_list|)
 condition|)
 block|{
@@ -1553,6 +1657,8 @@ DECL|field|alternatingKeysAndValues
 specifier|private
 specifier|final
 specifier|transient
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|alternatingKeysAndValues
@@ -1571,7 +1677,7 @@ specifier|transient
 name|int
 name|size
 decl_stmt|;
-DECL|method|EntrySet (ImmutableMap<K, V> map, Object[] alternatingKeysAndValues, int keyOffset, int size)
+DECL|method|EntrySet ( ImmutableMap<K, V> map, @Nullable Object[] alternatingKeysAndValues, int keyOffset, int size)
 name|EntrySet
 parameter_list|(
 name|ImmutableMap
@@ -1582,6 +1688,8 @@ name|V
 argument_list|>
 name|map
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|alternatingKeysAndValues
@@ -1718,6 +1826,7 @@ argument_list|,
 name|size
 argument_list|)
 expr_stmt|;
+comment|/*            * requireNonNull is safe because the first `2*(size+keyOffset)` elements have been filled            * in.            */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1729,6 +1838,8 @@ init|=
 operator|(
 name|K
 operator|)
+name|requireNonNull
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 literal|2
@@ -1737,6 +1848,7 @@ name|index
 operator|+
 name|keyOffset
 index|]
+argument_list|)
 decl_stmt|;
 annotation|@
 name|SuppressWarnings
@@ -1749,6 +1861,8 @@ init|=
 operator|(
 name|V
 operator|)
+name|requireNonNull
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 literal|2
@@ -1761,6 +1875,7 @@ operator|^
 literal|1
 operator|)
 index|]
+argument_list|)
 decl_stmt|;
 return|return
 operator|new
@@ -1806,11 +1921,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -1967,6 +2084,8 @@ DECL|field|alternatingKeysAndValues
 specifier|private
 specifier|final
 specifier|transient
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|alternatingKeysAndValues
@@ -1985,9 +2104,11 @@ specifier|transient
 name|int
 name|size
 decl_stmt|;
-DECL|method|KeysOrValuesAsList (Object[] alternatingKeysAndValues, int offset, int size)
+DECL|method|KeysOrValuesAsList (@ullable Object[] alternatingKeysAndValues, int offset, int size)
 name|KeysOrValuesAsList
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|alternatingKeysAndValues
@@ -2036,7 +2157,10 @@ argument_list|,
 name|size
 argument_list|)
 expr_stmt|;
+comment|// requireNonNull is safe because the first `2*(size+offset)` elements have been filled in.
 return|return
+name|requireNonNull
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 literal|2
@@ -2045,6 +2169,7 @@ name|index
 operator|+
 name|offset
 index|]
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -2200,13 +2325,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)

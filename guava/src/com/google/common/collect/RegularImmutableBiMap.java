@@ -97,6 +97,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -427,7 +439,7 @@ name|entries
 argument_list|)
 return|;
 block|}
-DECL|method|fromEntryArray (int n, Entry<K, V>[] entryArray)
+DECL|method|fromEntryArray (int n, @Nullable Entry<K, V>[] entryArray)
 specifier|static
 parameter_list|<
 name|K
@@ -445,6 +457,8 @@ parameter_list|(
 name|int
 name|n
 parameter_list|,
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -515,6 +529,12 @@ argument_list|(
 name|tableSize
 argument_list|)
 decl_stmt|;
+comment|/*      * The cast is safe: n==entryArray.length means that we have filled the whole array with Entry      * instances, in which case it is safe to cast it from an array of nullable entries to an array      * of non-null entries.      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
 name|Entry
 argument_list|<
 name|K
@@ -523,31 +543,31 @@ name|V
 argument_list|>
 index|[]
 name|entries
-decl_stmt|;
-if|if
-condition|(
+init|=
+operator|(
 name|n
 operator|==
 name|entryArray
 operator|.
 name|length
-condition|)
-block|{
-name|entries
-operator|=
+operator|)
+condition|?
+operator|(
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+index|[]
+operator|)
 name|entryArray
-expr_stmt|;
-block|}
-else|else
-block|{
-name|entries
-operator|=
+else|:
 name|createEntryArray
 argument_list|(
 name|n
 argument_list|)
-expr_stmt|;
-block|}
+decl_stmt|;
 name|int
 name|hashCode
 init|=
@@ -568,6 +588,7 @@ name|i
 operator|++
 control|)
 block|{
+comment|// requireNonNull is safe because the first `n` elements have been filled in.
 name|Entry
 argument_list|<
 name|K
@@ -576,10 +597,13 @@ name|V
 argument_list|>
 name|entry
 init|=
+name|requireNonNull
+argument_list|(
 name|entryArray
 index|[
 name|i
 index|]
+argument_list|)
 decl_stmt|;
 name|K
 name|key

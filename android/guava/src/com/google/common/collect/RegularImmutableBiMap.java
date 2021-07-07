@@ -54,6 +54,22 @@ name|CheckForNull
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Bimap with zero or more mappings.  *  * @author Louis Wasserman  */
 end_comment
@@ -125,6 +141,8 @@ annotation|@
 name|VisibleForTesting
 specifier|final
 specifier|transient
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|alternatingKeysAndValues
@@ -211,9 +229,11 @@ name|this
 expr_stmt|;
 block|}
 comment|/** K-to-V constructor. */
-DECL|method|RegularImmutableBiMap (Object[] alternatingKeysAndValues, int size)
+DECL|method|RegularImmutableBiMap (@ullable Object[] alternatingKeysAndValues, int size)
 name|RegularImmutableBiMap
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|alternatingKeysAndValues
@@ -314,13 +334,17 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** V-to-K constructor. */
-DECL|method|RegularImmutableBiMap ( Object valueHashTable, Object[] alternatingKeysAndValues, int size, RegularImmutableBiMap<V, K> inverse)
+DECL|method|RegularImmutableBiMap ( @heckForNull Object valueHashTable, @Nullable Object[] alternatingKeysAndValues, int size, RegularImmutableBiMap<V, K> inverse)
 specifier|private
 name|RegularImmutableBiMap
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|valueHashTable
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|alternatingKeysAndValues
@@ -417,10 +441,9 @@ name|Object
 name|key
 parameter_list|)
 block|{
-return|return
-operator|(
-name|V
-operator|)
+name|Object
+name|result
+init|=
 name|RegularImmutableMap
 operator|.
 name|get
@@ -435,7 +458,28 @@ name|keyOffset
 argument_list|,
 name|key
 argument_list|)
+decl_stmt|;
+comment|/*      * We can't simply cast the result of `RegularImmutableMap.get` to V because of a bug in our      * nullness checker (resulting from https://github.com/jspecify/checker-framework/issues/8).      */
+if|if
+condition|(
+name|result
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|null
 return|;
+block|}
+else|else
+block|{
+return|return
+operator|(
+name|V
+operator|)
+name|result
+return|;
+block|}
 block|}
 annotation|@
 name|Override

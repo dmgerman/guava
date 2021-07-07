@@ -81,6 +81,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -316,9 +328,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -349,6 +361,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// we're overriding default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableMap
 specifier|public
 specifier|abstract
@@ -1024,7 +1038,7 @@ parameter_list|>
 block|{
 DECL|field|valueComparator
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -1034,6 +1048,8 @@ argument_list|>
 name|valueComparator
 decl_stmt|;
 DECL|field|alternatingKeysAndValues
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|alternatingKeysAndValues
@@ -1065,7 +1081,11 @@ block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
 argument_list|)
 DECL|method|Builder (int initialCapacity)
 name|Builder
@@ -1079,6 +1099,8 @@ operator|.
 name|alternatingKeysAndValues
 operator|=
 operator|new
+expr|@
+name|Nullable
 name|Object
 index|[
 literal|2
@@ -1596,6 +1618,7 @@ name|i
 operator|++
 control|)
 block|{
+comment|// requireNonNull is safe because the first `2*size` elements have been filled in.
 name|entries
 index|[
 name|i
@@ -1614,16 +1637,21 @@ argument_list|(
 operator|(
 name|K
 operator|)
+name|requireNonNull
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 literal|2
 operator|*
 name|i
 index|]
+argument_list|)
 argument_list|,
 operator|(
 name|V
 operator|)
+name|requireNonNull
+argument_list|(
 name|alternatingKeysAndValues
 index|[
 literal|2
@@ -1632,6 +1660,7 @@ name|i
 operator|+
 literal|1
 index|]
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2090,6 +2119,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|put (K k, V v)
 specifier|public
 specifier|final
@@ -2116,12 +2147,16 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
-DECL|method|remove (Object o)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 specifier|final
 name|V
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -2207,13 +2242,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -2229,13 +2264,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullableDecl Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -2255,33 +2290,35 @@ annotation|@
 name|Override
 annotation|@
 name|CheckForNull
-DECL|method|get (@ullableDecl Object key)
+DECL|method|get (@heckForNull Object key)
 specifier|public
 specifier|abstract
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p>See<a    * href="https://developer.android.com/reference/java/util/Map.html#getOrDefault%28java.lang.Object,%20V%29">{@code    * Map.getOrDefault}</a>.    *    * @since 23.5 (but since 21.0 in the JRE<a    *     href="https://github.com/google/guava#guava-google-core-libraries-for-java">flavor</a>).    *     Note that API Level 24 users can call this method with any version of Guava.    */
 comment|// @Override under Java 8 / API Level 24
-DECL|method|getOrDefault (@ullableDecl Object key, @NullableDecl V defaultValue)
+annotation|@
+name|CheckForNull
+DECL|method|getOrDefault (@heckForNull Object key, @CheckForNull V defaultValue)
 specifier|public
 specifier|final
 name|V
 name|getOrDefault
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|defaultValue
 parameter_list|)
@@ -2294,23 +2331,32 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
-return|return
-operator|(
+comment|// TODO(b/192579700): Use a ternary once it no longer confuses our nullness checker.
+if|if
+condition|(
 name|result
 operator|!=
 literal|null
-operator|)
-condition|?
+condition|)
+block|{
+return|return
 name|result
-else|:
+return|;
+block|}
+else|else
+block|{
+return|return
 name|defaultValue
 return|;
+block|}
 block|}
 DECL|field|entrySet
 annotation|@
 name|LazyInit
 annotation|@
 name|RetainedWith
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -2388,6 +2434,8 @@ annotation|@
 name|LazyInit
 annotation|@
 name|RetainedWith
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -2514,6 +2562,8 @@ annotation|@
 name|LazyInit
 annotation|@
 name|RetainedWith
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableCollection
@@ -2571,6 +2621,8 @@ comment|// cached so that this.multimapView().inverse() only computes inverse on
 DECL|field|multimapView
 annotation|@
 name|LazyInit
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSetMultimap
@@ -2700,13 +2752,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -2724,7 +2776,9 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -2733,7 +2787,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -2974,13 +3028,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -3132,13 +3186,18 @@ name|i
 init|=
 literal|0
 decl_stmt|;
+comment|// "extends Object" works around https://github.com/typetools/checker-framework/issues/3013
 for|for
 control|(
 name|Entry
 argument_list|<
 name|?
+extends|extends
+name|Object
 argument_list|,
 name|?
+extends|extends
+name|Object
 argument_list|>
 name|entry
 range|:

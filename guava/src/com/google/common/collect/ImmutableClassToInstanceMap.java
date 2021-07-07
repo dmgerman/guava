@@ -124,17 +124,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -152,6 +146,8 @@ literal|"B"
 argument_list|)
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableClassToInstanceMap
 specifier|public
 specifier|final
@@ -749,6 +745,8 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// value could not get in if not a T
+annotation|@
+name|CheckForNull
 DECL|method|getInstance (Class<T> type)
 specifier|public
 parameter_list|<
@@ -756,8 +754,6 @@ name|T
 extends|extends
 name|B
 parameter_list|>
-annotation|@
-name|Nullable
 name|T
 name|getInstance
 parameter_list|(
@@ -795,6 +791,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|putInstance (Class<T> type, T value)
 specifier|public
 parameter_list|<

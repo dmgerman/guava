@@ -81,6 +81,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -441,6 +453,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// we're overriding default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableMap
 specifier|public
 specifier|abstract
@@ -462,16 +476,19 @@ implements|,
 name|Serializable
 block|{
 comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableMap} whose keys    * and values are the result of applying the provided mapping functions to the input elements.    * Entries appear in the result {@code ImmutableMap} in encounter order.    *    *<p>If the mapped keys contain duplicates (according to {@link Object#equals(Object)}, an {@code    * IllegalArgumentException} is thrown when the collection operation is performed. (This differs    * from the {@code Collector} returned by {@link Collectors#toMap(Function, Function)}, which    * throws an {@code IllegalStateException}.)    *    * @since 21.0    */
-DECL|method|toImmutableMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|toImmutableMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 name|Collector
 argument_list|<
 name|T
@@ -486,7 +503,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableMap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -498,7 +515,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -510,7 +527,7 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|CollectCollectors
@@ -524,16 +541,19 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableMap} whose keys    * and values are the result of applying the provided mapping functions to the input elements.    *    *<p>If the mapped keys contain duplicates (according to {@link Object#equals(Object)}), the    * values are merged using the specified merging function. Entries will appear in the encounter    * order of the first occurrence of the key.    *    * @since 21.0    */
-DECL|method|toImmutableMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|toImmutableMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
 name|Collector
 argument_list|<
 name|T
@@ -548,7 +568,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableMap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -560,7 +580,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -572,13 +592,13 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|,
+operator|,
 name|BinaryOperator
 argument_list|<
 name|V
 argument_list|>
 name|mergeFunction
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|CollectCollectors
@@ -1150,7 +1170,7 @@ parameter_list|>
 block|{
 DECL|field|valueComparator
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -1160,6 +1180,8 @@ argument_list|>
 name|valueComparator
 decl_stmt|;
 DECL|field|entries
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -1196,7 +1218,11 @@ block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
 argument_list|)
 DECL|method|Builder (int initialCapacity)
 name|Builder
@@ -1210,6 +1236,8 @@ operator|.
 name|entries
 operator|=
 operator|new
+expr|@
+name|Nullable
 name|Entry
 index|[
 name|initialCapacity
@@ -1696,21 +1724,32 @@ return|;
 case|case
 literal|1
 case|:
-return|return
-name|of
+comment|// requireNonNull is safe because the first `size` elements have been filled in.
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|onlyEntry
+init|=
+name|requireNonNull
 argument_list|(
 name|entries
 index|[
 literal|0
 index|]
+argument_list|)
+decl_stmt|;
+return|return
+name|of
+argument_list|(
+name|onlyEntry
 operator|.
 name|getKey
 argument_list|()
 argument_list|,
-name|entries
-index|[
-literal|0
-index|]
+name|onlyEntry
 operator|.
 name|getValue
 argument_list|()
@@ -1770,21 +1809,32 @@ return|;
 case|case
 literal|1
 case|:
-return|return
-name|of
+comment|// requireNonNull is safe because the first `size` elements have been filled in.
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|onlyEntry
+init|=
+name|requireNonNull
 argument_list|(
 name|entries
 index|[
 literal|0
 index|]
+argument_list|)
+decl_stmt|;
+return|return
+name|of
+argument_list|(
+name|onlyEntry
 operator|.
 name|getKey
 argument_list|()
 argument_list|,
-name|entries
-index|[
-literal|0
-index|]
+name|onlyEntry
 operator|.
 name|getValue
 argument_list|()
@@ -2036,6 +2086,7 @@ return|;
 case|case
 literal|1
 case|:
+comment|// requireNonNull is safe because the first `size` elements have been filled in.
 name|Entry
 argument_list|<
 name|K
@@ -2044,10 +2095,13 @@ name|V
 argument_list|>
 name|onlyEntry
 init|=
+name|requireNonNull
+argument_list|(
 name|entryArray
 index|[
 literal|0
 index|]
+argument_list|)
 decl_stmt|;
 return|return
 name|of
@@ -2126,9 +2180,9 @@ for|for
 control|(
 name|Entry
 argument_list|<
-name|?
+name|K
 argument_list|,
-name|?
+name|V
 argument_list|>
 name|entry
 range|:
@@ -2382,6 +2436,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|put (K k, V v)
 specifier|public
 specifier|final
@@ -2413,6 +2469,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|putIfAbsent (K key, V value)
 specifier|public
 specifier|final
@@ -2469,6 +2527,8 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 annotation|@
 name|DoNotCall
 argument_list|(
@@ -2583,31 +2643,33 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
-DECL|method|compute (K key, BiFunction<? super K, ? super V, ? extends V> remappingFunction)
+DECL|method|compute ( K key, BiFunction<? super K, ? super @Nullable V, ? extends V> remappingFunction)
 specifier|public
 specifier|final
 name|V
 name|compute
-parameter_list|(
+argument_list|(
 name|K
 name|key
-parameter_list|,
+argument_list|,
 name|BiFunction
-argument_list|<
-name|?
-super|super
+operator|<
+condition|?
+name|super
 name|K
 argument_list|,
-name|?
-super|super
+operator|?
+name|super
+expr|@
+name|Nullable
 name|V
 argument_list|,
-name|?
-extends|extends
+operator|?
+expr|extends
 name|V
-argument_list|>
+operator|>
 name|remappingFunction
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
 operator|new
@@ -2744,12 +2806,16 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
-DECL|method|remove (Object o)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 specifier|final
 name|V
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -2770,15 +2836,19 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
-DECL|method|remove (Object key, Object value)
+DECL|method|remove (@heckForNull Object key, @CheckForNull Object value)
 specifier|public
 specifier|final
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -2829,13 +2899,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -2851,13 +2921,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullable Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -2877,14 +2947,14 @@ annotation|@
 name|Override
 annotation|@
 name|CheckForNull
-DECL|method|get (@ullable Object key)
+DECL|method|get (@heckForNull Object key)
 specifier|public
 specifier|abstract
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -2892,19 +2962,21 @@ function_decl|;
 comment|/**    * @since 21.0 (but only since 23.5 in the Android<a    *     href="https://github.com/google/guava#guava-google-core-libraries-for-java">flavor</a>).    *     Note, however, that Java 8 users can call this method with any version and flavor of Guava.    */
 annotation|@
 name|Override
-DECL|method|getOrDefault (@ullable Object key, @Nullable V defaultValue)
+annotation|@
+name|CheckForNull
+DECL|method|getOrDefault (@heckForNull Object key, @CheckForNull V defaultValue)
 specifier|public
 specifier|final
 name|V
 name|getOrDefault
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|V
 name|defaultValue
 parameter_list|)
@@ -2917,23 +2989,32 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
-return|return
-operator|(
+comment|// TODO(b/192579700): Use a ternary once it no longer confuses our nullness checker.
+if|if
+condition|(
 name|result
 operator|!=
 literal|null
-operator|)
-condition|?
+condition|)
+block|{
+return|return
 name|result
-else|:
+return|;
+block|}
+else|else
+block|{
+return|return
 name|defaultValue
 return|;
+block|}
 block|}
 DECL|field|entrySet
 annotation|@
 name|LazyInit
 annotation|@
 name|RetainedWith
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -3011,6 +3092,8 @@ annotation|@
 name|LazyInit
 annotation|@
 name|RetainedWith
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -3162,6 +3245,8 @@ annotation|@
 name|LazyInit
 annotation|@
 name|RetainedWith
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableCollection
@@ -3219,6 +3304,8 @@ comment|// cached so that this.multimapView().inverse() only computes inverse on
 DECL|field|multimapView
 annotation|@
 name|LazyInit
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSetMultimap
@@ -3348,13 +3435,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -3372,7 +3459,9 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -3381,7 +3470,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -3622,13 +3711,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -3780,13 +3869,18 @@ name|i
 init|=
 literal|0
 decl_stmt|;
+comment|// "extends Object" works around https://github.com/typetools/checker-framework/issues/3013
 for|for
 control|(
 name|Entry
 argument_list|<
 name|?
+extends|extends
+name|Object
 argument_list|,
 name|?
+extends|extends
+name|Object
 argument_list|>
 name|entry
 range|:

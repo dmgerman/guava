@@ -50,9 +50,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -60,7 +60,7 @@ begin_comment
 comment|/** @see com.google.common.collect.Maps#immutableEntry(Object, Object) */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -68,103 +68,121 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ImmutableEntry
-class|class
+name|class
 name|ImmutableEntry
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractMapEntry
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|Serializable
-block|{
+block|{   @
 DECL|field|key
-annotation|@
-name|NullableDecl
-specifier|final
+name|ParametricNullness
+name|final
 name|K
 name|key
-decl_stmt|;
+block|;   @
 DECL|field|value
-annotation|@
-name|NullableDecl
-specifier|final
+name|ParametricNullness
+name|final
 name|V
 name|value
-decl_stmt|;
-DECL|method|ImmutableEntry (@ullableDecl K key, @NullableDecl V value)
+block|;
+DECL|method|ImmutableEntry (@arametricNullness K key, @ParametricNullness V value)
 name|ImmutableEntry
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
-parameter_list|,
+argument_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|value
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|key
 operator|=
 name|key
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|value
 operator|=
 name|value
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
-annotation|@
-name|NullableDecl
+expr|@
+name|ParametricNullness
 DECL|method|getKey ()
 specifier|public
-specifier|final
+name|final
 name|K
 name|getKey
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|key
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-annotation|@
-name|NullableDecl
+expr|@
+name|ParametricNullness
 DECL|method|getValue ()
 specifier|public
-specifier|final
+name|final
 name|V
 name|getValue
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|value
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|setValue (V value)
+annotation|@
+name|ParametricNullness
+DECL|method|setValue (@arametricNullness V value)
 specifier|public
 specifier|final
 name|V
 name|setValue
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -175,6 +193,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -184,8 +205,8 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

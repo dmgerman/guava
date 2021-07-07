@@ -17,6 +17,18 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -108,6 +120,22 @@ name|CheckForNull
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementation of ImmutableBiMap backed by a pair of JDK HashMaps, which have smartness  * protecting against hash flooding.  */
 end_comment
@@ -141,7 +169,7 @@ argument_list|>
 block|{
 annotation|@
 name|VisibleForTesting
-DECL|method|create (int n, Entry<K, V>[] entryArray)
+DECL|method|create (int n, @Nullable Entry<K, V>[] entryArray)
 specifier|static
 parameter_list|<
 name|K
@@ -159,6 +187,8 @@ parameter_list|(
 name|int
 name|n
 parameter_list|,
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -214,6 +244,7 @@ name|i
 operator|++
 control|)
 block|{
+comment|// requireNonNull is safe because the first `n` elements have been filled in.
 name|Entry
 argument_list|<
 name|K
@@ -226,10 +257,13 @@ name|RegularImmutableMap
 operator|.
 name|makeImmutable
 argument_list|(
+name|requireNonNull
+argument_list|(
 name|entryArray
 index|[
 name|i
 index|]
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|entryArray

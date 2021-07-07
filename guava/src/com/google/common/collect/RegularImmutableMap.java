@@ -81,6 +81,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -176,6 +188,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -206,6 +228,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|RegularImmutableMap
 specifier|final
 class|class
@@ -311,9 +335,13 @@ name|entries
 decl_stmt|;
 comment|// array of linked lists of entries
 DECL|field|table
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|final
 specifier|transient
+annotation|@
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -368,7 +396,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates an ImmutableMap from the first n entries in entryArray. This implementation may replace    * the entries in entryArray with its own entry objects (though they will have the same key/value    * contents), and may take ownership of entryArray.    */
-DECL|method|fromEntryArray (int n, Entry<K, V>[] entryArray)
+DECL|method|fromEntryArray (int n, @Nullable Entry<K, V>[] entryArray)
 specifier|static
 parameter_list|<
 name|K
@@ -386,6 +414,8 @@ parameter_list|(
 name|int
 name|n
 parameter_list|,
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -424,6 +454,12 @@ operator|)
 name|EMPTY
 return|;
 block|}
+comment|/*      * The cast is safe: n==entryArray.length means that we have filled the whole array with Entry      * instances, in which case it is safe to cast it from an array of nullable entries to an array      * of non-null entries.      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
 name|Entry
 argument_list|<
 name|K
@@ -432,31 +468,31 @@ name|V
 argument_list|>
 index|[]
 name|entries
-decl_stmt|;
-if|if
-condition|(
+init|=
+operator|(
 name|n
 operator|==
 name|entryArray
 operator|.
 name|length
-condition|)
-block|{
-name|entries
-operator|=
+operator|)
+condition|?
+operator|(
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+index|[]
+operator|)
 name|entryArray
-expr_stmt|;
-block|}
-else|else
-block|{
-name|entries
-operator|=
+else|:
 name|createEntryArray
 argument_list|(
 name|n
 argument_list|)
-expr_stmt|;
-block|}
+decl_stmt|;
 name|int
 name|tableSize
 init|=
@@ -469,6 +505,8 @@ argument_list|,
 name|MAX_LOAD_FACTOR
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -505,6 +543,7 @@ name|entryIndex
 operator|++
 control|)
 block|{
+comment|// requireNonNull is safe because the first `n` elements have been filled in.
 name|Entry
 argument_list|<
 name|K
@@ -513,10 +552,13 @@ name|V
 argument_list|>
 name|entry
 init|=
+name|requireNonNull
+argument_list|(
 name|entryArray
 index|[
 name|entryIndex
 index|]
+argument_list|)
 decl_stmt|;
 name|K
 name|key
@@ -556,8 +598,6 @@ argument_list|)
 operator|&
 name|mask
 decl_stmt|;
-annotation|@
-name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -792,7 +832,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|RegularImmutableMap (Entry<K, V>[] entries, ImmutableMapEntry<K, V>[] table, int mask)
+DECL|method|RegularImmutableMap ( Entry<K, V>[] entries, @CheckForNull @Nullable ImmutableMapEntry<K, V>[] table, int mask)
 specifier|private
 name|RegularImmutableMap
 parameter_list|(
@@ -805,6 +845,10 @@ argument_list|>
 index|[]
 name|entries
 parameter_list|,
+annotation|@
+name|CheckForNull
+annotation|@
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -840,7 +884,7 @@ block|}
 comment|/**    * @return number of entries in this bucket    * @throws IllegalArgumentException if another entry in the bucket has the same key    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNoConflictInKeyBucket ( Object key, Entry<?, ?> entry, @Nullable ImmutableMapEntry<?, ?> keyBucketHead)
+DECL|method|checkNoConflictInKeyBucket ( Object key, Entry<?, ?> entry, @CheckForNull ImmutableMapEntry<?, ?> keyBucketHead)
 specifier|static
 name|int
 name|checkNoConflictInKeyBucket
@@ -857,7 +901,7 @@ argument_list|>
 name|entry
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|ImmutableMapEntry
 argument_list|<
 name|?
@@ -917,13 +961,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -939,35 +985,37 @@ name|mask
 argument_list|)
 return|;
 block|}
-DECL|method|get ( @ullable Object key, ImmutableMapEntry<?, V> @Nullable [] keyTable, int mask)
-specifier|static
-argument_list|<
-name|V
-argument_list|>
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|get ( @heckForNull Object key, @CheckForNull @Nullable ImmutableMapEntry<?, V>[] keyTable, int mask)
+specifier|static
+parameter_list|<
+name|V
+parameter_list|>
 name|V
 name|get
-argument_list|(
+parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
-argument_list|,
+parameter_list|,
+annotation|@
+name|CheckForNull
+annotation|@
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|?
 argument_list|,
 name|V
 argument_list|>
-expr|@
-name|Nullable
 index|[]
 name|keyTable
-operator|,
+parameter_list|,
 name|int
 name|mask
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -1260,11 +1308,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
