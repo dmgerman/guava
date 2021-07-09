@@ -2354,6 +2354,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|Entry
 argument_list|<
@@ -2574,6 +2576,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|Entry
 argument_list|<
@@ -3342,6 +3346,8 @@ name|firstComplementRangeLowerBound
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|Entry
 argument_list|<
@@ -3726,6 +3732,8 @@ name|firstComplementRangeUpperBound
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|Entry
 argument_list|<
@@ -4995,6 +5003,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|Entry
 argument_list|<
@@ -5206,6 +5216,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|Entry
 argument_list|<

@@ -226,6 +226,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|E
 name|computeNext

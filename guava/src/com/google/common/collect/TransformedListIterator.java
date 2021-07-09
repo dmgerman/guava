@@ -54,30 +54,60 @@ name|ListIterator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An iterator that transforms a backing list iterator; for internal use. This avoids the object  * overhead of constructing a {@link Function} for internal methods.  *  * @author Louis Wasserman  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|TransformedListIterator
 specifier|abstract
-class|class
+name|class
 name|TransformedListIterator
-parameter_list|<
+operator|<
 name|F
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|TransformedIterator
 argument_list|<
 name|F
 argument_list|,
 name|T
 argument_list|>
-implements|implements
+expr|implements
 name|ListIterator
 argument_list|<
 name|T
@@ -85,7 +115,7 @@ argument_list|>
 block|{
 DECL|method|TransformedListIterator (ListIterator<? extends F> backingIterator)
 name|TransformedListIterator
-parameter_list|(
+argument_list|(
 name|ListIterator
 argument_list|<
 name|?
@@ -93,14 +123,13 @@ extends|extends
 name|F
 argument_list|>
 name|backingIterator
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|backingIterator
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|backingIterator ()
 specifier|private
 name|ListIterator
@@ -110,7 +139,7 @@ extends|extends
 name|F
 argument_list|>
 name|backingIterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Iterators
@@ -121,14 +150,14 @@ name|backingIterator
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|hasPrevious ()
 specifier|public
-specifier|final
+name|final
 name|boolean
 name|hasPrevious
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|backingIterator
@@ -138,8 +167,13 @@ name|hasPrevious
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|previous ()
 specifier|public
 specifier|final
@@ -158,6 +192,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|nextIndex ()
@@ -175,6 +212,9 @@ name|nextIndex
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|previousIndex ()
@@ -192,13 +232,18 @@ name|previousIndex
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|set (T element)
+DECL|method|set (@arametricNullness T element)
 specifier|public
 name|void
 name|set
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|T
 name|element
 parameter_list|)
@@ -209,13 +254,18 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|add (T element)
+DECL|method|add (@arametricNullness T element)
 specifier|public
 name|void
 name|add
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|T
 name|element
 parameter_list|)
@@ -226,8 +276,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

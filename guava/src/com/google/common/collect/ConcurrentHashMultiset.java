@@ -1985,6 +1985,8 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|Entry
 argument_list|<

@@ -2648,6 +2648,8 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|C
 name|computeNext
@@ -2761,6 +2763,8 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|C
 name|computeNext

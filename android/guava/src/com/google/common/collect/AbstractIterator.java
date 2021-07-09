@@ -33,6 +33,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|NullnessCasts
+operator|.
+name|uncheckedCastNullableTToT
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -72,6 +88,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -80,9 +106,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -98,18 +124,29 @@ begin_comment
 comment|// com.google.common.base.AbstractIterator
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AbstractIterator
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|AbstractIterator
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|UnmodifiableIterator
 argument_list|<
 name|T
@@ -119,20 +156,20 @@ DECL|field|state
 specifier|private
 name|State
 name|state
-init|=
+operator|=
 name|State
 operator|.
 name|NOT_READY
-decl_stmt|;
+block|;
 comment|/** Constructor for use by subclasses. */
 DECL|method|AbstractIterator ()
 specifier|protected
 name|AbstractIterator
-parameter_list|()
+argument_list|()
 block|{}
 DECL|enum|State
 specifier|private
-enum|enum
+expr|enum
 name|State
 block|{
 comment|/** We have computed the next element and haven't returned it yet. */
@@ -152,51 +189,55 @@ DECL|enumConstant|FAILED
 name|FAILED
 block|,   }
 DECL|field|next
-annotation|@
-name|NullableDecl
+expr|@
+name|CheckForNull
 specifier|private
 name|T
 name|next
-decl_stmt|;
+block|;
 comment|/**    * Returns the next element.<b>Note:</b> the implementation must call {@link #endOfData()} when    * there are no elements left in the iteration. Failure to do so could result in an infinite loop.    *    *<p>The initial invocation of {@link #hasNext()} or {@link #next()} calls this method, as does    * the first invocation of {@code hasNext} or {@code next} following each successful call to    * {@code next}. Once the implementation either invokes {@code endOfData} or throws an exception,    * {@code computeNext} is guaranteed to never be called again.    *    *<p>If this method throws an exception, it will propagate outward to the {@code hasNext} or    * {@code next} invocation that invoked this method. Any further attempts to use the iterator will    * result in an {@link IllegalStateException}.    *    *<p>The implementation of this method may not invoke the {@code hasNext}, {@code next}, or    * {@link #peek()} methods on this instance; if it does, an {@code IllegalStateException} will    * result.    *    * @return the next element if there was one. If {@code endOfData} was called during execution,    *     the return value will be ignored.    * @throws RuntimeException if any unrecoverable error happens. This exception will propagate    *     outward to the {@code hasNext()}, {@code next()}, or {@code peek()} invocation that invoked    *     this method. Any further attempts to use the iterator will result in an {@link    *     IllegalStateException}.    */
+block|@
+name|CheckForNull
 DECL|method|computeNext ()
 specifier|protected
 specifier|abstract
 name|T
 name|computeNext
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * Implementations of {@link #computeNext}<b>must</b> invoke this method when there are no    * elements left in the iteration.    *    * @return {@code null}; a convenience so your {@code computeNext} implementation can use the    *     simple statement {@code return endOfData();}    */
-annotation|@
+block|@
 name|CanIgnoreReturnValue
+expr|@
+name|CheckForNull
 DECL|method|endOfData ()
 specifier|protected
-specifier|final
+name|final
 name|T
 name|endOfData
-parameter_list|()
+argument_list|()
 block|{
 name|state
 operator|=
 name|State
 operator|.
 name|DONE
-expr_stmt|;
+block|;
 return|return
 literal|null
 return|;
 block|}
-annotation|@
+expr|@
 name|CanIgnoreReturnValue
 comment|// TODO(kak): Should we remove this? Some people are using it to prefetch?
-annotation|@
+expr|@
 name|Override
 DECL|method|hasNext ()
 specifier|public
-specifier|final
+name|final
 name|boolean
 name|hasNext
-parameter_list|()
+argument_list|()
 block|{
 name|checkState
 argument_list|(
@@ -206,7 +247,7 @@ name|State
 operator|.
 name|FAILED
 argument_list|)
-expr_stmt|;
+block|;
 switch|switch
 condition|(
 name|state
@@ -226,13 +267,18 @@ literal|true
 return|;
 default|default:
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|tryToComputeNext
 argument_list|()
 return|;
-block|}
+end_return
+
+begin_function
+unit|}    private
 DECL|method|tryToComputeNext ()
-specifier|private
 name|boolean
 name|tryToComputeNext
 parameter_list|()
@@ -272,11 +318,16 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kak): Should we remove this?
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|next ()
 specifier|public
 specifier|final
@@ -303,10 +354,14 @@ name|State
 operator|.
 name|NOT_READY
 expr_stmt|;
+comment|// Safe because hasNext() ensures that tryToComputeNext() has put a T into `next`.
 name|T
 name|result
 init|=
+name|uncheckedCastNullableTToT
+argument_list|(
 name|next
+argument_list|)
 decl_stmt|;
 name|next
 operator|=
@@ -316,7 +371,15 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the next element in the iteration without advancing the iteration, according to the    * contract of {@link PeekingIterator#peek()}.    *    *<p>Implementations of {@code AbstractIterator} that wish to expose this functionality should    * implement {@code PeekingIterator}.    */
+end_comment
+
+begin_function
+annotation|@
+name|ParametricNullness
 DECL|method|peek ()
 specifier|public
 specifier|final
@@ -337,12 +400,16 @@ name|NoSuchElementException
 argument_list|()
 throw|;
 block|}
+comment|// Safe because hasNext() ensures that tryToComputeNext() has put a T into `next`.
 return|return
+name|uncheckedCastNullableTToT
+argument_list|(
 name|next
+argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

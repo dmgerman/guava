@@ -56,30 +56,60 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An iterator that transforms a backing iterator; for internal use. This avoids the object overhead  * of constructing a {@link com.google.common.base.Function Function} for internal methods.  *  * @author Louis Wasserman  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|TransformedIterator
 specifier|abstract
-class|class
+name|class
 name|TransformedIterator
-parameter_list|<
+operator|<
 name|F
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Iterator
 argument_list|<
 name|T
 argument_list|>
 block|{
 DECL|field|backingIterator
-specifier|final
+name|final
 name|Iterator
 argument_list|<
 name|?
@@ -87,10 +117,10 @@ extends|extends
 name|F
 argument_list|>
 name|backingIterator
-decl_stmt|;
+block|;
 DECL|method|TransformedIterator (Iterator<? extends F> backingIterator)
 name|TransformedIterator
-parameter_list|(
+argument_list|(
 name|Iterator
 argument_list|<
 name|?
@@ -98,7 +128,7 @@ extends|extends
 name|F
 argument_list|>
 name|backingIterator
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -108,25 +138,27 @@ name|checkNotNull
 argument_list|(
 name|backingIterator
 argument_list|)
-expr_stmt|;
-block|}
-DECL|method|transform (F from)
+block|;   }
+expr|@
+name|ParametricNullness
+DECL|method|transform (@arametricNullness F from)
 specifier|abstract
 name|T
 name|transform
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|F
 name|from
-parameter_list|)
-function_decl|;
-annotation|@
+argument_list|)
+block|;    @
 name|Override
 DECL|method|hasNext ()
 specifier|public
-specifier|final
+name|final
 name|boolean
 name|hasNext
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|backingIterator
@@ -135,14 +167,16 @@ name|hasNext
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|next ()
 specifier|public
-specifier|final
+name|final
 name|T
 name|next
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|transform
@@ -154,6 +188,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|remove ()
@@ -169,8 +206,8 @@ name|remove
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

@@ -66,21 +66,48 @@ name|NoSuchElementException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class provides a skeletal implementation of the {@link ListIterator} interface across a  * fixed number of elements that may be retrieved by position. It does not support {@link #remove},  * {@link #set}, or {@link #add}.  *  * @author Jared Levy  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AbstractIndexedListIterator
 specifier|abstract
-class|class
+name|class
 name|AbstractIndexedListIterator
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|UnmodifiableListIterator
 argument_list|<
 name|E
@@ -88,34 +115,36 @@ argument_list|>
 block|{
 DECL|field|size
 specifier|private
-specifier|final
+name|final
 name|int
 name|size
-decl_stmt|;
+block|;
 DECL|field|position
 specifier|private
 name|int
 name|position
-decl_stmt|;
+block|;
 comment|/** Returns the element with the specified index. This method is called by {@link #next()}. */
+block|@
+name|ParametricNullness
 DECL|method|get (int index)
 specifier|protected
 specifier|abstract
 name|E
 name|get
-parameter_list|(
+argument_list|(
 name|int
 name|index
-parameter_list|)
-function_decl|;
+argument_list|)
+block|;
 comment|/**    * Constructs an iterator across a sequence of the given size whose initial position is 0. That    * is, the first call to {@link #next()} will return the first element (or throw {@link    * NoSuchElementException} if {@code size} is zero).    *    * @throws IllegalArgumentException if {@code size} is negative    */
 DECL|method|AbstractIndexedListIterator (int size)
 specifier|protected
 name|AbstractIndexedListIterator
-parameter_list|(
+argument_list|(
 name|int
 name|size
-parameter_list|)
+argument_list|)
 block|{
 name|this
 argument_list|(
@@ -123,19 +152,18 @@ name|size
 argument_list|,
 literal|0
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 comment|/**    * Constructs an iterator across a sequence of the given size with the given initial position.    * That is, the first call to {@link #nextIndex()} will return {@code position}, and the first    * call to {@link #next()} will return the element at that index, if available. Calls to {@link    * #previous()} can retrieve the preceding {@code position} elements.    *    * @throws IndexOutOfBoundsException if {@code position} is negative or is greater than {@code    *     size}    * @throws IllegalArgumentException if {@code size} is negative    */
 DECL|method|AbstractIndexedListIterator (int size, int position)
 specifier|protected
 name|AbstractIndexedListIterator
-parameter_list|(
+argument_list|(
 name|int
 name|size
-parameter_list|,
+argument_list|,
 name|int
 name|position
-parameter_list|)
+argument_list|)
 block|{
 name|checkPositionIndex
 argument_list|(
@@ -143,28 +171,27 @@ name|position
 argument_list|,
 name|size
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|size
 operator|=
 name|size
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|position
 operator|=
 name|position
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|hasNext ()
 specifier|public
-specifier|final
+name|final
 name|boolean
 name|hasNext
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|position
@@ -172,14 +199,16 @@ operator|<
 name|size
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|next ()
 specifier|public
-specifier|final
+name|final
 name|E
 name|next
-parameter_list|()
+argument_list|()
 block|{
 if|if
 condition|(
@@ -194,6 +223,9 @@ name|NoSuchElementException
 argument_list|()
 throw|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|get
 argument_list|(
@@ -201,8 +233,10 @@ name|position
 operator|++
 argument_list|)
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}    @
 name|Override
 DECL|method|nextIndex ()
 specifier|public
@@ -215,6 +249,9 @@ return|return
 name|position
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hasPrevious ()
@@ -230,8 +267,13 @@ operator|>
 literal|0
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|previous ()
 specifier|public
 specifier|final
@@ -260,6 +302,9 @@ name|position
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|previousIndex ()
@@ -275,8 +320,8 @@ operator|-
 literal|1
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

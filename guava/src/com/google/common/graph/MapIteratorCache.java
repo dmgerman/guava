@@ -294,7 +294,7 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
-comment|// TODO(cpovirk): Switch back to a ternary once our checker allows it.
+comment|// TODO(b/192579700): Use a ternary once it no longer confuses our nullness checker.
 if|if
 condition|(
 name|value

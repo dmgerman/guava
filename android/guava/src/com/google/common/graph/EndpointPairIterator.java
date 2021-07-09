@@ -360,6 +360,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|computeNext ()
 specifier|protected
 name|EndpointPair
@@ -482,6 +484,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|computeNext ()
 specifier|protected
 name|EndpointPair

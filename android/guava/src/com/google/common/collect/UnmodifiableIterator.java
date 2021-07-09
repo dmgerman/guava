@@ -54,22 +54,49 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An iterator that does not support {@link #remove}.  *  *<p>{@code UnmodifiableIterator} is used primarily in conjunction with implementations of {@link  * ImmutableCollection}, such as {@link ImmutableList}. You can, however, convert an existing  * iterator to an {@code UnmodifiableIterator} using {@link Iterators#unmodifiableIterator}.  *  * @author Jared Levy  * @since 2.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|UnmodifiableIterator
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|UnmodifiableIterator
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Iterator
 argument_list|<
 name|E
@@ -79,33 +106,32 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|UnmodifiableIterator ()
 specifier|protected
 name|UnmodifiableIterator
-parameter_list|()
+argument_list|()
 block|{}
 comment|/**    * Guaranteed to throw an exception and leave the underlying data unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
-annotation|@
+expr|@
 name|Deprecated
-annotation|@
+expr|@
 name|Override
-annotation|@
+expr|@
 name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
 DECL|method|remove ()
 specifier|public
-specifier|final
+name|final
 name|void
 name|remove
-parameter_list|()
+argument_list|()
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
+block|;   }
 block|}
-block|}
-end_class
+end_expr_stmt
 
 end_unit
 

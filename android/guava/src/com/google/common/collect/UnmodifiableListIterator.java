@@ -54,27 +54,54 @@ name|ListIterator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A list iterator that does not support {@link #remove}, {@link #add}, or {@link #set}.  *  * @since 7.0  * @author Louis Wasserman  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|UnmodifiableListIterator
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|UnmodifiableListIterator
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|UnmodifiableIterator
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|ListIterator
 argument_list|<
 name|E
@@ -84,62 +111,64 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|UnmodifiableListIterator ()
 specifier|protected
 name|UnmodifiableListIterator
-parameter_list|()
+argument_list|()
 block|{}
 comment|/**    * Guaranteed to throw an exception and leave the underlying data unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
-annotation|@
+expr|@
 name|Deprecated
-annotation|@
+expr|@
 name|Override
-annotation|@
+expr|@
 name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
-DECL|method|add (E e)
+DECL|method|add (@arametricNullness E e)
 specifier|public
-specifier|final
+name|final
 name|void
 name|add
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
+block|;   }
 comment|/**    * Guaranteed to throw an exception and leave the underlying data unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
-annotation|@
+expr|@
 name|Deprecated
-annotation|@
+expr|@
 name|Override
-annotation|@
+expr|@
 name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
-DECL|method|set (E e)
+DECL|method|set (@arametricNullness E e)
 specifier|public
-specifier|final
+name|final
 name|void
 name|set
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
+block|;   }
 block|}
-block|}
-end_class
+end_expr_stmt
 
 end_unit
 

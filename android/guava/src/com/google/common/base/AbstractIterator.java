@@ -312,6 +312,8 @@ end_function
 begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|next ()
 specifier|public
 specifier|final

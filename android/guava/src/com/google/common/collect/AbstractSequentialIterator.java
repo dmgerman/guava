@@ -42,17 +42,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -63,6 +57,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractSequentialIterator
 specifier|public
 specifier|abstract
@@ -79,18 +75,18 @@ argument_list|>
 block|{
 DECL|field|nextOrNull
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 name|T
 name|nextOrNull
 decl_stmt|;
 comment|/**    * Creates a new iterator with the given first element, or, if {@code firstOrNull} is null,    * creates a new empty iterator.    */
-DECL|method|AbstractSequentialIterator (@ullableDecl T firstOrNull)
+DECL|method|AbstractSequentialIterator (@heckForNull T firstOrNull)
 specifier|protected
 name|AbstractSequentialIterator
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|T
 name|firstOrNull
 parameter_list|)
@@ -104,7 +100,7 @@ expr_stmt|;
 block|}
 comment|/**    * Returns the element that follows {@code previous}, or returns {@code null} if no elements    * remain. This method is invoked during each call to {@link #next()} in order to compute the    * result of a<i>future</i> call to {@code next()}.    */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|computeNext (T previous)
 specifier|protected
 specifier|abstract
@@ -141,9 +137,9 @@ parameter_list|()
 block|{
 if|if
 condition|(
-operator|!
-name|hasNext
-argument_list|()
+name|nextOrNull
+operator|==
+literal|null
 condition|)
 block|{
 throw|throw
@@ -152,22 +148,21 @@ name|NoSuchElementException
 argument_list|()
 throw|;
 block|}
-try|try
-block|{
-return|return
+name|T
+name|oldNext
+init|=
 name|nextOrNull
-return|;
-block|}
-finally|finally
-block|{
+decl_stmt|;
 name|nextOrNull
 operator|=
 name|computeNext
 argument_list|(
-name|nextOrNull
+name|oldNext
 argument_list|)
 expr_stmt|;
-block|}
+return|return
+name|oldNext
+return|;
 block|}
 block|}
 end_class

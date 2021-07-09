@@ -2339,6 +2339,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|Entry
 argument_list|<
@@ -2708,6 +2710,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|Entry
 argument_list|<
@@ -2987,7 +2991,7 @@ block|{
 annotation|@
 name|Override
 annotation|@
-name|ParametricNullness
+name|CheckForNull
 specifier|protected
 name|E
 name|computeNext
@@ -3097,6 +3101,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|Entry
 argument_list|<
