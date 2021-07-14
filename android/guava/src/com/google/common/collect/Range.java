@@ -140,17 +140,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -166,6 +160,8 @@ name|SuppressWarnings
 argument_list|(
 literal|"rawtypes"
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Range
 specifier|public
 specifier|final
@@ -1112,16 +1108,17 @@ condition|)
 block|{
 name|SortedSet
 argument_list|<
-name|?
-extends|extends
 name|C
 argument_list|>
 name|set
 init|=
-name|cast
-argument_list|(
+operator|(
+name|SortedSet
+argument_list|<
+name|C
+argument_list|>
+operator|)
 name|values
-argument_list|)
 decl_stmt|;
 name|Comparator
 argument_list|<
@@ -1553,10 +1550,15 @@ name|C
 argument_list|>
 name|set
 init|=
-name|cast
-argument_list|(
+operator|(
+name|SortedSet
+argument_list|<
+name|?
+extends|extends
+name|C
+argument_list|>
+operator|)
 name|values
-argument_list|)
 decl_stmt|;
 name|Comparator
 argument_list|<
@@ -2123,13 +2125,13 @@ block|}
 comment|/**    * Returns {@code true} if {@code object} is a range having the same endpoints and bound types as    * this range. Note that discrete ranges such as {@code (1..4)} and {@code [2..3]} are<b>not</b>    * equal to one another, despite the fact that they each contain precisely the same set of values.    * Similarly, empty ranges are not equal unless they have exactly the same representation, so    * {@code [3..3)}, {@code (3..3]}, {@code (4..4]} are all unequal.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2274,36 +2276,6 @@ name|sb
 operator|.
 name|toString
 argument_list|()
-return|;
-block|}
-comment|/** Used to avoid http://bugs.sun.com/view_bug.do?bug_id=6558557 */
-DECL|method|cast (Iterable<T> iterable)
-specifier|private
-specifier|static
-parameter_list|<
-name|T
-parameter_list|>
-name|SortedSet
-argument_list|<
-name|T
-argument_list|>
-name|cast
-parameter_list|(
-name|Iterable
-argument_list|<
-name|T
-argument_list|>
-name|iterable
-parameter_list|)
-block|{
-return|return
-operator|(
-name|SortedSet
-argument_list|<
-name|T
-argument_list|>
-operator|)
-name|iterable
 return|;
 block|}
 DECL|method|readResolve ()

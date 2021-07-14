@@ -37,6 +37,8 @@ end_comment
 begin_enum
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|enum|BoundType
 specifier|public
 enum|enum

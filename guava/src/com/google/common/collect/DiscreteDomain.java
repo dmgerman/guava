@@ -120,6 +120,16 @@ name|NoSuchElementException
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * A descriptor for a<i>discrete</i> {@code Comparable} domain such as all {@link Integer}  * instances. A discrete domain is one that supports the three basic operations: {@link #next},  * {@link #previous} and {@link #distance}, according to their specifications. The methods {@link  * #minValue} and {@link #maxValue} should also be overridden for bounded types.  *  *<p>A discrete domain always represents the<i>entire</i> set of values of its type; it cannot  * represent partial domains such as "prime integers" or "strings of length 5."  *  *<p>See the Guava User Guide section on<a href=  * "https://github.com/google/guava/wiki/RangesExplained#discrete-domains"> {@code  * DiscreteDomain}</a>.  *  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
@@ -127,6 +137,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|DiscreteDomain
 specifier|public
 specifier|abstract
@@ -192,6 +204,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|next (Integer value)
 specifier|public
 name|Integer
@@ -224,6 +238,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|previous (Integer value)
 specifier|public
 name|Integer
@@ -425,6 +441,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|next (Long value)
 specifier|public
 name|Long
@@ -457,6 +475,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|previous (Long value)
 specifier|public
 name|Long
@@ -931,6 +951,11 @@ name|long
 name|distance
 parameter_list|)
 block|{
+name|C
+name|current
+init|=
+name|origin
+decl_stmt|;
 name|checkNonnegative
 argument_list|(
 name|distance
@@ -953,19 +978,44 @@ name|i
 operator|++
 control|)
 block|{
-name|origin
+name|current
 operator|=
 name|next
 argument_list|(
-name|origin
+name|current
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|current
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"overflowed computing offset("
+operator|+
+name|origin
+operator|+
+literal|", "
+operator|+
+name|distance
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 block|}
 return|return
-name|origin
+name|current
 return|;
 block|}
 comment|/**    * Returns the unique least value of type {@code C} that is greater than {@code value}, or {@code    * null} if none exists. Inverse operation to {@link #previous}.    *    * @param value any value of type {@code C}    * @return the least value greater than {@code value}, or {@code null} if {@code value} is {@code    *     maxValue()}    */
+annotation|@
+name|CheckForNull
 DECL|method|next (C value)
 specifier|public
 specifier|abstract
@@ -977,6 +1027,8 @@ name|value
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the unique greatest value of type {@code C} that is less than {@code value}, or {@code    * null} if none exists. Inverse operation to {@link #next}.    *    * @param value any value of type {@code C}    * @return the greatest value less than {@code value}, or {@code null} if {@code value} is {@code    *     minValue()}    */
+annotation|@
+name|CheckForNull
 DECL|method|previous (C value)
 specifier|public
 specifier|abstract

@@ -82,17 +82,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -103,6 +97,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Cut
 specifier|abstract
 class|class
@@ -125,16 +121,12 @@ name|Serializable
 block|{
 DECL|field|endpoint
 specifier|final
-annotation|@
-name|Nullable
 name|C
 name|endpoint
 decl_stmt|;
-DECL|method|Cut (@ullable C endpoint)
+DECL|method|Cut (C endpoint)
 name|Cut
 parameter_list|(
-annotation|@
-name|Nullable
 name|C
 name|endpoint
 parameter_list|)
@@ -221,6 +213,8 @@ name|StringBuilder
 name|sb
 parameter_list|)
 function_decl|;
+annotation|@
+name|CheckForNull
 DECL|method|leastValueAbove (DiscreteDomain<C> domain)
 specifier|abstract
 name|C
@@ -233,6 +227,8 @@ argument_list|>
 name|domain
 parameter_list|)
 function_decl|;
+annotation|@
+name|CheckForNull
 DECL|method|greatestValueBelow (DiscreteDomain<C> domain)
 specifier|abstract
 name|C
@@ -362,11 +358,13 @@ argument_list|)
 comment|// catching CCE
 annotation|@
 name|Override
-DECL|method|equals (Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -412,9 +410,13 @@ block|}
 catch|catch
 parameter_list|(
 name|ClassCastException
-name|ignored
+name|wastNotComparableToOurType
 parameter_list|)
-block|{       }
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 return|return
 literal|false
@@ -502,9 +504,10 @@ specifier|private
 name|BelowAll
 parameter_list|()
 block|{
+comment|/*        * No code ever sees this bogus value for `endpoint`: This class overrides both methods that        * use the `endpoint` field, compareTo() and endpoint(). Additionally, the main implementation        * of Cut.compareTo checks for belowAll before reading accessing `endpoint` on another Cut        * instance.        */
 name|super
 argument_list|(
-literal|null
+literal|""
 argument_list|)
 expr_stmt|;
 block|}
@@ -915,9 +918,10 @@ specifier|private
 name|AboveAll
 parameter_list|()
 block|{
+comment|// For discussion of "", see BelowAll.
 name|super
 argument_list|(
-literal|null
+literal|""
 argument_list|)
 expr_stmt|;
 block|}
@@ -1354,8 +1358,6 @@ return|;
 case|case
 name|OPEN
 case|:
-annotation|@
-name|Nullable
 name|C
 name|previous
 init|=
@@ -1425,8 +1427,6 @@ block|{
 case|case
 name|CLOSED
 case|:
-annotation|@
-name|Nullable
 name|C
 name|previous
 init|=
@@ -1540,6 +1540,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|greatestValueBelow (DiscreteDomain<C> domain)
 name|C
 name|greatestValueBelow
@@ -1744,8 +1746,6 @@ return|;
 case|case
 name|CLOSED
 case|:
-annotation|@
-name|Nullable
 name|C
 name|next
 init|=
@@ -1811,8 +1811,6 @@ block|{
 case|case
 name|OPEN
 case|:
-annotation|@
-name|Nullable
 name|C
 name|next
 init|=
@@ -1905,6 +1903,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|leastValueAbove (DiscreteDomain<C> domain)
 name|C
 name|leastValueAbove
