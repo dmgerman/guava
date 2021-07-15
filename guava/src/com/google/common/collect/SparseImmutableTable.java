@@ -17,6 +17,18 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -96,6 +108,8 @@ block|,
 literal|"V"
 block|}
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|SparseImmutableTable
 specifier|final
 class|class
@@ -436,16 +450,20 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
+comment|/*        * These requireNonNull calls are safe because we construct the maps to hold all the provided        * cells.        */
 name|cellRowIndices
 index|[
 name|i
 index|]
 operator|=
+name|requireNonNull
+argument_list|(
 name|rowIndex
 operator|.
 name|get
 argument_list|(
 name|rowKey
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|Map
@@ -456,11 +474,14 @@ name|V
 argument_list|>
 name|thisRow
 init|=
+name|requireNonNull
+argument_list|(
 name|rows
 operator|.
 name|get
 argument_list|(
 name|rowKey
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|cellColumnInRowIndices
@@ -496,11 +517,14 @@ argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
+name|requireNonNull
+argument_list|(
 name|columns
 operator|.
 name|get
 argument_list|(
 name|columnKey
+argument_list|)
 argument_list|)
 operator|.
 name|put
@@ -1037,12 +1061,15 @@ name|cellSet
 argument_list|()
 control|)
 block|{
+comment|// requireNonNull is safe because the cell exists in the table.
 name|cellColumnIndices
 index|[
 name|i
 operator|++
 index|]
 operator|=
+name|requireNonNull
+argument_list|(
 name|columnKeyToIndex
 operator|.
 name|get
@@ -1051,6 +1078,7 @@ name|cell
 operator|.
 name|getColumnKey
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

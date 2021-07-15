@@ -146,6 +146,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -164,21 +174,38 @@ begin_comment
 comment|/**  * Skeletal, implementation-agnostic implementation of the {@link Table} interface.  *  * @author Louis Wasserman  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AbstractTable
 specifier|abstract
-class|class
+name|class
 name|AbstractTable
-parameter_list|<
+operator|<
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Table
 argument_list|<
 name|R
@@ -187,19 +214,18 @@ name|C
 argument_list|,
 name|V
 argument_list|>
-block|{
-annotation|@
+block|{    @
 name|Override
-DECL|method|containsRow (@ullable Object rowKey)
+DECL|method|containsRow (@heckForNull Object rowKey)
 specifier|public
 name|boolean
 name|containsRow
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|rowKey
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Maps
@@ -213,18 +239,18 @@ name|rowKey
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|containsColumn (@ullable Object columnKey)
+DECL|method|containsColumn (@heckForNull Object columnKey)
 specifier|public
 name|boolean
 name|containsColumn
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|columnKey
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Maps
@@ -238,6 +264,9 @@ name|columnKey
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|rowKeySet ()
@@ -257,6 +286,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|columnKeySet ()
@@ -276,15 +308,18 @@ name|keySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsValue (@ullable Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -325,20 +360,23 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|contains (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -376,20 +414,25 @@ name|columnKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|get (@ullable Object rowKey, @Nullable Object columnKey)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -431,6 +474,9 @@ name|columnKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -446,6 +492,9 @@ operator|==
 literal|0
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -466,22 +515,27 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -523,21 +577,32 @@ name|columnKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|put (R rowKey, C columnKey, V value)
+annotation|@
+name|CheckForNull
+DECL|method|put ( @arametricNullness R rowKey, @ParametricNullness C columnKey, @ParametricNullness V value)
 specifier|public
 name|V
 name|put
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|R
 name|rowKey
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|C
 name|columnKey
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -556,6 +621,9 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|putAll (Table<? extends R, ? extends C, ? extends V> table)
@@ -626,13 +694,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|cellSet
 annotation|@
 name|LazyInit
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|Set
 argument_list|<
 name|Cell
@@ -646,6 +717,9 @@ argument_list|>
 argument_list|>
 name|cellSet
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|cellSet ()
@@ -694,6 +768,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|createCellSet ()
 name|Set
 argument_list|<
@@ -715,6 +792,9 @@ name|CellSet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function_decl
 DECL|method|cellIterator ()
 specifier|abstract
 name|Iterator
@@ -733,6 +813,9 @@ argument_list|>
 name|cellIterator
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_function_decl
 DECL|method|cellSpliterator ()
 specifier|abstract
 name|Spliterator
@@ -751,6 +834,9 @@ argument_list|>
 name|cellSpliterator
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|CellSet
@@ -771,11 +857,13 @@ argument_list|>
 block|{
 annotation|@
 name|Override
-DECL|method|contains (Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -867,13 +955,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object o)
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -1045,19 +1133,25 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_decl_stmt
 DECL|field|values
 annotation|@
 name|LazyInit
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|Collection
 argument_list|<
 name|V
 argument_list|>
 name|values
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -1092,6 +1186,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|createValues ()
 name|Collection
 argument_list|<
@@ -1106,6 +1203,9 @@ name|Values
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|valuesIterator ()
 name|Iterator
 argument_list|<
@@ -1139,6 +1239,8 @@ argument_list|)
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 name|V
 name|transform
 parameter_list|(
@@ -1163,6 +1265,9 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|valuesSpliterator ()
 name|Spliterator
 argument_list|<
@@ -1187,6 +1292,9 @@ name|getValue
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|Values
@@ -1232,11 +1340,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -1282,15 +1392,18 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -1306,6 +1419,9 @@ name|obj
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -1322,7 +1438,13 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Returns the string representation {@code rowMap().toString()}. */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -1339,8 +1461,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

@@ -129,6 +129,34 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|NullnessCasts
+operator|.
+name|uncheckedCastNullableTToT
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -354,17 +382,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -375,6 +397,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|StandardTable
 class|class
 name|StandardTable
@@ -477,18 +501,18 @@ block|}
 comment|// Accessors
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|contains (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -514,13 +538,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsColumn (@ullable Object columnKey)
+DECL|method|containsColumn (@heckForNull Object columnKey)
 specifier|public
 name|boolean
 name|containsColumn
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -573,13 +597,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsRow (@ullable Object rowKey)
+DECL|method|containsRow (@heckForNull Object rowKey)
 specifier|public
 name|boolean
 name|containsRow
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|)
@@ -599,13 +623,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullable Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -625,18 +649,20 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object rowKey, @Nullable Object columnKey)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -796,6 +822,8 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|put (R rowKey, C columnKey, V value)
 specifier|public
 name|V
@@ -844,18 +872,20 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -937,7 +967,7 @@ return|;
 block|}
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeColumn (Object column)
+DECL|method|removeColumn (@heckForNull Object column)
 specifier|private
 name|Map
 argument_list|<
@@ -947,6 +977,8 @@ name|V
 argument_list|>
 name|removeColumn
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|column
 parameter_list|)
@@ -1069,17 +1101,23 @@ return|return
 name|output
 return|;
 block|}
-DECL|method|containsMapping (Object rowKey, Object columnKey, Object value)
+DECL|method|containsMapping ( @heckForNull Object rowKey, @CheckForNull Object columnKey, @CheckForNull Object value)
 specifier|private
 name|boolean
 name|containsMapping
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -1103,17 +1141,23 @@ argument_list|)
 return|;
 block|}
 comment|/** Remove a row key / column key / value mapping, if present. */
-DECL|method|removeMapping (Object rowKey, Object columnKey, Object value)
+DECL|method|removeMapping ( @heckForNull Object rowKey, @CheckForNull Object columnKey, @CheckForNull Object value)
 specifier|private
 name|boolean
 name|removeMapping
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -1287,7 +1331,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|rowEntry
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Entry
 argument_list|<
 name|R
@@ -1383,6 +1427,12 @@ name|iterator
 argument_list|()
 expr_stmt|;
 block|}
+comment|/*        * requireNonNull is safe because:        *        * - columnIterator started off pointing to an empty iterator, so we must have entered the        *   `if` body above at least once. Thus, if we got this far, that `if` body initialized        *   rowEntry at least once.        *        * - The only case in which rowEntry is cleared (during remove() below) happens only if the        *   caller removed every element from columnIterator. During that process, we would have had        *   to iterate it to exhaustion. Then we can apply the logic above about an empty        *   columnIterator. (This assumes no concurrent modification, but behavior under concurrent        *   modification is undefined, anyway.)        */
+name|requireNonNull
+argument_list|(
+name|rowEntry
+argument_list|)
+expr_stmt|;
 name|Entry
 argument_list|<
 name|C
@@ -1431,9 +1481,13 @@ operator|.
 name|remove
 argument_list|()
 expr_stmt|;
+comment|/*        * requireNonNull is safe because:        *        * - columnIterator.remove() succeeded, so it must have returned a value, so it must have been        * initialized by next() -- which initializes rowEntry, too.        *        * - rowEntry isn't cleared except below. If it was cleared below, then either        *   columnIterator.remove() would have failed above (if the user hasn't called next() since        *   then) or rowEntry would have been initialized by next() (as discussed above).        */
 if|if
 condition|(
+name|requireNonNull
+argument_list|(
 name|rowEntry
+argument_list|)
 operator|.
 name|getValue
 argument_list|()
@@ -1617,7 +1671,7 @@ expr_stmt|;
 block|}
 DECL|field|backingRowMap
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Map
 argument_list|<
 name|C
@@ -1626,18 +1680,14 @@ name|V
 argument_list|>
 name|backingRowMap
 decl_stmt|;
-DECL|method|backingRowMap ()
-name|Map
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-name|backingRowMap
+DECL|method|updateBackingRowMapField ()
+specifier|final
+name|void
+name|updateBackingRowMapField
 parameter_list|()
 block|{
-return|return
-operator|(
+if|if
+condition|(
 name|backingRowMap
 operator|==
 literal|null
@@ -1655,16 +1705,17 @@ argument_list|(
 name|rowKey
 argument_list|)
 operator|)
-operator|)
-condition|?
+condition|)
+block|{
 name|backingRowMap
 operator|=
 name|computeBackingRowMap
 argument_list|()
-else|:
-name|backingRowMap
-return|;
+expr_stmt|;
 block|}
+block|}
+annotation|@
+name|CheckForNull
 DECL|method|computeBackingRowMap ()
 name|Map
 argument_list|<
@@ -1690,10 +1741,12 @@ name|void
 name|maintainEmptyInvariant
 parameter_list|()
 block|{
+name|updateBackingRowMapField
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|backingRowMap
-argument_list|()
 operator|!=
 literal|null
 operator|&&
@@ -1718,26 +1771,20 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
 block|{
-name|Map
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-name|backingRowMap
-init|=
-name|backingRowMap
+name|updateBackingRowMapField
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 return|return
 operator|(
 name|key
@@ -1761,26 +1808,22 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
 block|{
-name|Map
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-name|backingRowMap
-init|=
-name|backingRowMap
+name|updateBackingRowMapField
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 return|return
 operator|(
 name|key
@@ -1806,6 +1849,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|put (C key, V value)
 specifier|public
 name|V
@@ -1869,26 +1914,22 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
 block|{
-name|Map
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-name|backingRowMap
-init|=
-name|backingRowMap
+name|updateBackingRowMapField
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|backingRowMap
@@ -1927,17 +1968,9 @@ name|void
 name|clear
 parameter_list|()
 block|{
-name|Map
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-name|backingRowMap
-init|=
-name|backingRowMap
+name|updateBackingRowMapField
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|backingRowMap
@@ -1963,27 +1996,19 @@ name|int
 name|size
 parameter_list|()
 block|{
-name|Map
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-name|map
-init|=
-name|backingRowMap
+name|updateBackingRowMapField
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 return|return
 operator|(
-name|map
+name|backingRowMap
 operator|==
 literal|null
 operator|)
 condition|?
 literal|0
 else|:
-name|map
+name|backingRowMap
 operator|.
 name|size
 argument_list|()
@@ -2004,21 +2029,12 @@ argument_list|>
 name|entryIterator
 parameter_list|()
 block|{
-specifier|final
-name|Map
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-name|map
-init|=
-name|backingRowMap
+name|updateBackingRowMapField
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
-name|map
+name|backingRowMap
 operator|==
 literal|null
 condition|)
@@ -2042,7 +2058,7 @@ argument_list|>
 argument_list|>
 name|iterator
 init|=
-name|map
+name|backingRowMap
 operator|.
 name|entrySet
 argument_list|()
@@ -2133,20 +2149,12 @@ argument_list|>
 name|entrySpliterator
 parameter_list|()
 block|{
-name|Map
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-name|map
-init|=
-name|backingRowMap
+name|updateBackingRowMapField
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
-name|map
+name|backingRowMap
 operator|==
 literal|null
 condition|)
@@ -2163,7 +2171,7 @@ name|CollectSpliterators
 operator|.
 name|map
 argument_list|(
-name|map
+name|backingRowMap
 operator|.
 name|entrySet
 argument_list|()
@@ -2250,6 +2258,8 @@ specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2327,6 +2337,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|put (R key, V value)
 specifier|public
 name|V
@@ -2356,11 +2368,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -2380,11 +2396,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -2404,11 +2422,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -2721,11 +2743,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -2778,11 +2802,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object obj)
+DECL|method|remove (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -2904,6 +2930,8 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|computeNext ()
 specifier|protected
 name|Entry
@@ -3010,7 +3038,10 @@ name|V
 name|value
 parameter_list|)
 block|{
+comment|/*                  * The cast is safe because of the containsKey check above. (Well, it's possible for                  * the map to change between that call and this one. But if that happens, the                  * behavior is undefined because of the concurrent mutation.)                  *                  * (Our prototype checker happens to be "smart" enough to understand this for the                  * *get* call in getValue but not for the *put* call here.)                  *                  * (Arguably we should use requireNonNull rather than uncheckedCastNullableTToT: We                  * know that V is a non-null type because that's the only kind of value type that                  * StandardTable supports. Thus, requireNonNull is safe as long as the cell is still                  * present. (And if it's not present, behavior is undefined.) However, that's a                  * behavior change relative to the old code, so it didn't seem worth risking.)                  */
 return|return
+name|uncheckedCastNullableTToT
+argument_list|(
 name|entry
 operator|.
 name|getValue
@@ -3023,6 +3054,7 @@ argument_list|,
 name|checkNotNull
 argument_list|(
 name|value
+argument_list|)
 argument_list|)
 argument_list|)
 return|;
@@ -3087,11 +3119,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object obj)
+DECL|method|contains (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -3111,11 +3145,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object obj)
+DECL|method|remove (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -3218,11 +3254,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object obj)
+DECL|method|remove (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -3340,10 +3378,10 @@ argument_list|()
 return|;
 block|}
 DECL|field|columnKeySet
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|Set
 argument_list|<
 name|C
@@ -3434,11 +3472,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object obj)
+DECL|method|remove (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -3747,11 +3787,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object obj)
+DECL|method|contains (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -3846,6 +3888,8 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|computeNext ()
 specifier|protected
 name|C
@@ -3968,10 +4012,10 @@ argument_list|()
 return|;
 block|}
 DECL|field|rowMap
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|Map
 argument_list|<
 name|R
@@ -4074,11 +4118,13 @@ argument_list|>
 block|{
 annotation|@
 name|Override
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -4098,7 +4144,9 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
-DECL|method|get (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|Map
 argument_list|<
@@ -4108,10 +4156,13 @@ name|V
 argument_list|>
 name|get
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
 block|{
+comment|// requireNonNull is safe because of the containsRow check.
 return|return
 name|containsRow
 argument_list|(
@@ -4123,7 +4174,10 @@ argument_list|(
 operator|(
 name|R
 operator|)
+name|requireNonNull
+argument_list|(
 name|key
+argument_list|)
 argument_list|)
 else|:
 literal|null
@@ -4131,7 +4185,9 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|Map
 argument_list|<
@@ -4141,6 +4197,8 @@ name|V
 argument_list|>
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -4298,11 +4356,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object obj)
+DECL|method|contains (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -4366,11 +4426,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object obj)
+DECL|method|remove (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -4433,10 +4495,10 @@ block|}
 block|}
 block|}
 DECL|field|columnMap
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|ColumnMap
 name|columnMap
 decl_stmt|;
@@ -4507,7 +4569,9 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
-DECL|method|get (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|Map
 argument_list|<
@@ -4517,10 +4581,13 @@ name|V
 argument_list|>
 name|get
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
 block|{
+comment|// requireNonNull is safe because of the containsColumn check.
 return|return
 name|containsColumn
 argument_list|(
@@ -4532,7 +4599,10 @@ argument_list|(
 operator|(
 name|C
 operator|)
+name|requireNonNull
+argument_list|(
 name|key
+argument_list|)
 argument_list|)
 else|:
 literal|null
@@ -4540,11 +4610,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -4558,7 +4630,9 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|Map
 argument_list|<
@@ -4568,6 +4642,8 @@ name|V
 argument_list|>
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -4758,11 +4834,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object obj)
+DECL|method|contains (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -4803,28 +4881,17 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-comment|// The cast to C occurs only when the key is in the map, implying
-comment|// that it has the correct type.
-annotation|@
-name|SuppressWarnings
+comment|// requireNonNull is safe because of the containsColumn check.
+return|return
+name|requireNonNull
 argument_list|(
-literal|"unchecked"
-argument_list|)
-name|C
-name|columnKey
-init|=
-operator|(
-name|C
-operator|)
+name|get
+argument_list|(
 name|entry
 operator|.
 name|getKey
 argument_list|()
-decl_stmt|;
-return|return
-name|get
-argument_list|(
-name|columnKey
+argument_list|)
 argument_list|)
 operator|.
 name|equals
@@ -4843,21 +4910,28 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object obj)
+DECL|method|remove (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
 block|{
+comment|/*          * `o instanceof Entry` is guaranteed by `contains`, but we check it here to satisfy our          * nullness checker.          */
 if|if
 condition|(
 name|contains
 argument_list|(
 name|obj
 argument_list|)
+operator|&&
+name|obj
+operator|instanceof
+name|Entry
 condition|)
 block|{
 name|Entry
@@ -5041,11 +5115,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object obj)
+DECL|method|remove (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)

@@ -128,17 +128,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -149,6 +143,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|RegularImmutableTable
 specifier|abstract
 class|class
@@ -295,13 +291,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -484,7 +480,7 @@ literal|true
 return|;
 block|}
 block|}
-DECL|method|forCells ( List<Cell<R, C, V>> cells, final @Nullable Comparator<? super R> rowComparator, final @Nullable Comparator<? super C> columnComparator)
+DECL|method|forCells ( List<Cell<R, C, V>> cells, @CheckForNull final Comparator<? super R> rowComparator, @CheckForNull final Comparator<? super C> columnComparator)
 specifier|static
 parameter_list|<
 name|R
@@ -516,9 +512,9 @@ argument_list|>
 argument_list|>
 name|cells
 parameter_list|,
-specifier|final
 annotation|@
-name|Nullable
+name|CheckForNull
+specifier|final
 name|Comparator
 argument_list|<
 name|?
@@ -527,9 +523,9 @@ name|R
 argument_list|>
 name|rowComparator
 parameter_list|,
-specifier|final
 annotation|@
-name|Nullable
+name|CheckForNull
+specifier|final
 name|Comparator
 argument_list|<
 name|?
@@ -739,7 +735,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-DECL|method|forCellsInternal ( Iterable<Cell<R, C, V>> cells, @Nullable Comparator<? super R> rowComparator, @Nullable Comparator<? super C> columnComparator)
+DECL|method|forCellsInternal ( Iterable<Cell<R, C, V>> cells, @CheckForNull Comparator<? super R> rowComparator, @CheckForNull Comparator<? super C> columnComparator)
 specifier|private
 specifier|static
 parameter_list|<
@@ -773,7 +769,7 @@ argument_list|>
 name|cells
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -783,7 +779,7 @@ argument_list|>
 name|rowComparator
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -1060,7 +1056,7 @@ return|;
 block|}
 comment|/** @throws IllegalArgumentException if {@code existingValue} is not null. */
 comment|/*    * We could have declared this method 'static' but the additional compile-time checks achieved by    * referencing the type variables seem worthwhile.    */
-DECL|method|checkNoDuplicate (R rowKey, C columnKey, V existingValue, V newValue)
+DECL|method|checkNoDuplicate (R rowKey, C columnKey, @CheckForNull V existingValue, V newValue)
 specifier|final
 name|void
 name|checkNoDuplicate
@@ -1071,6 +1067,8 @@ parameter_list|,
 name|C
 name|columnKey
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|V
 name|existingValue
 parameter_list|,

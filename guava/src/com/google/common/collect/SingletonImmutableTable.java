@@ -63,6 +63,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|SingletonImmutableTable
 class|class
 name|SingletonImmutableTable

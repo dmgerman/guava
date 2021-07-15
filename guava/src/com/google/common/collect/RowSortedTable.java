@@ -70,25 +70,58 @@ name|SortedSet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Interface that extends {@code Table} and whose rows are sorted.  *  *<p>The {@link #rowKeySet} method returns a {@link SortedSet} and the {@link #rowMap} method  * returns a {@link SortedMap}, instead of the {@link Set} and {@link Map} specified by the {@link  * Table} interface.  *  * @author Warren Dukes  * @since 8.0  */
 end_comment
 
-begin_interface
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|interface|RowSortedTable
 specifier|public
-interface|interface
+expr|interface
 name|RowSortedTable
-parameter_list|<
+operator|<
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Table
 argument_list|<
 name|R
@@ -99,7 +132,7 @@ name|V
 argument_list|>
 block|{
 comment|/**    * {@inheritDoc}    *    *<p>This method returns a {@link SortedSet}, instead of the {@code Set} specified in the {@link    * Table} interface.    */
-annotation|@
+block|@
 name|Override
 DECL|method|rowKeySet ()
 name|SortedSet
@@ -107,10 +140,10 @@ argument_list|<
 name|R
 argument_list|>
 name|rowKeySet
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * {@inheritDoc}    *    *<p>This method returns a {@link SortedMap}, instead of the {@code Map} specified in the {@link    * Table} interface.    */
-annotation|@
+block|@
 name|Override
 DECL|method|rowMap ()
 name|SortedMap
@@ -125,10 +158,9 @@ name|V
 argument_list|>
 argument_list|>
 name|rowMap
-parameter_list|()
-function_decl|;
-block|}
-end_interface
+argument_list|()
+block|; }
+end_expr_stmt
 
 end_unit
 

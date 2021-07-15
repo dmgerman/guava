@@ -17,6 +17,18 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -86,6 +98,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -94,9 +116,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -120,6 +142,8 @@ block|,
 literal|"V"
 block|}
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|DenseImmutableTable
 specifier|final
 class|class
@@ -230,6 +254,8 @@ comment|// We don't modify this after construction.
 DECL|field|values
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|V
 index|[]
 index|[]
@@ -297,12 +323,16 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+annotation|@
+name|Nullable
 name|V
 index|[]
 index|[]
 name|array
 init|=
 operator|(
+expr|@
+name|Nullable
 name|V
 index|[]
 index|[]
@@ -449,24 +479,31 @@ operator|.
 name|getColumnKey
 argument_list|()
 decl_stmt|;
+comment|// The requireNonNull calls are safe because we construct the indexes with indexMap.
 name|int
 name|rowIndex
 init|=
+name|requireNonNull
+argument_list|(
 name|rowKeyToIndex
 operator|.
 name|get
 argument_list|(
 name|rowKey
 argument_list|)
+argument_list|)
 decl_stmt|;
 name|int
 name|columnIndex
 init|=
+name|requireNonNull
+argument_list|(
 name|columnKeyToIndex
 operator|.
 name|get
 argument_list|(
 name|columnKey
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|V
@@ -656,7 +693,7 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getValue (int keyIndex)
 specifier|abstract
 name|V
@@ -706,13 +743,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -791,6 +830,8 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|Entry
 argument_list|<
@@ -912,6 +953,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|getValue (int keyIndex)
 name|V
 name|getValue
@@ -1001,6 +1044,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|getValue (int keyIndex)
 name|V
 name|getValue
@@ -1311,18 +1356,20 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -1448,9 +1495,12 @@ argument_list|(
 name|columnIndex
 argument_list|)
 decl_stmt|;
+comment|// requireNonNull is safe because we use indexes that were populated by the constructor.
 name|V
 name|value
 init|=
+name|requireNonNull
+argument_list|(
 name|values
 index|[
 name|rowIndex
@@ -1458,6 +1508,7 @@ index|]
 index|[
 name|columnIndex
 index|]
+argument_list|)
 decl_stmt|;
 return|return
 name|cellOf
@@ -1480,7 +1531,10 @@ name|int
 name|index
 parameter_list|)
 block|{
+comment|// requireNonNull is safe because we use indexes that were populated by the constructor.
 return|return
+name|requireNonNull
+argument_list|(
 name|values
 index|[
 name|cellRowIndices
@@ -1494,6 +1548,7 @@ index|[
 name|index
 index|]
 index|]
+argument_list|)
 return|;
 block|}
 annotation|@

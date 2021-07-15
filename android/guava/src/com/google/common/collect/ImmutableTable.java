@@ -154,17 +154,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -175,6 +169,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableTable
 specifier|public
 specifier|abstract
@@ -596,7 +592,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|rowComparator
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 name|Comparator
 argument_list|<
@@ -608,7 +604,7 @@ name|rowComparator
 decl_stmt|;
 DECL|field|columnComparator
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 name|Comparator
 argument_list|<
@@ -1382,18 +1378,18 @@ parameter_list|()
 function_decl|;
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
+DECL|method|contains (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -1411,13 +1407,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullableDecl Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -1467,6 +1463,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|put (R rowKey, C columnKey, V value)
 specifier|public
 specifier|final
@@ -1540,15 +1538,21 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
-DECL|method|remove (Object rowKey, Object columnKey)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 specifier|final
 name|V
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)

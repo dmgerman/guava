@@ -49,6 +49,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -182,17 +194,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -208,6 +214,8 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|TreeBasedTable
 specifier|public
 class|class
@@ -568,12 +576,16 @@ argument_list|>
 name|rowComparator
 parameter_list|()
 block|{
+comment|/*      * requireNonNull is safe because the factories require non-null Comparators, which they pass on      * to the backing collections.      */
 return|return
+name|requireNonNull
+argument_list|(
 name|rowKeySet
 argument_list|()
 operator|.
 name|comparator
 argument_list|()
+argument_list|)
 return|;
 block|}
 comment|/**    * Returns the comparator that orders the columns. With natural ordering, {@link    * Ordering#natural()} is returned.    *    * @deprecated Store the {@link Comparator} alongside the {@link Table}. Or, if you know that the    *     {@link Table} contains at least one value, you can retrieve the {@link Comparator} with:    *     {@code ((SortedMap<C, V>) table.rowMap().values().iterator().next()).comparator();}.    */
@@ -635,16 +647,16 @@ name|V
 argument_list|>
 block|{
 DECL|field|lowerBound
-specifier|final
 annotation|@
-name|Nullable
+name|CheckForNull
+specifier|final
 name|C
 name|lowerBound
 decl_stmt|;
 DECL|field|upperBound
-specifier|final
 annotation|@
-name|Nullable
+name|CheckForNull
+specifier|final
 name|C
 name|upperBound
 decl_stmt|;
@@ -665,19 +677,19 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|TreeRow (R rowKey, @Nullable C lowerBound, @Nullable C upperBound)
+DECL|method|TreeRow (R rowKey, @CheckForNull C lowerBound, @CheckForNull C upperBound)
 name|TreeRow
 parameter_list|(
 name|R
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|C
 name|lowerBound
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|C
 name|upperBound
 parameter_list|)
@@ -803,12 +815,12 @@ name|b
 argument_list|)
 return|;
 block|}
-DECL|method|rangeContains (@ullable Object o)
+DECL|method|rangeContains (@heckForNull Object o)
 name|boolean
 name|rangeContains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -985,20 +997,12 @@ name|C
 name|firstKey
 parameter_list|()
 block|{
-name|SortedMap
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-name|backing
-init|=
-name|backingRowMap
+name|updateBackingRowMapField
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
-name|backing
+name|backingRowMap
 operator|==
 literal|null
 condition|)
@@ -1010,8 +1014,17 @@ argument_list|()
 throw|;
 block|}
 return|return
+operator|(
+operator|(
+name|SortedMap
+argument_list|<
+name|C
+argument_list|,
+name|V
+argument_list|>
+operator|)
 name|backingRowMap
-argument_list|()
+operator|)
 operator|.
 name|firstKey
 argument_list|()
@@ -1025,20 +1038,12 @@ name|C
 name|lastKey
 parameter_list|()
 block|{
-name|SortedMap
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-name|backing
-init|=
-name|backingRowMap
+name|updateBackingRowMapField
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
-name|backing
+name|backingRowMap
 operator|==
 literal|null
 condition|)
@@ -1050,17 +1055,26 @@ argument_list|()
 throw|;
 block|}
 return|return
+operator|(
+operator|(
+name|SortedMap
+argument_list|<
+name|C
+argument_list|,
+name|V
+argument_list|>
+operator|)
 name|backingRowMap
-argument_list|()
+operator|)
 operator|.
 name|lastKey
 argument_list|()
 return|;
 block|}
 DECL|field|wholeRow
-specifier|transient
 annotation|@
-name|Nullable
+name|CheckForNull
+specifier|transient
 name|SortedMap
 argument_list|<
 name|C
@@ -1069,15 +1083,10 @@ name|V
 argument_list|>
 name|wholeRow
 decl_stmt|;
-comment|/*      * If the row was previously empty, we check if there's a new row here every      * time we're queried.      */
-DECL|method|wholeRow ()
-name|SortedMap
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-name|wholeRow
+comment|// If the row was previously empty, we check if there's a new row here every time we're queried.
+DECL|method|updateWholeRowField ()
+name|void
+name|updateWholeRowField
 parameter_list|()
 block|{
 if|if
@@ -1119,39 +1128,11 @@ name|rowKey
 argument_list|)
 expr_stmt|;
 block|}
-return|return
-name|wholeRow
-return|;
 block|}
 annotation|@
 name|Override
-DECL|method|backingRowMap ()
-name|SortedMap
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-name|backingRowMap
-parameter_list|()
-block|{
-return|return
-operator|(
-name|SortedMap
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-operator|)
-name|super
-operator|.
-name|backingRowMap
-argument_list|()
-return|;
-block|}
 annotation|@
-name|Override
+name|CheckForNull
 DECL|method|computeBackingRowMap ()
 name|SortedMap
 argument_list|<
@@ -1162,6 +1143,9 @@ argument_list|>
 name|computeBackingRowMap
 parameter_list|()
 block|{
+name|updateWholeRowField
+argument_list|()
+expr_stmt|;
 name|SortedMap
 argument_list|<
 name|C
@@ -1171,7 +1155,6 @@ argument_list|>
 name|map
 init|=
 name|wholeRow
-argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -1229,10 +1212,12 @@ name|void
 name|maintainEmptyInvariant
 parameter_list|()
 block|{
+name|updateWholeRowField
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|wholeRow
-argument_list|()
 operator|!=
 literal|null
 operator|&&
@@ -1261,11 +1246,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1286,6 +1273,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|put (C key, V value)
 specifier|public
 name|V
@@ -1468,12 +1457,14 @@ argument_list|>
 argument_list|()
 block|{
 annotation|@
-name|Nullable
+name|CheckForNull
 name|C
 name|lastValue
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|C
 name|computeNext

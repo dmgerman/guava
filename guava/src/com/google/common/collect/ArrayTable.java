@@ -65,6 +65,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+operator|.
+name|emptyMap
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -300,6 +312,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ArrayTable
 specifier|public
 specifier|final
@@ -319,6 +333,8 @@ name|R
 argument_list|,
 name|C
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 implements|implements
@@ -375,16 +391,16 @@ return|;
 block|}
 comment|/*    * TODO(jlevy): Add factory methods taking an Enum class, instead of an    * iterable, to specify the allowed row keys and/or column keys. Note that    * custom serialization logic is needed to support different enum sizes during    * serialization and deserialization.    */
 comment|/**    * Creates an {@code ArrayTable} with the mappings in the provided table.    *    *<p>If {@code table} includes a mapping with row key {@code r} and a separate mapping with    * column key {@code c}, the returned table contains a mapping with row key {@code r} and column    * key {@code c}. If that row key / column key pair in not in {@code table}, the pair maps to    * {@code null} in the generated table.    *    *<p>The returned table allows subsequent {@code put} calls with the row keys in {@code    * table.rowKeySet()} and the column keys in {@code table.columnKeySet()}. Calling {@link #put}    * with other keys leads to an {@code IllegalArgumentException}.    *    *<p>The ordering of {@code table.rowKeySet()} and {@code table.columnKeySet()} determines the    * row and column iteration ordering of the returned table.    *    * @throws NullPointerException if {@code table} has a null key    */
-DECL|method|create (Table<R, C, V> table)
+DECL|method|create (Table<R, C, ? extends @Nullable V> table)
 specifier|public
 specifier|static
-parameter_list|<
+argument_list|<
 name|R
-parameter_list|,
+argument_list|,
 name|C
-parameter_list|,
+argument_list|,
 name|V
-parameter_list|>
+argument_list|>
 name|ArrayTable
 argument_list|<
 name|R
@@ -394,30 +410,26 @@ argument_list|,
 name|V
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|Table
-argument_list|<
+operator|<
 name|R
 argument_list|,
 name|C
 argument_list|,
+operator|?
+expr|extends @
+name|Nullable
 name|V
-argument_list|>
+operator|>
 name|table
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
 name|table
 operator|instanceof
 name|ArrayTable
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|,
-name|?
-argument_list|>
 operator|)
 condition|?
 operator|new
@@ -501,6 +513,8 @@ decl_stmt|;
 DECL|field|array
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|V
 index|[]
 index|[]
@@ -586,12 +600,16 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+annotation|@
+name|Nullable
 name|V
 index|[]
 index|[]
 name|tmpArray
 init|=
 operator|(
+expr|@
+name|Nullable
 name|V
 index|[]
 index|[]
@@ -620,20 +638,23 @@ name|eraseAll
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|ArrayTable (Table<R, C, V> table)
+DECL|method|ArrayTable (Table<R, C, ? extends @Nullable V> table)
 specifier|private
 name|ArrayTable
-parameter_list|(
+argument_list|(
 name|Table
-argument_list|<
+operator|<
 name|R
 argument_list|,
 name|C
 argument_list|,
+operator|?
+expr|extends @
+name|Nullable
 name|V
-argument_list|>
+operator|>
 name|table
-parameter_list|)
+argument_list|)
 block|{
 name|this
 argument_list|(
@@ -647,17 +668,16 @@ operator|.
 name|columnKeySet
 argument_list|()
 argument_list|)
-expr_stmt|;
+block|;
 name|putAll
 argument_list|(
 name|table
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|ArrayTable (ArrayTable<R, C, V> table)
 specifier|private
 name|ArrayTable
-parameter_list|(
+argument_list|(
 name|ArrayTable
 argument_list|<
 name|R
@@ -667,43 +687,46 @@ argument_list|,
 name|V
 argument_list|>
 name|table
-parameter_list|)
+argument_list|)
 block|{
 name|rowList
 operator|=
 name|table
 operator|.
 name|rowList
-expr_stmt|;
+block|;
 name|columnList
 operator|=
 name|table
 operator|.
 name|columnList
-expr_stmt|;
+block|;
 name|rowKeyToIndex
 operator|=
 name|table
 operator|.
 name|rowKeyToIndex
-expr_stmt|;
+block|;
 name|columnKeyToIndex
 operator|=
 name|table
 operator|.
 name|columnKeyToIndex
-expr_stmt|;
-annotation|@
+block|;     @
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+expr|@
+name|Nullable
 name|V
 index|[]
 index|[]
 name|copy
-init|=
+operator|=
 operator|(
+expr|@
+name|Nullable
 name|V
 index|[]
 index|[]
@@ -722,11 +745,11 @@ operator|.
 name|size
 argument_list|()
 index|]
-decl_stmt|;
+block|;
 name|array
 operator|=
 name|copy
-expr_stmt|;
+block|;
 for|for
 control|(
 name|int
@@ -777,18 +800,24 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_expr_stmt
 DECL|class|ArrayMap
 specifier|private
 specifier|abstract
 specifier|static
-class|class
+name|class
 name|ArrayMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|IteratorBasedAbstractMap
 argument_list|<
 name|K
@@ -798,7 +827,7 @@ argument_list|>
 block|{
 DECL|field|keyIndex
 specifier|private
-specifier|final
+name|final
 name|ImmutableMap
 argument_list|<
 name|K
@@ -806,11 +835,11 @@ argument_list|,
 name|Integer
 argument_list|>
 name|keyIndex
-decl_stmt|;
+block|;
 DECL|method|ArrayMap (ImmutableMap<K, Integer> keyIndex)
 specifier|private
 name|ArrayMap
-parameter_list|(
+argument_list|(
 name|ImmutableMap
 argument_list|<
 name|K
@@ -818,16 +847,15 @@ argument_list|,
 name|Integer
 argument_list|>
 name|keyIndex
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|keyIndex
 operator|=
 name|keyIndex
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|keySet ()
 specifier|public
@@ -836,7 +864,7 @@ argument_list|<
 name|K
 argument_list|>
 name|keySet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|keyIndex
@@ -848,10 +876,10 @@ block|}
 DECL|method|getKey (int index)
 name|K
 name|getKey
-parameter_list|(
+argument_list|(
 name|int
 name|index
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|keyIndex
@@ -868,16 +896,22 @@ name|index
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function_decl
 DECL|method|getKeyRole ()
 specifier|abstract
 name|String
 name|getKeyRole
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_function_decl
+annotation|@
+name|ParametricNullness
 DECL|method|getValue (int index)
 specifier|abstract
-annotation|@
-name|Nullable
 name|V
 name|getValue
 parameter_list|(
@@ -885,20 +919,28 @@ name|int
 name|index
 parameter_list|)
 function_decl|;
-DECL|method|setValue (int index, V newValue)
-specifier|abstract
+end_function_decl
+
+begin_function_decl
 annotation|@
-name|Nullable
+name|ParametricNullness
+DECL|method|setValue (int index, @ParametricNullness V newValue)
+specifier|abstract
 name|V
 name|setValue
 parameter_list|(
 name|int
 name|index
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|V
 name|newValue
 parameter_list|)
 function_decl|;
+end_function_decl
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -914,6 +956,9 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -929,6 +974,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getEntry (final int index)
 name|Entry
 argument_list|<
@@ -981,6 +1029,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|V
 name|getValue
@@ -999,10 +1049,14 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|V
 name|setValue
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -1023,6 +1077,9 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entryIterator ()
@@ -1080,6 +1137,9 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entrySpliterator ()
@@ -1113,16 +1173,22 @@ name|getEntry
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// TODO(lowasser): consider an optimized values() implementation
+end_comment
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1136,15 +1202,20 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
+annotation|@
+name|CheckForNull
 annotation|@
 name|Override
-DECL|method|get (@ullable Object key)
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1180,9 +1251,14 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|put (K key, V value)
+annotation|@
+name|CheckForNull
+DECL|method|put (K key, @ParametricNullness V value)
 specifier|public
 name|V
 name|put
@@ -1190,6 +1266,8 @@ parameter_list|(
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -1240,13 +1318,20 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1257,6 +1342,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -1271,10 +1359,16 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/**    * Returns, as an immutable list, the row keys provided when the table was constructed, including    * those that are mapped to null values only.    */
+end_comment
+
+begin_function
 DECL|method|rowKeyList ()
-specifier|public
+unit|public
 name|ImmutableList
 argument_list|<
 name|R
@@ -1286,7 +1380,13 @@ return|return
 name|rowList
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns, as an immutable list, the column keys provided when the table was constructed,    * including those that are mapped to null values only.    */
+end_comment
+
+begin_function
 DECL|method|columnKeyList ()
 specifier|public
 name|ImmutableList
@@ -1300,7 +1400,13 @@ return|return
 name|columnList
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the value corresponding to the specified row and column indices. The same value is    * returned by {@code get(rowKeyList().get(rowIndex), columnKeyList().get(columnIndex))}, but this    * method runs more quickly.    *    * @param rowIndex position of the row key in {@link #rowKeyList()}    * @param columnIndex position of the row key in {@link #columnKeyList()}    * @return the value with the specified row and column    * @throws IndexOutOfBoundsException if either index is negative, {@code rowIndex} is greater than    *     or equal to the number of allowed row keys, or {@code columnIndex} is greater than or equal    *     to the number of allowed column keys    */
+end_comment
+
+begin_function
 annotation|@
 name|CheckForNull
 DECL|method|at (int rowIndex, int columnIndex)
@@ -1346,12 +1452,18 @@ name|columnIndex
 index|]
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Associates {@code value} with the specified row and column indices. The logic {@code    * put(rowKeyList().get(rowIndex), columnKeyList().get(columnIndex), value)} has the same    * behavior, but this method runs more quickly.    *    * @param rowIndex position of the row key in {@link #rowKeyList()}    * @param columnIndex position of the row key in {@link #columnKeyList()}    * @param value value to store in the table    * @return the previous value with the specified row and column    * @throws IndexOutOfBoundsException if either index is negative, {@code rowIndex} is greater than    *     or equal to the number of allowed row keys, or {@code columnIndex} is greater than or equal    *     to the number of allowed column keys    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|CheckForNull
-DECL|method|set (int rowIndex, int columnIndex, @Nullable V value)
+DECL|method|set (int rowIndex, int columnIndex, @CheckForNull V value)
 specifier|public
 name|V
 name|set
@@ -1363,7 +1475,7 @@ name|int
 name|columnIndex
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -1414,12 +1526,20 @@ return|return
 name|oldValue
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a two-dimensional array with the table contents. The row and column indices correspond    * to the positions of the row and column in the iterables provided during table construction. If    * the table lacks a mapping for a given row and column, the corresponding array element is null.    *    *<p>Subsequent table changes will not modify the array, and vice versa.    *    * @param valueClass class of values stored in the returned array    */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// reflection
 DECL|method|toArray (Class<V> valueClass)
 specifier|public
+annotation|@
+name|Nullable
 name|V
 index|[]
 index|[]
@@ -1438,12 +1558,16 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// TODO: safe?
+annotation|@
+name|Nullable
 name|V
 index|[]
 index|[]
 name|copy
 init|=
 operator|(
+expr|@
+name|Nullable
 name|V
 index|[]
 index|[]
@@ -1514,7 +1638,13 @@ return|return
 name|copy
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Not supported. Use {@link #eraseAll} instead.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link #eraseAll}    */
+end_comment
+
+begin_function
 annotation|@
 name|DoNotCall
 argument_list|(
@@ -1536,7 +1666,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/** Associates the value {@code null} with every pair of allowed row and column keys. */
+end_comment
+
+begin_function
 DECL|method|eraseAll ()
 specifier|public
 name|void
@@ -1545,6 +1681,8 @@ parameter_list|()
 block|{
 for|for
 control|(
+annotation|@
+name|Nullable
 name|V
 index|[]
 name|row
@@ -1563,21 +1701,27 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns {@code true} if the provided keys are among the keys provided when the table was    * constructed.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|contains (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -1594,16 +1738,22 @@ name|columnKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns {@code true} if the provided column key is among the column keys provided when the    * table was constructed.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsColumn (@ullable Object columnKey)
+DECL|method|containsColumn (@heckForNull Object columnKey)
 specifier|public
 name|boolean
 name|containsColumn
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -1617,16 +1767,22 @@ name|columnKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns {@code true} if the provided row key is among the row keys provided when the table was    * constructed.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsRow (@ullable Object rowKey)
+DECL|method|containsRow (@heckForNull Object rowKey)
 specifier|public
 name|boolean
 name|containsRow
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|)
@@ -1640,21 +1796,26 @@ name|rowKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsValue (@ullable Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
 block|{
 for|for
 control|(
+annotation|@
+name|Nullable
 name|V
 index|[]
 name|row
@@ -1692,22 +1853,25 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 annotation|@
 name|CheckForNull
-DECL|method|get (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|get (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -1753,7 +1917,13 @@ name|columnIndex
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns {@code true} if {@code rowKeyList().size == 0} or {@code columnKeyList().size() == 0}.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -1774,14 +1944,20 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if {@code rowKey} is not in {@link #rowKeySet()} or {@code    *     columnKey} is not in {@link #columnKeySet()}.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
 annotation|@
 name|CheckForNull
-DECL|method|put (R rowKey, C columnKey, @Nullable V value)
+DECL|method|put (R rowKey, C columnKey, @CheckForNull V value)
 specifier|public
 name|V
 name|put
@@ -1793,7 +1969,7 @@ name|C
 name|columnKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -1865,31 +2041,41 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/*    * TODO(jlevy): Consider creating a merge() method, similar to putAll() but    * copying non-null values only.    */
+end_comment
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>If {@code table} is an {@code ArrayTable}, its null values will be stored in this table,    * possibly replacing values that were previously non-null.    *    * @throws NullPointerException if {@code table} has a null key    * @throws IllegalArgumentException if any of the provided table's row keys or column keys is not    *     in {@link #rowKeySet()} or {@link #columnKeySet()}    */
+end_comment
+
+begin_decl_stmt
 annotation|@
 name|Override
-DECL|method|putAll (Table<? extends R, ? extends C, ? extends V> table)
+DECL|method|putAll (Table<? extends R, ? extends C, ? extends @Nullable V> table)
 specifier|public
 name|void
 name|putAll
-parameter_list|(
+argument_list|(
 name|Table
-argument_list|<
-name|?
-extends|extends
+operator|<
+condition|?
+then|extends
 name|R
 argument_list|,
-name|?
-extends|extends
+operator|?
+expr|extends
 name|C
 argument_list|,
-name|?
-extends|extends
+operator|?
+expr|extends @
+name|Nullable
 name|V
-argument_list|>
+operator|>
 name|table
-parameter_list|)
+argument_list|)
 block|{
 name|super
 operator|.
@@ -1899,7 +2085,13 @@ name|table
 argument_list|)
 expr_stmt|;
 block|}
+end_decl_stmt
+
+begin_comment
 comment|/**    * Not supported. Use {@link #erase} instead.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link #erase}    */
+end_comment
+
+begin_function
 annotation|@
 name|DoNotCall
 argument_list|(
@@ -1911,14 +2103,20 @@ annotation|@
 name|Override
 annotation|@
 name|Deprecated
-DECL|method|remove (Object rowKey, Object columnKey)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|V
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -1929,23 +2127,29 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Associates the value {@code null} with the specified keys, assuming both keys are valid. If    * either key is null or isn't among the keys provided during construction, this method has no    * effect.    *    *<p>This method is equivalent to {@code put(rowKey, columnKey, null)} when both provided keys    * are valid.    *    * @param rowKey row key of mapping to be erased    * @param columnKey column key of mapping to be erased    * @return the value previously associated with the keys, or {@code null} if no mapping existed    *     for the keys    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|CheckForNull
-DECL|method|erase (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|erase (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|V
 name|erase
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -1996,7 +2200,13 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// TODO(jlevy): Add eraseRow and eraseColumn methods?
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -2017,7 +2227,13 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an unmodifiable set of all row key / column key / value triplets. Changes to the table    * will update the returned set.    *    *<p>The returned set's iterator traverses the mappings with the first row key, the mappings with    * the second row key, and so on.    *    *<p>The value in the returned cells may change if the table subsequently changes.    *    * @return set of table cells consisting of row key / column key / value triplets    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|cellSet ()
@@ -2030,6 +2246,8 @@ name|R
 argument_list|,
 name|C
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 argument_list|>
@@ -2043,6 +2261,9 @@ name|cellSet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|cellIterator ()
@@ -2054,6 +2275,8 @@ name|R
 argument_list|,
 name|C
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 argument_list|>
@@ -2070,6 +2293,8 @@ name|R
 argument_list|,
 name|C
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 argument_list|>
@@ -2087,6 +2312,8 @@ name|R
 argument_list|,
 name|C
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|get
@@ -2106,6 +2333,9 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|cellSpliterator ()
@@ -2117,6 +2347,8 @@ name|R
 argument_list|,
 name|C
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 argument_list|>
@@ -2126,6 +2358,18 @@ block|{
 return|return
 name|CollectSpliterators
 operator|.
+expr|<
+name|Cell
+argument_list|<
+name|R
+argument_list|,
+name|C
+argument_list|,
+annotation|@
+name|Nullable
+name|V
+argument_list|>
+operator|>
 name|indexed
 argument_list|(
 name|size
@@ -2149,6 +2393,9 @@ name|getCell
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getCell (final int index)
 specifier|private
 name|Cell
@@ -2157,6 +2404,8 @@ name|R
 argument_list|,
 name|C
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|getCell
@@ -2176,6 +2425,8 @@ name|R
 argument_list|,
 name|C
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 argument_list|()
@@ -2236,6 +2487,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|public
 name|V
 name|getValue
@@ -2253,6 +2506,11 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|getValue (int index)
 specifier|private
 name|V
@@ -2291,7 +2549,13 @@ name|columnIndex
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a view of all mappings that have the given column key. If the column key isn't in    * {@link #columnKeySet()}, an empty immutable map is returned.    *    *<p>Otherwise, for each row key in {@link #rowKeySet()}, the returned map associates the row key    * with the corresponding value in the table. Changes to the returned map will update the    * underlying table, and vice versa.    *    * @param columnKey key of column to search for in the table    * @return the corresponding map from row keys to values    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|column (C columnKey)
@@ -2300,6 +2564,8 @@ name|Map
 argument_list|<
 name|R
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|column
@@ -2323,23 +2589,21 @@ argument_list|(
 name|columnKey
 argument_list|)
 decl_stmt|;
-return|return
-operator|(
+if|if
+condition|(
 name|columnIndex
 operator|==
 literal|null
-operator|)
-condition|?
-name|ImmutableMap
-operator|.
-expr|<
-name|R
-operator|,
-name|V
-operator|>
-name|of
+condition|)
+block|{
+return|return
+name|emptyMap
 argument_list|()
-operator|:
+return|;
+block|}
+else|else
+block|{
+return|return
 operator|new
 name|Column
 argument_list|(
@@ -2347,6 +2611,10 @@ name|columnIndex
 argument_list|)
 return|;
 block|}
+block|}
+end_function
+
+begin_class
 DECL|class|Column
 specifier|private
 class|class
@@ -2356,6 +2624,8 @@ name|ArrayMap
 argument_list|<
 name|R
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 block|{
@@ -2396,6 +2666,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|getValue (int index)
 name|V
 name|getValue
@@ -2415,13 +2687,17 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setValue (int index, V newValue)
+annotation|@
+name|CheckForNull
+DECL|method|setValue (int index, @CheckForNull V newValue)
 name|V
 name|setValue
 parameter_list|(
 name|int
 name|index
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|V
 name|newValue
 parameter_list|)
@@ -2438,7 +2714,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns an immutable set of the valid column keys, including those that are associated with    * null values only.    *    * @return immutable set of column keys    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|columnKeySet ()
@@ -2457,14 +2739,20 @@ name|keySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|columnMap
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|ColumnMap
 name|columnMap
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|columnMap ()
@@ -2477,6 +2765,8 @@ name|Map
 argument_list|<
 name|R
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 argument_list|>
@@ -2504,6 +2794,9 @@ else|:
 name|map
 return|;
 block|}
+end_function
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|ColumnMap
@@ -2519,6 +2812,8 @@ name|Map
 argument_list|<
 name|R
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 argument_list|>
@@ -2552,6 +2847,8 @@ name|Map
 argument_list|<
 name|R
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|getValue
@@ -2570,11 +2867,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setValue (int index, Map<R, V> newValue)
+DECL|method|setValue (int index, Map<R, @Nullable V> newValue)
 name|Map
 argument_list|<
 name|R
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|setValue
@@ -2586,6 +2885,8 @@ name|Map
 argument_list|<
 name|R
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|newValue
@@ -2599,12 +2900,16 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|put (C key, Map<R, V> value)
+annotation|@
+name|CheckForNull
+DECL|method|put (C key, Map<R, @Nullable V> value)
 specifier|public
 name|Map
 argument_list|<
 name|R
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|put
@@ -2616,6 +2921,8 @@ name|Map
 argument_list|<
 name|R
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|value
@@ -2628,7 +2935,13 @@ argument_list|()
 throw|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns a view of all mappings that have the given row key. If the row key isn't in {@link    * #rowKeySet()}, an empty immutable map is returned.    *    *<p>Otherwise, for each column key in {@link #columnKeySet()}, the returned map associates the    * column key with the corresponding value in the table. Changes to the returned map will update    * the underlying table, and vice versa.    *    * @param rowKey key of row to search for in the table    * @return the corresponding map from column keys to values    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|row (R rowKey)
@@ -2637,6 +2950,8 @@ name|Map
 argument_list|<
 name|C
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|row
@@ -2660,23 +2975,21 @@ argument_list|(
 name|rowKey
 argument_list|)
 decl_stmt|;
-return|return
-operator|(
+if|if
+condition|(
 name|rowIndex
 operator|==
 literal|null
-operator|)
-condition|?
-name|ImmutableMap
-operator|.
-expr|<
-name|C
-operator|,
-name|V
-operator|>
-name|of
+condition|)
+block|{
+return|return
+name|emptyMap
 argument_list|()
-operator|:
+return|;
+block|}
+else|else
+block|{
+return|return
 operator|new
 name|Row
 argument_list|(
@@ -2684,6 +2997,10 @@ name|rowIndex
 argument_list|)
 return|;
 block|}
+block|}
+end_function
+
+begin_class
 DECL|class|Row
 specifier|private
 class|class
@@ -2693,6 +3010,8 @@ name|ArrayMap
 argument_list|<
 name|C
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 block|{
@@ -2733,6 +3052,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|getValue (int index)
 name|V
 name|getValue
@@ -2752,13 +3073,17 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setValue (int index, V newValue)
+annotation|@
+name|CheckForNull
+DECL|method|setValue (int index, @CheckForNull V newValue)
 name|V
 name|setValue
 parameter_list|(
 name|int
 name|index
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|V
 name|newValue
 parameter_list|)
@@ -2775,7 +3100,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns an immutable set of the valid row keys, including those that are associated with null    * values only.    *    * @return immutable set of row keys    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|rowKeySet ()
@@ -2794,14 +3125,20 @@ name|keySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|rowMap
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|RowMap
 name|rowMap
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|rowMap ()
@@ -2814,6 +3151,8 @@ name|Map
 argument_list|<
 name|C
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 argument_list|>
@@ -2841,6 +3180,9 @@ else|:
 name|map
 return|;
 block|}
+end_function
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|RowMap
@@ -2856,6 +3198,8 @@ name|Map
 argument_list|<
 name|C
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 argument_list|>
@@ -2889,6 +3233,8 @@ name|Map
 argument_list|<
 name|C
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|getValue
@@ -2907,11 +3253,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setValue (int index, Map<C, V> newValue)
+DECL|method|setValue (int index, Map<C, @Nullable V> newValue)
 name|Map
 argument_list|<
 name|C
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|setValue
@@ -2923,6 +3271,8 @@ name|Map
 argument_list|<
 name|C
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|newValue
@@ -2936,12 +3286,16 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|put (R key, Map<C, V> value)
+annotation|@
+name|CheckForNull
+DECL|method|put (R key, Map<C, @Nullable V> value)
 specifier|public
 name|Map
 argument_list|<
 name|C
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|put
@@ -2953,6 +3307,8 @@ name|Map
 argument_list|<
 name|C
 argument_list|,
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|value
@@ -2965,13 +3321,21 @@ argument_list|()
 throw|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns an unmodifiable collection of all values, which may contain duplicates. Changes to the    * table will update the returned collection.    *    *<p>The returned collection's iterator traverses the values of the first row key, the values of    * the second row key, and so on.    *    * @return collection of values    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
 specifier|public
 name|Collection
 argument_list|<
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|values
@@ -2984,11 +3348,16 @@ name|values
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|valuesIterator ()
 name|Iterator
 argument_list|<
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|valuesIterator
@@ -2998,6 +3367,8 @@ return|return
 operator|new
 name|AbstractIndexedListIterator
 argument_list|<
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 argument_list|(
@@ -3007,6 +3378,8 @@ argument_list|)
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|V
 name|get
@@ -3025,11 +3398,16 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|valuesSpliterator ()
 name|Spliterator
 argument_list|<
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|valuesSpliterator
@@ -3038,6 +3416,10 @@ block|{
 return|return
 name|CollectSpliterators
 operator|.
+expr|<@
+name|Nullable
+name|V
+operator|>
 name|indexed
 argument_list|(
 name|size
@@ -3053,6 +3435,9 @@ name|getValue
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -3062,8 +3447,8 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

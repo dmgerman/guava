@@ -2099,7 +2099,7 @@ name|Object
 name|object
 parameter_list|)
 block|{
-comment|/*        * The instanceof check is redundant because esDelegate.contains(object), but we include it to        * satisfy our nullness checker.        */
+comment|/*        * `o instanceof Entry` is guaranteed by `contains`, but we check it here to satisfy our        * nullness checker.        */
 if|if
 condition|(
 operator|!
