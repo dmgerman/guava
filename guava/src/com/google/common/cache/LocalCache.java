@@ -980,9 +980,15 @@ begin_class
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"GoodTime"
-argument_list|)
+block|,
 comment|// lots of violations (nanosecond math)
+literal|"nullness"
+block|,
+comment|// too much trouble for the payoff
+block|}
+argument_list|)
 annotation|@
 name|GwtCompatible
 argument_list|(
