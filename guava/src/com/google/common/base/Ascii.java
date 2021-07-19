@@ -693,7 +693,7 @@ name|newChars
 argument_list|)
 return|;
 block|}
-comment|/**    * If the argument is an {@linkplain #isUpperCase(char) uppercase ASCII character} returns the    * lowercase equivalent. Otherwise returns the argument.    */
+comment|/**    * If the argument is an {@linkplain #isUpperCase(char) uppercase ASCII character}, returns the    * lowercase equivalent. Otherwise returns the argument.    */
 DECL|method|toLowerCase (char c)
 specifier|public
 specifier|static
@@ -918,7 +918,7 @@ name|newChars
 argument_list|)
 return|;
 block|}
-comment|/**    * If the argument is a {@linkplain #isLowerCase(char) lowercase ASCII character} returns the    * uppercase equivalent. Otherwise returns the argument.    */
+comment|/**    * If the argument is a {@linkplain #isLowerCase(char) lowercase ASCII character}, returns the    * uppercase equivalent. Otherwise returns the argument.    */
 DECL|method|toUpperCase (char c)
 specifier|public
 specifier|static
