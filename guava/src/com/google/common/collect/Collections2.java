@@ -65,6 +65,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -266,6 +278,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -287,6 +309,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Collections2
 specifier|public
 specifier|final
@@ -301,24 +325,27 @@ block|{}
 comment|/**    * Returns the elements of {@code unfiltered} that satisfy a predicate. The returned collection is    * a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting collection's iterator does not support {@code remove()}, but all other    * collection methods are supported. When given an element that doesn't satisfy the predicate, the    * collection's {@code add()} and {@code addAll()} methods throw an {@link    * IllegalArgumentException}. When methods such as {@code removeAll()} and {@code clear()} are    * called on the filtered collection, only elements that satisfy the filter will be removed from    * the underlying collection.    *    *<p>The returned collection isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered collection's methods, such as {@code size()}, iterate across every    * element in the underlying collection and determine which elements satisfy the filter. When a    * live view is<i>not</i> needed, it may be faster to copy {@code Iterables.filter(unfiltered,    * predicate)} and use the copy.    *    *<p><b>Warning:</b> {@code predicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals. (See {@link    * Iterables#filter(Iterable, Class)} for related functionality.)    *    *<p><b>{@code Stream} equivalent:</b> {@link java.util.stream.Stream#filter Stream.filter}.    */
 comment|// TODO(kevinb): how can we omit that Iterables link when building gwt
 comment|// javadoc?
-DECL|method|filter (Collection<E> unfiltered, Predicate<? super E> predicate)
+DECL|method|filter ( Collection<E> unfiltered, Predicate<? super E> predicate)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 name|filter
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -326,7 +353,7 @@ super|super
 name|E
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -373,8 +400,14 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_class
+
+begin_comment
 comment|/**    * Delegates to {@link Collection#contains}. Returns {@code false} if the {@code contains} method    * throws a {@code ClassCastException} or {@code NullPointerException}.    */
-DECL|method|safeContains (Collection<?> collection, @Nullable Object object)
+end_comment
+
+begin_function
+DECL|method|safeContains (Collection<?> collection, @CheckForNull Object object)
 specifier|static
 name|boolean
 name|safeContains
@@ -386,7 +419,7 @@ argument_list|>
 name|collection
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -420,8 +453,14 @@ literal|false
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Delegates to {@link Collection#remove}. Returns {@code false} if the {@code remove} method    * throws a {@code ClassCastException} or {@code NullPointerException}.    */
-DECL|method|safeRemove (Collection<?> collection, @Nullable Object object)
+end_comment
+
+begin_function
+DECL|method|safeRemove (Collection<?> collection, @CheckForNull Object object)
 specifier|static
 name|boolean
 name|safeRemove
@@ -433,7 +472,7 @@ argument_list|>
 name|collection
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -467,29 +506,35 @@ literal|false
 return|;
 block|}
 block|}
+end_function
+
+begin_expr_stmt
 DECL|class|FilteredCollection
 specifier|static
-class|class
+name|class
 name|FilteredCollection
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractCollection
 argument_list|<
 name|E
 argument_list|>
 block|{
 DECL|field|unfiltered
-specifier|final
+name|final
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 name|unfiltered
-decl_stmt|;
+block|;
 DECL|field|predicate
-specifier|final
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -497,16 +542,16 @@ super|super
 name|E
 argument_list|>
 name|predicate
-decl_stmt|;
+block|;
 DECL|method|FilteredCollection (Collection<E> unfiltered, Predicate<? super E> predicate)
 name|FilteredCollection
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -514,28 +559,27 @@ super|super
 name|E
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|unfiltered
 operator|=
 name|unfiltered
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|predicate
 operator|=
 name|predicate
-expr_stmt|;
-block|}
+block|;     }
 DECL|method|createCombined (Predicate<? super E> newPredicate)
 name|FilteredCollection
 argument_list|<
 name|E
 argument_list|>
 name|createCombined
-parameter_list|(
+argument_list|(
 name|Predicate
 argument_list|<
 name|?
@@ -543,7 +587,7 @@ super|super
 name|E
 argument_list|>
 name|newPredicate
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -569,16 +613,18 @@ argument_list|)
 return|;
 comment|// .<E> above needed to compile in JDK 5
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|add (E element)
+DECL|method|add (@arametricNullness E element)
 specifier|public
 name|boolean
 name|add
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|element
-parameter_list|)
+argument_list|)
 block|{
 name|checkArgument
 argument_list|(
@@ -589,7 +635,7 @@ argument_list|(
 name|element
 argument_list|)
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|unfiltered
 operator|.
@@ -599,6 +645,9 @@ name|element
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|addAll (Collection<? extends E> collection)
@@ -643,6 +692,9 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -661,15 +713,18 @@ name|predicate
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object element)
+DECL|method|contains (@heckForNull Object element)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -711,6 +766,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|containsAll (Collection<?> collection)
@@ -734,6 +792,9 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -754,6 +815,9 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|iterator ()
@@ -779,6 +843,9 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|spliterator ()
@@ -804,6 +871,9 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|forEach (Consumer<? super E> action)
@@ -857,13 +927,18 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (Object element)
+DECL|method|remove (@heckForNull Object element)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -882,6 +957,9 @@ name|element
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|removeAll (final Collection<?> collection)
@@ -906,6 +984,9 @@ name|contains
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|retainAll (final Collection<?> collection)
@@ -936,6 +1017,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|removeIf (java.util.function.Predicate<? super E> filter)
@@ -986,6 +1070,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -1026,10 +1113,15 @@ return|return
 name|size
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toArray ()
 specifier|public
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|toArray
@@ -1049,21 +1141,42 @@ name|toArray
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_annotation
 annotation|@
 name|Override
+end_annotation
+
+begin_annotation
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+end_annotation
+
+begin_comment
+comment|// b/192354773 in our checker affects toArray declarations
+end_comment
+
+begin_expr_stmt
 DECL|method|toArray (T[] array)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|array
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Lists
@@ -1080,28 +1193,40 @@ name|array
 argument_list|)
 return|;
 block|}
-block|}
+end_expr_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns a collection that applies {@code function} to each element of {@code fromCollection}.    * The returned collection is a live view of {@code fromCollection}; changes to one affect the    * other.    *    *<p>The returned collection's {@code add()} and {@code addAll()} methods throw an {@link    * UnsupportedOperationException}. All other collection methods are supported, as long as {@code    * fromCollection} supports them.    *    *<p>The returned collection isn't threadsafe or serializable, even if {@code fromCollection} is.    *    *<p>When a live view is<i>not</i> needed, it may be faster to copy the transformed collection    * and use the copy.    *    *<p>If the input {@code Collection} is known to be a {@code List}, consider {@link    * Lists#transform}. If only an {@code Iterable} is available, use {@link Iterables#transform}.    *    *<p><b>{@code Stream} equivalent:</b> {@link java.util.stream.Stream#map Stream.map}.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|transform ( Collection<F> fromCollection, Function<? super F, T> function)
-specifier|public
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|F
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Collection
 argument_list|<
 name|T
 argument_list|>
 name|transform
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|F
 argument_list|>
 name|fromCollection
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -1111,7 +1236,7 @@ argument_list|,
 name|T
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1124,31 +1249,40 @@ name|function
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|TransformedCollection
 specifier|static
-class|class
+name|class
 name|TransformedCollection
-parameter_list|<
+operator|<
 name|F
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractCollection
 argument_list|<
 name|T
 argument_list|>
 block|{
 DECL|field|fromCollection
-specifier|final
+name|final
 name|Collection
 argument_list|<
 name|F
 argument_list|>
 name|fromCollection
-decl_stmt|;
+block|;
 DECL|field|function
-specifier|final
+name|final
 name|Function
 argument_list|<
 name|?
@@ -1160,16 +1294,16 @@ extends|extends
 name|T
 argument_list|>
 name|function
-decl_stmt|;
+block|;
 DECL|method|TransformedCollection (Collection<F> fromCollection, Function<? super F, ? extends T> function)
 name|TransformedCollection
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|F
 argument_list|>
 name|fromCollection
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -1181,7 +1315,7 @@ extends|extends
 name|T
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -1191,7 +1325,7 @@ name|checkNotNull
 argument_list|(
 name|fromCollection
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|function
@@ -1200,29 +1334,27 @@ name|checkNotNull
 argument_list|(
 name|function
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|clear ()
 specifier|public
 name|void
 name|clear
-parameter_list|()
+argument_list|()
 block|{
 name|fromCollection
 operator|.
 name|clear
 argument_list|()
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|fromCollection
@@ -1231,7 +1363,7 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|iterator ()
 specifier|public
@@ -1240,7 +1372,7 @@ argument_list|<
 name|T
 argument_list|>
 name|iterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Iterators
@@ -1256,6 +1388,9 @@ name|function
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|spliterator ()
@@ -1281,6 +1416,9 @@ name|function
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|forEach (Consumer<? super T> action)
@@ -1325,6 +1463,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|removeIf (java.util.function.Predicate<? super T> filter)
@@ -1373,6 +1514,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -1388,10 +1532,16 @@ name|size
 argument_list|()
 return|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/**    * Returns {@code true} if the collection {@code self} contains all of the elements in the    * collection {@code c}.    *    *<p>This method iterates over the specified collection {@code c}, checking each element returned    * by the iterator in turn to see if it is contained in the specified collection {@code self}. If    * all elements are so contained, {@code true} is returned, otherwise {@code false}.    *    * @param self a collection which might contain all elements in {@code c}    * @param c a collection whose elements might be contained by {@code self}    */
+end_comment
+
+begin_function
 DECL|method|containsAllImpl (Collection<?> self, Collection<?> c)
-specifier|static
+unit|static
 name|boolean
 name|containsAllImpl
 parameter_list|(
@@ -1436,7 +1586,13 @@ return|return
 literal|true
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** An implementation of {@link Collection#toString()}. */
+end_comment
+
+begin_function
 DECL|method|toStringImpl (final Collection<?> collection)
 specifier|static
 name|String
@@ -1535,7 +1691,13 @@ name|toString
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Returns best-effort-sized StringBuilder based on the given collection size. */
+end_comment
+
+begin_function
 DECL|method|newStringBuilderForCollection (int size)
 specifier|static
 name|StringBuilder
@@ -1574,7 +1736,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a {@link Collection} of all the permutations of the specified {@link Iterable}.    *    *<p><i>Notes:</i> This is an implementation of the algorithm for Lexicographical Permutations    * Generation, described in Knuth's "The Art of Computer Programming", Volume 4, Chapter 7,    * Section 7.2.1.2. The iteration order follows the lexicographical order. This means that the    * first permutation will be in ascending order, and the last will be in descending order.    *    *<p>Duplicate elements are considered equal. For example, the list [1, 1] will have only one    * permutation, instead of two. This is why the elements have to implement {@link Comparable}.    *    *<p>An empty iterable has only one permutation, which is an empty list.    *    *<p>This method is equivalent to {@code Collections2.orderedPermutations(list,    * Ordering.natural())}.    *    * @param elements the original iterable whose elements have to be permuted.    * @return an immutable {@link Collection} containing all the different permutations of the    *     original iterable.    * @throws NullPointerException if the specified iterable is null or has any null elements.    * @since 12.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|orderedPermutations ( Iterable<E> elements)
@@ -1618,7 +1786,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a {@link Collection} of all the permutations of the specified {@link Iterable} using    * the specified {@link Comparator} for establishing the lexicographical ordering.    *    *<p>Examples:    *    *<pre>{@code    * for (List<String> perm : orderedPermutations(asList("b", "c", "a"))) {    *   println(perm);    * }    * // -> ["a", "b", "c"]    * // -> ["a", "c", "b"]    * // -> ["b", "a", "c"]    * // -> ["b", "c", "a"]    * // -> ["c", "a", "b"]    * // -> ["c", "b", "a"]    *    * for (List<Integer> perm : orderedPermutations(asList(1, 2, 2, 1))) {    *   println(perm);    * }    * // -> [1, 1, 2, 2]    * // -> [1, 2, 1, 2]    * // -> [1, 2, 2, 1]    * // -> [2, 1, 1, 2]    * // -> [2, 1, 2, 1]    * // -> [2, 2, 1, 1]    * }</pre>    *    *<p><i>Notes:</i> This is an implementation of the algorithm for Lexicographical Permutations    * Generation, described in Knuth's "The Art of Computer Programming", Volume 4, Chapter 7,    * Section 7.2.1.2. The iteration order follows the lexicographical order. This means that the    * first permutation will be in ascending order, and the last will be in descending order.    *    *<p>Elements that compare equal are considered equal and no new permutations are created by    * swapping them.    *    *<p>An empty iterable has only one permutation, which is an empty list.    *    * @param elements the original iterable whose elements have to be permuted.    * @param comparator a comparator for the iterable's elements.    * @return an immutable {@link Collection} containing all the different permutations of the    *     original iterable.    * @throws NullPointerException If the specified iterable is null, has any null elements, or if    *     the specified comparator is null.    * @since 12.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|orderedPermutations ( Iterable<E> elements, Comparator<? super E> comparator)
@@ -1664,6 +1838,9 @@ name|comparator
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|OrderedPermutationCollection
 specifier|private
 specifier|static
@@ -1952,13 +2129,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object obj)
+DECL|method|contains (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -2014,6 +2191,9 @@ literal|")"
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 DECL|class|OrderedPermutationIterator
 specifier|private
 specifier|static
@@ -2034,7 +2214,7 @@ argument_list|>
 block|{
 DECL|field|nextPermutation
 annotation|@
-name|Nullable
+name|CheckForNull
 name|List
 argument_list|<
 name|E
@@ -2089,6 +2269,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|computeNext ()
 specifier|protected
 name|List
@@ -2155,6 +2337,12 @@ literal|null
 expr_stmt|;
 return|return;
 block|}
+comment|/*        * requireNonNull is safe because we don't clear nextPermutation until we're done calling this        * method.        */
+name|requireNonNull
+argument_list|(
+name|nextPermutation
+argument_list|)
+expr_stmt|;
 name|int
 name|l
 init|=
@@ -2204,6 +2392,12 @@ name|int
 name|findNextJ
 parameter_list|()
 block|{
+comment|/*        * requireNonNull is safe because we don't clear nextPermutation until we're done calling this        * method.        */
+name|requireNonNull
+argument_list|(
+name|nextPermutation
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -2268,6 +2462,12 @@ name|int
 name|j
 parameter_list|)
 block|{
+comment|/*        * requireNonNull is safe because we don't clear nextPermutation until we're done calling this        * method.        */
+name|requireNonNull
+argument_list|(
+name|nextPermutation
+argument_list|)
+expr_stmt|;
 name|E
 name|ak
 init|=
@@ -2331,7 +2531,13 @@ argument_list|)
 throw|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns a {@link Collection} of all the permutations of the specified {@link Collection}.    *    *<p><i>Notes:</i> This is an implementation of the Plain Changes algorithm for permutations    * generation, described in Knuth's "The Art of Computer Programming", Volume 4, Chapter 7,    * Section 7.2.1.2.    *    *<p>If the input list contains equal elements, some of the generated permutations will be equal.    *    *<p>An empty collection has only one permutation, which is an empty list.    *    * @param elements the original collection whose elements have to be permuted.    * @return an immutable {@link Collection} containing all the different permutations of the    *     original collection.    * @throws NullPointerException if the specified collection is null or has any null elements.    * @since 12.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|permutations (Collection<E> elements)
@@ -2372,6 +2578,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|PermutationCollection
 specifier|private
 specifier|static
@@ -2474,13 +2683,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object obj)
+DECL|method|contains (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -2536,6 +2745,9 @@ literal|")"
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 DECL|class|PermutationIterator
 specifier|private
 specifier|static
@@ -2651,6 +2863,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|computeNext ()
 specifier|protected
 name|List
@@ -2832,7 +3046,13 @@ operator|--
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/** Returns {@code true} if the second list is a permutation of the first. */
+end_comment
+
+begin_function
 DECL|method|isPermutation (List<?> first, List<?> second)
 specifier|private
 specifier|static
@@ -2904,8 +3124,8 @@ name|secondMultiset
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 
