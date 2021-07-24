@@ -99,6 +99,35 @@ return|return
 name|t
 return|;
 block|}
+comment|/** Returns {@code null} as any type, even one that does not include {@code null}. */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"nullness"
+block|,
+literal|"TypeParameterUnusedInFormals"
+block|}
+argument_list|)
+comment|// The warnings are legitimate. Each time we use this method, we document why.
+annotation|@
+name|ParametricNullness
+DECL|method|unsafeNull ()
+specifier|static
+operator|<
+name|T
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+name|T
+name|unsafeNull
+argument_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 DECL|method|NullnessCasts ()
 specifier|private
 name|NullnessCasts

@@ -17,6 +17,18 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -86,6 +98,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -94,9 +116,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -104,17 +126,31 @@ begin_comment
 comment|/**  * CompactLinkedHashSet is an implementation of a Set, which a predictable iteration order that  * matches the insertion order. All optional operations (adding and removing) are supported. All  * elements, including {@code null}, are permitted.  *  *<p>{@code contains(x)}, {@code add(x)} and {@code remove(x)}, are all (expected and amortized)  * constant time operations. Expected in the hashtable sense (depends on the hash function doing a  * good job of distributing the elements to the buckets to a distribution not far from uniform), and  * amortized since some operations can trigger a hash table resize.  *  *<p>This implementation consumes significantly less memory than {@code java.util.LinkedHashSet} or  * even {@code java.util.HashSet}, and places considerably less load on the garbage collector. Like  * {@code java.util.LinkedHashSet}, it offers insertion-order iteration, with identical behavior.  *  *<p>This class should not be assumed to be universally superior to {@code  * java.util.LinkedHashSet}. Generally speaking, this class reduces object allocation and memory  * consumption at the price of moderately increased constant factors of CPU. Only use this class  * when there is a specific reason to prioritize memory over CPU.  *  * @author Louis Wasserman  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// not worth using in GWT for now
+end_comment
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|CompactLinkedHashSet
-class|class
+name|class
 name|CompactLinkedHashSet
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|CompactHashSet
 argument_list|<
 name|E
@@ -124,15 +160,18 @@ comment|/** Creates an empty {@code CompactLinkedHashSet} instance. */
 DECL|method|create ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|CompactLinkedHashSet
 argument_list|<
 name|E
 argument_list|>
 name|create
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -142,18 +181,21 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates a<i>mutable</i> {@code CompactLinkedHashSet} instance containing the elements of the    * given collection in the order returned by the collection's iterator.    *    * @param collection the elements that the set should contain    * @return a new {@code CompactLinkedHashSet} containing those elements (minus duplicates)    */
-DECL|method|create (Collection<? extends E> collection)
+DECL|method|create ( Collection<? extends E> collection)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|CompactLinkedHashSet
 argument_list|<
 name|E
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
@@ -161,14 +203,14 @@ extends|extends
 name|E
 argument_list|>
 name|collection
-parameter_list|)
+argument_list|)
 block|{
 name|CompactLinkedHashSet
 argument_list|<
 name|E
 argument_list|>
 name|set
-init|=
+operator|=
 name|createWithExpectedSize
 argument_list|(
 name|collection
@@ -176,51 +218,63 @@ operator|.
 name|size
 argument_list|()
 argument_list|)
-decl_stmt|;
+block|;
 name|set
 operator|.
 name|addAll
 argument_list|(
 name|collection
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|set
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a {@code CompactLinkedHashSet} instance containing the given elements in unspecified    * order.    *    * @param elements the elements that the set should contain    * @return a new {@code CompactLinkedHashSet} containing those elements (minus duplicates)    */
+end_comment
+
+begin_annotation
 annotation|@
 name|SafeVarargs
+end_annotation
+
+begin_expr_stmt
 DECL|method|create (E... elements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|CompactLinkedHashSet
 argument_list|<
 name|E
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|E
-modifier|...
+operator|...
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 name|CompactLinkedHashSet
 argument_list|<
 name|E
 argument_list|>
 name|set
-init|=
+operator|=
 name|createWithExpectedSize
 argument_list|(
 name|elements
 operator|.
 name|length
 argument_list|)
-decl_stmt|;
+block|;
 name|Collections
 operator|.
 name|addAll
@@ -229,27 +283,36 @@ name|set
 argument_list|,
 name|elements
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|set
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a {@code CompactLinkedHashSet} instance, with a high enough "initial capacity" that it    *<i>should</i> hold {@code expectedSize} elements without rebuilding internal data structures.    *    * @param expectedSize the number of elements you expect to add to the returned set    * @return a new, empty {@code CompactLinkedHashSet} with enough capacity to hold {@code    *     expectedSize} elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
-DECL|method|createWithExpectedSize (int expectedSize)
+end_comment
+
+begin_expr_stmt
+DECL|method|createWithExpectedSize ( int expectedSize)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|CompactLinkedHashSet
 argument_list|<
 name|E
 argument_list|>
 name|createWithExpectedSize
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -260,6 +323,9 @@ name|expectedSize
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_decl_stmt
 DECL|field|ENDPOINT
 specifier|private
 specifier|static
@@ -270,73 +336,107 @@ init|=
 operator|-
 literal|2
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|// TODO(user): predecessors and successors should be collocated (reducing cache misses).
+end_comment
+
+begin_comment
 comment|// Might also explore collocating all of [hash, next, predecessor, successor] fields of an
+end_comment
+
+begin_comment
 comment|// entry in a *single* long[], though that reduces the maximum size of the set by a factor of 2
+end_comment
+
+begin_comment
 comment|/**    * Pointer to the predecessor of an entry in insertion order. ENDPOINT indicates a node is the    * first node in insertion order; all values at indices â¥ {@link #size()} are UNSET.    */
+end_comment
+
+begin_decl_stmt
 DECL|field|predecessor
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|int
 index|[]
 name|predecessor
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/**    * Pointer to the successor of an entry in insertion order. ENDPOINT indicates a node is the last    * node in insertion order; all values at indices â¥ {@link #size()} are UNSET.    */
+end_comment
+
+begin_decl_stmt
 DECL|field|successor
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|int
 index|[]
 name|successor
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** Pointer to the first node in the linked list, or {@code ENDPOINT} if there are no entries. */
+end_comment
+
+begin_decl_stmt
 DECL|field|firstEntry
 specifier|private
 specifier|transient
 name|int
 name|firstEntry
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** Pointer to the last node in the linked list, or {@code ENDPOINT} if there are no entries. */
+end_comment
+
+begin_decl_stmt
 DECL|field|lastEntry
 specifier|private
 specifier|transient
 name|int
 name|lastEntry
 decl_stmt|;
+end_decl_stmt
+
+begin_expr_stmt
 DECL|method|CompactLinkedHashSet ()
 name|CompactLinkedHashSet
-parameter_list|()
+argument_list|()
 block|{
 name|super
 argument_list|()
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|CompactLinkedHashSet (int expectedSize)
 name|CompactLinkedHashSet
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|expectedSize
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|init (int expectedSize)
 name|void
 name|init
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 name|super
 operator|.
@@ -344,35 +444,34 @@ name|init
 argument_list|(
 name|expectedSize
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|firstEntry
 operator|=
 name|ENDPOINT
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|lastEntry
 operator|=
 name|ENDPOINT
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|allocArrays ()
 name|int
 name|allocArrays
-parameter_list|()
+argument_list|()
 block|{
 name|int
 name|expectedSize
-init|=
+operator|=
 name|super
 operator|.
 name|allocArrays
 argument_list|()
-decl_stmt|;
+block|;
 name|this
 operator|.
 name|predecessor
@@ -382,7 +481,7 @@ name|int
 index|[
 name|expectedSize
 index|]
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|successor
@@ -392,11 +491,14 @@ name|int
 index|[
 name|expectedSize
 index|]
-expr_stmt|;
+block|;
 return|return
 name|expectedSize
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 annotation|@
@@ -436,6 +538,13 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_comment
+comment|/*    * For discussion of the safety of the following methods for operating on predecessors and    * successors, see the comments near the end of CompactHashMap, noting that the methods here call    * requirePredecessors() and requireSuccessors(), which are defined at the end of this file.    */
+end_comment
+
+begin_function
 DECL|method|getPredecessor (int entry)
 specifier|private
 name|int
@@ -446,7 +555,8 @@ name|entry
 parameter_list|)
 block|{
 return|return
-name|predecessor
+name|requirePredecessors
+argument_list|()
 index|[
 name|entry
 index|]
@@ -454,6 +564,9 @@ operator|-
 literal|1
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|getSuccessor (int entry)
@@ -465,7 +578,8 @@ name|entry
 parameter_list|)
 block|{
 return|return
-name|successor
+name|requireSuccessors
+argument_list|()
 index|[
 name|entry
 index|]
@@ -473,6 +587,9 @@ operator|-
 literal|1
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|setSuccessor (int entry, int succ)
 specifier|private
 name|void
@@ -485,7 +602,8 @@ name|int
 name|succ
 parameter_list|)
 block|{
-name|successor
+name|requireSuccessors
+argument_list|()
 index|[
 name|entry
 index|]
@@ -495,6 +613,9 @@ operator|+
 literal|1
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|setPredecessor (int entry, int pred)
 specifier|private
 name|void
@@ -507,7 +628,8 @@ name|int
 name|pred
 parameter_list|)
 block|{
-name|predecessor
+name|requirePredecessors
+argument_list|()
 index|[
 name|entry
 index|]
@@ -517,6 +639,9 @@ operator|+
 literal|1
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|setSucceeds (int pred, int succ)
 specifier|private
 name|void
@@ -574,9 +699,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|insertEntry (int entryIndex, @NullableDecl E object, int hash, int mask)
+DECL|method|insertEntry (int entryIndex, @ParametricNullness E object, int hash, int mask)
 name|void
 name|insertEntry
 parameter_list|(
@@ -584,7 +712,7 @@ name|int
 name|entryIndex
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|object
 parameter_list|,
@@ -623,6 +751,9 @@ name|ENDPOINT
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|moveLastEntry (int dstIndex, int mask)
@@ -694,14 +825,16 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|predecessor
+name|requirePredecessors
+argument_list|()
 index|[
 name|srcIndex
 index|]
 operator|=
 literal|0
 expr_stmt|;
-name|successor
+name|requireSuccessors
+argument_list|()
 index|[
 name|srcIndex
 index|]
@@ -709,6 +842,9 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|resizeEntries (int newCapacity)
@@ -732,7 +868,8 @@ name|Arrays
 operator|.
 name|copyOf
 argument_list|(
-name|predecessor
+name|requirePredecessors
+argument_list|()
 argument_list|,
 name|newCapacity
 argument_list|)
@@ -743,12 +880,16 @@ name|Arrays
 operator|.
 name|copyOf
 argument_list|(
-name|successor
+name|requireSuccessors
+argument_list|()
 argument_list|,
 name|newCapacity
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|firstEntryIndex ()
@@ -760,6 +901,9 @@ return|return
 name|firstEntry
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|adjustAfterRemove (int indexBeforeRemove, int indexRemoved)
@@ -786,10 +930,15 @@ else|:
 name|indexBeforeRemove
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toArray ()
 specifier|public
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|toArray
@@ -804,21 +953,42 @@ name|this
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_annotation
 annotation|@
 name|Override
+end_annotation
+
+begin_annotation
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+end_annotation
+
+begin_comment
+comment|// b/192354773 in our checker affects toArray declarations
+end_comment
+
+begin_expr_stmt
 DECL|method|toArray (T[] a)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|a
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|ObjectArrays
@@ -831,6 +1001,9 @@ name|a
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -859,9 +1032,14 @@ name|lastEntry
 operator|=
 name|ENDPOINT
 expr_stmt|;
+comment|// Either both arrays are null or neither is, but we check both to satisfy the nullness checker.
 if|if
 condition|(
 name|predecessor
+operator|!=
+literal|null
+operator|&&
+name|successor
 operator|!=
 literal|null
 condition|)
@@ -901,8 +1079,50 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-end_class
+end_function
 
+begin_comment
+comment|/*    * For discussion of the safety of the following methods, see the comments near the end of    * CompactHashMap.    */
+end_comment
+
+begin_function
+DECL|method|requirePredecessors ()
+specifier|private
+name|int
+index|[]
+name|requirePredecessors
+parameter_list|()
+block|{
+return|return
+name|requireNonNull
+argument_list|(
+name|predecessor
+argument_list|)
+return|;
+block|}
+end_function
+
+begin_function
+DECL|method|requireSuccessors ()
+specifier|private
+name|int
+index|[]
+name|requireSuccessors
+parameter_list|()
+block|{
+return|return
+name|requireNonNull
+argument_list|(
+name|successor
+argument_list|)
+return|;
+block|}
+end_function
+
+begin_comment
+comment|/*    * We don't define getPredecessor+getSuccessor and setPredecessor+setSuccessor here because    * they're defined above -- including logic to add and subtract 1 to map between the values stored    * in the predecessor/successor arrays and the indexes in the elements array that they identify.    */
+end_comment
+
+unit|}
 end_unit
 

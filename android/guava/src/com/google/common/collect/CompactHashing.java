@@ -70,6 +70,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -78,9 +88,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -91,6 +101,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|CompactHashing
 specifier|final
 class|class
@@ -698,18 +710,18 @@ name|mask
 operator|)
 return|;
 block|}
-DECL|method|remove ( @ullableDecl Object key, @NullableDecl Object value, int mask, Object table, int[] entries, Object[] keys, @NullableDecl Object[] values)
+DECL|method|remove ( @heckForNull Object key, @CheckForNull Object value, int mask, Object table, int[] entries, @Nullable Object[] keys, @CheckForNull @Nullable Object[] values)
 specifier|static
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
 parameter_list|,
@@ -723,12 +735,16 @@ name|int
 index|[]
 name|entries
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|keys
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|values

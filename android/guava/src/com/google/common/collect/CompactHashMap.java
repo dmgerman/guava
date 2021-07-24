@@ -65,6 +65,50 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|NullnessCasts
+operator|.
+name|uncheckedCastNullableTToT
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|NullnessCasts
+operator|.
+name|unsafeNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -324,6 +368,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -332,9 +386,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -342,38 +396,61 @@ begin_comment
 comment|/**  * CompactHashMap is an implementation of a Map. All optional operations (put and remove) are  * supported. Null keys and values are supported.  *  *<p>{@code containsKey(k)}, {@code put(k, v)} and {@code remove(k)} are all (expected and  * amortized) constant time operations. Expected in the hashtable sense (depends on the hash  * function doing a good job of distributing the elements to the buckets to a distribution not far  * from uniform), and amortized since some operations can trigger a hash table resize.  *  *<p>Unlike {@code java.util.HashMap}, iteration is only proportional to the actual {@code size()},  * which is optimal, and<i>not</i> the size of the internal hashtable, which could be much larger  * than {@code size()}. Furthermore, this structure places significantly reduced load on the garbage  * collector by only using a constant number of internal objects.  *  *<p>If there are no removals, then iteration order for the {@link #entrySet}, {@link #keySet}, and  * {@link #values} views is the same as insertion order. Any removal invalidates any ordering  * guarantees.  *  *<p>This class should not be assumed to be universally superior to {@code java.util.HashMap}.  * Generally speaking, this class reduces object allocation and memory consumption at the price of  * moderately increased constant factors of CPU. Only use this class when there is a specific reason  * to prioritize memory over CPU.  *  * @author Louis Wasserman  * @author Jon Noack  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// not worth using in GWT for now
+end_comment
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|CompactHashMap
-class|class
+name|class
 name|CompactHashMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|Serializable
 block|{
 comment|/*    * TODO: Make this a drop-in replacement for j.u. versions, actually drop them in, and test the    * world. Figure out what sort of space-time tradeoff we're actually going to get here with the    * *Map variants. This class is particularly hard to benchmark, because the benefit is not only in    * less allocation, but also having the GC do less work to scan the heap because of fewer    * references, which is particularly hard to quantify.    */
 comment|/** Creates an empty {@code CompactHashMap} instance. */
-DECL|method|create ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+block|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|create ()
 name|CompactHashMap
 argument_list|<
 name|K
@@ -381,7 +458,7 @@ argument_list|,
 name|V
 argument_list|>
 name|create
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -391,14 +468,20 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates a {@code CompactHashMap} instance, with a high enough "initial capacity" that it    *<i>should</i> hold {@code expectedSize} elements without growth.    *    * @param expectedSize the number of elements you expect to add to the returned set    * @return a new, empty {@code CompactHashMap} with enough capacity to hold {@code expectedSize}    *     elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
-DECL|method|createWithExpectedSize (int expectedSize)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|createWithExpectedSize (int expectedSize)
 name|CompactHashMap
 argument_list|<
 name|K
@@ -406,10 +489,10 @@ argument_list|,
 name|V
 argument_list|>
 name|createWithExpectedSize
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -420,6 +503,9 @@ name|expectedSize
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_decl_stmt
 DECL|field|NOT_FOUND
 specifier|private
 specifier|static
@@ -431,7 +517,13 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/**    * Maximum allowed false positive probability of detecting a hash flooding attack given random    * input.    */
+end_comment
+
+begin_decl_stmt
 annotation|@
 name|VisibleForTesting
 argument_list|(       )
@@ -443,7 +535,13 @@ name|HASH_FLOODING_FPP
 init|=
 literal|0.001
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/**    * Maximum allowed length of a hash table bucket before falling back to a j.u.LinkedHashMap-based    * implementation. Experimentally determined.    */
+end_comment
+
+begin_decl_stmt
 DECL|field|MAX_HASH_BUCKET_LENGTH
 specifier|private
 specifier|static
@@ -453,66 +551,112 @@ name|MAX_HASH_BUCKET_LENGTH
 init|=
 literal|9
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/**    * The hashtable object. This can be either:    *    *<ul>    *<li>a byte[], short[], or int[], with size a power of two, created by    *       CompactHashing.createTable, whose values are either    *<ul>    *<li>UNSET, meaning "null pointer"    *<li>one plus an index into the keys, values, and entries arrays    *</ul>    *<li>another java.util.Map delegate implementation. In most modern JDKs, normal java.util hash    *       collections intelligently fall back to a binary search tree if hash table collisions are    *       detected. Rather than going to all the trouble of reimplementing this ourselves, we    *       simply switch over to use the JDK implementation wholesale if probable hash flooding is    *       detected, sacrificing the compactness guarantee in very rare cases in exchange for much    *       more reliable worst-case behavior.    *<li>null, if no entries have yet been added to the map    *</ul>    */
+end_comment
+
+begin_decl_stmt
 DECL|field|table
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|Object
 name|table
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/**    * Contains the logical entries, in the range of [0, size()). The high bits of each int are the    * part of the smeared hash of the key not covered by the hashtable mask, whereas the low bits are    * the "next" pointer (pointing to the next entry in the bucket chain), which will always be less    * than or equal to the hashtable mask.    *    *<pre>    * hash  = aaaaaaaa    * mask  = 0000ffff    * next  = 0000bbbb    * entry = aaaabbbb    *</pre>    *    *<p>The pointers in [size(), entries.length) are all "null" (UNSET).    */
+end_comment
+
+begin_decl_stmt
 DECL|field|entries
 annotation|@
 name|VisibleForTesting
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|transient
 name|int
 index|[]
 name|entries
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/**    * The keys of the entries in the map, in the range of [0, size()). The keys in [size(),    * keys.length) are all {@code null}.    */
+end_comment
+
+begin_decl_stmt
 DECL|field|keys
 annotation|@
 name|VisibleForTesting
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|transient
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|keys
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/**    * The values of the entries in the map, in the range of [0, size()). The values in [size(),    * values.length) are all {@code null}.    */
+end_comment
+
+begin_decl_stmt
 DECL|field|values
 annotation|@
 name|VisibleForTesting
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|transient
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|values
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/**    * Keeps track of metadata like the number of hash table bits and modifications of this data    * structure (to make it possible to throw ConcurrentModificationException in the iterator). Note    * that we choose not to make this volatile, so we do less of a "best effort" to track such    * errors, for better performance.    */
+end_comment
+
+begin_decl_stmt
 DECL|field|metadata
 specifier|private
 specifier|transient
 name|int
 name|metadata
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** The number of elements contained in the set. */
+end_comment
+
+begin_decl_stmt
 DECL|field|size
 specifier|private
 specifier|transient
 name|int
 name|size
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** Constructs a new empty instance of {@code CompactHashMap}. */
+end_comment
+
+begin_expr_stmt
 DECL|method|CompactHashMap ()
 name|CompactHashMap
-parameter_list|()
+argument_list|()
 block|{
 name|init
 argument_list|(
@@ -520,30 +664,28 @@ name|CompactHashing
 operator|.
 name|DEFAULT_SIZE
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 comment|/**    * Constructs a new instance of {@code CompactHashMap} with the specified capacity.    *    * @param expectedSize the initial capacity of this {@code CompactHashMap}.    */
 DECL|method|CompactHashMap (int expectedSize)
 name|CompactHashMap
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 name|init
 argument_list|(
 name|expectedSize
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 comment|/** Pseudoconstructor for serialization support. */
 DECL|method|init (int expectedSize)
 name|void
 name|init
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 name|Preconditions
 operator|.
@@ -555,7 +697,7 @@ literal|0
 argument_list|,
 literal|"Expected size must be>= 0"
 argument_list|)
-expr_stmt|;
+block|;
 comment|// Save expectedSize for use in allocArrays()
 name|this
 operator|.
@@ -573,15 +715,14 @@ name|CompactHashing
 operator|.
 name|MAX_SIZE
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 comment|/** Returns whether arrays need to be allocated. */
-annotation|@
+expr|@
 name|VisibleForTesting
 DECL|method|needsAllocArrays ()
 name|boolean
 name|needsAllocArrays
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|table
@@ -589,7 +730,13 @@ operator|==
 literal|null
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/** Handle lazy allocation of arrays. */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|allocArrays ()
@@ -674,6 +821,9 @@ return|return
 name|expectedSize
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -682,7 +832,7 @@ argument_list|)
 annotation|@
 name|VisibleForTesting
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|delegateOrNull ()
 name|Map
 argument_list|<
@@ -716,6 +866,9 @@ return|return
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|createHashFloodingResistantDelegate (int tableSize)
 name|Map
 argument_list|<
@@ -740,11 +893,9 @@ literal|1.0f
 argument_list|)
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
+end_function
+
+begin_function
 annotation|@
 name|VisibleForTesting
 annotation|@
@@ -799,21 +950,15 @@ name|newDelegate
 operator|.
 name|put
 argument_list|(
-operator|(
-name|K
-operator|)
-name|keys
-index|[
+name|key
+argument_list|(
 name|i
-index|]
+argument_list|)
 argument_list|,
-operator|(
-name|V
-operator|)
-name|values
-index|[
+name|value
+argument_list|(
 name|i
-index|]
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -848,7 +993,13 @@ return|return
 name|newDelegate
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Stores the hash table mask as the number of bits needed to represent an index. */
+end_comment
+
+begin_function
 DECL|method|setHashTableMask (int mask)
 specifier|private
 name|void
@@ -888,7 +1039,13 @@ name|HASH_TABLE_BITS_MASK
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/** Gets the hash table mask using the stored number of hash table bits. */
+end_comment
+
+begin_function
 DECL|method|hashTableMask ()
 specifier|private
 name|int
@@ -911,6 +1068,9 @@ operator|-
 literal|1
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|incrementModCount ()
 name|void
 name|incrementModCount
@@ -923,7 +1083,13 @@ operator|.
 name|MODIFICATION_COUNT_INCREMENT
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Mark an access of the specified entry. Used only in {@code CompactLinkedHashMap} for LRU    * ordering.    */
+end_comment
+
+begin_function
 DECL|method|accessEntry (int index)
 name|void
 name|accessEntry
@@ -934,24 +1100,27 @@ parameter_list|)
 block|{
 comment|// no-op by default
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|put (@ullableDecl K key, @NullableDecl V value)
+name|CheckForNull
+DECL|method|put (@arametricNullness K key, @ParametricNullness V value)
 specifier|public
 name|V
 name|put
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -966,8 +1135,6 @@ name|allocArrays
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|NullableDecl
 name|Map
 argument_list|<
 name|K
@@ -1001,25 +1168,26 @@ name|int
 index|[]
 name|entries
 init|=
-name|this
-operator|.
-name|entries
+name|requireEntries
+argument_list|()
 decl_stmt|;
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|keys
 init|=
-name|this
-operator|.
-name|keys
+name|requireKeys
+argument_list|()
 decl_stmt|;
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|values
 init|=
-name|this
-operator|.
-name|values
+name|requireValues
+argument_list|()
 decl_stmt|;
 name|int
 name|newEntryIndex
@@ -1064,7 +1232,8 @@ name|CompactHashing
 operator|.
 name|tableGet
 argument_list|(
-name|table
+name|requireTable
+argument_list|()
 argument_list|,
 name|tableIndex
 argument_list|)
@@ -1110,7 +1279,8 @@ name|CompactHashing
 operator|.
 name|tableSet
 argument_list|(
-name|table
+name|requireTable
+argument_list|()
 argument_list|,
 name|tableIndex
 argument_list|,
@@ -1193,8 +1363,6 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// known to be a V
-annotation|@
-name|NullableDecl
 name|V
 name|oldValue
 init|=
@@ -1343,8 +1511,14 @@ return|return
 literal|null
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates a fresh entry with the specified object at the specified position in the entry arrays.    */
-DECL|method|insertEntry (int entryIndex, @NullableDecl K key, @NullableDecl V value, int hash, int mask)
+end_comment
+
+begin_function
+DECL|method|insertEntry ( int entryIndex, @ParametricNullness K key, @ParametricNullness V value, int hash, int mask)
 name|void
 name|insertEntry
 parameter_list|(
@@ -1352,12 +1526,12 @@ name|int
 name|entryIndex
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|value
 parameter_list|,
@@ -1370,11 +1544,10 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|entries
-index|[
+name|setEntry
+argument_list|(
 name|entryIndex
-index|]
-operator|=
+argument_list|,
 name|CompactHashing
 operator|.
 name|maskCombine
@@ -1385,27 +1558,34 @@ name|UNSET
 argument_list|,
 name|mask
 argument_list|)
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|keys
-index|[
+name|setKey
+argument_list|(
 name|entryIndex
-index|]
-operator|=
+argument_list|,
 name|key
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|values
-index|[
+name|setValue
+argument_list|(
 name|entryIndex
-index|]
-operator|=
+argument_list|,
 name|value
+argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/** Resizes the entries storage if necessary. */
+end_comment
+
+begin_function
 DECL|method|resizeMeMaybe (int newSize)
 specifier|private
 name|void
@@ -1418,7 +1598,8 @@ block|{
 name|int
 name|entriesSize
 init|=
-name|entries
+name|requireEntries
+argument_list|()
 operator|.
 name|length
 decl_stmt|;
@@ -1474,7 +1655,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Resizes the internal entries array to the specified capacity, which may be greater or less than    * the current capacity.    */
+end_comment
+
+begin_function
 DECL|method|resizeEntries (int newCapacity)
 name|void
 name|resizeEntries
@@ -1491,7 +1678,8 @@ name|Arrays
 operator|.
 name|copyOf
 argument_list|(
-name|entries
+name|requireEntries
+argument_list|()
 argument_list|,
 name|newCapacity
 argument_list|)
@@ -1504,7 +1692,8 @@ name|Arrays
 operator|.
 name|copyOf
 argument_list|(
-name|keys
+name|requireKeys
+argument_list|()
 argument_list|,
 name|newCapacity
 argument_list|)
@@ -1517,12 +1706,16 @@ name|Arrays
 operator|.
 name|copyOf
 argument_list|(
-name|values
+name|requireValues
+argument_list|()
 argument_list|,
 name|newCapacity
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|resizeTable (int mask, int newCapacity, int targetHash, int targetEntryIndex)
@@ -1587,17 +1780,15 @@ block|}
 name|Object
 name|table
 init|=
-name|this
-operator|.
-name|table
+name|requireTable
+argument_list|()
 decl_stmt|;
 name|int
 index|[]
 name|entries
 init|=
-name|this
-operator|.
-name|entries
+name|requireEntries
+argument_list|()
 decl_stmt|;
 comment|// Loop over current hashtable
 for|for
@@ -1738,13 +1929,16 @@ return|return
 name|newMask
 return|;
 block|}
-DECL|method|indexOf (@ullableDecl Object key)
+end_function
+
+begin_function
+DECL|method|indexOf (@heckForNull Object key)
 specifier|private
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1781,7 +1975,8 @@ name|CompactHashing
 operator|.
 name|tableGet
 argument_list|(
-name|table
+name|requireTable
+argument_list|()
 argument_list|,
 name|hash
 operator|&
@@ -1824,10 +2019,10 @@ decl_stmt|;
 name|int
 name|entry
 init|=
-name|entries
-index|[
+name|entry
+argument_list|(
 name|entryIndex
-index|]
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -1848,10 +2043,10 @@ name|equal
 argument_list|(
 name|key
 argument_list|,
-name|keys
-index|[
+name|key
+argument_list|(
 name|entryIndex
-index|]
+argument_list|)
 argument_list|)
 condition|)
 block|{
@@ -1883,21 +2078,22 @@ operator|-
 literal|1
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
 block|{
-annotation|@
-name|NullableDecl
 name|Map
 argument_list|<
 name|K
@@ -1932,27 +2128,24 @@ operator|-
 literal|1
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// known to be a V
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
 block|{
-annotation|@
-name|NullableDecl
 name|Map
 argument_list|<
 name|K
@@ -2006,15 +2199,15 @@ name|index
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
-name|V
-operator|)
-name|values
-index|[
+name|value
+argument_list|(
 name|index
-index|]
+argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -2026,20 +2219,18 @@ comment|// known to be a V
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|remove (@ullableDecl Object key)
+name|CheckForNull
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
 block|{
-annotation|@
-name|NullableDecl
 name|Map
 argument_list|<
 name|K
@@ -2090,15 +2281,18 @@ operator|)
 name|oldValue
 return|;
 block|}
-annotation|@
-name|NullableDecl
-DECL|method|removeHelper (@ullableDecl Object key)
+end_function
+
+begin_function
+DECL|method|removeHelper (@heckForNull Object key)
 specifier|private
+annotation|@
+name|Nullable
 name|Object
 name|removeHelper
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -2133,11 +2327,14 @@ literal|null
 argument_list|,
 name|mask
 argument_list|,
-name|table
+name|requireTable
+argument_list|()
 argument_list|,
-name|entries
+name|requireEntries
+argument_list|()
 argument_list|,
-name|keys
+name|requireKeys
+argument_list|()
 argument_list|,
 comment|/* values= */
 literal|null
@@ -2155,15 +2352,13 @@ return|return
 name|NOT_FOUND
 return|;
 block|}
-annotation|@
-name|NullableDecl
 name|Object
 name|oldValue
 init|=
-name|values
-index|[
+name|value
+argument_list|(
 name|index
-index|]
+argument_list|)
 decl_stmt|;
 name|moveLastEntry
 argument_list|(
@@ -2182,7 +2377,13 @@ return|return
 name|oldValue
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Moves the last entry in the entry array into {@code dstIndex}, and nulls out its old position.    */
+end_comment
+
+begin_function
 DECL|method|moveLastEntry (int dstIndex, int mask)
 name|void
 name|moveLastEntry
@@ -2194,6 +2395,37 @@ name|int
 name|mask
 parameter_list|)
 block|{
+name|Object
+name|table
+init|=
+name|requireTable
+argument_list|()
+decl_stmt|;
+name|int
+index|[]
+name|entries
+init|=
+name|requireEntries
+argument_list|()
+decl_stmt|;
+annotation|@
+name|Nullable
+name|Object
+index|[]
+name|keys
+init|=
+name|requireKeys
+argument_list|()
+decl_stmt|;
+annotation|@
+name|Nullable
+name|Object
+index|[]
+name|values
+init|=
+name|requireValues
+argument_list|()
+decl_stmt|;
 name|int
 name|srcIndex
 init|=
@@ -2210,8 +2442,6 @@ name|srcIndex
 condition|)
 block|{
 comment|// move last entry to deleted spot
-annotation|@
-name|NullableDecl
 name|Object
 name|key
 init|=
@@ -2410,6 +2640,9 @@ literal|0
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 DECL|method|firstEntryIndex ()
 name|int
 name|firstEntryIndex
@@ -2425,6 +2658,9 @@ else|:
 literal|0
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getSuccessor (int entryIndex)
 name|int
 name|getSuccessor
@@ -2450,7 +2686,13 @@ operator|-
 literal|1
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Updates the index an iterator is pointing to after a call to remove: returns the index of the    * entry that should be looked at after a removal on indexRemoved, with indexBeforeRemove as the    * index that *was* the next entry that would be looked at.    */
+end_comment
+
+begin_function
 DECL|method|adjustAfterRemove (int indexBeforeRemove, @SuppressWarnings(R) int indexRemoved)
 name|int
 name|adjustAfterRemove
@@ -2473,15 +2715,21 @@ operator|-
 literal|1
 return|;
 block|}
+end_function
+
+begin_expr_stmt
 DECL|class|Itr
 specifier|private
 specifier|abstract
-class|class
+name|class
 name|Itr
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Iterator
 argument_list|<
 name|T
@@ -2490,30 +2738,29 @@ block|{
 DECL|field|expectedMetadata
 name|int
 name|expectedMetadata
-init|=
+operator|=
 name|metadata
-decl_stmt|;
+block|;
 DECL|field|currentIndex
 name|int
 name|currentIndex
-init|=
+operator|=
 name|firstEntryIndex
 argument_list|()
-decl_stmt|;
+block|;
 DECL|field|indexToRemove
 name|int
 name|indexToRemove
-init|=
+operator|=
 operator|-
 literal|1
-decl_stmt|;
-annotation|@
+block|;      @
 name|Override
 DECL|method|hasNext ()
 specifier|public
 name|boolean
 name|hasNext
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|currentIndex
@@ -2521,17 +2768,24 @@ operator|>=
 literal|0
 return|;
 block|}
+expr|@
+name|ParametricNullness
 DECL|method|getOutput (int entry)
 specifier|abstract
 name|T
 name|getOutput
-parameter_list|(
+argument_list|(
 name|int
 name|entry
-parameter_list|)
-function_decl|;
+argument_list|)
+expr_stmt|;
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|next ()
 specifier|public
 name|T
@@ -2577,6 +2831,9 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|remove ()
@@ -2604,10 +2861,10 @@ name|this
 operator|.
 name|remove
 argument_list|(
-name|keys
-index|[
+name|key
+argument_list|(
 name|indexToRemove
-index|]
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|currentIndex
@@ -2625,6 +2882,9 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|incrementExpectedModCount ()
 name|void
 name|incrementExpectedModCount
@@ -2637,6 +2897,9 @@ operator|.
 name|MODIFICATION_COUNT_INCREMENT
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|checkForConcurrentModification ()
 specifier|private
 name|void
@@ -2657,10 +2920,12 @@ argument_list|()
 throw|;
 block|}
 block|}
-block|}
+end_function
+
+begin_decl_stmt
+unit|}    @
 DECL|field|keySetView
-annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|Set
@@ -2669,6 +2934,9 @@ name|K
 argument_list|>
 name|keySetView
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -2695,6 +2963,9 @@ else|:
 name|keySetView
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|createKeySet ()
 name|Set
 argument_list|<
@@ -2709,6 +2980,9 @@ name|KeySetView
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|KeySetView
@@ -2739,11 +3013,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -2761,19 +3037,17 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object o)
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
 block|{
-annotation|@
-name|NullableDecl
 name|Map
 argument_list|<
 name|K
@@ -2847,6 +3121,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_function
 DECL|method|keySetIterator ()
 name|Iterator
 argument_list|<
@@ -2855,8 +3132,6 @@ argument_list|>
 name|keySetIterator
 parameter_list|()
 block|{
-annotation|@
-name|NullableDecl
 name|Map
 argument_list|<
 name|K
@@ -2894,13 +3169,9 @@ argument_list|>
 argument_list|()
 block|{
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// known to be a K
-annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 name|K
 name|getOutput
 parameter_list|(
@@ -2909,21 +3180,21 @@ name|entry
 parameter_list|)
 block|{
 return|return
-operator|(
-name|K
-operator|)
-name|keys
-index|[
+name|key
+argument_list|(
 name|entry
-index|]
+argument_list|)
 return|;
 block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|entrySetView
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|Set
@@ -2937,6 +3208,9 @@ argument_list|>
 argument_list|>
 name|entrySetView
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entrySet ()
@@ -2968,6 +3242,9 @@ else|:
 name|entrySetView
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|createEntrySet ()
 name|Set
 argument_list|<
@@ -2987,6 +3264,9 @@ name|EntrySetView
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|EntrySetView
@@ -3059,19 +3339,17 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
 block|{
-annotation|@
-name|NullableDecl
 name|Map
 argument_list|<
 name|K
@@ -3149,10 +3427,10 @@ name|Objects
 operator|.
 name|equal
 argument_list|(
-name|values
-index|[
+name|value
+argument_list|(
 name|index
-index|]
+argument_list|)
 argument_list|,
 name|entry
 operator|.
@@ -3167,19 +3445,17 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object o)
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
 block|{
-annotation|@
-name|NullableDecl
 name|Map
 argument_list|<
 name|K
@@ -3271,13 +3547,17 @@ argument_list|()
 argument_list|,
 name|mask
 argument_list|,
-name|table
+name|requireTable
+argument_list|()
 argument_list|,
-name|entries
+name|requireEntries
+argument_list|()
 argument_list|,
-name|keys
+name|requireKeys
+argument_list|()
 argument_list|,
-name|values
+name|requireValues
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -3314,6 +3594,9 @@ literal|false
 return|;
 block|}
 block|}
+end_class
+
+begin_function
 DECL|method|entrySetIterator ()
 name|Iterator
 argument_list|<
@@ -3327,8 +3610,6 @@ argument_list|>
 name|entrySetIterator
 parameter_list|()
 block|{
-annotation|@
-name|NullableDecl
 name|Map
 argument_list|<
 name|K
@@ -3395,6 +3676,9 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|MapEntry
 specifier|final
 class|class
@@ -3409,7 +3693,7 @@ argument_list|>
 block|{
 DECL|field|key
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 specifier|private
 specifier|final
 name|K
@@ -3420,12 +3704,6 @@ specifier|private
 name|int
 name|lastKnownIndex
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// known to be a K
 DECL|method|MapEntry (int index)
 name|MapEntry
 parameter_list|(
@@ -3437,13 +3715,10 @@ name|this
 operator|.
 name|key
 operator|=
-operator|(
-name|K
-operator|)
-name|keys
-index|[
+name|key
+argument_list|(
 name|index
-index|]
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -3453,9 +3728,9 @@ name|index
 expr_stmt|;
 block|}
 annotation|@
-name|NullableDecl
-annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|getKey ()
 specifier|public
 name|K
@@ -3491,10 +3766,10 @@ name|equal
 argument_list|(
 name|key
 argument_list|,
-name|keys
-index|[
+name|key
+argument_list|(
 name|lastKnownIndex
-index|]
+argument_list|)
 argument_list|)
 condition|)
 block|{
@@ -3508,23 +3783,15 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// known to be a V
-annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 DECL|method|getValue ()
 specifier|public
 name|V
 name|getValue
 parameter_list|()
 block|{
-annotation|@
-name|NullableDecl
 name|Map
 argument_list|<
 name|K
@@ -3543,18 +3810,23 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|/*          * The cast is safe because the entry is present in the map. Or, if it has been removed by a          * concurrent modification, behavior is undefined.          */
 return|return
+name|uncheckedCastNullableTToT
+argument_list|(
 name|delegate
 operator|.
 name|get
 argument_list|(
 name|key
 argument_list|)
+argument_list|)
 return|;
 block|}
 name|updateLastKnownIndex
 argument_list|()
 expr_stmt|;
+comment|/*        * If the entry has been removed from the map, we return null, even though that might not be a        * valid value. That's the best we can do, short of holding a reference to the most recently        * seen value. And while we *could* do that, we aren't required to: Map.Entry explicitly says        * that behavior is undefined when the backing map is modified through another API. (It even        * permits us to throw IllegalStateException. Maybe we should have done that, but we probably        * shouldn't change now for fear of breaking people.)        */
 return|return
 operator|(
 name|lastKnownIndex
@@ -3563,36 +3835,30 @@ operator|-
 literal|1
 operator|)
 condition|?
-literal|null
+name|unsafeNull
+argument_list|()
 else|:
-operator|(
-name|V
-operator|)
-name|values
-index|[
+name|value
+argument_list|(
 name|lastKnownIndex
-index|]
+argument_list|)
 return|;
 block|}
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// known to be a V
-annotation|@
 name|Override
-DECL|method|setValue (V value)
+annotation|@
+name|ParametricNullness
+DECL|method|setValue (@arametricNullness V value)
 specifier|public
 name|V
 name|setValue
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
 block|{
-annotation|@
-name|NullableDecl
 name|Map
 argument_list|<
 name|K
@@ -3612,6 +3878,8 @@ literal|null
 condition|)
 block|{
 return|return
+name|uncheckedCastNullableTToT
+argument_list|(
 name|delegate
 operator|.
 name|put
@@ -3620,7 +3888,9 @@ name|key
 argument_list|,
 name|value
 argument_list|)
+argument_list|)
 return|;
+comment|// See discussion in getValue().
 block|}
 name|updateLastKnownIndex
 argument_list|()
@@ -3641,28 +3911,31 @@ name|value
 argument_list|)
 expr_stmt|;
 return|return
-literal|null
+name|unsafeNull
+argument_list|()
 return|;
+comment|// See discussion in getValue().
 block|}
 else|else
 block|{
 name|V
 name|old
 init|=
-operator|(
-name|V
-operator|)
-name|values
-index|[
-name|lastKnownIndex
-index|]
-decl_stmt|;
-name|values
-index|[
-name|lastKnownIndex
-index|]
-operator|=
 name|value
+argument_list|(
+name|lastKnownIndex
+argument_list|)
+decl_stmt|;
+name|CompactHashMap
+operator|.
+name|this
+operator|.
+name|setValue
+argument_list|(
+name|lastKnownIndex
+argument_list|,
+name|value
+argument_list|)
 expr_stmt|;
 return|return
 name|old
@@ -3670,6 +3943,9 @@ return|;
 block|}
 block|}
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -3678,8 +3954,6 @@ name|int
 name|size
 parameter_list|()
 block|{
-annotation|@
-name|NullableDecl
 name|Map
 argument_list|<
 name|K
@@ -3706,6 +3980,9 @@ else|:
 name|size
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -3721,21 +3998,22 @@ operator|==
 literal|0
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsValue (@ullableDecl Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
 block|{
-annotation|@
-name|NullableDecl
 name|Map
 argument_list|<
 name|K
@@ -3786,10 +4064,10 @@ name|equal
 argument_list|(
 name|value
 argument_list|,
-name|values
-index|[
+name|value
+argument_list|(
 name|i
-index|]
+argument_list|)
 argument_list|)
 condition|)
 block|{
@@ -3802,9 +4080,12 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|valuesView
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|Collection
@@ -3813,6 +4094,9 @@ name|V
 argument_list|>
 name|valuesView
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -3839,6 +4123,9 @@ else|:
 name|valuesView
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|createValues ()
 name|Collection
 argument_list|<
@@ -3853,6 +4140,9 @@ name|ValuesView
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|ValuesView
@@ -3914,6 +4204,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_function
 DECL|method|valuesIterator ()
 name|Iterator
 argument_list|<
@@ -3922,8 +4215,6 @@ argument_list|>
 name|valuesIterator
 parameter_list|()
 block|{
-annotation|@
-name|NullableDecl
 name|Map
 argument_list|<
 name|K
@@ -3961,13 +4252,9 @@ argument_list|>
 argument_list|()
 block|{
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// known to be a V
-annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 name|V
 name|getOutput
 parameter_list|(
@@ -3976,19 +4263,22 @@ name|entry
 parameter_list|)
 block|{
 return|return
-operator|(
-name|V
-operator|)
-name|values
-index|[
+name|value
+argument_list|(
 name|entry
-index|]
+argument_list|)
 return|;
 block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Ensures that this {@code CompactHashMap} has the smallest representation in memory, given its    * current size.    */
+end_comment
+
+begin_function
 DECL|method|trimToSize ()
 specifier|public
 name|void
@@ -4003,8 +4293,6 @@ condition|)
 block|{
 return|return;
 block|}
-annotation|@
-name|NullableDecl
 name|Map
 argument_list|<
 name|K
@@ -4063,7 +4351,8 @@ if|if
 condition|(
 name|size
 operator|<
-name|entries
+name|requireEntries
+argument_list|()
 operator|.
 name|length
 condition|)
@@ -4111,6 +4400,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -4130,8 +4422,6 @@ block|}
 name|incrementModCount
 argument_list|()
 expr_stmt|;
-annotation|@
-name|NullableDecl
 name|Map
 argument_list|<
 name|K
@@ -4189,7 +4479,8 @@ name|Arrays
 operator|.
 name|fill
 argument_list|(
-name|keys
+name|requireKeys
+argument_list|()
 argument_list|,
 literal|0
 argument_list|,
@@ -4202,7 +4493,8 @@ name|Arrays
 operator|.
 name|fill
 argument_list|(
-name|values
+name|requireValues
+argument_list|()
 argument_list|,
 literal|0
 argument_list|,
@@ -4215,14 +4507,16 @@ name|CompactHashing
 operator|.
 name|tableClear
 argument_list|(
-name|table
+name|requireTable
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|Arrays
 operator|.
 name|fill
 argument_list|(
-name|entries
+name|requireEntries
+argument_list|()
 argument_list|,
 literal|0
 argument_list|,
@@ -4239,6 +4533,9 @@ literal|0
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -4320,6 +4617,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -4419,8 +4719,235 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-end_class
+end_function
 
+begin_comment
+comment|/*    * The following methods are safe to call as long as both of the following hold:    *    * - allocArrays() has been called. Callers can confirm this by checking needsAllocArrays().    *    * - The map has not switched to delegating to a java.util implementation to mitigate hash    *   flooding. Callers can confirm this by null-checking delegateOrNull().    *    * In an ideal world, we would document why we know those things are true every time we call these    * methods. But that is a bit too painful....    */
+end_comment
+
+begin_function
+DECL|method|requireTable ()
+specifier|private
+name|Object
+name|requireTable
+parameter_list|()
+block|{
+return|return
+name|requireNonNull
+argument_list|(
+name|table
+argument_list|)
+return|;
+block|}
+end_function
+
+begin_function
+DECL|method|requireEntries ()
+specifier|private
+name|int
+index|[]
+name|requireEntries
+parameter_list|()
+block|{
+return|return
+name|requireNonNull
+argument_list|(
+name|entries
+argument_list|)
+return|;
+block|}
+end_function
+
+begin_function
+DECL|method|requireKeys ()
+specifier|private
+annotation|@
+name|Nullable
+name|Object
+index|[]
+name|requireKeys
+parameter_list|()
+block|{
+return|return
+name|requireNonNull
+argument_list|(
+name|keys
+argument_list|)
+return|;
+block|}
+end_function
+
+begin_function
+DECL|method|requireValues ()
+specifier|private
+annotation|@
+name|Nullable
+name|Object
+index|[]
+name|requireValues
+parameter_list|()
+block|{
+return|return
+name|requireNonNull
+argument_list|(
+name|values
+argument_list|)
+return|;
+block|}
+end_function
+
+begin_comment
+comment|/*    * The following methods are safe to call as long as the conditions in the *previous* comment are    * met *and* the index is less than size().    *    * (The above explains when these methods are safe from a `nullness` perspective. From an    * `unchecked` perspective, they're safe because we put only K/V elements into each array.)    */
+end_comment
+
+begin_function
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+DECL|method|key (int i)
+specifier|private
+name|K
+name|key
+parameter_list|(
+name|int
+name|i
+parameter_list|)
+block|{
+return|return
+operator|(
+name|K
+operator|)
+name|requireKeys
+argument_list|()
+index|[
+name|i
+index|]
+return|;
+block|}
+end_function
+
+begin_function
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+DECL|method|value (int i)
+specifier|private
+name|V
+name|value
+parameter_list|(
+name|int
+name|i
+parameter_list|)
+block|{
+return|return
+operator|(
+name|V
+operator|)
+name|requireValues
+argument_list|()
+index|[
+name|i
+index|]
+return|;
+block|}
+end_function
+
+begin_function
+DECL|method|entry (int i)
+specifier|private
+name|int
+name|entry
+parameter_list|(
+name|int
+name|i
+parameter_list|)
+block|{
+return|return
+name|requireEntries
+argument_list|()
+index|[
+name|i
+index|]
+return|;
+block|}
+end_function
+
+begin_function
+DECL|method|setKey (int i, K key)
+specifier|private
+name|void
+name|setKey
+parameter_list|(
+name|int
+name|i
+parameter_list|,
+name|K
+name|key
+parameter_list|)
+block|{
+name|requireKeys
+argument_list|()
+index|[
+name|i
+index|]
+operator|=
+name|key
+expr_stmt|;
+block|}
+end_function
+
+begin_function
+DECL|method|setValue (int i, V value)
+specifier|private
+name|void
+name|setValue
+parameter_list|(
+name|int
+name|i
+parameter_list|,
+name|V
+name|value
+parameter_list|)
+block|{
+name|requireValues
+argument_list|()
+index|[
+name|i
+index|]
+operator|=
+name|value
+expr_stmt|;
+block|}
+end_function
+
+begin_function
+DECL|method|setEntry (int i, int value)
+specifier|private
+name|void
+name|setEntry
+parameter_list|(
+name|int
+name|i
+parameter_list|,
+name|int
+name|value
+parameter_list|)
+block|{
+name|requireEntries
+argument_list|()
+index|[
+name|i
+index|]
+operator|=
+name|value
+expr_stmt|;
+block|}
+end_function
+
+unit|}
 end_unit
 

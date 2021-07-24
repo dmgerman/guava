@@ -525,7 +525,7 @@ comment|/**    * Implementation of {@link Collection#toArray(Object[])} for coll
 end_comment
 
 begin_expr_stmt
-DECL|method|toArrayImpl (Object[] src, int offset, int len, T[] dst)
+DECL|method|toArrayImpl ( @ullable Object[] src, int offset, int len, T[] dst)
 specifier|static
 operator|<
 name|T
@@ -537,6 +537,8 @@ name|T
 index|[]
 name|toArrayImpl
 argument_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|src
@@ -683,12 +685,16 @@ comment|/**    * Returns a copy of the specified subrange of the specified array
 end_comment
 
 begin_function
-DECL|method|copyAsObjectArray (Object[] elements, int offset, int length)
+DECL|method|copyAsObjectArray (@ullable Object[] elements, int offset, int length)
 specifier|static
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|copyAsObjectArray
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|elements
@@ -728,6 +734,8 @@ literal|0
 index|]
 return|;
 block|}
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|result

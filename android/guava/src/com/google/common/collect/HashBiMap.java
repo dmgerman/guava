@@ -49,6 +49,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|NullnessCasts
+operator|.
+name|unsafeNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -5993,47 +6009,6 @@ argument_list|)
 expr_stmt|;
 block|}
 end_function
-
-begin_annotation
-annotation|@
-name|SuppressWarnings
-argument_list|(
-block|{
-literal|"nullness"
-block|,
-literal|"TypeParameterUnusedInFormals"
-block|}
-argument_list|)
-end_annotation
-
-begin_comment
-comment|// The warnings are legitimate. Each time we use this method, we document why.
-end_comment
-
-begin_annotation
-annotation|@
-name|ParametricNullness
-end_annotation
-
-begin_expr_stmt
-DECL|method|unsafeNull ()
-specifier|private
-specifier|static
-operator|<
-name|T
-expr|extends @
-name|Nullable
-name|Object
-operator|>
-name|T
-name|unsafeNull
-argument_list|()
-block|{
-return|return
-literal|null
-return|;
-block|}
-end_expr_stmt
 
 unit|}
 end_unit
