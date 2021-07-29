@@ -2151,8 +2151,8 @@ name|int
 name|codePoint
 parameter_list|)
 block|{
+comment|// codePoint has at most 21 bits
 return|return
-operator|(
 operator|(
 operator|(
 literal|0xFL
@@ -2165,9 +2165,6 @@ name|codePoint
 operator|>>>
 literal|18
 operator|)
-operator|)
-operator|&
-literal|0xFF
 operator|)
 operator||
 operator|(
@@ -2234,8 +2231,7 @@ block|{
 return|return
 operator|(
 operator|(
-operator|(
-literal|0xF
+literal|0x7L
 operator|<<
 literal|5
 operator|)
@@ -2245,9 +2241,6 @@ name|c
 operator|>>>
 literal|12
 operator|)
-operator|)
-operator|&
-literal|0xFF
 operator|)
 operator||
 operator|(
@@ -2293,11 +2286,11 @@ name|char
 name|c
 parameter_list|)
 block|{
+comment|// c has at most 11 bits
 return|return
 operator|(
 operator|(
-operator|(
-literal|0xF
+literal|0x3L
 operator|<<
 literal|6
 operator|)
@@ -2307,9 +2300,6 @@ name|c
 operator|>>>
 literal|6
 operator|)
-operator|)
-operator|&
-literal|0xFF
 operator|)
 operator||
 operator|(
