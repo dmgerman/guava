@@ -518,6 +518,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"OptionalOfRedundantMethod"
+argument_list|)
+comment|// Unit tests for Optional
 DECL|method|testIsPresent_yes ()
 specifier|public
 name|void
@@ -595,6 +601,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"OptionalOfRedundantMethod"
+argument_list|)
+comment|// Unit tests for Optional
 DECL|method|testOr_T_present ()
 specifier|public
 name|void
@@ -641,6 +653,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"OptionalOfRedundantMethod"
+argument_list|)
+comment|// Unit tests for Optional
 DECL|method|testOr_supplier_present ()
 specifier|public
 name|void
@@ -747,6 +765,12 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"OptionalOfRedundantMethod"
+argument_list|)
+comment|// Unit tests for Optional
 DECL|method|testOr_nullSupplier_present ()
 specifier|public
 name|void
@@ -784,6 +808,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"OptionalOfRedundantMethod"
+argument_list|)
+comment|// Unit tests for Optional
 DECL|method|testOr_Optional_present ()
 specifier|public
 name|void
@@ -850,6 +880,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"OptionalOfRedundantMethod"
+argument_list|)
+comment|// Unit tests for Optional
 DECL|method|testOrNull_present ()
 specifier|public
 name|void
