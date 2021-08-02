@@ -606,6 +606,162 @@ decl_stmt|;
 end_decl_stmt
 
 begin_comment
+comment|// The way the `table`, `entries`, `keys`, and `values` arrays work together is as follows.
+end_comment
+
+begin_comment
+comment|//
+end_comment
+
+begin_comment
+comment|// The `table` array always has a size that is a power of 2. The hashcode of a key in the map
+end_comment
+
+begin_comment
+comment|// is masked in order to correspond to the current table size. For example, if the table size
+end_comment
+
+begin_comment
+comment|// is 128 then the mask is 127 == 0x7f, keeping the bottom 7 bits of the hash value.
+end_comment
+
+begin_comment
+comment|// If a key hashes to 0x89abcdef the mask reduces it to 0x89abcdef& 0x7f == 0x6f. We'll call this
+end_comment
+
+begin_comment
+comment|// the "short hash".
+end_comment
+
+begin_comment
+comment|//
+end_comment
+
+begin_comment
+comment|// The `keys`, `values`, and `entries` arrays always have the same size as each other. They can be
+end_comment
+
+begin_comment
+comment|// seen as fields of an imaginary `Entry` object like this:
+end_comment
+
+begin_comment
+comment|//
+end_comment
+
+begin_comment
+comment|// class Entry {
+end_comment
+
+begin_comment
+comment|//    int hash;
+end_comment
+
+begin_comment
+comment|//    Entry next;
+end_comment
+
+begin_comment
+comment|//    K key;
+end_comment
+
+begin_comment
+comment|//    V value;
+end_comment
+
+begin_comment
+comment|// }
+end_comment
+
+begin_comment
+comment|//
+end_comment
+
+begin_comment
+comment|// The imaginary `hash` and `next` values are combined into a single `int` value in the `entries`
+end_comment
+
+begin_comment
+comment|// array. The top bits of this value are the remaining bits of the hash value that were not used
+end_comment
+
+begin_comment
+comment|// in the short hash. We saw that a mask of 0x7f would keep the 7-bit value 0x6f from a full
+end_comment
+
+begin_comment
+comment|// hashcode of 0x89abcdef. The imaginary `hash` value would then be the remaining top 25 bits,
+end_comment
+
+begin_comment
+comment|// 0x89abcd80. To this is added (or'd) the `next` value, which is an index within `entries`
+end_comment
+
+begin_comment
+comment|// (and therefore within `keys` and `values`) of another entry that has the same short hash
+end_comment
+
+begin_comment
+comment|// value. In our example, it would be another entry for a key whose short hash is also 0x6f.
+end_comment
+
+begin_comment
+comment|//
+end_comment
+
+begin_comment
+comment|// Essentially, then, `table[h]` gives us the start of a linked list in `entries`, where every
+end_comment
+
+begin_comment
+comment|// element of the list has the short hash value h.
+end_comment
+
+begin_comment
+comment|//
+end_comment
+
+begin_comment
+comment|// A wrinkle here is that the value 0 (called UNSET in the code) is used as the equivalent of a
+end_comment
+
+begin_comment
+comment|// null pointer. If `table[h] == 0` that means there are no keys in the map whose short hash is h.
+end_comment
+
+begin_comment
+comment|// If the `next` bits in `entries[i]` are 0 that means there are no further entries for the given
+end_comment
+
+begin_comment
+comment|// short hash. But 0 is also a valid index in `entries`, so we add 1 to these indices before
+end_comment
+
+begin_comment
+comment|// putting them in `table` or in `next` bits, and subtract 1 again when we need an index value.
+end_comment
+
+begin_comment
+comment|//
+end_comment
+
+begin_comment
+comment|// The elements of `keys`, `values`, and `entries` are added sequentially, so that elements 0 to
+end_comment
+
+begin_comment
+comment|// `size() - 1` are used and remaining elements are not. This makes iteration straightforward.
+end_comment
+
+begin_comment
+comment|// Removing an entry generally involves moving the last element of each array to where the removed
+end_comment
+
+begin_comment
+comment|// entry was, and adjusting index links accordingly.
+end_comment
+
+begin_comment
 comment|/**    * The hashtable object. This can be either:    *    *<ul>    *<li>a byte[], short[], or int[], with size a power of two, created by    *       CompactHashing.createTable, whose values are either    *<ul>    *<li>UNSET, meaning "null pointer"    *<li>one plus an index into the keys, values, and entries arrays    *</ul>    *<li>another java.util.Map delegate implementation. In most modern JDKs, normal java.util hash    *       collections intelligently fall back to a binary search tree if hash table collisions are    *       detected. Rather than going to all the trouble of reimplementing this ourselves, we    *       simply switch over to use the JDK implementation wholesale if probable hash flooding is    *       detected, sacrificing the compactness guarantee in very rare cases in exchange for much    *       more reliable worst-case behavior.    *<li>null, if no entries have yet been added to the map    *</ul>    */
 end_comment
 
@@ -621,7 +777,7 @@ decl_stmt|;
 end_decl_stmt
 
 begin_comment
-comment|/**    * Contains the logical entries, in the range of [0, size()). The high bits of each int are the    * part of the smeared hash of the key not covered by the hashtable mask, whereas the low bits are    * the "next" pointer (pointing to the next entry in the bucket chain), which will always be less    * than or equal to the hashtable mask.    *    *<pre>    * hash  = aaaaaaaa    * mask  = 0000ffff    * next  = 0000bbbb    * entry = aaaabbbb    *</pre>    *    *<p>The pointers in [size(), entries.length) are all "null" (UNSET).    */
+comment|/**    * Contains the logical entries, in the range of [0, size()). The high bits of each int are the    * part of the smeared hash of the key not covered by the hashtable mask, whereas the low bits are    * the "next" pointer (pointing to the next entry in the bucket chain), which will always be less    * than or equal to the hashtable mask.    *    *<pre>    * hash  = aaaaaaaa    * mask  = 00000fff    * next  = 00000bbb    * entry = aaaaabbb    *</pre>    *    *<p>The pointers in [size(), entries.length) are all "null" (UNSET).    */
 end_comment
 
 begin_decl_stmt
@@ -676,7 +832,7 @@ decl_stmt|;
 end_decl_stmt
 
 begin_comment
-comment|/**    * Keeps track of metadata like the number of hash table bits and modifications of this data    * structure (to make it possible to throw ConcurrentModificationException in the iterator). Note    * that we choose not to make this volatile, so we do less of a "best effort" to track such    * errors, for better performance.    */
+comment|/**    * Keeps track of metadata like the number of hash table bits and modifications of this data    * structure (to make it possible to throw ConcurrentModificationException in the iterator). Note    * that we choose not to make this volatile, so we do less of a "best effort" to track such    * errors, for better performance.    *    *<p>For a new instance, where the arrays above have not yet been allocated, the value of {@code    * metadata} is the size that the arrays should be allocated with. Once the arrays have been    * allocated, the value of {@code metadata} combines the number of bits in the "short hash", in    * its bottom {@value CompactHashing#HASH_TABLE_BITS_MAX_BITS} bits, with a modification count in    * the remaining bits that is used to detect concurrent modification during iteration.    */
 end_comment
 
 begin_decl_stmt
@@ -1770,13 +1926,13 @@ end_function
 begin_function
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|resizeTable (int mask, int newCapacity, int targetHash, int targetEntryIndex)
+DECL|method|resizeTable (int oldMask, int newCapacity, int targetHash, int targetEntryIndex)
 specifier|private
 name|int
 name|resizeTable
 parameter_list|(
 name|int
-name|mask
+name|oldMask
 parameter_list|,
 name|int
 name|newCapacity
@@ -1830,7 +1986,7 @@ argument_list|)
 expr_stmt|;
 block|}
 name|Object
-name|table
+name|oldTable
 init|=
 name|requireTable
 argument_list|()
@@ -1842,37 +1998,47 @@ init|=
 name|requireEntries
 argument_list|()
 decl_stmt|;
-comment|// Loop over current hashtable
+comment|// Loop over `oldTable` to construct its replacement, ``newTable`. The entries do not move, so
+comment|// the `keys` and `values` arrays do not need to change. But because the "short hash" now has a
+comment|// different number of bits, we must rewrite each element of `entries` so that its contribution
+comment|// to the full hashcode reflects the change, and so that its `next` link corresponds to the new
+comment|// linked list of entries with the new short hash.
 for|for
 control|(
 name|int
-name|tableIndex
+name|oldTableIndex
 init|=
 literal|0
 init|;
-name|tableIndex
+name|oldTableIndex
 operator|<=
-name|mask
+name|oldMask
 condition|;
-name|tableIndex
+name|oldTableIndex
 operator|++
 control|)
 block|{
 name|int
-name|next
+name|oldNext
 init|=
 name|CompactHashing
 operator|.
 name|tableGet
 argument_list|(
-name|table
+name|oldTable
 argument_list|,
-name|tableIndex
+name|oldTableIndex
 argument_list|)
 decl_stmt|;
+comment|// Each element of `oldTable` is the head of a (possibly empty) linked list of elements in
+comment|// `entries`. The `oldNext` loop is going to traverse that linked list.
+comment|// We need to rewrite the `next` link of each of the elements so that it is in the appropriate
+comment|// linked list starting from `newTable`. In general, each element from the old linked list
+comment|// belongs to a different linked list from `newTable`. We insert each element in turn at the
+comment|// head of its appropriate `newTable` linked list.
 while|while
 condition|(
-name|next
+name|oldNext
 operator|!=
 name|UNSET
 condition|)
@@ -1880,19 +2046,19 @@ block|{
 name|int
 name|entryIndex
 init|=
-name|next
+name|oldNext
 operator|-
 literal|1
 decl_stmt|;
 name|int
-name|entry
+name|oldEntry
 init|=
 name|entries
 index|[
 name|entryIndex
 index|]
 decl_stmt|;
-comment|// Rebuild hash using entry hashPrefix and tableIndex ("hashSuffix")
+comment|// Rebuild the full 32-bit hash using entry hashPrefix and oldTableIndex ("hashSuffix").
 name|int
 name|hash
 init|=
@@ -1900,12 +2066,12 @@ name|CompactHashing
 operator|.
 name|getHashPrefix
 argument_list|(
-name|entry
+name|oldEntry
 argument_list|,
-name|mask
+name|oldMask
 argument_list|)
 operator||
-name|tableIndex
+name|oldTableIndex
 decl_stmt|;
 name|int
 name|newTableIndex
@@ -1934,7 +2100,7 @@ name|newTable
 argument_list|,
 name|newTableIndex
 argument_list|,
-name|next
+name|oldNext
 argument_list|)
 expr_stmt|;
 name|entries
@@ -1953,15 +2119,15 @@ argument_list|,
 name|newMask
 argument_list|)
 expr_stmt|;
-name|next
+name|oldNext
 operator|=
 name|CompactHashing
 operator|.
 name|getNext
 argument_list|(
-name|entry
+name|oldEntry
 argument_list|,
-name|mask
+name|oldMask
 argument_list|)
 expr_stmt|;
 block|}

@@ -567,6 +567,18 @@ decl_stmt|;
 end_decl_stmt
 
 begin_comment
+comment|// See CompactHashMap for a detailed description of how the following fields work. That
+end_comment
+
+begin_comment
+comment|// description talks about `keys`, `values`, and `entries`; here the `keys` and `values` arrays
+end_comment
+
+begin_comment
+comment|// are replaced by a single `elements` array but everything else works similarly.
+end_comment
+
+begin_comment
 comment|/**    * The hashtable object. This can be either:    *    *<ul>    *<li>a byte[], short[], or int[], with size a power of two, created by    *       CompactHashing.createTable, whose values are either    *<ul>    *<li>UNSET, meaning "null pointer"    *<li>one plus an index into the entries and elements array    *</ul>    *<li>another java.util.Set delegate implementation. In most modern JDKs, normal java.util hash    *       collections intelligently fall back to a binary search tree if hash table collisions are    *       detected. Rather than going to all the trouble of reimplementing this ourselves, we    *       simply switch over to use the JDK implementation wholesale if probable hash flooding is    *       detected, sacrificing the compactness guarantee in very rare cases in exchange for much    *       more reliable worst-case behavior.    *<li>null, if no entries have yet been added to the map    *</ul>    */
 end_comment
 
@@ -582,7 +594,7 @@ decl_stmt|;
 end_decl_stmt
 
 begin_comment
-comment|/**    * Contains the logical entries, in the range of [0, size()). The high bits of each int are the    * part of the smeared hash of the element not covered by the hashtable mask, whereas the low bits    * are the "next" pointer (pointing to the next entry in the bucket chain), which will always be    * less than or equal to the hashtable mask.    *    *<pre>    * hash  = aaaaaaaa    * mask  = 0000ffff    * next  = 0000bbbb    * entry = aaaabbbb    *</pre>    *    *<p>The pointers in [size(), entries.length) are all "null" (UNSET).    */
+comment|/**    * Contains the logical entries, in the range of [0, size()). The high bits of each int are the    * part of the smeared hash of the element not covered by the hashtable mask, whereas the low bits    * are the "next" pointer (pointing to the next entry in the bucket chain), which will always be    * less than or equal to the hashtable mask.    *    *<pre>    * hash  = aaaaaaaa    * mask  = 00000fff    * next  = 00000bbb    * entry = aaaaabbb    *</pre>    *    *<p>The pointers in [size(), entries.length) are all "null" (UNSET).    */
 end_comment
 
 begin_decl_stmt
@@ -1596,13 +1608,13 @@ end_function
 begin_function
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|resizeTable (int mask, int newCapacity, int targetHash, int targetEntryIndex)
+DECL|method|resizeTable (int oldMask, int newCapacity, int targetHash, int targetEntryIndex)
 specifier|private
 name|int
 name|resizeTable
 parameter_list|(
 name|int
-name|mask
+name|oldMask
 parameter_list|,
 name|int
 name|newCapacity
@@ -1656,7 +1668,7 @@ argument_list|)
 expr_stmt|;
 block|}
 name|Object
-name|table
+name|oldTable
 init|=
 name|requireTable
 argument_list|()
@@ -1672,33 +1684,33 @@ comment|// Loop over current hashtable
 for|for
 control|(
 name|int
-name|tableIndex
+name|oldTableIndex
 init|=
 literal|0
 init|;
-name|tableIndex
+name|oldTableIndex
 operator|<=
-name|mask
+name|oldMask
 condition|;
-name|tableIndex
+name|oldTableIndex
 operator|++
 control|)
 block|{
 name|int
-name|next
+name|oldNext
 init|=
 name|CompactHashing
 operator|.
 name|tableGet
 argument_list|(
-name|table
+name|oldTable
 argument_list|,
-name|tableIndex
+name|oldTableIndex
 argument_list|)
 decl_stmt|;
 while|while
 condition|(
-name|next
+name|oldNext
 operator|!=
 name|UNSET
 condition|)
@@ -1706,12 +1718,12 @@ block|{
 name|int
 name|entryIndex
 init|=
-name|next
+name|oldNext
 operator|-
 literal|1
 decl_stmt|;
 name|int
-name|entry
+name|oldEntry
 init|=
 name|entries
 index|[
@@ -1726,12 +1738,12 @@ name|CompactHashing
 operator|.
 name|getHashPrefix
 argument_list|(
-name|entry
+name|oldEntry
 argument_list|,
-name|mask
+name|oldMask
 argument_list|)
 operator||
-name|tableIndex
+name|oldTableIndex
 decl_stmt|;
 name|int
 name|newTableIndex
@@ -1760,7 +1772,7 @@ name|newTable
 argument_list|,
 name|newTableIndex
 argument_list|,
-name|next
+name|oldNext
 argument_list|)
 expr_stmt|;
 name|entries
@@ -1779,15 +1791,15 @@ argument_list|,
 name|newMask
 argument_list|)
 expr_stmt|;
-name|next
+name|oldNext
 operator|=
 name|CompactHashing
 operator|.
 name|getNext
 argument_list|(
-name|entry
+name|oldEntry
 argument_list|,
-name|mask
+name|oldMask
 argument_list|)
 expr_stmt|;
 block|}
