@@ -144,6 +144,16 @@ name|Queue
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * A non-blocking queue which automatically evicts elements from the head of the queue when  * attempting to add new elements onto the queue and it is full. This queue orders elements FIFO  * (first-in-first-out). This data structure is logically equivalent to a circular buffer (i.e.,  * cyclic buffer or ring buffer).  *  *<p>An evicting queue must be configured with a maximum size. Each time an element is added to a  * full queue, the queue automatically removes its head element. This is different from conventional  * bounded queues, which either block or reject new elements when full.  *  *<p>This class is not thread-safe, and does not accept null elements.  *  * @author Kurt Alfred Kluever  * @since 15.0  */
 end_comment
@@ -425,17 +435,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains ( @uppressWarningsR) Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
-comment|// TODO(cpovirk): Consider accepting null.
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"nullness"
-argument_list|)
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -446,10 +452,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-name|checkNotNull
-argument_list|(
 name|object
-argument_list|)
 argument_list|)
 return|;
 block|}
@@ -457,17 +460,13 @@ annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|remove ( @uppressWarningsR) Object object)
+DECL|method|remove (@heckForNull Object object)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
-comment|// TODO(cpovirk): Consider accepting null.
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"nullness"
-argument_list|)
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -478,10 +477,7 @@ argument_list|()
 operator|.
 name|remove
 argument_list|(
-name|checkNotNull
-argument_list|(
 name|object
-argument_list|)
 argument_list|)
 return|;
 block|}
@@ -502,7 +498,6 @@ name|toArray
 argument_list|()
 return|;
 block|}
-comment|// TODO(kak): Do we want to checkNotNull each element in containsAll, removeAll, and retainAll?
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
