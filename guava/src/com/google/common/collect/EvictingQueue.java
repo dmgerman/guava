@@ -153,6 +153,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|EvictingQueue
 specifier|public
 specifier|final
@@ -423,11 +425,17 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object object)
+DECL|method|contains ( @uppressWarningsR) Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+comment|// TODO(cpovirk): Consider accepting null.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
 name|Object
 name|object
 parameter_list|)
@@ -449,11 +457,17 @@ annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|remove (Object object)
+DECL|method|remove ( @uppressWarningsR) Object object)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+comment|// TODO(cpovirk): Consider accepting null.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
 name|Object
 name|object
 parameter_list|)

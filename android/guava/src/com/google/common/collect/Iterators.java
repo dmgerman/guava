@@ -2414,7 +2414,6 @@ comment|/**    * Divides an iterator into unmodifiable sublists of the given siz
 end_comment
 
 begin_expr_stmt
-DECL|method|paddedPartition ( Iterator<T> iterator, int size)
 specifier|public
 specifier|static
 operator|<
@@ -2423,10 +2422,13 @@ expr|extends @
 name|Nullable
 name|Object
 operator|>
+DECL|method|paddedPartition (Iterator<T> iterator, int size)
 name|UnmodifiableIterator
 argument_list|<
 name|List
 argument_list|<
+annotation|@
+name|Nullable
 name|T
 argument_list|>
 argument_list|>
@@ -2469,6 +2471,8 @@ name|UnmodifiableIterator
 argument_list|<
 name|List
 argument_list|<
+annotation|@
+name|Nullable
 name|T
 argument_list|>
 argument_list|>
@@ -2508,6 +2512,8 @@ name|UnmodifiableIterator
 argument_list|<
 name|List
 argument_list|<
+annotation|@
+name|Nullable
 name|T
 argument_list|>
 argument_list|>
@@ -2532,6 +2538,8 @@ name|Override
 specifier|public
 name|List
 argument_list|<
+annotation|@
+name|Nullable
 name|T
 argument_list|>
 name|next
@@ -2563,6 +2571,8 @@ index|[]
 name|array
 operator|=
 operator|(
+expr|@
+name|Nullable
 name|T
 index|[]
 operator|)
@@ -2642,6 +2652,8 @@ end_for
 begin_decl_stmt
 name|List
 argument_list|<
+annotation|@
+name|Nullable
 name|T
 argument_list|>
 name|list
@@ -2650,12 +2662,6 @@ name|Collections
 operator|.
 name|unmodifiableList
 argument_list|(
-operator|(
-name|List
-argument_list|<
-name|T
-argument_list|>
-operator|)
 name|Arrays
 operator|.
 name|asList
@@ -2666,18 +2672,27 @@ argument_list|)
 decl_stmt|;
 end_decl_stmt
 
-begin_return
-return|return
-operator|(
+begin_comment
+comment|// TODO(b/192579700): Use a ternary once it no longer confuses our nullness checker.
+end_comment
+
+begin_if
+if|if
+condition|(
 name|pad
 operator|||
 name|count
 operator|==
 name|size
-operator|)
-condition|?
+condition|)
+block|{
+return|return
 name|list
-else|:
+return|;
+block|}
+else|else
+block|{
+return|return
 name|list
 operator|.
 name|subList
@@ -2687,7 +2702,8 @@ argument_list|,
 name|count
 argument_list|)
 return|;
-end_return
+block|}
+end_if
 
 begin_empty_stmt
 unit|}     }

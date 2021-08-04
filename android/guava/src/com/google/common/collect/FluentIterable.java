@@ -184,6 +184,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Comparator
 import|;
 end_import
@@ -220,6 +230,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -228,9 +248,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -238,7 +258,7 @@ begin_comment
 comment|/**  * An expanded {@code Iterable} API, providing functionality similar to Java 8's powerful<a href=  * "https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html#package.description"  *>streams library</a> in a slightly different way.  *  *<p>The following types of methods are provided:  *  *<ul>  *<li>chaining methods which return a new {@code FluentIterable} based in some way on the  *       contents of the current one (for example {@link #transform})  *<li>element extraction methods which facilitate the retrieval of certain elements (for example  *       {@link #last})  *<li>query methods which answer questions about the {@code FluentIterable}'s contents (for  *       example {@link #anyMatch})  *<li>conversion methods which copy the {@code FluentIterable}'s contents into a new collection  *       or array (for example {@link #toList})  *</ul>  *  *<p>Several lesser-used features are currently available only as static methods on the {@link  * Iterables} class.  *  *<p><a id="streams"></a>  *  *<h3>Comparison to streams</h3>  *  *<p>Starting with Java 8, the core Java class libraries provide a new "Streams" library (in {@code  * java.util.stream}), which is similar to {@code FluentIterable} but generally more powerful. Key  * differences include:  *  *<ul>  *<li>A stream is<i>single-use</i>; it becomes invalid as soon as any "terminal operation" such  *       as {@code findFirst()} or {@code iterator()} is invoked. (Even though {@code Stream}  *       contains all the right method<i>signatures</i> to implement {@link Iterable}, it does not  *       actually do so, to avoid implying repeat-iterability.) {@code FluentIterable}, on the other  *       hand, is multiple-use, and does implement {@link Iterable}.  *<li>Streams offer many features not found here, including {@code min/max}, {@code distinct},  *       {@code reduce}, {@code sorted}, the very powerful {@code collect}, and built-in support for  *       parallelizing stream operations.  *<li>{@code FluentIterable} contains several features not available on {@code Stream}, which are  *       noted in the method descriptions below.  *<li>Streams include primitive-specialized variants such as {@code IntStream}, the use of which  *       is strongly recommended.  *<li>Streams are standard Java, not requiring a third-party dependency (but do render your code  *       incompatible with Java 7 and earlier).  *</ul>  *  *<h3>Example</h3>  *  *<p>Here is an example that accepts a list from a database call, filters it based on a predicate,  * transforms it by invoking {@code toString()} on each element, and returns the first 10 elements  * as a {@code List}:  *  *<pre>{@code  * ImmutableList<String> results =  *     FluentIterable.from(database.getClientList())  *         .filter(Client::isActiveInLastMonth)  *         .transform(Object::toString)  *         .limit(10)  *         .toList();  * }</pre>  *  * The approximate stream equivalent is:  *  *<pre>{@code  * List<String> results =  *     database.getClientList()  *         .stream()  *         .filter(Client::isActiveInLastMonth)  *         .map(Object::toString)  *         .limit(10)  *         .collect(Collectors.toList());  * }</pre>  *  * @author Marcin Mikosik  * @since 12.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -246,15 +266,26 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|FluentIterable
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|FluentIterable
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Iterable
 argument_list|<
 name|E
@@ -263,11 +294,11 @@ block|{
 comment|// We store 'iterable' and use it instead of 'this' to allow Iterables to perform instanceof
 comment|// checks on the _original_ iterable when FluentIterable.from is used.
 comment|// To avoid a self retain cycle under j2objc, we store Optional.absent() instead of
-comment|// Optional.of(this). To access the iterator delegate, call #getDelegate(), which converts to
+comment|// Optional.of(this). To access the delegate iterable, call #getDelegate(), which converts to
 comment|// absent() back to 'this'.
 DECL|field|iterableDelegate
 specifier|private
-specifier|final
+name|final
 name|Optional
 argument_list|<
 name|Iterable
@@ -276,12 +307,12 @@ name|E
 argument_list|>
 argument_list|>
 name|iterableDelegate
-decl_stmt|;
+block|;
 comment|/** Constructor for use by subclasses. */
 DECL|method|FluentIterable ()
 specifier|protected
 name|FluentIterable
-parameter_list|()
+argument_list|()
 block|{
 name|this
 operator|.
@@ -291,41 +322,28 @@ name|Optional
 operator|.
 name|absent
 argument_list|()
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|FluentIterable (Iterable<E> iterable)
 name|FluentIterable
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|E
 argument_list|>
 name|iterable
-parameter_list|)
-block|{
-name|checkNotNull
-argument_list|(
-name|iterable
 argument_list|)
-expr_stmt|;
+block|{
 name|this
 operator|.
 name|iterableDelegate
 operator|=
 name|Optional
 operator|.
-name|fromNullable
+name|of
 argument_list|(
-name|this
-operator|!=
 name|iterable
-condition|?
-name|iterable
-else|:
-literal|null
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|getDelegate ()
 specifier|private
 name|Iterable
@@ -333,7 +351,7 @@ argument_list|<
 name|E
 argument_list|>
 name|getDelegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|iterableDelegate
@@ -348,22 +366,25 @@ comment|/**    * Returns a fluent iterable that wraps {@code iterable}, or {@cod
 DECL|method|from (final Iterable<E> iterable)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|FluentIterable
 argument_list|<
 name|E
 argument_list|>
 name|from
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Iterable
 argument_list|<
 name|E
 argument_list|>
 name|iterable
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -371,7 +392,7 @@ name|iterable
 operator|instanceof
 name|FluentIterable
 operator|)
-condition|?
+operator|?
 operator|(
 name|FluentIterable
 argument_list|<
@@ -379,7 +400,7 @@ name|E
 argument_list|>
 operator|)
 name|iterable
-else|:
+operator|:
 operator|new
 name|FluentIterable
 argument_list|<
@@ -406,28 +427,35 @@ name|iterator
 argument_list|()
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|};   }
 comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p>The returned iterable is an unmodifiable view of the input array.    *    *<p><b>{@code Stream} equivalent:</b> {@link java.util.stream.Stream#of(Object[])    * Stream.of(T...)}.    *    * @since 20.0 (since 18.0 as an overload of {@code of})    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|Beta
 DECL|method|from (E[] elements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|FluentIterable
 argument_list|<
 name|E
 argument_list|>
 name|from
-parameter_list|(
+argument_list|(
 name|E
 index|[]
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|from
@@ -441,9 +469,18 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Construct a fluent iterable from another fluent iterable. This is obviously never necessary,    * but is intended to help call out cases where one migration from {@code Iterable} to {@code    * FluentIterable} has obviated the need to explicitly convert to a {@code FluentIterable}.    *    * @deprecated instances of {@code FluentIterable} don't need to be converted to {@code    *     FluentIterable}    */
+end_comment
+
+begin_annotation
 annotation|@
 name|Deprecated
+end_annotation
+
+begin_annotation
 annotation|@
 name|InlineMe
 argument_list|(
@@ -457,24 +494,30 @@ block|{
 literal|"com.google.common.base.Preconditions.checkNotNull"
 block|}
 argument_list|)
+end_annotation
+
+begin_expr_stmt
 DECL|method|from (FluentIterable<E> iterable)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|FluentIterable
 argument_list|<
 name|E
 argument_list|>
 name|from
-parameter_list|(
+argument_list|(
 name|FluentIterable
 argument_list|<
 name|E
 argument_list|>
 name|iterable
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|checkNotNull
@@ -483,21 +526,33 @@ name|iterable
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a fluent iterable that combines two iterables. The returned iterable has an iterator    * that traverses the elements in {@code a}, followed by the elements in {@code b}. The source    * iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#concat}.    *    * @since 20.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|Beta
-DECL|method|concat (Iterable<? extends T> a, Iterable<? extends T> b)
+end_annotation
+
+begin_expr_stmt
+DECL|method|concat ( Iterable<? extends T> a, Iterable<? extends T> b)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
 name|concat
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -505,7 +560,7 @@ extends|extends
 name|T
 argument_list|>
 name|a
-parameter_list|,
+operator|,
 name|Iterable
 argument_list|<
 name|?
@@ -513,7 +568,7 @@ extends|extends
 name|T
 argument_list|>
 name|b
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|concatNoDefensiveCopy
@@ -524,21 +579,33 @@ name|b
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a fluent iterable that combines three iterables. The returned iterable has an iterator    * that traverses the elements in {@code a}, followed by the elements in {@code b}, followed by    * the elements in {@code c}. The source iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>{@code Stream} equivalent:</b> use nested calls to {@link Stream#concat}, or see the    * advice in {@link #concat(Iterable...)}.    *    * @since 20.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|Beta
+end_annotation
+
+begin_expr_stmt
 DECL|method|concat ( Iterable<? extends T> a, Iterable<? extends T> b, Iterable<? extends T> c)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
 name|concat
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -546,7 +613,7 @@ extends|extends
 name|T
 argument_list|>
 name|a
-parameter_list|,
+operator|,
 name|Iterable
 argument_list|<
 name|?
@@ -554,7 +621,7 @@ extends|extends
 name|T
 argument_list|>
 name|b
-parameter_list|,
+operator|,
 name|Iterable
 argument_list|<
 name|?
@@ -562,7 +629,7 @@ extends|extends
 name|T
 argument_list|>
 name|c
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|concatNoDefensiveCopy
@@ -575,21 +642,33 @@ name|c
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a fluent iterable that combines four iterables. The returned iterable has an iterator    * that traverses the elements in {@code a}, followed by the elements in {@code b}, followed by    * the elements in {@code c}, followed by the elements in {@code d}. The source iterators are not    * polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>{@code Stream} equivalent:</b> use nested calls to {@link Stream#concat}, or see the    * advice in {@link #concat(Iterable...)}.    *    * @since 20.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|Beta
+end_annotation
+
+begin_expr_stmt
 DECL|method|concat ( Iterable<? extends T> a, Iterable<? extends T> b, Iterable<? extends T> c, Iterable<? extends T> d)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
 name|concat
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -597,7 +676,7 @@ extends|extends
 name|T
 argument_list|>
 name|a
-parameter_list|,
+operator|,
 name|Iterable
 argument_list|<
 name|?
@@ -605,7 +684,7 @@ extends|extends
 name|T
 argument_list|>
 name|b
-parameter_list|,
+operator|,
 name|Iterable
 argument_list|<
 name|?
@@ -613,7 +692,7 @@ extends|extends
 name|T
 argument_list|>
 name|c
-parameter_list|,
+operator|,
 name|Iterable
 argument_list|<
 name|?
@@ -621,7 +700,7 @@ extends|extends
 name|T
 argument_list|>
 name|d
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|concatNoDefensiveCopy
@@ -636,30 +715,42 @@ name|d
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a fluent iterable that combines several iterables. The returned iterable has an    * iterator that traverses the elements of each iterable in {@code inputs}. The input iterators    * are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>{@code Stream} equivalent:</b> to concatenate an arbitrary number of streams, use {@code    * Stream.of(stream1, stream2, ...).flatMap(s -> s)}. If the sources are iterables, use {@code    * Stream.of(iter1, iter2, ...).flatMap(Streams::stream)}.    *    * @throws NullPointerException if any of the provided iterables is {@code null}    * @since 20.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|Beta
-DECL|method|concat (Iterable<? extends T>.... inputs)
+end_annotation
+
+begin_expr_stmt
+DECL|method|concat ( Iterable<? extends T>.... inputs)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
 name|concat
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
 extends|extends
 name|T
 argument_list|>
-modifier|...
+operator|...
 name|inputs
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|concatNoDefensiveCopy
@@ -677,22 +768,34 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a fluent iterable that combines several iterables. The returned iterable has an    * iterator that traverses the elements of each iterable in {@code inputs}. The input iterators    * are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it. The methods of the returned iterable may throw {@code    * NullPointerException} if any of the input iterators is {@code null}.    *    *<p><b>{@code Stream} equivalent:</b> {@code streamOfStreams.flatMap(s -> s)} or {@code    * streamOfIterables.flatMap(Streams::stream)}. (See {@link Streams#stream}.)    *    * @since 20.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|Beta
+end_annotation
+
+begin_expr_stmt
 DECL|method|concat ( final Iterable<? extends Iterable<? extends T>> inputs)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
 name|concat
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Iterable
 argument_list|<
 name|?
@@ -705,13 +808,13 @@ name|T
 argument_list|>
 argument_list|>
 name|inputs
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|inputs
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|FluentIterable
@@ -755,32 +858,39 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|};   }
 comment|/** Concatenates a varargs array of iterables without making a defensive copy of the array. */
+end_comment
+
+begin_expr_stmt
 DECL|method|concatNoDefensiveCopy ( final Iterable<? extends T>... inputs)
-specifier|private
+unit|private
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
 name|concatNoDefensiveCopy
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Iterable
 argument_list|<
 name|?
 extends|extends
 name|T
 argument_list|>
-modifier|...
+operator|...
 name|inputs
-parameter_list|)
+argument_list|)
 block|{
 for|for
 control|(
@@ -801,6 +911,9 @@ name|input
 argument_list|)
 expr_stmt|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|new
 name|FluentIterable
@@ -870,76 +983,83 @@ block|}
 block|)
 function|;
 block|}
-block|}
-empty_stmt|;
-block|}
-end_class
+end_return
 
 begin_comment
+unit|};   }
 comment|/**    * Returns a fluent iterable containing no elements.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.empty()}.    *    * @since 20.0    */
 end_comment
 
-begin_function
-annotation|@
+begin_expr_stmt
+unit|@
 name|Beta
 DECL|method|of ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|FluentIterable
 argument_list|<
 name|E
 argument_list|>
 name|of
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|FluentIterable
 operator|.
 name|from
 argument_list|(
-name|ImmutableList
+name|Collections
 operator|.
 expr|<
 name|E
 operator|>
-name|of
+name|emptyList
 argument_list|()
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
 begin_comment
 comment|/**    * Returns a fluent iterable containing the specified elements in order.    *    *<p><b>{@code Stream} equivalent:</b> {@link java.util.stream.Stream#of(Object[])    * Stream.of(T...)}.    *    * @since 20.0    */
 end_comment
 
-begin_function
+begin_annotation
 annotation|@
 name|Beta
-DECL|method|of (@ullableDecl E element, E... elements)
+end_annotation
+
+begin_expr_stmt
+DECL|method|of ( @arametricNullness E element, E... elements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|FluentIterable
 argument_list|<
 name|E
 argument_list|>
 name|of
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|element
-parameter_list|,
+argument_list|,
 name|E
-modifier|...
+operator|...
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|from
@@ -955,7 +1075,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
 begin_comment
 comment|/**    * Returns a string representation of this fluent iterable, with the format {@code [e1, e2, ...,    * en]}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.collect(Collectors.joining(", ", "[", "]"))}    * or (less efficiently) {@code stream.collect(Collectors.toList()).toString()}.    */
@@ -1011,14 +1131,14 @@ comment|/**    * Returns {@code true} if this fluent iterable contains any objec
 end_comment
 
 begin_function
-DECL|method|contains (@ullableDecl Object target)
+DECL|method|contains (@heckForNull Object target)
 specifier|public
 specifier|final
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|target
 parameter_list|)
@@ -1303,6 +1423,12 @@ comment|/**    * Returns an {@link Optional} containing the first element in thi
 end_comment
 
 begin_function
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// Unsafe, but we can't do much about it now.
 DECL|method|firstMatch (Predicate<? super E> predicate)
 specifier|public
 specifier|final
@@ -1339,19 +1465,22 @@ begin_comment
 comment|/**    * Returns a fluent iterable that applies {@code function} to each element of this fluent    * iterable.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if this iterable's    * iterator does. After a successful {@code remove()} call, this fluent iterable no longer    * contains the corresponding element.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#map}.    */
 end_comment
 
-begin_function
-DECL|method|transform (Function<? super E, T> function)
+begin_expr_stmt
+DECL|method|transform ( Function<? super E, T> function)
 specifier|public
-specifier|final
-parameter_list|<
+name|final
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
 name|transform
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -1361,7 +1490,7 @@ argument_list|,
 name|T
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|from
@@ -1378,24 +1507,27 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
 begin_comment
 comment|/**    * Applies {@code function} to each element of this fluent iterable and returns a fluent iterable    * with the concatenated combination of results. {@code function} returns an Iterable of results.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if this function-returned    * iterables' iterator does. After a successful {@code remove()} call, the returned fluent    * iterable no longer contains the corresponding element.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#flatMap} (using a function that produces    * streams, not iterables).    *    * @since 13.0 (required {@code Function<E, Iterable<T>>} until 14.0)    */
 end_comment
 
-begin_function
+begin_expr_stmt
 DECL|method|transformAndConcat ( Function<? super E, ? extends Iterable<? extends T>> function)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
 name|transformAndConcat
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -1412,7 +1544,7 @@ name|T
 argument_list|>
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|FluentIterable
@@ -1426,13 +1558,19 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
 begin_comment
 comment|/**    * Returns an {@link Optional} containing the first element in this fluent iterable. If the    * iterable is empty, {@code Optional.absent()} is returned.    *    *<p><b>{@code Stream} equivalent:</b> if the goal is to obtain any element, {@link    * Stream#findAny}; if it must specifically be the<i>first</i> element, {@code Stream#findFirst}.    *    * @throws NullPointerException if the first element is null; if this is a possibility, use {@code    *     iterator().next()} or {@link Iterables#getFirst} instead.    */
 end_comment
 
 begin_function
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// Unsafe, but we can't do much about it now.
 DECL|method|first ()
 specifier|public
 specifier|final
@@ -1487,6 +1625,12 @@ comment|/**    * Returns an {@link Optional} containing the last element in this
 end_comment
 
 begin_function
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// Unsafe, but we can't do much about it now.
 DECL|method|last ()
 specifier|public
 specifier|final
@@ -1760,6 +1904,12 @@ comment|/**    * Returns an {@code ImmutableList} containing all of the elements
 end_comment
 
 begin_function
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// Unsafe, but we can't do much about it now.
 DECL|method|toList ()
 specifier|public
 specifier|final
@@ -1787,6 +1937,12 @@ comment|/**    * Returns an {@code ImmutableList} containing all of the elements
 end_comment
 
 begin_function
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// Unsafe, but we can't do much about it now.
 DECL|method|toSortedList (Comparator<? super E> comparator)
 specifier|public
 specifier|final
@@ -1827,6 +1983,12 @@ comment|/**    * Returns an {@code ImmutableSet} containing all of the elements 
 end_comment
 
 begin_function
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// Unsafe, but we can't do much about it now.
 DECL|method|toSet ()
 specifier|public
 specifier|final
@@ -1854,6 +2016,12 @@ comment|/**    * Returns an {@code ImmutableSortedSet} containing all of the ele
 end_comment
 
 begin_function
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// Unsafe, but we can't do much about it now.
 DECL|method|toSortedSet (Comparator<? super E> comparator)
 specifier|public
 specifier|final
@@ -1891,6 +2059,12 @@ comment|/**    * Returns an {@code ImmutableMultiset} containing all of the elem
 end_comment
 
 begin_function
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// Unsafe, but we can't do much about it now.
 DECL|method|toMultiset ()
 specifier|public
 specifier|final
@@ -1918,6 +2092,12 @@ comment|/**    * Returns an immutable map whose keys are the distinct elements o
 end_comment
 
 begin_function
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// Unsafe, but we can't do much about it now.
 DECL|method|toMap (Function<? super E, V> valueFunction)
 specifier|public
 specifier|final
@@ -1962,6 +2142,12 @@ comment|/**    * Creates an index {@code ImmutableListMultimap} that contains th
 end_comment
 
 begin_function
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// Unsafe, but we can't do much about it now.
 DECL|method|index (Function<? super E, K> keyFunction)
 specifier|public
 specifier|final
@@ -2006,6 +2192,12 @@ comment|/**    * Returns a map with the contents of this {@code FluentIterable} 
 end_comment
 
 begin_function
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// Unsafe, but we can't do much about it now.
 DECL|method|uniqueIndex (Function<? super E, K> keyFunction)
 specifier|public
 specifier|final
@@ -2053,9 +2245,17 @@ begin_function
 annotation|@
 name|GwtIncompatible
 comment|// Array.newArray(Class, int)
+comment|/*    * Both the declaration of our Class<E> parameter and its usage in a call to Iterables.toArray    * produce a nullness error: E may be a nullable type, and our nullness checker has Class's type    * parameter bounded to non-null types. To avoid that, we'd use Class<@Nonnull E> if we could.    * (Granted, this is only one of many nullness-checking problems that arise from letting    * FluentIterable support null elements, and most of the other produce outright unsoundness.)    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
 DECL|method|toArray (Class<E> type)
 specifier|public
 specifier|final
+annotation|@
+name|Nullable
 name|E
 index|[]
 name|toArray
@@ -2200,11 +2400,9 @@ begin_comment
 comment|/**    * Returns the element at the specified position in this fluent iterable.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.skip(position).findFirst().get()} (but note    * that this throws different exception types, and throws an exception if {@code null} would be    * returned).    *    * @param position position of the element to return    * @return the element at the specified position in this fluent iterable    * @throws IndexOutOfBoundsException if {@code position} is negative or greater than or equal to    *     the size of this fluent iterable    */
 end_comment
 
-begin_comment
-comment|// TODO(kevinb): add @NullableDecl?
-end_comment
-
 begin_function
+annotation|@
+name|ParametricNullness
 DECL|method|get (int position)
 specifier|public
 specifier|final
@@ -2233,16 +2431,19 @@ begin_comment
 comment|/** Function that transforms {@code Iterable<E>} into a fluent iterable. */
 end_comment
 
-begin_class
+begin_expr_stmt
 DECL|class|FromIterableFunction
 specifier|private
 specifier|static
-class|class
+name|class
 name|FromIterableFunction
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Function
 argument_list|<
 name|Iterable
@@ -2255,8 +2456,7 @@ argument_list|<
 name|E
 argument_list|>
 argument_list|>
-block|{
-annotation|@
+block|{     @
 name|Override
 DECL|method|apply (Iterable<E> fromObject)
 specifier|public
@@ -2265,13 +2465,13 @@ argument_list|<
 name|E
 argument_list|>
 name|apply
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|E
 argument_list|>
 name|fromObject
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|FluentIterable
@@ -2282,9 +2482,8 @@ name|fromObject
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_expr_stmt
 
-unit|}
+unit|} }
 end_unit
 

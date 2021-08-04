@@ -222,17 +222,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -248,6 +242,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MapMaker
 specifier|public
 specifier|final
@@ -300,19 +296,19 @@ name|UNSET_INT
 decl_stmt|;
 DECL|field|keyStrength
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Strength
 name|keyStrength
 decl_stmt|;
 DECL|field|valueStrength
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Strength
 name|valueStrength
 decl_stmt|;
 DECL|field|keyEquivalence
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Equivalence
 argument_list|<
 name|Object

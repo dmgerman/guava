@@ -32,17 +32,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -55,6 +49,8 @@ annotation|@
 name|Deprecated
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ComputationException
 specifier|public
 class|class
@@ -63,12 +59,12 @@ extends|extends
 name|RuntimeException
 block|{
 comment|/** Creates a new instance with the given cause. */
-DECL|method|ComputationException (@ullableDecl Throwable cause)
+DECL|method|ComputationException (@heckForNull Throwable cause)
 specifier|public
 name|ComputationException
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Throwable
 name|cause
 parameter_list|)

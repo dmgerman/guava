@@ -114,6 +114,16 @@ name|Queue
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * Views elements of a type {@code T} as nodes in a tree, and provides methods to traverse the trees  * induced by this traverser.  *  *<p>For example, the tree  *  *<pre>{@code  *        h  *      / | \  *     /  e  \  *    d       g  *   /|\      |  *  / | \     f  * a  b  c  * }</pre>  *  *<p>can be iterated over in preorder (hdabcegf), postorder (abcdefgh), or breadth-first order  * (hdegabcf).  *  *<p>Null nodes are strictly forbidden.  *  *<p><b>For Java 8 users:</b> Because this is an abstract class, not an interface, you can't use a  * lambda expression to extend it:  *  *<pre>{@code  * // won't work  * TreeTraverser<NodeType> traverser = node -> node.getChildNodes();  * }</pre>  *  * Instead, you can pass a lambda expression to the {@code using} factory method:  *  *<pre>{@code  * TreeTraverser<NodeType> traverser = TreeTraverser.using(node -> node.getChildNodes());  * }</pre>  *  * @author Louis Wasserman  * @since 15.0  * @deprecated Use {@link com.google.common.graph.Traverser} instead. All instance methods have  *     their equivalent on the result of {@code Traverser.forTree(tree)} where {@code tree}  *     implements {@code SuccessorsFunction}, which has a similar API as {@link #children} or can be  *     the same lambda function as passed into {@link #using(Function)}.  *<p>This class is scheduled to be removed in October 2019.  */
 end_comment
@@ -129,6 +139,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|TreeTraverser
 specifier|public
 specifier|abstract
@@ -618,6 +630,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|computeNext ()
 specifier|protected
 name|T

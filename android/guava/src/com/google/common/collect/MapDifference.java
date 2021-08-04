@@ -56,6 +56,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -64,9 +74,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -74,30 +84,47 @@ begin_comment
 comment|/**  * An object representing the differences between two maps.  *  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
 
-begin_interface
+begin_annotation
 annotation|@
 name|DoNotMock
 argument_list|(
 literal|"Use Maps.difference"
 argument_list|)
+end_annotation
+
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|interface|MapDifference
 specifier|public
-interface|interface
+expr|interface
 name|MapDifference
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 block|{
 comment|/**    * Returns {@code true} if there are no differences between the two maps; that is, if the maps are    * equal.    */
 DECL|method|areEqual ()
 name|boolean
 name|areEqual
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * Returns an unmodifiable map containing the entries from the left map whose keys are not present    * in the right map.    */
 DECL|method|entriesOnlyOnLeft ()
 name|Map
@@ -107,8 +134,8 @@ argument_list|,
 name|V
 argument_list|>
 name|entriesOnlyOnLeft
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * Returns an unmodifiable map containing the entries from the right map whose keys are not    * present in the left map.    */
 DECL|method|entriesOnlyOnRight ()
 name|Map
@@ -118,8 +145,8 @@ argument_list|,
 name|V
 argument_list|>
 name|entriesOnlyOnRight
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * Returns an unmodifiable map containing the entries that appear in both maps; that is, the    * intersection of the two maps.    */
 DECL|method|entriesInCommon ()
 name|Map
@@ -129,8 +156,8 @@ argument_list|,
 name|V
 argument_list|>
 name|entriesInCommon
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * Returns an unmodifiable map describing keys that appear in both maps, but with different    * values.    */
 DECL|method|entriesDiffering ()
 name|Map
@@ -143,78 +170,84 @@ name|V
 argument_list|>
 argument_list|>
 name|entriesDiffering
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * Compares the specified object with this instance for equality. Returns {@code true} if the    * given object is also a {@code MapDifference} and the values returned by the {@link    * #entriesOnlyOnLeft()}, {@link #entriesOnlyOnRight()}, {@link #entriesInCommon()} and {@link    * #entriesDiffering()} of the two instances are equal.    */
-annotation|@
+block|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
-parameter_list|)
-function_decl|;
+argument_list|)
+block|;
 comment|/**    * Returns the hash code for this instance. This is defined as the hash code of    *    *<pre>{@code    * Arrays.asList(entriesOnlyOnLeft(), entriesOnlyOnRight(),    *     entriesInCommon(), entriesDiffering())    * }</pre>    */
-annotation|@
+block|@
 name|Override
 DECL|method|hashCode ()
 name|int
 name|hashCode
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * A difference between the mappings from two maps with the same key. The {@link #leftValue} and    * {@link #rightValue} are not equal, and one but not both of them may be null.    *    * @since 2.0    */
-annotation|@
+block|@
 name|DoNotMock
 argument_list|(
 literal|"Use Maps.difference"
 argument_list|)
 DECL|interface|ValueDifference
-interface|interface
+expr|interface
 name|ValueDifference
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 block|{
 comment|/** Returns the value from the left map (possibly null). */
+block|@
+name|ParametricNullness
 DECL|method|leftValue ()
 name|V
 name|leftValue
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/** Returns the value from the right map (possibly null). */
+block|@
+name|ParametricNullness
 DECL|method|rightValue ()
 name|V
 name|rightValue
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**      * Two instances are considered equal if their {@link #leftValue()} values are equal and their      * {@link #rightValue()} values are also equal.      */
-annotation|@
+block|@
 name|Override
-DECL|method|equals (@ullableDecl Object other)
+DECL|method|equals (@heckForNull Object other)
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|other
-parameter_list|)
-function_decl|;
+argument_list|)
+block|;
 comment|/**      * The hash code equals the value {@code Arrays.asList(leftValue(), rightValue()).hashCode()}.      */
-annotation|@
+block|@
 name|Override
 DECL|method|hashCode ()
 name|int
 name|hashCode
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;   }
 block|}
-block|}
-end_interface
+end_expr_stmt
 
 end_unit
 

@@ -120,6 +120,16 @@ name|InternalEntry
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * Contains static methods pertaining to instances of {@link Interner}.  *  * @author Kevin Bourrillion  * @since 3.0  */
 end_comment
@@ -127,6 +137,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Interners
 specifier|public
 specifier|final
@@ -412,14 +424,13 @@ literal|true
 condition|)
 block|{
 comment|// trying to read the canonical...
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"rawtypes"
+argument_list|)
+comment|// using raw types to avoid a bug in our nullness checker :(
 name|InternalEntry
-argument_list|<
-name|E
-argument_list|,
-name|Dummy
-argument_list|,
-name|?
-argument_list|>
 name|entry
 init|=
 name|map
@@ -436,7 +447,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|E
+name|Object
 name|canonical
 init|=
 name|entry
@@ -452,8 +463,22 @@ literal|null
 condition|)
 block|{
 comment|// only matters if weak/soft keys are used
-return|return
+comment|// The compiler would know this is safe if not for our use of raw types (see above).
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+name|E
+name|result
+init|=
+operator|(
+name|E
+operator|)
 name|canonical
+decl_stmt|;
+return|return
+name|result
 return|;
 block|}
 block|}
@@ -606,11 +631,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (Object other)
+DECL|method|equals (@heckForNull Object other)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|other
 parameter_list|)

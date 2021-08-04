@@ -97,6 +97,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -316,6 +328,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -324,9 +346,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -339,6 +361,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MinMaxPriorityQueue
 specifier|public
 specifier|final
@@ -439,6 +463,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates and returns a new builder, configured to build {@code MinMaxPriorityQueue} instances    * that use {@code comparator} to determine the least and greatest elements.    */
+comment|/*    * TODO(cpovirk): Change to Comparator<? super B> to permit Comparator<@Nullable ...> and    * Comparator<SupertypeOfB>? What we have here matches the immutable collections, but those also    * expose a public Builder constructor that accepts "? super." So maybe we should do *that*    * instead.    */
 DECL|method|orderedBy (Comparator<B> comparator)
 specifier|public
 specifier|static
@@ -821,6 +846,8 @@ name|maximumSize
 decl_stmt|;
 DECL|field|queue
 specifier|private
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|queue
@@ -1057,6 +1084,8 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|poll ()
 specifier|public
 name|E
@@ -1089,18 +1118,24 @@ name|int
 name|index
 parameter_list|)
 block|{
+comment|/*      * requireNonNull is safe as long as we're careful to call this method only with populated      * indexes.      */
 return|return
 operator|(
 name|E
 operator|)
+name|requireNonNull
+argument_list|(
 name|queue
 index|[
 name|index
 index|]
+argument_list|)
 return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|peek ()
 specifier|public
 name|E
@@ -1171,6 +1206,8 @@ block|}
 comment|/**    * Removes and returns the least element of this queue, or returns {@code null} if the queue is    * empty.    */
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|pollFirst ()
 specifier|public
 name|E
@@ -1197,6 +1234,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Retrieves, but does not remove, the least element of this queue, or returns {@code null} if the    * queue is empty.    */
+annotation|@
+name|CheckForNull
 DECL|method|peekFirst ()
 specifier|public
 name|E
@@ -1211,6 +1250,8 @@ block|}
 comment|/**    * Removes and returns the greatest element of this queue, or returns {@code null} if the queue is    * empty.    */
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|pollLast ()
 specifier|public
 name|E
@@ -1260,6 +1301,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Retrieves, but does not remove, the greatest element of this queue, or returns {@code null} if    * the queue is empty.    */
+annotation|@
+name|CheckForNull
 DECL|method|peekLast ()
 specifier|public
 name|E
@@ -1284,6 +1327,8 @@ annotation|@
 name|VisibleForTesting
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|removeAt (int index)
 name|MoveDesc
 argument_list|<
@@ -1450,6 +1495,8 @@ return|return
 name|changes
 return|;
 block|}
+annotation|@
+name|CheckForNull
 DECL|method|fillHole (int index, E toTrickle)
 specifier|private
 name|MoveDesc
@@ -1772,11 +1819,10 @@ decl_stmt|;
 DECL|field|otherHeap
 annotation|@
 name|Weak
-annotation|@
-name|NullableDecl
 name|Heap
 name|otherHeap
 decl_stmt|;
+comment|// always initialized immediately after construction
 DECL|method|Heap (Ordering<E> ordering)
 name|Heap
 parameter_list|(
@@ -1823,6 +1869,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Tries to move {@code toTrickle} from a min to a max level and bubble up there. If it moved      * before {@code removeIndex} this method returns a pair as described in {@link #removeAt}.      */
+annotation|@
+name|CheckForNull
 DECL|method|tryCrossOverAndBubbleUp (int removeIndex, int vacated, E toTrickle)
 name|MoveDesc
 argument_list|<
@@ -2846,7 +2894,7 @@ comment|// The same element is not allowed in both forgetMeNot and skipMe, but d
 comment|// either of them, up to the same multiplicity as the queue.
 DECL|field|forgetMeNot
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 name|Queue
 argument_list|<
@@ -2856,7 +2904,7 @@ name|forgetMeNot
 decl_stmt|;
 DECL|field|skipMe
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 name|List
 argument_list|<
@@ -2866,7 +2914,7 @@ name|skipMe
 decl_stmt|;
 DECL|field|lastFromForgetMeNot
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 name|E
 name|lastFromForgetMeNot
@@ -3051,9 +3099,14 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// Either both are null or neither is, but we check both to satisfy the nullness checker.
 if|if
 condition|(
 name|forgetMeNot
+operator|==
+literal|null
+operator|||
+name|skipMe
 operator|==
 literal|null
 condition|)
@@ -3140,7 +3193,10 @@ name|checkState
 argument_list|(
 name|removeExact
 argument_list|(
+name|requireNonNull
+argument_list|(
 name|lastFromForgetMeNot
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -70,6 +70,8 @@ literal|"Use Interners.new*Interner"
 argument_list|)
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|Interner
 specifier|public
 interface|interface

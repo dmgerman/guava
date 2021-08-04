@@ -92,9 +92,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -105,6 +105,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ComparisonChain
 specifier|public
 specifier|abstract
@@ -144,6 +146,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// unsafe; see discussion on supertype
 annotation|@
 name|Override
 specifier|public
@@ -151,16 +154,30 @@ name|ComparisonChain
 name|compare
 parameter_list|(
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 name|left
 parameter_list|,
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 name|right
 parameter_list|)
 block|{
 return|return
 name|classify
 argument_list|(
+operator|(
+operator|(
+name|Comparable
+argument_list|<
+name|Object
+argument_list|>
+operator|)
 name|left
+operator|)
 operator|.
 name|compareTo
 argument_list|(
@@ -172,28 +189,31 @@ block|}
 annotation|@
 name|Override
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ComparisonChain
 name|compare
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|T
 name|left
-parameter_list|,
+argument_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|T
 name|right
-parameter_list|,
+argument_list|,
 name|Comparator
 argument_list|<
 name|T
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|classify
@@ -469,19 +489,21 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|compare (@ullableDecl Comparable left, @NullableDecl Comparable right)
+DECL|method|compare (Comparable<?> left, Comparable<?> right)
 specifier|public
 name|ComparisonChain
 name|compare
 parameter_list|(
-annotation|@
-name|NullableDecl
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 name|left
 parameter_list|,
-annotation|@
-name|NullableDecl
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 name|right
 parameter_list|)
 block|{
@@ -491,32 +513,33 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|compare ( @ullableDecl T left, @NullableDecl T right, @NullableDecl Comparator<T> comparator)
+DECL|method|compare ( @arametricNullness T left, @ParametricNullness T right, Comparator<T> comparator)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ComparisonChain
 name|compare
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|T
 name|left
-parameter_list|,
+argument_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|T
 name|right
-parameter_list|,
-annotation|@
-name|NullableDecl
+argument_list|,
 name|Comparator
 argument_list|<
 name|T
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|this
@@ -643,7 +666,7 @@ name|result
 return|;
 block|}
 block|}
-comment|/**    * Compares two comparable objects as specified by {@link Comparable#compareTo},<i>if</i> the    * result of this comparison chain has not already been determined.    */
+comment|/**    * Compares two comparable objects as specified by {@link Comparable#compareTo},<i>if</i> the    * result of this comparison chain has not already been determined.    *    *<p>This method is declared to accept any 2 {@code Comparable} objects, even if they are not<a    * href="https://docs.oracle.com/javase/tutorial/collections/interfaces/order.html">mutually    * comparable</a>. If you pass objects that are not mutually comparable, this method may throw an    * exception. (The reason for this decision is lost to time, but the reason<i>might</i> be that    * we wanted to support legacy classes that implement the raw type {@code Comparable} (instead of    * implementing {@code Comparable<Foo>}) without producing warnings. If so, we would prefer today    * to produce warnings in that case, and we may change this method to do so in the future. Support    * for raw {@code Comparable} types in Guava in general is tracked as<a    * href="https://github.com/google/guava/issues/989">#989</a>.)    *    * @throws ClassCastException if the parameters are not mutually comparable    */
 DECL|method|compare (Comparable<?> left, Comparable<?> right)
 specifier|public
 specifier|abstract
@@ -664,32 +687,35 @@ name|right
 parameter_list|)
 function_decl|;
 comment|/**    * Compares two objects using a comparator,<i>if</i> the result of this comparison chain has not    * already been determined.    */
-DECL|method|compare ( @ullableDecl T left, @NullableDecl T right, Comparator<T> comparator)
+DECL|method|compare ( @arametricNullness T left, @ParametricNullness T right, Comparator<T> comparator)
 specifier|public
 specifier|abstract
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ComparisonChain
 name|compare
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|T
 name|left
-parameter_list|,
+argument_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|T
 name|right
-parameter_list|,
+argument_list|,
 name|Comparator
 argument_list|<
 name|T
 argument_list|>
 name|comparator
-parameter_list|)
-function_decl|;
+argument_list|)
+expr_stmt|;
 comment|/**    * Compares two {@code int} values as specified by {@link Ints#compare},<i>if</i> the result of    * this comparison chain has not already been determined.    */
 DECL|method|compare (int left, int right)
 specifier|public

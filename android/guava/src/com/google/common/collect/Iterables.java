@@ -2360,6 +2360,8 @@ name|Iterable
 argument_list|<
 name|List
 argument_list|<
+annotation|@
+name|Nullable
 name|T
 argument_list|>
 argument_list|>
@@ -2395,6 +2397,8 @@ name|FluentIterable
 argument_list|<
 name|List
 argument_list|<
+annotation|@
+name|Nullable
 name|T
 argument_list|>
 argument_list|>
@@ -2407,6 +2411,8 @@ name|Iterator
 argument_list|<
 name|List
 argument_list|<
+annotation|@
+name|Nullable
 name|T
 argument_list|>
 argument_list|>

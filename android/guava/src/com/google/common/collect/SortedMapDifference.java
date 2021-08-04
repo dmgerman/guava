@@ -40,31 +40,60 @@ name|SortedMap
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An object representing the differences between two sorted maps.  *  * @author Louis Wasserman  * @since 8.0  */
 end_comment
 
-begin_interface
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|interface|SortedMapDifference
 specifier|public
-interface|interface
+expr|interface
 name|SortedMapDifference
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|MapDifference
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-block|{
-annotation|@
+block|{    @
 name|Override
 DECL|method|entriesOnlyOnLeft ()
 name|SortedMap
@@ -74,9 +103,8 @@ argument_list|,
 name|V
 argument_list|>
 name|entriesOnlyOnLeft
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
 DECL|method|entriesOnlyOnRight ()
 name|SortedMap
@@ -86,9 +114,8 @@ argument_list|,
 name|V
 argument_list|>
 name|entriesOnlyOnRight
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
 DECL|method|entriesInCommon ()
 name|SortedMap
@@ -98,9 +125,8 @@ argument_list|,
 name|V
 argument_list|>
 name|entriesInCommon
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
 DECL|method|entriesDiffering ()
 name|SortedMap
@@ -113,10 +139,9 @@ name|V
 argument_list|>
 argument_list|>
 name|entriesDiffering
-parameter_list|()
-function_decl|;
-block|}
-end_interface
+argument_list|()
+block|; }
+end_expr_stmt
 
 end_unit
 
