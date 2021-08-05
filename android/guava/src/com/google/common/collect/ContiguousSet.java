@@ -49,6 +49,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -152,6 +164,8 @@ argument_list|(
 literal|"rawtypes"
 argument_list|)
 comment|// allow ungenerified Comparable types
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ContiguousSet
 specifier|public
 specifier|abstract
@@ -285,18 +299,29 @@ name|e
 argument_list|)
 throw|;
 block|}
-comment|// Per class spec, we are allowed to throw CCE if necessary
 name|boolean
 name|empty
-init|=
+decl_stmt|;
+if|if
+condition|(
 name|effectiveRange
 operator|.
 name|isEmpty
 argument_list|()
-operator|||
-name|Range
-operator|.
-name|compareOrThrow
+condition|)
+block|{
+name|empty
+operator|=
+literal|true
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|/*        * requireNonNull is safe because the effectiveRange operations above would have thrown or        * effectiveRange.isEmpty() would have returned true.        */
+name|C
+name|afterLower
+init|=
+name|requireNonNull
 argument_list|(
 name|range
 operator|.
@@ -306,7 +331,13 @@ name|leastValueAbove
 argument_list|(
 name|domain
 argument_list|)
-argument_list|,
+argument_list|)
+decl_stmt|;
+name|C
+name|beforeUpper
+init|=
+name|requireNonNull
+argument_list|(
 name|range
 operator|.
 name|upperBound
@@ -316,9 +347,22 @@ argument_list|(
 name|domain
 argument_list|)
 argument_list|)
+decl_stmt|;
+comment|// Per class spec, we are allowed to throw CCE if necessary
+name|empty
+operator|=
+name|Range
+operator|.
+name|compareOrThrow
+argument_list|(
+name|afterLower
+argument_list|,
+name|beforeUpper
+argument_list|)
 operator|>
 literal|0
-decl_stmt|;
+expr_stmt|;
+block|}
 return|return
 name|empty
 condition|?

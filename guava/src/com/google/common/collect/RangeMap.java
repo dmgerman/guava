@@ -114,6 +114,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -142,6 +152,8 @@ literal|"Use ImmutableRangeMap or TreeRangeMap"
 argument_list|)
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|RangeMap
 specifier|public
 interface|interface
@@ -154,9 +166,10 @@ parameter_list|,
 name|V
 parameter_list|>
 block|{
+comment|/*    * TODO(cpovirk): These docs sometimes say "map" and sometimes say "range map." Pick one, or at    * least decide on a policy for when to use which.    */
 comment|/**    * Returns the value associated with the specified key, or {@code null} if there is no such value.    *    *<p>Specifically, if any range in this range map contains the specified key, the value    * associated with that range is returned.    */
 annotation|@
-name|Nullable
+name|CheckForNull
 DECL|method|get (K key)
 name|V
 name|get
@@ -167,7 +180,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Returns the range containing this key and its associated value, if such a range is present in    * the range map, or {@code null} otherwise.    */
 annotation|@
-name|Nullable
+name|CheckForNull
 DECL|method|getEntry (K key)
 name|Entry
 argument_list|<
@@ -255,39 +268,42 @@ argument_list|>
 name|range
 parameter_list|)
 function_decl|;
-comment|/**    * Merges a value into the map over a range by applying a remapping function.    *    *<p>If any parts of the range are already present in this range map, those parts are mapped to    * new values by applying the remapping function. Any parts of the range not already present in    * this range map are mapped to the specified value, unless the value is {@code null}.    *    *<p>Any existing map entry spanning either range boundary may be split at the boundary, even if    * the merge does not affect its value.    *    *<p>For example, if {@code rangeMap} had one entry {@code [1, 5] => 3} then {@code    * rangeMap.merge(Range.closed(0,2), 3, Math::max)} could yield a range map with the entries    * {@code [0, 1) => 3, [1, 2] => 3, (2, 5] => 3}.    *    * @since 28.1    */
-DECL|method|merge ( Range<K> range, @Nullable V value, BiFunction<? super V, ? super V, ? extends V> remappingFunction)
+comment|/**    * Merges a value into a part of the map by applying a remapping function.    *    *<p>If any parts of the range are already present in this map, those parts are mapped to new    * values by applying the remapping function. The remapping function accepts the map's existing    * value for that part of the range and the given value. It returns the value to be associated    * with that part of the map, or it returns {@code null} to clear that part of the map.    *    *<p>Any parts of the range not already present in this map are mapped to the specified value,    * unless the value is {@code null}.    *    *<p>Any existing entry spanning either range boundary may be split at the boundary, even if the    * merge does not affect its value. For example, if {@code rangeMap} had one entry {@code [1, 5]    * => 3} then {@code rangeMap.merge(Range.closed(0,2), 3, Math::max)} could yield a map with the    * entries {@code [0, 1) => 3, [1, 2] => 3, (2, 5] => 3}.    *    * @since 28.1    */
+DECL|method|merge ( Range<K> range, @CheckForNull V value, BiFunction<? super V, ? super @Nullable V, ? extends @Nullable V> remappingFunction)
 name|void
 name|merge
-parameter_list|(
+argument_list|(
 name|Range
 argument_list|<
 name|K
 argument_list|>
 name|range
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|V
 name|value
-parameter_list|,
+argument_list|,
 name|BiFunction
-argument_list|<
-name|?
-super|super
+operator|<
+condition|?
+name|super
 name|V
 argument_list|,
-name|?
-super|super
+operator|?
+name|super
+expr|@
+name|Nullable
 name|V
 argument_list|,
-name|?
-extends|extends
+operator|?
+expr|extends @
+name|Nullable
 name|V
-argument_list|>
+operator|>
 name|remappingFunction
-parameter_list|)
-function_decl|;
+argument_list|)
+decl_stmt|;
 comment|/**    * Returns a view of this range map as an unmodifiable {@code Map<Range<K>, V>}. Modifications to    * this range map are guaranteed to read through to the returned {@code Map}.    *    *<p>The returned {@code Map} iterates over entries in ascending order of the bounds of the    * {@code Range} entries.    *    *<p>It is guaranteed that no empty ranges will be in the returned {@code Map}.    */
 DECL|method|asMapOfRanges ()
 name|Map
@@ -317,6 +333,7 @@ name|asDescendingMapOfRanges
 parameter_list|()
 function_decl|;
 comment|/**    * Returns a view of the part of this range map that intersects with {@code range}.    *    *<p>For example, if {@code rangeMap} had the entries {@code [1, 5] => "foo", (6, 8) => "bar",    * (10, â) => "baz"} then {@code rangeMap.subRangeMap(Range.open(3, 12))} would return a range map    * with the entries {@code (3, 5] => "foo", (6, 8) => "bar", (10, 12) => "baz"}.    *    *<p>The returned range map supports all optional operations that this range map supports, except    * for {@code asMapOfRanges().iterator().remove()}.    *    *<p>The returned range map will throw an {@link IllegalArgumentException} on an attempt to    * insert a range not {@linkplain Range#encloses(Range) enclosed} by {@code range}.    */
+comment|// TODO(cpovirk): Consider documenting that IAE on the various methods that can throw it.
 DECL|method|subRangeMap (Range<K> range)
 name|RangeMap
 argument_list|<
@@ -336,12 +353,12 @@ function_decl|;
 comment|/**    * Returns {@code true} if {@code obj} is another {@code RangeMap} that has an equivalent {@link    * #asMapOfRanges()}.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object o)
+DECL|method|equals (@heckForNull Object o)
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)

@@ -97,6 +97,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -272,17 +284,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -296,6 +302,8 @@ name|Beta
 annotation|@
 name|GwtIncompatible
 comment|// NavigableMap
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|TreeRangeMap
 specifier|public
 specifier|final
@@ -552,7 +560,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|get (K key)
 specifier|public
 name|V
@@ -596,7 +604,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getEntry (K key)
 specifier|public
 name|Entry
@@ -896,7 +904,7 @@ name|coalescedRange
 return|;
 block|}
 comment|/** Returns the range that spans the given range and entry, if the entry can be coalesced. */
-DECL|method|coalesce ( Range<K> range, V value, @NullableDecl Entry<Cut<K>, RangeMapEntry<K, V>> entry)
+DECL|method|coalesce ( Range<K> range, V value, @CheckForNull Entry<Cut<K>, RangeMapEntry<K, V>> entry)
 specifier|private
 specifier|static
 parameter_list|<
@@ -922,7 +930,7 @@ name|V
 name|value
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Entry
 argument_list|<
 name|Cut
@@ -1112,9 +1120,14 @@ operator|.
 name|lastEntry
 argument_list|()
 decl_stmt|;
+comment|// Either both are null or neither is, but we check both to satisfy the nullness checker.
 if|if
 condition|(
 name|firstEntry
+operator|==
+literal|null
+operator|||
+name|lastEntry
 operator|==
 literal|null
 condition|)
@@ -1574,13 +1587,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1596,13 +1609,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1779,29 +1794,70 @@ name|emptySubRangeMap
 parameter_list|()
 block|{
 return|return
+call|(
+name|RangeMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+call|)
+argument_list|(
+name|RangeMap
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+argument_list|)
 name|EMPTY_SUB_RANGE_MAP
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ConstantCaseForConstants"
+argument_list|)
+comment|// This RangeMap is immutable.
 DECL|field|EMPTY_SUB_RANGE_MAP
 specifier|private
 specifier|static
 specifier|final
 name|RangeMap
+argument_list|<
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+argument_list|,
+name|Object
+argument_list|>
 name|EMPTY_SUB_RANGE_MAP
 init|=
 operator|new
 name|RangeMap
+argument_list|<
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+argument_list|,
+name|Object
+argument_list|>
 argument_list|()
 block|{
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|public
 name|Object
 name|get
 parameter_list|(
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 name|key
 parameter_list|)
 block|{
@@ -1812,17 +1868,26 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|public
 name|Entry
 argument_list|<
 name|Range
+argument_list|<
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+argument_list|>
 argument_list|,
 name|Object
 argument_list|>
 name|getEntry
 parameter_list|(
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 name|key
 parameter_list|)
 block|{
@@ -1834,6 +1899,12 @@ annotation|@
 name|Override
 specifier|public
 name|Range
+argument_list|<
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+argument_list|>
 name|span
 parameter_list|()
 block|{
@@ -1850,6 +1921,12 @@ name|void
 name|put
 parameter_list|(
 name|Range
+argument_list|<
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+argument_list|>
 name|range
 parameter_list|,
 name|Object
@@ -1880,6 +1957,12 @@ name|void
 name|putCoalescing
 parameter_list|(
 name|Range
+argument_list|<
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+argument_list|>
 name|range
 parameter_list|,
 name|Object
@@ -1910,6 +1993,14 @@ name|void
 name|putAll
 parameter_list|(
 name|RangeMap
+argument_list|<
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+argument_list|,
+name|Object
+argument_list|>
 name|rangeMap
 parameter_list|)
 block|{
@@ -1948,6 +2039,12 @@ name|void
 name|remove
 parameter_list|(
 name|Range
+argument_list|<
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+argument_list|>
 name|range
 parameter_list|)
 block|{
@@ -1963,6 +2060,12 @@ specifier|public
 name|Map
 argument_list|<
 name|Range
+argument_list|<
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+argument_list|>
 argument_list|,
 name|Object
 argument_list|>
@@ -1982,6 +2085,12 @@ specifier|public
 name|Map
 argument_list|<
 name|Range
+argument_list|<
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+argument_list|>
 argument_list|,
 name|Object
 argument_list|>
@@ -1999,9 +2108,23 @@ annotation|@
 name|Override
 specifier|public
 name|RangeMap
+argument_list|<
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+argument_list|,
+name|Object
+argument_list|>
 name|subRangeMap
 parameter_list|(
 name|Range
+argument_list|<
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+argument_list|>
 name|range
 parameter_list|)
 block|{
@@ -2015,7 +2138,7 @@ name|this
 return|;
 block|}
 block|}
-decl_stmt|;
+empty_stmt|;
 DECL|class|SubRangeMap
 specifier|private
 class|class
@@ -2057,7 +2180,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|get (K key)
 specifier|public
 name|V
@@ -2090,7 +2213,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getEntry (K key)
 specifier|public
 name|Entry
@@ -2799,6 +2922,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|Entry
 argument_list|<
@@ -2890,13 +3015,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -2991,11 +3116,13 @@ argument_list|>
 block|{
 annotation|@
 name|Override
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -3011,11 +3138,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -3208,11 +3339,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -3232,12 +3367,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// it's definitely in the map, so the cast and requireNonNull are safe
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// it's definitely in the map, so safe
 name|Range
 argument_list|<
 name|K
@@ -3250,7 +3385,10 @@ argument_list|<
 name|K
 argument_list|>
 operator|)
+name|requireNonNull
+argument_list|(
 name|key
+argument_list|)
 decl_stmt|;
 name|TreeRangeMap
 operator|.
@@ -3429,7 +3567,7 @@ name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -3729,6 +3867,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|Entry
 argument_list|<
@@ -3941,13 +4081,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)

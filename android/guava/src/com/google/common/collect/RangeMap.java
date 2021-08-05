@@ -102,17 +102,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -130,6 +124,8 @@ literal|"Use ImmutableRangeMap or TreeRangeMap"
 argument_list|)
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|RangeMap
 specifier|public
 interface|interface
@@ -142,9 +138,10 @@ parameter_list|,
 name|V
 parameter_list|>
 block|{
+comment|/*    * TODO(cpovirk): These docs sometimes say "map" and sometimes say "range map." Pick one, or at    * least decide on a policy for when to use which.    */
 comment|/**    * Returns the value associated with the specified key, or {@code null} if there is no such value.    *    *<p>Specifically, if any range in this range map contains the specified key, the value    * associated with that range is returned.    */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|get (K key)
 name|V
 name|get
@@ -155,7 +152,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Returns the range containing this key and its associated value, if such a range is present in    * the range map, or {@code null} otherwise.    */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getEntry (K key)
 name|Entry
 argument_list|<
@@ -272,6 +269,7 @@ name|asDescendingMapOfRanges
 parameter_list|()
 function_decl|;
 comment|/**    * Returns a view of the part of this range map that intersects with {@code range}.    *    *<p>For example, if {@code rangeMap} had the entries {@code [1, 5] => "foo", (6, 8) => "bar",    * (10, â) => "baz"} then {@code rangeMap.subRangeMap(Range.open(3, 12))} would return a range map    * with the entries {@code (3, 5] => "foo", (6, 8) => "bar", (10, 12) => "baz"}.    *    *<p>The returned range map supports all optional operations that this range map supports, except    * for {@code asMapOfRanges().iterator().remove()}.    *    *<p>The returned range map will throw an {@link IllegalArgumentException} on an attempt to    * insert a range not {@linkplain Range#encloses(Range) enclosed} by {@code range}.    */
+comment|// TODO(cpovirk): Consider documenting that IAE on the various methods that can throw it.
 DECL|method|subRangeMap (Range<K> range)
 name|RangeMap
 argument_list|<
@@ -291,12 +289,12 @@ function_decl|;
 comment|/**    * Returns {@code true} if {@code obj} is another {@code RangeMap} that has an equivalent {@link    * #asMapOfRanges()}.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object o)
+DECL|method|equals (@heckForNull Object o)
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)

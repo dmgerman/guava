@@ -300,6 +300,8 @@ name|Beta
 annotation|@
 name|GwtIncompatible
 comment|// NavigableMap
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableRangeMap
 specifier|public
 class|class
@@ -366,20 +368,23 @@ decl_stmt|;
 comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableRangeMap}. As in {@link Builder}, overlapping ranges are not permitted.    *    * @since 23.1    */
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-extends|extends
+expr|extends
 name|Comparable
 argument_list|<
 name|?
 super|super
 name|K
 argument_list|>
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
 DECL|method|toImmutableRangeMap ( Function<? super T, Range<K>> keyFunction, Function<? super T, ? extends V> valueFunction)
 name|Collector
 argument_list|<
@@ -395,7 +400,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableRangeMap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -408,7 +413,7 @@ name|K
 argument_list|>
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -420,7 +425,7 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|CollectCollectors
@@ -1642,39 +1647,42 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
-DECL|method|merge ( Range<K> range, @Nullable V value, BiFunction<? super V, ? super V, ? extends V> remappingFunction)
+DECL|method|merge ( Range<K> range, @CheckForNull V value, BiFunction<? super V, ? super @Nullable V, ? extends @Nullable V> remappingFunction)
 specifier|public
 specifier|final
 name|void
 name|merge
-parameter_list|(
+argument_list|(
 name|Range
 argument_list|<
 name|K
 argument_list|>
 name|range
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|V
 name|value
-parameter_list|,
+argument_list|,
 name|BiFunction
-argument_list|<
-name|?
-super|super
+operator|<
+condition|?
+name|super
 name|V
 argument_list|,
-name|?
-super|super
+operator|?
+name|super
+expr|@
+name|Nullable
 name|V
 argument_list|,
-name|?
-extends|extends
+operator|?
+expr|extends @
+name|Nullable
 name|V
-argument_list|>
+operator|>
 name|remappingFunction
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
 operator|new
@@ -2180,13 +2188,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
