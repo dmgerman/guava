@@ -194,18 +194,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
-operator|.
-name|Entry
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|NavigableMap
 import|;
 end_import
@@ -2165,6 +2153,8 @@ name|CheckForNull
 specifier|transient
 name|Set
 argument_list|<
+name|Multiset
+operator|.
 name|Entry
 argument_list|<
 name|E
@@ -2446,6 +2436,8 @@ DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
+name|Multiset
+operator|.
 name|Entry
 argument_list|<
 name|E
@@ -2683,6 +2675,8 @@ name|CheckForNull
 specifier|transient
 name|Collection
 argument_list|<
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -3313,6 +3307,8 @@ DECL|method|entries ()
 specifier|public
 name|Collection
 argument_list|<
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -3913,6 +3909,8 @@ name|CheckForNull
 specifier|transient
 name|Set
 argument_list|<
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4096,6 +4094,8 @@ DECL|method|entries ()
 specifier|public
 name|Set
 argument_list|<
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4655,6 +4655,8 @@ operator|>
 expr|extends
 name|SynchronizedSet
 argument_list|<
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4666,11 +4668,13 @@ argument_list|>
 argument_list|>
 argument_list|>
 block|{
-DECL|method|SynchronizedAsMapEntries (Set<Entry<K, Collection<V>>> delegate, @CheckForNull Object mutex)
+DECL|method|SynchronizedAsMapEntries ( Set<Map.Entry<K, Collection<V>>> delegate, @CheckForNull Object mutex)
 name|SynchronizedAsMapEntries
 argument_list|(
 name|Set
 argument_list|<
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4702,6 +4706,8 @@ DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4720,6 +4726,8 @@ return|return
 operator|new
 name|TransformedIterator
 argument_list|<
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4730,6 +4738,8 @@ name|V
 argument_list|>
 argument_list|>
 argument_list|,
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4749,6 +4759,8 @@ argument_list|)
 block|{
 annotation|@
 name|Override
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4761,6 +4773,8 @@ argument_list|>
 name|transform
 parameter_list|(
 specifier|final
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4789,6 +4803,8 @@ block|{
 annotation|@
 name|Override
 specifier|protected
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -5274,6 +5290,8 @@ name|CheckForNull
 specifier|transient
 name|Set
 argument_list|<
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -5432,6 +5450,8 @@ DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -6561,6 +6581,8 @@ name|CheckForNull
 specifier|transient
 name|Set
 argument_list|<
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -6672,6 +6694,8 @@ DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -7821,6 +7845,8 @@ expr|@
 name|CheckForNull
 DECL|method|ceilingEntry (K key)
 specifier|public
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -8018,6 +8044,8 @@ annotation|@
 name|CheckForNull
 DECL|method|firstEntry ()
 specifier|public
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -8055,6 +8083,8 @@ annotation|@
 name|CheckForNull
 DECL|method|floorEntry (K key)
 specifier|public
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -8202,6 +8232,8 @@ annotation|@
 name|CheckForNull
 DECL|method|higherEntry (K key)
 specifier|public
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -8276,6 +8308,8 @@ annotation|@
 name|CheckForNull
 DECL|method|lastEntry ()
 specifier|public
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -8313,6 +8347,8 @@ annotation|@
 name|CheckForNull
 DECL|method|lowerEntry (K key)
 specifier|public
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -8467,6 +8503,8 @@ annotation|@
 name|CheckForNull
 DECL|method|pollFirstEntry ()
 specifier|public
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -8504,6 +8542,8 @@ annotation|@
 name|CheckForNull
 DECL|method|pollLastEntry ()
 specifier|public
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -8728,7 +8768,9 @@ expr|extends @
 name|Nullable
 name|Object
 operator|>
-DECL|method|nullableSynchronizedEntry ( @heckForNull Entry<K, V> entry, @CheckForNull Object mutex)
+DECL|method|nullableSynchronizedEntry ( @heckForNull Map.Entry<K, V> entry, @CheckForNull Object mutex)
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -8739,6 +8781,8 @@ name|nullableSynchronizedEntry
 argument_list|(
 annotation|@
 name|CheckForNull
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -8802,6 +8846,8 @@ operator|>
 expr|extends
 name|SynchronizedObject
 expr|implements
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -8809,9 +8855,11 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SynchronizedEntry (Entry<K, V> delegate, @CheckForNull Object mutex)
+DECL|method|SynchronizedEntry (Map.Entry<K, V> delegate, @CheckForNull Object mutex)
 name|SynchronizedEntry
 argument_list|(
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -8842,6 +8890,8 @@ comment|// guaranteed by the constructor
 expr|@
 name|Override
 DECL|method|delegate ()
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
@@ -8853,6 +8903,8 @@ argument_list|()
 block|{
 return|return
 operator|(
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|K
