@@ -366,6 +366,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -392,6 +402,9 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
+comment|/*  * I have decided not to bother adding @ParametricNullness annotations in this class. Adding them is  * a lot of busy work, and the annotation matters only when the APIs to be annotated are visible to  * Kotlin code. In this class, nothing is publicly visible (nor exposed indirectly through a  * publicly visible subclass), and I doubt any of our current or future Kotlin extensions for the  * package will refer to the class. Plus, @ParametricNullness is only a temporary workaround,  * anyway, so we just need to get by without the annotations here until Kotlin better understands  * our other nullness annotations.  */
 DECL|class|Synchronized
 specifier|final
 class|class
@@ -419,14 +432,14 @@ specifier|final
 name|Object
 name|mutex
 decl_stmt|;
-DECL|method|SynchronizedObject (Object delegate, @Nullable Object mutex)
+DECL|method|SynchronizedObject (Object delegate, @CheckForNull Object mutex)
 name|SynchronizedObject
 parameter_list|(
 name|Object
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
 parameter_list|)
@@ -529,29 +542,32 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|collection (Collection<E> collection, @Nullable Object mutex)
+DECL|method|collection ( Collection<E> collection, @CheckForNull Object mutex)
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-name|Collection
-argument_list|<
-name|E
-argument_list|>
-name|collection
-parameter_list|(
-name|Collection
-argument_list|<
-name|E
-argument_list|>
-name|collection
-parameter_list|,
-annotation|@
+expr|extends @
 name|Nullable
 name|Object
+operator|>
+name|Collection
+argument_list|<
+name|E
+argument_list|>
+name|collection
+argument_list|(
+name|Collection
+argument_list|<
+name|E
+argument_list|>
+name|collection
+argument_list|,
+annotation|@
+name|CheckForNull
+name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -570,34 +586,37 @@ annotation|@
 name|VisibleForTesting
 DECL|class|SynchronizedCollection
 specifier|static
-class|class
+name|class
 name|SynchronizedCollection
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedObject
-implements|implements
+expr|implements
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|SynchronizedCollection (Collection<E> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedCollection (Collection<E> delegate, @CheckForNull Object mutex)
 specifier|private
 name|SynchronizedCollection
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -605,14 +624,13 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 name|Collection
@@ -620,7 +638,7 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -635,16 +653,16 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|add (E e)
 specifier|public
 name|boolean
 name|add
-parameter_list|(
+argument_list|(
 name|E
 name|e
-parameter_list|)
+argument_list|)
 block|{
 synchronized|synchronized
 init|(
@@ -662,6 +680,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
 DECL|method|addAll (Collection<? extends E> c)
@@ -694,6 +715,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -715,13 +739,18 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|contains (Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -742,6 +771,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|containsAll (Collection<?> c)
@@ -772,6 +804,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -794,6 +829,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|iterator ()
@@ -814,6 +852,9 @@ argument_list|()
 return|;
 comment|// manually synchronized
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|spliterator ()
@@ -839,6 +880,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|stream ()
@@ -864,6 +908,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|parallelStream ()
@@ -889,6 +936,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|forEach (Consumer<? super E> action)
@@ -920,13 +970,18 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (Object o)
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -947,6 +1002,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|removeAll (Collection<?> c)
@@ -977,6 +1035,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|retainAll (Collection<?> c)
@@ -1007,6 +1068,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|removeIf (Predicate<? super E> filter)
@@ -1039,6 +1103,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -1061,10 +1128,15 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toArray ()
 specifier|public
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|toArray
@@ -1084,21 +1156,42 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_annotation
 annotation|@
 name|Override
+end_annotation
+
+begin_annotation
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+end_annotation
+
+begin_comment
+comment|// b/192354773 in our checker affects toArray declarations
+end_comment
+
+begin_expr_stmt
 DECL|method|toArray (T[] a)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|a
-parameter_list|)
+argument_list|)
 block|{
 synchronized|synchronized
 init|(
@@ -1115,9 +1208,11 @@ name|a
 argument_list|)
 return|;
 block|}
-block|}
+end_expr_stmt
+
+begin_decl_stmt
+unit|}      private
 DECL|field|serialVersionUID
-specifier|private
 specifier|static
 specifier|final
 name|long
@@ -1125,31 +1220,36 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-annotation|@
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    @
 name|VisibleForTesting
-DECL|method|set (Set<E> set, @Nullable Object mutex)
+DECL|method|set (Set<E> set, @CheckForNull Object mutex)
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-name|Set
-argument_list|<
-name|E
-argument_list|>
-name|set
-parameter_list|(
-name|Set
-argument_list|<
-name|E
-argument_list|>
-name|set
-parameter_list|,
-annotation|@
+expr|extends @
 name|Nullable
 name|Object
+operator|>
+name|Set
+argument_list|<
+name|E
+argument_list|>
+name|set
+argument_list|(
+name|Set
+argument_list|<
+name|E
+argument_list|>
+name|set
+argument_list|,
+annotation|@
+name|CheckForNull
+name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1164,38 +1264,44 @@ name|mutex
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|SynchronizedSet
 specifier|static
-class|class
+name|class
 name|SynchronizedSet
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedCollection
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|Set
 argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|SynchronizedSet (Set<E> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedSet (Set<E> delegate, @CheckForNull Object mutex)
 name|SynchronizedSet
-parameter_list|(
+argument_list|(
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -1203,9 +1309,8 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 name|Set
@@ -1213,7 +1318,7 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -1228,16 +1333,18 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|equals (Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -1265,8 +1372,10 @@ name|o
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|hashCode ()
 specifier|public
@@ -1288,6 +1397,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1297,30 +1409,35 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-DECL|method|sortedSet (SortedSet<E> set, @Nullable Object mutex)
-specifier|private
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    private
+DECL|method|sortedSet ( SortedSet<E> set, @CheckForNull Object mutex)
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|SortedSet
 argument_list|<
 name|E
 argument_list|>
 name|sortedSet
-parameter_list|(
+argument_list|(
 name|SortedSet
 argument_list|<
 name|E
 argument_list|>
 name|set
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1335,38 +1452,44 @@ name|mutex
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|SynchronizedSortedSet
 specifier|static
-class|class
+name|class
 name|SynchronizedSortedSet
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedSet
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|SortedSet
 argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|SynchronizedSortedSet (SortedSet<E> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedSortedSet (SortedSet<E> delegate, @CheckForNull Object mutex)
 name|SynchronizedSortedSet
-parameter_list|(
+argument_list|(
 name|SortedSet
 argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -1374,9 +1497,8 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 name|SortedSet
@@ -1384,7 +1506,7 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -1399,8 +1521,10 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|CheckForNull
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -1410,7 +1534,7 @@ super|super
 name|E
 argument_list|>
 name|comparator
-parameter_list|()
+argument_list|()
 block|{
 synchronized|synchronized
 init|(
@@ -1426,6 +1550,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|subSet (E fromElement, E toElement)
@@ -1466,6 +1593,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|headSet (E toElement)
@@ -1501,6 +1631,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|tailSet (E fromElement)
@@ -1536,6 +1669,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|first ()
@@ -1558,6 +1694,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|last ()
@@ -1580,6 +1719,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1589,30 +1731,35 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-DECL|method|list (List<E> list, @Nullable Object mutex)
-specifier|private
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    private
+DECL|method|list ( List<E> list, @CheckForNull Object mutex)
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-name|List
-argument_list|<
-name|E
-argument_list|>
-name|list
-parameter_list|(
-name|List
-argument_list|<
-name|E
-argument_list|>
-name|list
-parameter_list|,
-annotation|@
+expr|extends @
 name|Nullable
 name|Object
+operator|>
+name|List
+argument_list|<
+name|E
+argument_list|>
+name|list
+argument_list|(
+name|List
+argument_list|<
+name|E
+argument_list|>
+name|list
+argument_list|,
+annotation|@
+name|CheckForNull
+name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -1620,7 +1767,7 @@ name|list
 operator|instanceof
 name|RandomAccess
 operator|)
-condition|?
+operator|?
 operator|new
 name|SynchronizedRandomAccessList
 argument_list|<
@@ -1631,7 +1778,7 @@ name|list
 argument_list|,
 name|mutex
 argument_list|)
-else|:
+operator|:
 operator|new
 name|SynchronizedList
 argument_list|<
@@ -1644,39 +1791,45 @@ name|mutex
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|SynchronizedList
 specifier|private
 specifier|static
-class|class
+name|class
 name|SynchronizedList
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedCollection
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|List
 argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|SynchronizedList (List<E> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedList (List<E> delegate, @CheckForNull Object mutex)
 name|SynchronizedList
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -1684,9 +1837,8 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 name|List
@@ -1694,7 +1846,7 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -1709,19 +1861,19 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|add (int index, E element)
 specifier|public
 name|void
 name|add
-parameter_list|(
+argument_list|(
 name|int
 name|index
-parameter_list|,
+argument_list|,
 name|E
 name|element
-parameter_list|)
+argument_list|)
 block|{
 synchronized|synchronized
 init|(
@@ -1739,8 +1891,10 @@ name|element
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|addAll (int index, Collection<? extends E> c)
 specifier|public
@@ -1777,6 +1931,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|get (int index)
@@ -1804,13 +1961,18 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|indexOf (Object o)
+DECL|method|indexOf (@heckForNull Object o)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -1831,13 +1993,18 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|lastIndexOf (Object o)
+DECL|method|lastIndexOf (@heckForNull Object o)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -1858,6 +2025,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|listIterator ()
@@ -1878,6 +2048,9 @@ argument_list|()
 return|;
 comment|// manually synchronized
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|listIterator (int index)
@@ -1903,6 +2076,9 @@ argument_list|)
 return|;
 comment|// manually synchronized
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|remove (int index)
@@ -1930,6 +2106,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|set (int index, E element)
@@ -1962,6 +2141,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|replaceAll (UnaryOperator<E> operator)
@@ -1991,6 +2173,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|sort (Comparator<? super E> c)
@@ -2022,6 +2207,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|subList (int fromIndex, int toIndex)
@@ -2062,13 +2250,18 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -2100,6 +2293,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -2122,6 +2318,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -2131,37 +2330,42 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    private
 DECL|class|SynchronizedRandomAccessList
-specifier|private
 specifier|static
-class|class
+name|class
 name|SynchronizedRandomAccessList
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedList
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|RandomAccess
 block|{
-DECL|method|SynchronizedRandomAccessList (List<E> list, @Nullable Object mutex)
+DECL|method|SynchronizedRandomAccessList (List<E> list, @CheckForNull Object mutex)
 name|SynchronizedRandomAccessList
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|E
 argument_list|>
 name|list
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -2169,40 +2373,41 @@ name|list
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
+block|;     }
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|long
 name|serialVersionUID
-init|=
+operator|=
 literal|0
-decl_stmt|;
-block|}
-DECL|method|multiset (Multiset<E> multiset, @Nullable Object mutex)
+block|;   }
+DECL|method|multiset ( Multiset<E> multiset, @CheckForNull Object mutex)
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-name|Multiset
-argument_list|<
-name|E
-argument_list|>
-name|multiset
-parameter_list|(
-name|Multiset
-argument_list|<
-name|E
-argument_list|>
-name|multiset
-parameter_list|,
-annotation|@
+expr|extends @
 name|Nullable
 name|Object
+operator|>
+name|Multiset
+argument_list|<
+name|E
+argument_list|>
+name|multiset
+argument_list|(
+name|Multiset
+argument_list|<
+name|E
+argument_list|>
+name|multiset
+argument_list|,
+annotation|@
+name|CheckForNull
+name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -2219,6 +2424,9 @@ return|return
 name|multiset
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|new
 name|SynchronizedMultiset
@@ -2231,40 +2439,43 @@ argument_list|,
 name|mutex
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_expr_stmt
+unit|}    private
 DECL|class|SynchronizedMultiset
-specifier|private
 specifier|static
-class|class
+name|class
 name|SynchronizedMultiset
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedCollection
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|Multiset
 argument_list|<
 name|E
 argument_list|>
-block|{
+block|{     @
 DECL|field|elementSet
+name|CheckForNull
 specifier|transient
-annotation|@
-name|Nullable
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|elementSet
-decl_stmt|;
+block|;     @
 DECL|field|entrySet
+name|CheckForNull
 specifier|transient
-annotation|@
-name|Nullable
 name|Set
 argument_list|<
 name|Entry
@@ -2273,21 +2484,21 @@ name|E
 argument_list|>
 argument_list|>
 name|entrySet
-decl_stmt|;
-DECL|method|SynchronizedMultiset (Multiset<E> delegate, @Nullable Object mutex)
+block|;
+DECL|method|SynchronizedMultiset (Multiset<E> delegate, @CheckForNull Object mutex)
 name|SynchronizedMultiset
-parameter_list|(
+argument_list|(
 name|Multiset
 argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -2295,9 +2506,8 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 name|Multiset
@@ -2305,7 +2515,7 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -2320,16 +2530,18 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|count (Object o)
+DECL|method|count (@heckForNull Object o)
 specifier|public
 name|int
 name|count
-parameter_list|(
+argument_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
-parameter_list|)
+argument_list|)
 block|{
 synchronized|synchronized
 init|(
@@ -2346,8 +2558,10 @@ name|o
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|add (E e, int n)
 specifier|public
@@ -2379,13 +2593,18 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (Object o, int n)
+DECL|method|remove (@heckForNull Object o, int n)
 specifier|public
 name|int
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|,
@@ -2411,6 +2630,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|setCount (E element, int count)
@@ -2443,6 +2665,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|setCount (E element, int oldCount, int newCount)
@@ -2480,6 +2705,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|elementSet ()
@@ -2522,6 +2750,9 @@ name|elementSet
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entrySet ()
@@ -2567,13 +2798,18 @@ name|entrySet
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -2605,6 +2841,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -2627,6 +2866,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -2636,35 +2878,43 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-DECL|method|multimap (Multimap<K, V> multimap, @Nullable Object mutex)
-specifier|static
-parameter_list|<
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    static
+DECL|method|multimap ( Multimap<K, V> multimap, @CheckForNull Object mutex)
+operator|<
 name|K
-parameter_list|,
-name|V
-parameter_list|>
-name|Multimap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|multimap
-parameter_list|(
-name|Multimap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|multimap
-parameter_list|,
-annotation|@
+expr|extends @
 name|Nullable
 name|Object
+operator|,
+name|V
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+name|Multimap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|multimap
+argument_list|(
+name|Multimap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|multimap
+argument_list|,
+annotation|@
+name|CheckForNull
+name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -2681,6 +2931,9 @@ return|return
 name|multimap
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|new
 name|SynchronizedMultimap
@@ -2691,51 +2944,56 @@ argument_list|,
 name|mutex
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_expr_stmt
+unit|}    private
 DECL|class|SynchronizedMultimap
-specifier|private
 specifier|static
-class|class
+name|class
 name|SynchronizedMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedObject
-implements|implements
+expr|implements
 name|Multimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-block|{
+block|{     @
 DECL|field|keySet
+name|CheckForNull
 specifier|transient
-annotation|@
-name|Nullable
 name|Set
 argument_list|<
 name|K
 argument_list|>
 name|keySet
-decl_stmt|;
+block|;     @
 DECL|field|valuesCollection
+name|CheckForNull
 specifier|transient
-annotation|@
-name|Nullable
 name|Collection
 argument_list|<
 name|V
 argument_list|>
 name|valuesCollection
-decl_stmt|;
+block|;     @
 DECL|field|entries
+name|CheckForNull
 specifier|transient
-annotation|@
-name|Nullable
 name|Collection
 argument_list|<
 name|Entry
@@ -2746,11 +3004,10 @@ name|V
 argument_list|>
 argument_list|>
 name|entries
-decl_stmt|;
+block|;     @
 DECL|field|asMap
+name|CheckForNull
 specifier|transient
-annotation|@
-name|Nullable
 name|Map
 argument_list|<
 name|K
@@ -2761,23 +3018,21 @@ name|V
 argument_list|>
 argument_list|>
 name|asMap
-decl_stmt|;
+block|;     @
 DECL|field|keys
+name|CheckForNull
 specifier|transient
-annotation|@
-name|Nullable
 name|Multiset
 argument_list|<
 name|K
 argument_list|>
 name|keys
-decl_stmt|;
-annotation|@
+block|;      @
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 name|Multimap
@@ -2787,7 +3042,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -2804,9 +3059,9 @@ name|delegate
 argument_list|()
 return|;
 block|}
-DECL|method|SynchronizedMultimap (Multimap<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedMultimap (Multimap<K, V> delegate, @CheckForNull Object mutex)
 name|SynchronizedMultimap
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|K
@@ -2814,12 +3069,12 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -2827,15 +3082,14 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|size ()
 specifier|public
 name|int
 name|size
-parameter_list|()
+argument_list|()
 block|{
 synchronized|synchronized
 init|(
@@ -2850,8 +3104,10 @@ name|size
 argument_list|()
 return|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|isEmpty ()
 specifier|public
@@ -2873,13 +3129,18 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -2900,13 +3161,18 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsValue (Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -2927,16 +3193,23 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsEntry (Object key, Object value)
+DECL|method|containsEntry (@heckForNull Object key, @CheckForNull Object value)
 specifier|public
 name|boolean
 name|containsEntry
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -2959,6 +3232,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|get (K key)
@@ -2994,6 +3270,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|put (K key, V value)
@@ -3026,6 +3305,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|putAll (K key, Iterable<? extends V> values)
@@ -3063,6 +3345,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
@@ -3099,6 +3384,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|replaceValues (K key, Iterable<? extends V> values)
@@ -3140,16 +3428,23 @@ return|;
 comment|// copy not synchronized
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (Object key, Object value)
+DECL|method|remove (@heckForNull Object key, @CheckForNull Object value)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -3172,9 +3467,12 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|removeAll (Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|Collection
 argument_list|<
@@ -3182,6 +3480,8 @@ name|V
 argument_list|>
 name|removeAll
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -3203,6 +3503,9 @@ return|;
 comment|// copy not synchronized
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -3224,6 +3527,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -3266,6 +3572,9 @@ name|keySet
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -3308,6 +3617,9 @@ name|valuesCollection
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entries ()
@@ -3355,6 +3667,9 @@ name|entries
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|forEach (BiConsumer<? super K, ? super V> action)
@@ -3390,6 +3705,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|asMap ()
@@ -3439,6 +3757,9 @@ name|asMap
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keys ()
@@ -3481,13 +3802,18 @@ name|keys
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -3519,6 +3845,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -3541,6 +3870,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -3550,14 +3882,22 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-DECL|method|listMultimap ( ListMultimap<K, V> multimap, @Nullable Object mutex)
-specifier|static
-parameter_list|<
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    static
+DECL|method|listMultimap ( ListMultimap<K, V> multimap, @CheckForNull Object mutex)
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListMultimap
 argument_list|<
 name|K
@@ -3565,7 +3905,7 @@ argument_list|,
 name|V
 argument_list|>
 name|listMultimap
-parameter_list|(
+argument_list|(
 name|ListMultimap
 argument_list|<
 name|K
@@ -3573,12 +3913,12 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -3595,6 +3935,9 @@ return|return
 name|multimap
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|new
 name|SynchronizedListMultimap
@@ -3605,25 +3948,33 @@ argument_list|,
 name|mutex
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_expr_stmt
+unit|}    private
 DECL|class|SynchronizedListMultimap
-specifier|private
 specifier|static
-class|class
+name|class
 name|SynchronizedListMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedMultimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|ListMultimap
 argument_list|<
 name|K
@@ -3631,9 +3982,9 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SynchronizedListMultimap (ListMultimap<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedListMultimap (ListMultimap<K, V> delegate, @CheckForNull Object mutex)
 name|SynchronizedListMultimap
-parameter_list|(
+argument_list|(
 name|ListMultimap
 argument_list|<
 name|K
@@ -3641,12 +3992,12 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -3654,9 +4005,8 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 name|ListMultimap
@@ -3666,7 +4016,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -3683,7 +4033,7 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|get (K key)
 specifier|public
@@ -3692,10 +4042,10 @@ argument_list|<
 name|V
 argument_list|>
 name|get
-parameter_list|(
+argument_list|(
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 synchronized|synchronized
 init|(
@@ -3717,10 +4067,12 @@ name|mutex
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
-DECL|method|removeAll (Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|List
 argument_list|<
@@ -3728,6 +4080,8 @@ name|V
 argument_list|>
 name|removeAll
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -3749,6 +4103,9 @@ return|;
 comment|// copy not synchronized
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|replaceValues (K key, Iterable<? extends V> values)
@@ -3790,6 +4147,9 @@ return|;
 comment|// copy not synchronized
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -3799,14 +4159,22 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-DECL|method|setMultimap (SetMultimap<K, V> multimap, @Nullable Object mutex)
-specifier|static
-parameter_list|<
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    static
+DECL|method|setMultimap ( SetMultimap<K, V> multimap, @CheckForNull Object mutex)
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|SetMultimap
 argument_list|<
 name|K
@@ -3814,7 +4182,7 @@ argument_list|,
 name|V
 argument_list|>
 name|setMultimap
-parameter_list|(
+argument_list|(
 name|SetMultimap
 argument_list|<
 name|K
@@ -3822,12 +4190,12 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -3844,6 +4212,9 @@ return|return
 name|multimap
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|new
 name|SynchronizedSetMultimap
@@ -3854,36 +4225,43 @@ argument_list|,
 name|mutex
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_expr_stmt
+unit|}    private
 DECL|class|SynchronizedSetMultimap
-specifier|private
 specifier|static
-class|class
+name|class
 name|SynchronizedSetMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedMultimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|SetMultimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-block|{
+block|{     @
 DECL|field|entrySet
+name|CheckForNull
 specifier|transient
-annotation|@
-name|Nullable
 name|Set
 argument_list|<
 name|Entry
@@ -3894,10 +4272,10 @@ name|V
 argument_list|>
 argument_list|>
 name|entrySet
-decl_stmt|;
-DECL|method|SynchronizedSetMultimap (SetMultimap<K, V> delegate, @Nullable Object mutex)
+block|;
+DECL|method|SynchronizedSetMultimap (SetMultimap<K, V> delegate, @CheckForNull Object mutex)
 name|SynchronizedSetMultimap
-parameter_list|(
+argument_list|(
 name|SetMultimap
 argument_list|<
 name|K
@@ -3905,12 +4283,12 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -3918,9 +4296,8 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 name|SetMultimap
@@ -3930,7 +4307,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -3947,7 +4324,7 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|get (K key)
 specifier|public
@@ -3956,10 +4333,10 @@ argument_list|<
 name|V
 argument_list|>
 name|get
-parameter_list|(
+argument_list|(
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 synchronized|synchronized
 init|(
@@ -3981,10 +4358,12 @@ name|mutex
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
-DECL|method|removeAll (Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|Set
 argument_list|<
@@ -3992,6 +4371,8 @@ name|V
 argument_list|>
 name|removeAll
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -4013,6 +4394,9 @@ return|;
 comment|// copy not synchronized
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|replaceValues (K key, Iterable<? extends V> values)
@@ -4054,6 +4438,9 @@ return|;
 comment|// copy not synchronized
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entries ()
@@ -4101,6 +4488,9 @@ name|entrySet
 return|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -4110,14 +4500,22 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-DECL|method|sortedSetMultimap ( SortedSetMultimap<K, V> multimap, @Nullable Object mutex)
-specifier|static
-parameter_list|<
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    static
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|sortedSetMultimap ( SortedSetMultimap<K, V> multimap, @CheckForNull Object mutex)
 name|SortedSetMultimap
 argument_list|<
 name|K
@@ -4125,7 +4523,7 @@ argument_list|,
 name|V
 argument_list|>
 name|sortedSetMultimap
-parameter_list|(
+argument_list|(
 name|SortedSetMultimap
 argument_list|<
 name|K
@@ -4133,12 +4531,12 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -4151,6 +4549,9 @@ return|return
 name|multimap
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|new
 name|SynchronizedSortedSetMultimap
@@ -4161,25 +4562,33 @@ argument_list|,
 name|mutex
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_expr_stmt
+unit|}    private
 DECL|class|SynchronizedSortedSetMultimap
-specifier|private
 specifier|static
-class|class
+name|class
 name|SynchronizedSortedSetMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedSetMultimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|SortedSetMultimap
 argument_list|<
 name|K
@@ -4187,9 +4596,9 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SynchronizedSortedSetMultimap (SortedSetMultimap<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedSortedSetMultimap (SortedSetMultimap<K, V> delegate, @CheckForNull Object mutex)
 name|SynchronizedSortedSetMultimap
-parameter_list|(
+argument_list|(
 name|SortedSetMultimap
 argument_list|<
 name|K
@@ -4197,12 +4606,12 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -4210,9 +4619,8 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 name|SortedSetMultimap
@@ -4222,7 +4630,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -4239,7 +4647,7 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|get (K key)
 specifier|public
@@ -4248,10 +4656,10 @@ argument_list|<
 name|V
 argument_list|>
 name|get
-parameter_list|(
+argument_list|(
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 synchronized|synchronized
 init|(
@@ -4273,10 +4681,12 @@ name|mutex
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
-DECL|method|removeAll (Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -4284,6 +4694,8 @@ name|V
 argument_list|>
 name|removeAll
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -4305,6 +4717,9 @@ return|;
 comment|// copy not synchronized
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|replaceValues (K key, Iterable<? extends V> values)
@@ -4346,8 +4761,13 @@ return|;
 comment|// copy not synchronized
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|valueComparator ()
 specifier|public
 name|Comparator
@@ -4373,6 +4793,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -4382,30 +4805,35 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-DECL|method|typePreservingCollection ( Collection<E> collection, @Nullable Object mutex)
-specifier|private
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    private
+DECL|method|typePreservingCollection ( Collection<E> collection, @CheckForNull Object mutex)
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 name|typePreservingCollection
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 name|collection
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -4429,6 +4857,9 @@ name|mutex
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_if
 if|if
 condition|(
 name|collection
@@ -4451,6 +4882,9 @@ name|mutex
 argument_list|)
 return|;
 block|}
+end_if
+
+begin_if
 if|if
 condition|(
 name|collection
@@ -4473,6 +4907,9 @@ name|mutex
 argument_list|)
 return|;
 block|}
+end_if
+
+begin_return
 return|return
 name|collection
 argument_list|(
@@ -4481,30 +4918,35 @@ argument_list|,
 name|mutex
 argument_list|)
 return|;
-block|}
-DECL|method|typePreservingSet (Set<E> set, @Nullable Object mutex)
-specifier|private
+end_return
+
+begin_expr_stmt
+unit|}    private
+DECL|method|typePreservingSet ( Set<E> set, @CheckForNull Object mutex)
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|typePreservingSet
-parameter_list|(
+argument_list|(
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|set
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -4528,6 +4970,9 @@ name|mutex
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_else
 else|else
 block|{
 return|return
@@ -4539,18 +4984,26 @@ name|mutex
 argument_list|)
 return|;
 block|}
-block|}
+end_else
+
+begin_expr_stmt
+unit|}    private
 DECL|class|SynchronizedAsMapEntries
-specifier|private
 specifier|static
-class|class
+name|class
 name|SynchronizedAsMapEntries
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedSet
 argument_list|<
 name|Entry
@@ -4564,9 +5017,9 @@ argument_list|>
 argument_list|>
 argument_list|>
 block|{
-DECL|method|SynchronizedAsMapEntries (Set<Entry<K, Collection<V>>> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedAsMapEntries (Set<Entry<K, Collection<V>>> delegate, @CheckForNull Object mutex)
 name|SynchronizedAsMapEntries
-parameter_list|(
+argument_list|(
 name|Set
 argument_list|<
 name|Entry
@@ -4580,12 +5033,12 @@ argument_list|>
 argument_list|>
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -4593,9 +5046,8 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|iterator ()
 specifier|public
@@ -4612,7 +5064,7 @@ argument_list|>
 argument_list|>
 argument_list|>
 name|iterator
-parameter_list|()
+argument_list|()
 block|{
 comment|// Must be manually synchronized.
 return|return
@@ -4704,7 +5156,7 @@ return|return
 name|entry
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|Collection
@@ -4712,7 +5164,7 @@ argument_list|<
 name|V
 argument_list|>
 name|getValue
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|typePreservingCollection
@@ -4726,14 +5178,20 @@ name|mutex
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_empty_stmt
+unit|};         }       }
+empty_stmt|;
+end_empty_stmt
+
+begin_comment
+unit|}
 comment|// See Collections.CheckedMap.CheckedEntrySet for details on attacks.
-annotation|@
+end_comment
+
+begin_function
+unit|@
 name|Override
 DECL|method|toArray ()
 specifier|public
@@ -4747,7 +5205,20 @@ init|(
 name|mutex
 init|)
 block|{
-return|return
+comment|/*          * toArrayImpl returns `@Nullable Object[]` rather than `Object[]` but only because it can          * be used with collections that may contain null. This collection never contains nulls, so          * we can treat it as a plain `Object[]`.          */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+name|Object
+index|[]
+name|result
+init|=
+operator|(
+name|Object
+index|[]
+operator|)
 name|ObjectArrays
 operator|.
 name|toArrayImpl
@@ -4755,24 +5226,48 @@ argument_list|(
 name|delegate
 argument_list|()
 argument_list|)
+decl_stmt|;
+return|return
+name|result
 return|;
 block|}
 block|}
+end_function
+
+begin_annotation
 annotation|@
 name|Override
+end_annotation
+
+begin_annotation
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+end_annotation
+
+begin_comment
+comment|// b/192354773 in our checker affects toArray declarations
+end_comment
+
+begin_expr_stmt
 DECL|method|toArray (T[] array)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|array
-parameter_list|)
+argument_list|)
 block|{
 synchronized|synchronized
 init|(
@@ -4791,14 +5286,18 @@ name|array
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
-DECL|method|contains (Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -4821,6 +5320,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|containsAll (Collection<?> c)
@@ -4853,13 +5355,18 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -4893,13 +5400,18 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (Object o)
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -4922,6 +5434,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|removeAll (Collection<?> c)
@@ -4957,6 +5472,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|retainAll (Collection<?> c)
@@ -4992,6 +5510,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -5001,37 +5522,45 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-annotation|@
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    @
 name|VisibleForTesting
-DECL|method|map (Map<K, V> map, @Nullable Object mutex)
+DECL|method|map ( Map<K, V> map, @CheckForNull Object mutex)
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
-name|V
-parameter_list|>
-name|Map
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|map
-parameter_list|(
-name|Map
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|map
-parameter_list|,
-annotation|@
+expr|extends @
 name|Nullable
 name|Object
+operator|,
+name|V
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+name|Map
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|map
+argument_list|(
+name|Map
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|map
+argument_list|,
+annotation|@
+name|CheckForNull
+name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -5044,50 +5573,56 @@ name|mutex
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|SynchronizedMap
 specifier|private
 specifier|static
-class|class
+name|class
 name|SynchronizedMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedObject
-implements|implements
+expr|implements
 name|Map
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-block|{
+block|{     @
 DECL|field|keySet
+name|CheckForNull
 specifier|transient
-annotation|@
-name|Nullable
 name|Set
 argument_list|<
 name|K
 argument_list|>
 name|keySet
-decl_stmt|;
+block|;     @
 DECL|field|values
+name|CheckForNull
 specifier|transient
-annotation|@
-name|Nullable
 name|Collection
 argument_list|<
 name|V
 argument_list|>
 name|values
-decl_stmt|;
+block|;     @
 DECL|field|entrySet
+name|CheckForNull
 specifier|transient
-annotation|@
-name|Nullable
 name|Set
 argument_list|<
 name|Entry
@@ -5098,10 +5633,10 @@ name|V
 argument_list|>
 argument_list|>
 name|entrySet
-decl_stmt|;
-DECL|method|SynchronizedMap (Map<K, V> delegate, @Nullable Object mutex)
+block|;
+DECL|method|SynchronizedMap (Map<K, V> delegate, @CheckForNull Object mutex)
 name|SynchronizedMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -5109,12 +5644,12 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -5122,14 +5657,13 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 name|Map
@@ -5139,7 +5673,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -5156,13 +5690,13 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|clear ()
 specifier|public
 name|void
 name|clear
-parameter_list|()
+argument_list|()
 block|{
 synchronized|synchronized
 init|(
@@ -5176,14 +5710,18 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -5204,13 +5742,18 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsValue (Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -5231,6 +5774,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entrySet ()
@@ -5278,6 +5824,9 @@ name|entrySet
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|forEach (BiConsumer<? super K, ? super V> action)
@@ -5313,13 +5862,20 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|get (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -5340,16 +5896,25 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|getOrDefault (Object key, V defaultValue)
+annotation|@
+name|CheckForNull
+DECL|method|getOrDefault (@heckForNull Object key, @CheckForNull V defaultValue)
 specifier|public
 name|V
 name|getOrDefault
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|V
 name|defaultValue
 parameter_list|)
@@ -5372,6 +5937,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -5394,6 +5962,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -5436,8 +6007,13 @@ name|keySet
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|put (K key, V value)
 specifier|public
 name|V
@@ -5468,8 +6044,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|putIfAbsent (K key, V value)
 specifier|public
 name|V
@@ -5500,6 +6081,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|replace (K key, V oldValue, V newValue)
@@ -5537,8 +6121,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|replace (K key, V value)
 specifier|public
 name|V
@@ -5569,6 +6158,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|computeIfAbsent (K key, Function<? super K, ? extends V> mappingFunction)
@@ -5610,6 +6202,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|computeIfPresent ( K key, BiFunction<? super K, ? super V, ? extends V> remappingFunction)
@@ -5655,6 +6250,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|compute (K key, BiFunction<? super K, ? super V, ? extends V> remappingFunction)
@@ -5700,6 +6298,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|merge ( K key, V value, BiFunction<? super V, ? super V, ? extends V> remappingFunction)
@@ -5750,6 +6351,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|putAll (Map<? extends K, ? extends V> map)
@@ -5785,6 +6389,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|replaceAll (BiFunction<? super K, ? super V, ? extends V> function)
@@ -5824,13 +6431,20 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -5851,16 +6465,23 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (Object key, Object value)
+DECL|method|remove (@heckForNull Object key, @CheckForNull Object value)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -5883,6 +6504,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -5905,6 +6529,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -5947,13 +6574,18 @@ name|values
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -5985,6 +6617,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -6007,6 +6642,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -6016,35 +6654,43 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-DECL|method|sortedMap (SortedMap<K, V> sortedMap, @Nullable Object mutex)
-specifier|static
-parameter_list|<
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    static
+DECL|method|sortedMap ( SortedMap<K, V> sortedMap, @CheckForNull Object mutex)
+operator|<
 name|K
-parameter_list|,
-name|V
-parameter_list|>
-name|SortedMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|sortedMap
-parameter_list|(
-name|SortedMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|sortedMap
-parameter_list|,
-annotation|@
+expr|extends @
 name|Nullable
 name|Object
+operator|,
+name|V
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+name|SortedMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|sortedMap
+argument_list|(
+name|SortedMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|sortedMap
+argument_list|,
+annotation|@
+name|CheckForNull
+name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -6057,23 +6703,32 @@ name|mutex
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|SynchronizedSortedMap
 specifier|static
-class|class
+name|class
 name|SynchronizedSortedMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|SortedMap
 argument_list|<
 name|K
@@ -6081,9 +6736,9 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SynchronizedSortedMap (SortedMap<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedSortedMap (SortedMap<K, V> delegate, @CheckForNull Object mutex)
 name|SynchronizedSortedMap
-parameter_list|(
+argument_list|(
 name|SortedMap
 argument_list|<
 name|K
@@ -6091,12 +6746,12 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -6104,9 +6759,8 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 name|SortedMap
@@ -6116,7 +6770,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -6133,8 +6787,10 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|CheckForNull
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -6144,7 +6800,7 @@ super|super
 name|K
 argument_list|>
 name|comparator
-parameter_list|()
+argument_list|()
 block|{
 synchronized|synchronized
 init|(
@@ -6160,6 +6816,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|firstKey ()
@@ -6182,6 +6841,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|headMap (K toKey)
@@ -6219,6 +6881,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|lastKey ()
@@ -6241,6 +6906,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|subMap (K fromKey, K toKey)
@@ -6283,6 +6951,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|tailMap (K fromKey)
@@ -6320,6 +6991,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -6329,14 +7003,22 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-DECL|method|biMap (BiMap<K, V> bimap, @Nullable Object mutex)
-specifier|static
-parameter_list|<
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    static
+DECL|method|biMap ( BiMap<K, V> bimap, @CheckForNull Object mutex)
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|BiMap
 argument_list|<
 name|K
@@ -6344,7 +7026,7 @@ argument_list|,
 name|V
 argument_list|>
 name|biMap
-parameter_list|(
+argument_list|(
 name|BiMap
 argument_list|<
 name|K
@@ -6352,12 +7034,12 @@ argument_list|,
 name|V
 argument_list|>
 name|bimap
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -6374,6 +7056,9 @@ return|return
 name|bimap
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|new
 name|SynchronizedBiMap
@@ -6386,53 +7071,59 @@ argument_list|,
 literal|null
 argument_list|)
 return|;
-block|}
-annotation|@
+end_return
+
+begin_expr_stmt
+unit|}    @
 name|VisibleForTesting
 DECL|class|SynchronizedBiMap
 specifier|static
-class|class
+name|class
 name|SynchronizedBiMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|BiMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|,
+operator|,
 name|Serializable
-block|{
+block|{     @
 DECL|field|valueSet
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|Set
 argument_list|<
 name|V
 argument_list|>
 name|valueSet
-decl_stmt|;
+block|;     @
 DECL|field|inverse
-annotation|@
 name|RetainedWith
+expr|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|BiMap
 argument_list|<
 name|V
@@ -6440,11 +7131,11 @@ argument_list|,
 name|K
 argument_list|>
 name|inverse
-decl_stmt|;
-DECL|method|SynchronizedBiMap ( BiMap<K, V> delegate, @Nullable Object mutex, @Nullable BiMap<V, K> inverse)
+block|;
+DECL|method|SynchronizedBiMap ( BiMap<K, V> delegate, @CheckForNull Object mutex, @CheckForNull BiMap<V, K> inverse)
 specifier|private
 name|SynchronizedBiMap
-parameter_list|(
+argument_list|(
 name|BiMap
 argument_list|<
 name|K
@@ -6452,14 +7143,14 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|BiMap
 argument_list|<
 name|V
@@ -6467,7 +7158,7 @@ argument_list|,
 name|K
 argument_list|>
 name|inverse
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -6475,15 +7166,14 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|inverse
 operator|=
 name|inverse
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 name|BiMap
@@ -6493,7 +7183,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -6510,7 +7200,7 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|values ()
 specifier|public
@@ -6519,7 +7209,7 @@ argument_list|<
 name|V
 argument_list|>
 name|values
-parameter_list|()
+argument_list|()
 block|{
 synchronized|synchronized
 init|(
@@ -6547,13 +7237,20 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|valueSet
 return|;
-block|}
-block|}
+end_return
+
+begin_function
+unit|}     }
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|forcePut (K key, V value)
 specifier|public
 name|V
@@ -6584,6 +7281,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|inverse ()
@@ -6632,6 +7332,9 @@ name|inverse
 return|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -6641,18 +7344,26 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    private
 DECL|class|SynchronizedAsMap
-specifier|private
 specifier|static
-class|class
+name|class
 name|SynchronizedAsMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedMap
 argument_list|<
 name|K
@@ -6662,11 +7373,10 @@ argument_list|<
 name|V
 argument_list|>
 argument_list|>
-block|{
+block|{     @
 DECL|field|asMapEntrySet
+name|CheckForNull
 specifier|transient
-annotation|@
-name|Nullable
 name|Set
 argument_list|<
 name|Entry
@@ -6680,11 +7390,10 @@ argument_list|>
 argument_list|>
 argument_list|>
 name|asMapEntrySet
-decl_stmt|;
+block|;     @
 DECL|field|asMapValues
+name|CheckForNull
 specifier|transient
-annotation|@
-name|Nullable
 name|Collection
 argument_list|<
 name|Collection
@@ -6693,10 +7402,10 @@ name|V
 argument_list|>
 argument_list|>
 name|asMapValues
-decl_stmt|;
-DECL|method|SynchronizedAsMap (Map<K, Collection<V>> delegate, @Nullable Object mutex)
+block|;
+DECL|method|SynchronizedAsMap (Map<K, Collection<V>> delegate, @CheckForNull Object mutex)
 name|SynchronizedAsMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -6707,12 +7416,12 @@ name|V
 argument_list|>
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -6720,21 +7429,24 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|get (Object key)
+expr|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|Collection
 argument_list|<
 name|V
 argument_list|>
 name|get
-parameter_list|(
+argument_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
-parameter_list|)
+argument_list|)
 block|{
 synchronized|synchronized
 init|(
@@ -6772,7 +7484,7 @@ argument_list|)
 return|;
 block|}
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|entrySet ()
 specifier|public
@@ -6789,7 +7501,7 @@ argument_list|>
 argument_list|>
 argument_list|>
 name|entrySet
-parameter_list|()
+argument_list|()
 block|{
 synchronized|synchronized
 init|(
@@ -6819,11 +7531,16 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|asMapEntrySet
 return|;
-block|}
-block|}
+end_return
+
+begin_function
+unit|}     }
 annotation|@
 name|Override
 DECL|method|values ()
@@ -6873,13 +7590,18 @@ name|asMapValues
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsValue (Object o)
+DECL|method|containsValue (@heckForNull Object o)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -6895,6 +7617,9 @@ name|o
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -6904,16 +7629,21 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    private
 DECL|class|SynchronizedAsMapValues
-specifier|private
 specifier|static
-class|class
+name|class
 name|SynchronizedAsMapValues
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedCollection
 argument_list|<
 name|Collection
@@ -6922,9 +7652,9 @@ name|V
 argument_list|>
 argument_list|>
 block|{
-DECL|method|SynchronizedAsMapValues (Collection<Collection<V>> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedAsMapValues (Collection<Collection<V>> delegate, @CheckForNull Object mutex)
 name|SynchronizedAsMapValues
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|Collection
@@ -6933,12 +7663,12 @@ name|V
 argument_list|>
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -6946,9 +7676,8 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|iterator ()
 specifier|public
@@ -6960,7 +7689,7 @@ name|V
 argument_list|>
 argument_list|>
 name|iterator
-parameter_list|()
+argument_list|()
 block|{
 comment|// Must be manually synchronized.
 return|return
@@ -7009,10 +7738,12 @@ argument_list|)
 return|;
 block|}
 block|}
-return|;
-block|}
+expr_stmt|;
+end_expr_stmt
+
+begin_decl_stmt
+unit|}      private
 DECL|field|serialVersionUID
-specifier|private
 specifier|static
 specifier|final
 name|long
@@ -7020,44 +7751,49 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-annotation|@
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    @
 name|GwtIncompatible
 comment|// NavigableSet
-annotation|@
+expr|@
 name|VisibleForTesting
 DECL|class|SynchronizedNavigableSet
 specifier|static
-class|class
+name|class
 name|SynchronizedNavigableSet
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedSortedSet
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|SynchronizedNavigableSet (NavigableSet<E> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedNavigableSet (NavigableSet<E> delegate, @CheckForNull Object mutex)
 name|SynchronizedNavigableSet
-parameter_list|(
+argument_list|(
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -7065,9 +7801,8 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 name|NavigableSet
@@ -7075,7 +7810,7 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -7090,16 +7825,18 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|CheckForNull
 DECL|method|ceiling (E e)
 specifier|public
 name|E
 name|ceiling
-parameter_list|(
+argument_list|(
 name|E
 name|e
-parameter_list|)
+argument_list|)
 block|{
 synchronized|synchronized
 init|(
@@ -7116,8 +7853,10 @@ name|e
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|descendingIterator ()
 specifier|public
@@ -7137,16 +7876,22 @@ argument_list|()
 return|;
 comment|// manually synchronized
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|descendingSet
-specifier|transient
 annotation|@
-name|Nullable
+name|CheckForNull
+specifier|transient
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 name|descendingSet
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingSet ()
@@ -7202,8 +7947,13 @@ name|descendingSet
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|floor (E e)
 specifier|public
 name|E
@@ -7229,6 +7979,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|headSet (E toElement, boolean inclusive)
@@ -7271,6 +8024,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|headSet (E toElement)
@@ -7294,8 +8050,13 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|higher (E e)
 specifier|public
 name|E
@@ -7321,8 +8082,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lower (E e)
 specifier|public
 name|E
@@ -7348,8 +8114,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirst ()
 specifier|public
 name|E
@@ -7370,8 +8141,13 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLast ()
 specifier|public
 name|E
@@ -7392,6 +8168,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|subSet ( E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
@@ -7444,6 +8223,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|subSet (E fromElement, E toElement)
@@ -7474,6 +8256,9 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|tailSet (E fromElement, boolean inclusive)
@@ -7516,6 +8301,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|tailSet (E fromElement)
@@ -7539,6 +8327,9 @@ literal|true
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -7548,32 +8339,37 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-annotation|@
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    @
 name|GwtIncompatible
 comment|// NavigableSet
-DECL|method|navigableSet (NavigableSet<E> navigableSet, @Nullable Object mutex)
+DECL|method|navigableSet ( NavigableSet<E> navigableSet, @CheckForNull Object mutex)
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-name|NavigableSet
-argument_list|<
-name|E
-argument_list|>
-name|navigableSet
-parameter_list|(
-name|NavigableSet
-argument_list|<
-name|E
-argument_list|>
-name|navigableSet
-parameter_list|,
-annotation|@
+expr|extends @
 name|Nullable
 name|Object
+operator|>
+name|NavigableSet
+argument_list|<
+name|E
+argument_list|>
+name|navigableSet
+argument_list|(
+name|NavigableSet
+argument_list|<
+name|E
+argument_list|>
+name|navigableSet
+argument_list|,
+annotation|@
+name|CheckForNull
+name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -7588,103 +8384,145 @@ name|mutex
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// NavigableSet
+end_comment
+
+begin_expr_stmt
 DECL|method|navigableSet (NavigableSet<E> navigableSet)
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-name|NavigableSet
-argument_list|<
-name|E
-argument_list|>
-name|navigableSet
-parameter_list|(
-name|NavigableSet
-argument_list|<
-name|E
-argument_list|>
-name|navigableSet
-parameter_list|)
-block|{
-return|return
-name|navigableSet
-argument_list|(
-name|navigableSet
-argument_list|,
-literal|null
-argument_list|)
-return|;
-block|}
-annotation|@
-name|GwtIncompatible
-comment|// NavigableMap
-DECL|method|navigableMap (NavigableMap<K, V> navigableMap)
-specifier|static
-parameter_list|<
-name|K
-parameter_list|,
-name|V
-parameter_list|>
-name|NavigableMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|navigableMap
-parameter_list|(
-name|NavigableMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|navigableMap
-parameter_list|)
-block|{
-return|return
-name|navigableMap
-argument_list|(
-name|navigableMap
-argument_list|,
-literal|null
-argument_list|)
-return|;
-block|}
-annotation|@
-name|GwtIncompatible
-comment|// NavigableMap
-DECL|method|navigableMap ( NavigableMap<K, V> navigableMap, @Nullable Object mutex)
-specifier|static
-parameter_list|<
-name|K
-parameter_list|,
-name|V
-parameter_list|>
-name|NavigableMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|navigableMap
-parameter_list|(
-name|NavigableMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|navigableMap
-parameter_list|,
-annotation|@
+expr|extends @
 name|Nullable
 name|Object
+operator|>
+name|NavigableSet
+argument_list|<
+name|E
+argument_list|>
+name|navigableSet
+argument_list|(
+name|NavigableSet
+argument_list|<
+name|E
+argument_list|>
+name|navigableSet
+argument_list|)
+block|{
+return|return
+name|navigableSet
+argument_list|(
+name|navigableSet
+argument_list|,
+literal|null
+argument_list|)
+return|;
+block|}
+end_expr_stmt
+
+begin_annotation
+annotation|@
+name|GwtIncompatible
+end_annotation
+
+begin_comment
+comment|// NavigableMap
+end_comment
+
+begin_expr_stmt
+DECL|method|navigableMap ( NavigableMap<K, V> navigableMap)
+specifier|static
+operator|<
+name|K
+expr|extends @
+name|Nullable
+name|Object
+operator|,
+name|V
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+name|NavigableMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|navigableMap
+argument_list|(
+name|NavigableMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|navigableMap
+argument_list|)
+block|{
+return|return
+name|navigableMap
+argument_list|(
+name|navigableMap
+argument_list|,
+literal|null
+argument_list|)
+return|;
+block|}
+end_expr_stmt
+
+begin_annotation
+annotation|@
+name|GwtIncompatible
+end_annotation
+
+begin_comment
+comment|// NavigableMap
+end_comment
+
+begin_expr_stmt
+DECL|method|navigableMap ( NavigableMap<K, V> navigableMap, @CheckForNull Object mutex)
+specifier|static
+operator|<
+name|K
+expr|extends @
+name|Nullable
+name|Object
+operator|,
+name|V
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+name|NavigableMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|navigableMap
+argument_list|(
+name|NavigableMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|navigableMap
+argument_list|,
+annotation|@
+name|CheckForNull
+name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -7697,28 +8535,46 @@ name|mutex
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// NavigableMap
+end_comment
+
+begin_annotation
 annotation|@
 name|VisibleForTesting
+end_annotation
+
+begin_expr_stmt
 DECL|class|SynchronizedNavigableMap
 specifier|static
-class|class
+name|class
 name|SynchronizedNavigableMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedSortedMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|NavigableMap
 argument_list|<
 name|K
@@ -7726,9 +8582,9 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SynchronizedNavigableMap (NavigableMap<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedNavigableMap (NavigableMap<K, V> delegate, @CheckForNull Object mutex)
 name|SynchronizedNavigableMap
-parameter_list|(
+argument_list|(
 name|NavigableMap
 argument_list|<
 name|K
@@ -7736,12 +8592,12 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -7749,9 +8605,8 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 name|NavigableMap
@@ -7761,7 +8616,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -7778,8 +8633,10 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|CheckForNull
 DECL|method|ceilingEntry (K key)
 specifier|public
 name|Entry
@@ -7789,10 +8646,10 @@ argument_list|,
 name|V
 argument_list|>
 name|ceilingEntry
-parameter_list|(
+argument_list|(
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 synchronized|synchronized
 init|(
@@ -7814,9 +8671,13 @@ name|mutex
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|ceilingKey (K key)
 specifier|public
 name|K
@@ -7842,16 +8703,22 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|descendingKeySet
-specifier|transient
 annotation|@
-name|Nullable
+name|CheckForNull
+specifier|transient
 name|NavigableSet
 argument_list|<
 name|K
 argument_list|>
 name|descendingKeySet
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingKeySet ()
@@ -7897,10 +8764,13 @@ name|descendingKeySet
 return|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|descendingMap
-specifier|transient
 annotation|@
-name|Nullable
+name|CheckForNull
+specifier|transient
 name|NavigableMap
 argument_list|<
 name|K
@@ -7909,6 +8779,9 @@ name|V
 argument_list|>
 name|descendingMap
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingMap ()
@@ -7954,8 +8827,13 @@ name|descendingMap
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|firstEntry ()
 specifier|public
 name|Entry
@@ -7986,8 +8864,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|floorEntry (K key)
 specifier|public
 name|Entry
@@ -8023,8 +8906,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|floorKey (K key)
 specifier|public
 name|K
@@ -8050,6 +8938,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|headMap (K toKey, boolean inclusive)
@@ -8092,6 +8983,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|headMap (K toKey)
@@ -8117,8 +9011,13 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|higherEntry (K key)
 specifier|public
 name|Entry
@@ -8154,8 +9053,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|higherKey (K key)
 specifier|public
 name|K
@@ -8181,8 +9085,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lastEntry ()
 specifier|public
 name|Entry
@@ -8213,8 +9122,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lowerEntry (K key)
 specifier|public
 name|Entry
@@ -8250,8 +9164,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lowerKey (K key)
 specifier|public
 name|K
@@ -8277,6 +9196,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -8293,16 +9215,22 @@ name|navigableKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|navigableKeySet
-specifier|transient
 annotation|@
-name|Nullable
+name|CheckForNull
+specifier|transient
 name|NavigableSet
 argument_list|<
 name|K
 argument_list|>
 name|navigableKeySet
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|navigableKeySet ()
@@ -8348,8 +9276,13 @@ name|navigableKeySet
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirstEntry ()
 specifier|public
 name|Entry
@@ -8380,8 +9313,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLastEntry ()
 specifier|public
 name|Entry
@@ -8412,6 +9350,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|subMap ( K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
@@ -8464,6 +9405,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|subMap (K fromKey, K toKey)
@@ -8496,6 +9440,9 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|tailMap (K fromKey, boolean inclusive)
@@ -8538,6 +9485,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|tailMap (K fromKey)
@@ -8563,6 +9513,9 @@ literal|true
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -8572,18 +9525,28 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-annotation|@
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    @
 name|GwtIncompatible
 comment|// works but is needed only for NavigableMap
-DECL|method|nullableSynchronizedEntry ( @ullable Entry<K, V> entry, @Nullable Object mutex)
+expr|@
+name|CheckForNull
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|nullableSynchronizedEntry ( @heckForNull Entry<K, V> entry, @CheckForNull Object mutex)
 name|Entry
 argument_list|<
 name|K
@@ -8591,9 +9554,9 @@ argument_list|,
 name|V
 argument_list|>
 name|nullableSynchronizedEntry
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Entry
 argument_list|<
 name|K
@@ -8601,12 +9564,12 @@ argument_list|,
 name|V
 argument_list|>
 name|entry
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -8619,6 +9582,9 @@ return|return
 literal|null
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|new
 name|SynchronizedEntry
@@ -8629,23 +9595,31 @@ argument_list|,
 name|mutex
 argument_list|)
 return|;
-block|}
-annotation|@
+end_return
+
+begin_expr_stmt
+unit|}    @
 name|GwtIncompatible
 comment|// works but is needed only for NavigableMap
 DECL|class|SynchronizedEntry
 specifier|private
 specifier|static
-class|class
+name|class
 name|SynchronizedEntry
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedObject
-implements|implements
+expr|implements
 name|Entry
 argument_list|<
 name|K
@@ -8653,9 +9627,9 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SynchronizedEntry (Entry<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedEntry (Entry<K, V> delegate, @CheckForNull Object mutex)
 name|SynchronizedEntry
-parameter_list|(
+argument_list|(
 name|Entry
 argument_list|<
 name|K
@@ -8663,12 +9637,12 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -8676,15 +9650,14 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// guaranteed by the constructor
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 name|Entry
@@ -8694,7 +9667,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -8711,16 +9684,18 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|equals (Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
-parameter_list|)
+argument_list|)
 block|{
 synchronized|synchronized
 init|(
@@ -8737,8 +9712,10 @@ name|obj
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|hashCode ()
 specifier|public
@@ -8760,6 +9737,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|getKey ()
@@ -8782,6 +9762,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|getValue ()
@@ -8804,6 +9787,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|setValue (V value)
@@ -8831,6 +9817,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -8840,29 +9829,34 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-DECL|method|queue (Queue<E> queue, @Nullable Object mutex)
-specifier|static
-parameter_list|<
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    static
+DECL|method|queue (Queue<E> queue, @CheckForNull Object mutex)
+operator|<
 name|E
-parameter_list|>
-name|Queue
-argument_list|<
-name|E
-argument_list|>
-name|queue
-parameter_list|(
-name|Queue
-argument_list|<
-name|E
-argument_list|>
-name|queue
-parameter_list|,
-annotation|@
+expr|extends @
 name|Nullable
 name|Object
+operator|>
+name|Queue
+argument_list|<
+name|E
+argument_list|>
+name|queue
+argument_list|(
+name|Queue
+argument_list|<
+name|E
+argument_list|>
+name|queue
+argument_list|,
+annotation|@
+name|CheckForNull
+name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -8870,9 +9864,9 @@ name|queue
 operator|instanceof
 name|SynchronizedQueue
 operator|)
-condition|?
+operator|?
 name|queue
-else|:
+operator|:
 operator|new
 name|SynchronizedQueue
 argument_list|<
@@ -8885,39 +9879,45 @@ name|mutex
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|SynchronizedQueue
 specifier|private
 specifier|static
-class|class
+name|class
 name|SynchronizedQueue
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedCollection
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|Queue
 argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|SynchronizedQueue (Queue<E> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedQueue (Queue<E> delegate, @CheckForNull Object mutex)
 name|SynchronizedQueue
-parameter_list|(
+argument_list|(
 name|Queue
 argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -8925,9 +9925,8 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 name|Queue
@@ -8935,7 +9934,7 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -8950,13 +9949,13 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|element ()
 specifier|public
 name|E
 name|element
-parameter_list|()
+argument_list|()
 block|{
 synchronized|synchronized
 init|(
@@ -8971,8 +9970,10 @@ name|element
 argument_list|()
 return|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|offer (E e)
 specifier|public
@@ -8999,8 +10000,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|peek ()
 specifier|public
 name|E
@@ -9021,8 +10027,13 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|poll ()
 specifier|public
 name|E
@@ -9043,6 +10054,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|remove ()
@@ -9065,6 +10079,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -9074,29 +10091,34 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-DECL|method|deque (Deque<E> deque, @Nullable Object mutex)
-specifier|static
-parameter_list|<
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    static
+DECL|method|deque (Deque<E> deque, @CheckForNull Object mutex)
+operator|<
 name|E
-parameter_list|>
-name|Deque
-argument_list|<
-name|E
-argument_list|>
-name|deque
-parameter_list|(
-name|Deque
-argument_list|<
-name|E
-argument_list|>
-name|deque
-parameter_list|,
-annotation|@
+expr|extends @
 name|Nullable
 name|Object
+operator|>
+name|Deque
+argument_list|<
+name|E
+argument_list|>
+name|deque
+argument_list|(
+name|Deque
+argument_list|<
+name|E
+argument_list|>
+name|deque
+argument_list|,
+annotation|@
+name|CheckForNull
+name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -9111,40 +10133,46 @@ name|mutex
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|SynchronizedDeque
 specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|SynchronizedDeque
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedQueue
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|Deque
 argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|SynchronizedDeque (Deque<E> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedDeque (Deque<E> delegate, @CheckForNull Object mutex)
 name|SynchronizedDeque
-parameter_list|(
+argument_list|(
 name|Deque
 argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -9152,9 +10180,8 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 name|Deque
@@ -9162,7 +10189,7 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -9177,16 +10204,16 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|addFirst (E e)
 specifier|public
 name|void
 name|addFirst
-parameter_list|(
+argument_list|(
 name|E
 name|e
-parameter_list|)
+argument_list|)
 block|{
 synchronized|synchronized
 init|(
@@ -9202,8 +10229,10 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|addLast (E e)
 specifier|public
@@ -9229,6 +10258,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|offerFirst (E e)
@@ -9256,6 +10288,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|offerLast (E e)
@@ -9283,6 +10318,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|removeFirst ()
@@ -9305,6 +10343,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|removeLast ()
@@ -9327,8 +10368,13 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirst ()
 specifier|public
 name|E
@@ -9349,8 +10395,13 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLast ()
 specifier|public
 name|E
@@ -9371,6 +10422,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|getFirst ()
@@ -9393,6 +10447,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|getLast ()
@@ -9415,8 +10472,13 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|peekFirst ()
 specifier|public
 name|E
@@ -9437,8 +10499,13 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|peekLast ()
 specifier|public
 name|E
@@ -9459,13 +10526,18 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|removeFirstOccurrence (Object o)
+DECL|method|removeFirstOccurrence (@heckForNull Object o)
 specifier|public
 name|boolean
 name|removeFirstOccurrence
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -9486,13 +10558,18 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|removeLastOccurrence (Object o)
+DECL|method|removeLastOccurrence (@heckForNull Object o)
 specifier|public
 name|boolean
 name|removeLastOccurrence
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -9513,6 +10590,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|push (E e)
@@ -9539,6 +10619,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|pop ()
@@ -9561,6 +10644,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingIterator ()
@@ -9586,6 +10672,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -9595,16 +10684,27 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-DECL|method|table (Table<R, C, V> table, Object mutex)
-specifier|static
-parameter_list|<
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    static
+operator|<
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|table (Table<R, C, V> table, @CheckForNull Object mutex)
 name|Table
 argument_list|<
 name|R
@@ -9614,7 +10714,7 @@ argument_list|,
 name|V
 argument_list|>
 name|table
-parameter_list|(
+argument_list|(
 name|Table
 argument_list|<
 name|R
@@ -9624,10 +10724,12 @@ argument_list|,
 name|V
 argument_list|>
 name|table
-parameter_list|,
+argument_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -9640,22 +10742,34 @@ name|mutex
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|SynchronizedTable
 specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|SynchronizedTable
-parameter_list|<
+operator|<
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SynchronizedObject
-implements|implements
+expr|implements
 name|Table
 argument_list|<
 name|R
@@ -9665,9 +10779,9 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SynchronizedTable (Table<R, C, V> delegate, Object mutex)
+DECL|method|SynchronizedTable (Table<R, C, V> delegate, @CheckForNull Object mutex)
 name|SynchronizedTable
-parameter_list|(
+argument_list|(
 name|Table
 argument_list|<
 name|R
@@ -9677,10 +10791,12 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|mutex
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -9688,14 +10804,13 @@ name|delegate
 argument_list|,
 name|mutex
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 name|Table
@@ -9707,7 +10822,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -9726,23 +10841,23 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|contains (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|contains (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|boolean
 name|contains
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|rowKey
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|columnKey
-parameter_list|)
+argument_list|)
 block|{
 synchronized|synchronized
 init|(
@@ -9761,16 +10876,18 @@ name|columnKey
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
-DECL|method|containsRow (@ullable Object rowKey)
+DECL|method|containsRow (@heckForNull Object rowKey)
 specifier|public
 name|boolean
 name|containsRow
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|)
@@ -9791,15 +10908,18 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsColumn (@ullable Object columnKey)
+DECL|method|containsColumn (@heckForNull Object columnKey)
 specifier|public
 name|boolean
 name|containsColumn
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -9820,15 +10940,18 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsValue (@ullable Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -9849,20 +10972,25 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|get (@ullable Object rowKey, @Nullable Object columnKey)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -9885,6 +11013,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -9907,6 +11038,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -9929,6 +11063,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -9950,25 +11087,24 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|put (@ullable R rowKey, @Nullable C columnKey, @Nullable V value)
+annotation|@
+name|CheckForNull
+DECL|method|put (R rowKey, C columnKey, V value)
 specifier|public
 name|V
 name|put
 parameter_list|(
-annotation|@
-name|Nullable
 name|R
 name|rowKey
 parameter_list|,
-annotation|@
-name|Nullable
 name|C
 name|columnKey
 parameter_list|,
-annotation|@
-name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -9993,6 +11129,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|putAll (Table<? extends R, ? extends C, ? extends V> table)
@@ -10032,20 +11171,25 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -10068,9 +11212,12 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|row (@ullable R rowKey)
+DECL|method|row (R rowKey)
 specifier|public
 name|Map
 argument_list|<
@@ -10080,8 +11227,6 @@ name|V
 argument_list|>
 name|row
 parameter_list|(
-annotation|@
-name|Nullable
 name|R
 name|rowKey
 parameter_list|)
@@ -10107,9 +11252,12 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|column (@ullable C columnKey)
+DECL|method|column (C columnKey)
 specifier|public
 name|Map
 argument_list|<
@@ -10119,8 +11267,6 @@ name|V
 argument_list|>
 name|column
 parameter_list|(
-annotation|@
-name|Nullable
 name|C
 name|columnKey
 parameter_list|)
@@ -10146,6 +11292,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|cellSet ()
@@ -10183,6 +11332,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|rowKeySet ()
@@ -10213,6 +11365,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|columnKeySet ()
@@ -10243,6 +11398,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -10273,6 +11431,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|rowMap ()
@@ -10373,6 +11534,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|columnMap ()
@@ -10473,6 +11637,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -10495,15 +11662,18 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -10535,9 +11705,8 @@ argument_list|)
 return|;
 block|}
 block|}
-block|}
-block|}
-end_class
+end_function
 
+unit|} }
 end_unit
 

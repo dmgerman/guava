@@ -49,6 +49,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|NullnessCasts
+operator|.
+name|uncheckedCastNullableTToT
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -150,6 +166,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -168,40 +194,51 @@ begin_comment
 comment|/**  * An accumulator that selects the "top" {@code k} elements added to it, relative to a provided  * comparator. "Top" can mean the greatest or the lowest elements, specified in the factory used to  * create the {@code TopKSelector} instance.  *  *<p>If your input data is available as a {@link Stream}, prefer passing {@link  * Comparators#least(int)} to {@link Stream#collect(java.util.stream.Collector)}. If it is available  * as an {@link Iterable} or {@link Iterator}, prefer {@link Ordering#leastOf(Iterable, int)}.  *  *<p>This uses the same efficient implementation as {@link Ordering#leastOf(Iterable, int)},  * offering expected O(n + k log k) performance (worst case O(n log k)) for n calls to {@link  * #offer} and a call to {@link #topK}, with O(k) memory. In comparison, quickselect has the same  * asymptotics but requires O(n) memory, and a {@code PriorityQueue} implementation takes O(n log  * k). In benchmarks, this implementation performs at least as well as either implementation, and  * degrades more gracefully for worst-case input.  *  *<p>The implementation does not necessarily use a<i>stable</i> sorting algorithm; when multiple  * equivalent elements are added to it, it is undefined which will come first in the output.  *  * @author Louis Wasserman  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|TopKSelector
-specifier|final
-class|class
+name|final
+name|class
 name|TopKSelector
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 block|{
 comment|/**    * Returns a {@code TopKSelector} that collects the lowest {@code k} elements added to it,    * relative to the natural ordering of the elements, and returns them via {@link #topK} in    * ascending order.    *    * @throws IllegalArgumentException if {@code k< 0} or {@code k> Integer.MAX_VALUE / 2}    */
 DECL|method|least (int k)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-extends|extends
+expr|extends
 name|Comparable
 argument_list|<
 name|?
 super|super
 name|T
 argument_list|>
-parameter_list|>
+operator|>
 name|TopKSelector
 argument_list|<
 name|T
 argument_list|>
 name|least
-parameter_list|(
+argument_list|(
 name|int
 name|k
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|least
@@ -216,21 +253,24 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@code TopKSelector} that collects the lowest {@code k} elements added to it,    * relative to the specified comparator, and returns them via {@link #topK} in ascending order.    *    * @throws IllegalArgumentException if {@code k< 0} or {@code k> Integer.MAX_VALUE / 2}    */
-DECL|method|least (int k, Comparator<? super T> comparator)
+DECL|method|least ( int k, Comparator<? super T> comparator)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|TopKSelector
 argument_list|<
 name|T
 argument_list|>
 name|least
-parameter_list|(
+argument_list|(
 name|int
 name|k
-parameter_list|,
+argument_list|,
 name|Comparator
 argument_list|<
 name|?
@@ -238,7 +278,7 @@ super|super
 name|T
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -253,7 +293,13 @@ name|k
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a {@code TopKSelector} that collects the greatest {@code k} elements added to it,    * relative to the natural ordering of the elements, and returns them via {@link #topK} in    * descending order.    *    * @throws IllegalArgumentException if {@code k< 0} or {@code k> Integer.MAX_VALUE / 2}    */
+end_comment
+
+begin_function
 DECL|method|greatest (int k)
 specifier|public
 specifier|static
@@ -289,22 +335,31 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a {@code TopKSelector} that collects the greatest {@code k} elements added to it,    * relative to the specified comparator, and returns them via {@link #topK} in descending order.    *    * @throws IllegalArgumentException if {@code k< 0} or {@code k> Integer.MAX_VALUE / 2}    */
-DECL|method|greatest (int k, Comparator<? super T> comparator)
+end_comment
+
+begin_expr_stmt
+DECL|method|greatest ( int k, Comparator<? super T> comparator)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|TopKSelector
 argument_list|<
 name|T
 argument_list|>
 name|greatest
-parameter_list|(
+argument_list|(
 name|int
 name|k
-parameter_list|,
+argument_list|,
 name|Comparator
 argument_list|<
 name|?
@@ -312,7 +367,7 @@ super|super
 name|T
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -335,12 +390,18 @@ name|k
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_decl_stmt
 DECL|field|k
 specifier|private
 specifier|final
 name|int
 name|k
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|comparator
 specifier|private
 specifier|final
@@ -352,27 +413,47 @@ name|T
 argument_list|>
 name|comparator
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/*    * We are currently considering the elements in buffer in the range [0, bufferSize) as candidates    * for the top k elements. Whenever the buffer is filled, we quickselect the top k elements to the    * range [0, k) and ignore the remaining elements.    */
+end_comment
+
+begin_decl_stmt
 DECL|field|buffer
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|T
 index|[]
 name|buffer
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|bufferSize
 specifier|private
 name|int
 name|bufferSize
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/**    * The largest of the lowest k elements we've seen so far relative to this comparator. If    * bufferSize â¥ k, then we can ignore any elements greater than this value.    */
+end_comment
+
+begin_decl_stmt
 DECL|field|threshold
-specifier|private
 annotation|@
-name|Nullable
+name|CheckForNull
+specifier|private
 name|T
 name|threshold
 decl_stmt|;
+end_decl_stmt
+
+begin_constructor
 DECL|method|TopKSelector (Comparator<? super T> comparator, int k)
 specifier|private
 name|TopKSelector
@@ -466,14 +547,20 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+end_constructor
+
+begin_comment
 comment|/**    * Adds {@code elem} as a candidate for the top {@code k} elements. This operation takes amortized    * O(1) time.    */
-DECL|method|offer (@ullable T elem)
+end_comment
+
+begin_function
+DECL|method|offer (@arametricNullness T elem)
 specifier|public
 name|void
 name|offer
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|T
 name|elem
 parameter_list|)
@@ -527,6 +614,7 @@ index|]
 operator|=
 name|elem
 expr_stmt|;
+comment|// uncheckedCastNullableTToT is safe because bufferSize> 0.
 if|if
 condition|(
 name|comparator
@@ -535,7 +623,10 @@ name|compare
 argument_list|(
 name|elem
 argument_list|,
+name|uncheckedCastNullableTToT
+argument_list|(
 name|threshold
+argument_list|)
 argument_list|)
 operator|>
 literal|0
@@ -546,6 +637,7 @@ operator|=
 name|elem
 expr_stmt|;
 block|}
+comment|// uncheckedCastNullableTToT is safe because bufferSize> 0.
 block|}
 elseif|else
 if|if
@@ -556,7 +648,10 @@ name|compare
 argument_list|(
 name|elem
 argument_list|,
+name|uncheckedCastNullableTToT
+argument_list|(
 name|threshold
+argument_list|)
 argument_list|)
 operator|<
 literal|0
@@ -586,7 +681,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Quickselects the top k elements from the 2k elements in the buffer. O(k) expected time, O(k log    * k) worst case.    */
+end_comment
+
+begin_function
 DECL|method|trim ()
 specifier|private
 name|void
@@ -746,10 +847,13 @@ name|k
 expr_stmt|;
 name|threshold
 operator|=
+name|uncheckedCastNullableTToT
+argument_list|(
 name|buffer
 index|[
 name|minThresholdPosition
 index|]
+argument_list|)
 expr_stmt|;
 for|for
 control|(
@@ -774,12 +878,18 @@ name|comparator
 operator|.
 name|compare
 argument_list|(
+name|uncheckedCastNullableTToT
+argument_list|(
 name|buffer
 index|[
 name|i
 index|]
+argument_list|)
 argument_list|,
+name|uncheckedCastNullableTToT
+argument_list|(
 name|threshold
+argument_list|)
 argument_list|)
 operator|>
 literal|0
@@ -795,7 +905,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Partitions the contents of buffer in the range [left, right] around the pivot element    * previously stored in buffer[pivotValue]. Returns the new index of the pivot element,    * pivotNewIndex, so that everything in [left, pivotNewIndex] is â¤ pivotValue and everything in    * (pivotNewIndex, right] is greater than pivotValue.    */
+end_comment
+
+begin_function
 DECL|method|partition (int left, int right, int pivotIndex)
 specifier|private
 name|int
@@ -814,10 +930,13 @@ block|{
 name|T
 name|pivotValue
 init|=
+name|uncheckedCastNullableTToT
+argument_list|(
 name|buffer
 index|[
 name|pivotIndex
 index|]
+argument_list|)
 decl_stmt|;
 name|buffer
 index|[
@@ -855,10 +974,13 @@ name|comparator
 operator|.
 name|compare
 argument_list|(
+name|uncheckedCastNullableTToT
+argument_list|(
 name|buffer
 index|[
 name|i
 index|]
+argument_list|)
 argument_list|,
 name|pivotValue
 argument_list|)
@@ -899,6 +1021,9 @@ return|return
 name|pivotNewIndex
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|swap (int i, int j)
 specifier|private
 name|void
@@ -937,6 +1062,9 @@ operator|=
 name|tmp
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|combine (TopKSelector<T> other)
 name|TopKSelector
 argument_list|<
@@ -972,6 +1100,8 @@ name|this
 operator|.
 name|offer
 argument_list|(
+name|uncheckedCastNullableTToT
+argument_list|(
 name|other
 operator|.
 name|buffer
@@ -979,13 +1109,20 @@ index|[
 name|i
 index|]
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
 return|return
 name|this
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Adds each member of {@code elements} as a candidate for the top {@code k} elements. This    * operation takes amortized linear time in the length of {@code elements}.    *    *<p>If all input data to this {@code TopKSelector} is in a single {@code Iterable}, prefer    * {@link Ordering#leastOf(Iterable, int)}, which provides a simpler API for that use case.    */
+end_comment
+
+begin_function
 DECL|method|offerAll (Iterable<? extends T> elements)
 specifier|public
 name|void
@@ -1009,7 +1146,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Adds each member of {@code elements} as a candidate for the top {@code k} elements. This    * operation takes amortized linear time in the length of {@code elements}. The iterator is    * consumed after this operation completes.    *    *<p>If all input data to this {@code TopKSelector} is in a single {@code Iterator}, prefer    * {@link Ordering#leastOf(Iterator, int)}, which provides a simpler API for that use case.    */
+end_comment
+
+begin_function
 DECL|method|offerAll (Iterator<? extends T> elements)
 specifier|public
 name|void
@@ -1042,7 +1185,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the top {@code k} elements offered to this {@code TopKSelector}, or all elements if    * fewer than {@code k} have been offered, in the order specified by the factory used to create    * this {@code TopKSelector}.    *    *<p>The returned list is an unmodifiable copy and will not be affected by further changes to    * this {@code TopKSelector}. This method returns in O(k log k) time.    */
+end_comment
+
+begin_function
 DECL|method|topK ()
 specifier|public
 name|List
@@ -1123,8 +1272,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

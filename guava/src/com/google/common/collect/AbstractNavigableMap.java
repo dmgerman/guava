@@ -108,6 +108,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -126,55 +136,67 @@ begin_comment
 comment|/**  * Skeletal implementation of {@link NavigableMap}.  *  * @author Louis Wasserman  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AbstractNavigableMap
 specifier|abstract
-class|class
+name|class
 name|AbstractNavigableMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|IteratorBasedAbstractMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|NavigableMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-block|{
-annotation|@
+block|{    @
 name|Override
-DECL|method|get (@ullable Object key)
+expr|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 specifier|abstract
-annotation|@
-name|Nullable
 name|V
 name|get
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
-parameter_list|)
-function_decl|;
-annotation|@
+argument_list|)
+block|;    @
 name|Override
+expr|@
+name|CheckForNull
 DECL|method|firstEntry ()
 specifier|public
-annotation|@
-name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -182,7 +204,7 @@ argument_list|,
 name|V
 argument_list|>
 name|firstEntry
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Iterators
@@ -196,12 +218,12 @@ literal|null
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|CheckForNull
 DECL|method|lastEntry ()
 specifier|public
-annotation|@
-name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -209,7 +231,7 @@ argument_list|,
 name|V
 argument_list|>
 name|lastEntry
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Iterators
@@ -223,12 +245,15 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirstEntry ()
 specifier|public
-annotation|@
-name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -248,12 +273,15 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLastEntry ()
 specifier|public
-annotation|@
-name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -273,8 +301,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|firstKey ()
 specifier|public
 name|K
@@ -315,8 +348,13 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|lastKey ()
 specifier|public
 name|K
@@ -357,12 +395,15 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|lowerEntry (K key)
-specifier|public
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|lowerEntry (@arametricNullness K key)
+specifier|public
 name|Entry
 argument_list|<
 name|K
@@ -371,6 +412,8 @@ name|V
 argument_list|>
 name|lowerEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -387,12 +430,15 @@ name|lastEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|floorEntry (K key)
-specifier|public
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|floorEntry (@arametricNullness K key)
+specifier|public
 name|Entry
 argument_list|<
 name|K
@@ -401,6 +447,8 @@ name|V
 argument_list|>
 name|floorEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -417,12 +465,15 @@ name|lastEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|ceilingEntry (K key)
-specifier|public
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|ceilingEntry (@arametricNullness K key)
+specifier|public
 name|Entry
 argument_list|<
 name|K
@@ -431,6 +482,8 @@ name|V
 argument_list|>
 name|ceilingEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -447,12 +500,15 @@ name|firstEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|higherEntry (K key)
-specifier|public
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|higherEntry (@arametricNullness K key)
+specifier|public
 name|Entry
 argument_list|<
 name|K
@@ -461,6 +517,8 @@ name|V
 argument_list|>
 name|higherEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -477,13 +535,20 @@ name|firstEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|lowerKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|lowerKey (@arametricNullness K key)
 specifier|public
 name|K
 name|lowerKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -500,13 +565,20 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|floorKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|floorKey (@arametricNullness K key)
 specifier|public
 name|K
 name|floorKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -523,13 +595,20 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|ceilingKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|ceilingKey (@arametricNullness K key)
 specifier|public
 name|K
 name|ceilingKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -546,13 +625,20 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|higherKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|higherKey (@arametricNullness K key)
 specifier|public
 name|K
 name|higherKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -569,6 +655,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function_decl
 DECL|method|descendingEntryIterator ()
 specifier|abstract
 name|Iterator
@@ -583,9 +672,12 @@ argument_list|>
 name|descendingEntryIterator
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subMap (K fromKey, K toKey)
+DECL|method|subMap (@arametricNullness K fromKey, @ParametricNullness K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -595,9 +687,13 @@ name|V
 argument_list|>
 name|subMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -615,9 +711,12 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headMap (K toKey)
+DECL|method|headMap (@arametricNullness K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -627,6 +726,8 @@ name|V
 argument_list|>
 name|headMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -640,9 +741,12 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMap (K fromKey)
+DECL|method|tailMap (@arametricNullness K fromKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -652,6 +756,8 @@ name|V
 argument_list|>
 name|tailMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|)
@@ -665,6 +771,9 @@ literal|true
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|navigableKeySet ()
@@ -687,6 +796,9 @@ name|this
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -703,6 +815,9 @@ name|navigableKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingKeySet ()
@@ -722,6 +837,9 @@ name|navigableKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingMap ()
@@ -741,6 +859,9 @@ name|DescendingMap
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|DescendingMap
 specifier|private
 specifier|final
@@ -795,8 +916,8 @@ argument_list|()
 return|;
 block|}
 block|}
-block|}
 end_class
 
+unit|}
 end_unit
 

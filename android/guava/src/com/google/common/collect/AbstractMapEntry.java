@@ -58,6 +58,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -66,9 +76,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -76,73 +86,91 @@ begin_comment
 comment|/**  * Implementation of the {@code equals}, {@code hashCode}, and {@code toString} methods of {@code  * Entry}.  *  * @author Jared Levy  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AbstractMapEntry
 specifier|abstract
-class|class
+name|class
 name|AbstractMapEntry
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Entry
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-block|{
-annotation|@
+block|{    @
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|getKey ()
 specifier|public
 specifier|abstract
 name|K
 name|getKey
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|getValue ()
 specifier|public
 specifier|abstract
 name|V
 name|getValue
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
-DECL|method|setValue (V value)
+expr|@
+name|ParametricNullness
+DECL|method|setValue (@arametricNullness V value)
 specifier|public
 name|V
 name|setValue
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|V
 name|value
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -205,6 +233,9 @@ return|return
 literal|false
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -257,7 +288,13 @@ argument_list|()
 operator|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Returns a string representation of the form {@code {key}={value}}. */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -276,8 +313,8 @@ name|getValue
 argument_list|()
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

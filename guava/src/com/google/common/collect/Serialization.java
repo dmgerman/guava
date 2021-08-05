@@ -92,6 +92,22 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Provides static methods for serializing collection classes.  *  *<p>This class assists the implementation of collection classes. Do not use this class to  * serialize collections that are defined elsewhere.  *  * @author Jared Levy  */
 end_comment
@@ -99,6 +115,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Serialization
 specifier|final
 class|class
@@ -129,16 +147,22 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Stores the contents of a map in an output stream, as part of serialization. It does not support    * concurrent maps whose content may change while the method is running.    *    *<p>The serialized output consists of the number of entries, first key, first value, second key,    * second value, and so on.    */
-DECL|method|writeMap (Map<K, V> map, ObjectOutputStream stream)
+DECL|method|writeMap ( Map<K, V> map, ObjectOutputStream stream)
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|void
 name|writeMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -146,10 +170,10 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|,
+argument_list|,
 name|ObjectOutputStream
 name|stream
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
@@ -203,17 +227,29 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Populates a map by reading an input stream, as part of deserialization. See {@link #writeMap}    * for the data format.    */
-DECL|method|populateMap (Map<K, V> map, ObjectInputStream stream)
+end_comment
+
+begin_expr_stmt
+DECL|method|populateMap ( Map<K, V> map, ObjectInputStream stream)
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|void
 name|populateMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -221,10 +257,10 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|,
+argument_list|,
 name|ObjectInputStream
 name|stream
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 throws|,
@@ -232,12 +268,15 @@ name|ClassNotFoundException
 block|{
 name|int
 name|size
-init|=
+operator|=
 name|stream
 operator|.
 name|readInt
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+end_expr_stmt
+
+begin_expr_stmt
 name|populateMap
 argument_list|(
 name|map
@@ -247,18 +286,30 @@ argument_list|,
 name|size
 argument_list|)
 expr_stmt|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|}
 comment|/**    * Populates a map by reading an input stream, as part of deserialization. See {@link #writeMap}    * for the data format. The size is determined by a prior call to {@link #readCount}.    */
-DECL|method|populateMap (Map<K, V> map, ObjectInputStream stream, int size)
-specifier|static
-parameter_list|<
+end_comment
+
+begin_expr_stmt
+DECL|method|populateMap ( Map<K, V> map, ObjectInputStream stream, int size)
+unit|static
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|void
 name|populateMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -266,18 +317,21 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|,
+argument_list|,
 name|ObjectInputStream
 name|stream
-parameter_list|,
+argument_list|,
 name|int
 name|size
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 throws|,
 name|ClassNotFoundException
 block|{
+end_expr_stmt
+
+begin_for
 for|for
 control|(
 name|int
@@ -337,31 +391,40 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-block|}
+end_for
+
+begin_comment
+unit|}
 comment|/**    * Stores the contents of a multiset in an output stream, as part of serialization. It does not    * support concurrent multisets whose content may change while the method is running.    *    *<p>The serialized output consists of the number of distinct elements, the first element, its    * count, the second element, its count, and so on.    */
-DECL|method|writeMultiset (Multiset<E> multiset, ObjectOutputStream stream)
-specifier|static
-parameter_list|<
+end_comment
+
+begin_expr_stmt
+DECL|method|writeMultiset ( Multiset<E> multiset, ObjectOutputStream stream)
+unit|static
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|void
 name|writeMultiset
-parameter_list|(
+argument_list|(
 name|Multiset
 argument_list|<
 name|E
 argument_list|>
 name|multiset
-parameter_list|,
+argument_list|,
 name|ObjectOutputStream
 name|stream
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
 name|int
 name|entryCount
-init|=
+operator|=
 name|multiset
 operator|.
 name|entrySet
@@ -369,7 +432,10 @@ argument_list|()
 operator|.
 name|size
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+end_expr_stmt
+
+begin_expr_stmt
 name|stream
 operator|.
 name|writeInt
@@ -377,6 +443,9 @@ argument_list|(
 name|entryCount
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_for
 for|for
 control|(
 name|Multiset
@@ -414,25 +483,34 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-block|}
+end_for
+
+begin_comment
+unit|}
 comment|/**    * Populates a multiset by reading an input stream, as part of deserialization. See {@link    * #writeMultiset} for the data format.    */
-DECL|method|populateMultiset (Multiset<E> multiset, ObjectInputStream stream)
-specifier|static
-parameter_list|<
+end_comment
+
+begin_expr_stmt
+DECL|method|populateMultiset ( Multiset<E> multiset, ObjectInputStream stream)
+unit|static
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|void
 name|populateMultiset
-parameter_list|(
+argument_list|(
 name|Multiset
 argument_list|<
 name|E
 argument_list|>
 name|multiset
-parameter_list|,
+argument_list|,
 name|ObjectInputStream
 name|stream
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 throws|,
@@ -440,12 +518,15 @@ name|ClassNotFoundException
 block|{
 name|int
 name|distinctElements
-init|=
+operator|=
 name|stream
 operator|.
 name|readInt
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+end_expr_stmt
+
+begin_expr_stmt
 name|populateMultiset
 argument_list|(
 name|multiset
@@ -455,33 +536,45 @@ argument_list|,
 name|distinctElements
 argument_list|)
 expr_stmt|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|}
 comment|/**    * Populates a multiset by reading an input stream, as part of deserialization. See {@link    * #writeMultiset} for the data format. The number of distinct elements is determined by a prior    * call to {@link #readCount}.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|populateMultiset ( Multiset<E> multiset, ObjectInputStream stream, int distinctElements)
-specifier|static
-parameter_list|<
+unit|static
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|void
 name|populateMultiset
-parameter_list|(
+argument_list|(
 name|Multiset
 argument_list|<
 name|E
 argument_list|>
 name|multiset
-parameter_list|,
+argument_list|,
 name|ObjectInputStream
 name|stream
-parameter_list|,
+argument_list|,
 name|int
 name|distinctElements
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 throws|,
 name|ClassNotFoundException
 block|{
+end_expr_stmt
+
+begin_for
 for|for
 control|(
 name|int
@@ -532,18 +625,30 @@ name|count
 argument_list|)
 expr_stmt|;
 block|}
-block|}
+end_for
+
+begin_comment
+unit|}
 comment|/**    * Stores the contents of a multimap in an output stream, as part of serialization. It does not    * support concurrent multimaps whose content may change while the method is running. The {@link    * Multimap#asMap} view determines the ordering in which data is written to the stream.    *    *<p>The serialized output consists of the number of distinct keys, and then for each distinct    * key: the key, the number of values for that key, and the key's values.    */
-DECL|method|writeMultimap (Multimap<K, V> multimap, ObjectOutputStream stream)
-specifier|static
-parameter_list|<
+end_comment
+
+begin_expr_stmt
+DECL|method|writeMultimap ( Multimap<K, V> multimap, ObjectOutputStream stream)
+unit|static
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|void
 name|writeMultimap
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|K
@@ -551,10 +656,10 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|,
+argument_list|,
 name|ObjectOutputStream
 name|stream
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
@@ -571,6 +676,9 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_for
 for|for
 control|(
 name|Map
@@ -638,18 +746,30 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
+end_for
+
+begin_comment
+unit|}
 comment|/**    * Populates a multimap by reading an input stream, as part of deserialization. See {@link    * #writeMultimap} for the data format.    */
-DECL|method|populateMultimap (Multimap<K, V> multimap, ObjectInputStream stream)
-specifier|static
-parameter_list|<
+end_comment
+
+begin_expr_stmt
+DECL|method|populateMultimap ( Multimap<K, V> multimap, ObjectInputStream stream)
+unit|static
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|void
 name|populateMultimap
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|K
@@ -657,10 +777,10 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|,
+argument_list|,
 name|ObjectInputStream
 name|stream
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 throws|,
@@ -668,12 +788,15 @@ name|ClassNotFoundException
 block|{
 name|int
 name|distinctKeys
-init|=
+operator|=
 name|stream
 operator|.
 name|readInt
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+end_expr_stmt
+
+begin_expr_stmt
 name|populateMultimap
 argument_list|(
 name|multimap
@@ -683,18 +806,30 @@ argument_list|,
 name|distinctKeys
 argument_list|)
 expr_stmt|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|}
 comment|/**    * Populates a multimap by reading an input stream, as part of deserialization. See {@link    * #writeMultimap} for the data format. The number of distinct keys is determined by a prior call    * to {@link #readCount}.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|populateMultimap ( Multimap<K, V> multimap, ObjectInputStream stream, int distinctKeys)
-specifier|static
-parameter_list|<
+unit|static
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|void
 name|populateMultimap
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|K
@@ -702,18 +837,21 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|,
+argument_list|,
 name|ObjectInputStream
 name|stream
-parameter_list|,
+argument_list|,
 name|int
 name|distinctKeys
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 throws|,
 name|ClassNotFoundException
 block|{
+end_expr_stmt
+
+begin_for
 for|for
 control|(
 name|int
@@ -808,10 +946,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
+end_for
+
+begin_comment
+unit|}
 comment|// Secret sauce for setting final fields; don't make it public.
+end_comment
+
+begin_function
 DECL|method|getFieldSetter (final Class<T> clazz, String fieldName)
-specifier|static
+unit|static
 parameter_list|<
 name|T
 parameter_list|>
@@ -871,7 +1015,13 @@ throw|;
 comment|// programmer error
 block|}
 block|}
+end_function
+
+begin_comment
 comment|// Secret sauce for setting final fields; don't make it public.
+end_comment
+
+begin_class
 DECL|class|FieldSetter
 specifier|static
 specifier|final
@@ -986,8 +1136,8 @@ throw|;
 block|}
 block|}
 block|}
-block|}
 end_class
 
+unit|}
 end_unit
 

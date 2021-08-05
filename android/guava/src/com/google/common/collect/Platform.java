@@ -72,6 +72,22 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Methods factored out so that they can be emulated differently in GWT.  *  * @author Hayward Chan  */
 end_comment
@@ -84,19 +100,27 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Platform
 specifier|final
 class|class
 name|Platform
 block|{
 comment|/** Returns the platform preferred implementation of a map based on a hash table. */
-DECL|method|newHashMapWithExpectedSize (int expectedSize)
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|newHashMapWithExpectedSize (int expectedSize)
 name|Map
 argument_list|<
 name|K
@@ -104,10 +128,10 @@ argument_list|,
 name|V
 argument_list|>
 name|newHashMapWithExpectedSize
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|CompactHashMap
@@ -119,13 +143,19 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the platform preferred implementation of an insertion ordered map based on a hash    * table.    */
-DECL|method|newLinkedHashMapWithExpectedSize (int expectedSize)
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|newLinkedHashMapWithExpectedSize (int expectedSize)
 name|Map
 argument_list|<
 name|K
@@ -133,10 +163,10 @@ argument_list|,
 name|V
 argument_list|>
 name|newLinkedHashMapWithExpectedSize
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|CompactLinkedHashMap
@@ -150,18 +180,21 @@ block|}
 comment|/** Returns the platform preferred implementation of a set based on a hash table. */
 DECL|method|newHashSetWithExpectedSize (int expectedSize)
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|newHashSetWithExpectedSize
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|CompactHashSet
@@ -175,18 +208,21 @@ block|}
 comment|/**    * Returns the platform preferred implementation of an insertion ordered set based on a hash    * table.    */
 DECL|method|newLinkedHashSetWithExpectedSize (int expectedSize)
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|newLinkedHashSetWithExpectedSize
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|CompactLinkedHashSet
@@ -198,13 +234,19 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the platform preferred map implementation that preserves insertion order when used only    * for insertions.    */
-DECL|method|preservesInsertionOrderOnPutsMap ()
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|preservesInsertionOrderOnPutsMap ()
 name|Map
 argument_list|<
 name|K
@@ -212,7 +254,7 @@ argument_list|,
 name|V
 argument_list|>
 name|preservesInsertionOrderOnPutsMap
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|CompactHashMap
@@ -224,15 +266,18 @@ block|}
 comment|/**    * Returns the platform preferred set implementation that preserves insertion order when used only    * for insertions.    */
 DECL|method|preservesInsertionOrderOnAddsSet ()
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|preservesInsertionOrderOnAddsSet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|CompactHashSet
@@ -242,29 +287,33 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a new array of the given length with the same type as a reference array.    *    * @param reference any array of the desired type    * @param length the length of the new array    */
+comment|/*    * The new array contains nulls, even if the old array did not. If we wanted to be accurate, we    * would declare a return type of `@Nullable T[]`. However, we've decided not to think too hard    * about arrays for now, as they're a mess. (We previously discussed this in the review of    * ObjectArrays, which is the main caller of this method.)    */
 DECL|method|newArray (T[] reference, int length)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|newArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|reference
-parameter_list|,
+argument_list|,
 name|int
 name|length
-parameter_list|)
+argument_list|)
 block|{
 name|Class
 argument_list|<
 name|?
 argument_list|>
 name|type
-init|=
+operator|=
 name|reference
 operator|.
 name|getClass
@@ -272,10 +321,10 @@ argument_list|()
 operator|.
 name|getComponentType
 argument_list|()
-decl_stmt|;
+block|;
 comment|// the cast is safe because
 comment|// result.getClass() == reference.getClass().getComponentType()
-annotation|@
+block|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -283,7 +332,7 @@ argument_list|)
 name|T
 index|[]
 name|result
-init|=
+operator|=
 operator|(
 name|T
 index|[]
@@ -296,35 +345,44 @@ name|type
 argument_list|,
 name|length
 argument_list|)
-decl_stmt|;
+block|;
 return|return
 name|result
 return|;
 block|}
 comment|/** Equivalent to Arrays.copyOfRange(source, from, to, arrayOfType.getClass()). */
+comment|/*    * Arrays are a mess from a nullness perspective, and Class instances for object-array types are    * even worse. For now, we just suppress and move on with our lives.    *    * - https://github.com/jspecify/jspecify/issues/65    *    * - https://github.com/jspecify/jdk/commit/71d826792b8c7ef95d492c50a274deab938f2552    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
 DECL|method|copy (Object[] source, int from, int to, T[] arrayOfType)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|copy
-parameter_list|(
+argument_list|(
 name|Object
 index|[]
 name|source
-parameter_list|,
+argument_list|,
 name|int
 name|from
-parameter_list|,
+argument_list|,
 name|int
 name|to
-parameter_list|,
+argument_list|,
 name|T
 index|[]
 name|arrayOfType
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Arrays
@@ -340,8 +398,8 @@ argument_list|,
 operator|(
 name|Class
 operator|<
-condition|?
-then|extends
+operator|?
+expr|extends
 name|T
 index|[]
 operator|>

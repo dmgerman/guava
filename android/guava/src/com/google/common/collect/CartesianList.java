@@ -102,17 +102,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -123,6 +117,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|CartesianList
 specifier|final
 class|class
@@ -429,11 +425,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|indexOf (Object o)
+DECL|method|indexOf (@heckForNull Object o)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -566,11 +564,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|lastIndexOf (Object o)
+DECL|method|lastIndexOf (@heckForNull Object o)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -818,13 +818,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)

@@ -113,6 +113,8 @@ name|Target
 argument_list|(
 name|FIELD
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|annotation|GwtTransient
 annotation_defn|@interface
 name|GwtTransient

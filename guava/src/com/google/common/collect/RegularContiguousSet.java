@@ -81,6 +81,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -130,17 +142,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -162,6 +168,8 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// allow ungenerified Comparable types
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|RegularContiguousSet
 specifier|final
 class|class
@@ -416,14 +424,17 @@ name|GwtIncompatible
 comment|// not used by GWT emulation
 annotation|@
 name|Override
-DECL|method|indexOf (Object target)
+DECL|method|indexOf (@heckForNull Object target)
 name|int
 name|indexOf
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|target
 parameter_list|)
 block|{
+comment|// requireNonNull is safe because of the contains check.
 return|return
 name|contains
 argument_list|(
@@ -443,7 +454,10 @@ argument_list|,
 operator|(
 name|C
 operator|)
+name|requireNonNull
+argument_list|(
 name|target
+argument_list|)
 argument_list|)
 else|:
 operator|-
@@ -481,6 +495,8 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|C
 name|computeNext
@@ -544,6 +560,8 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|C
 name|computeNext
@@ -573,7 +591,7 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|equalsOrThrow (Comparable<?> left, @Nullable Comparable<?> right)
+DECL|method|equalsOrThrow (Comparable<?> left, @CheckForNull Comparable<?> right)
 specifier|private
 specifier|static
 name|boolean
@@ -586,7 +604,7 @@ argument_list|>
 name|left
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Comparable
 argument_list|<
 name|?
@@ -630,7 +648,10 @@ name|C
 name|first
 parameter_list|()
 block|{
+comment|// requireNonNull is safe because we checked the range is not empty in ContiguousSet.create.
 return|return
+name|requireNonNull
+argument_list|(
 name|range
 operator|.
 name|lowerBound
@@ -638,6 +659,7 @@ operator|.
 name|leastValueAbove
 argument_list|(
 name|domain
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -649,7 +671,10 @@ name|C
 name|last
 parameter_list|()
 block|{
+comment|// requireNonNull is safe because we checked the range is not empty in ContiguousSet.create.
 return|return
+name|requireNonNull
+argument_list|(
 name|range
 operator|.
 name|upperBound
@@ -657,6 +682,7 @@ operator|.
 name|greatestValueBelow
 argument_list|(
 name|domain
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -788,13 +814,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -1071,13 +1097,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)

@@ -440,9 +440,16 @@ name|GwtIncompatible
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"GuardedBy"
-argument_list|)
+block|,
 comment|// TODO(b/35466881): Fix or suppress.
+literal|"nullness"
+block|,
+comment|// too much trouble for the payoff
+block|}
+argument_list|)
+comment|// TODO(cpovirk): Annotate for nullness.
 DECL|class|MapMakerInternalMap
 class|class
 name|MapMakerInternalMap
