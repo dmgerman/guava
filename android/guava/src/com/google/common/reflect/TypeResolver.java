@@ -2502,7 +2502,7 @@ name|upperBounds
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// Since this is an artifically generated type variable, we don't bother checking
+comment|// Since this is an artificially generated type variable, we don't bother checking
 comment|// subtyping between declared type bound and actual type bound. So it's possible that we
 comment|// may generate something like<capture#1-of ? extends Foo&SubFoo>.
 comment|// Checking subtype between declared and actual type bounds
