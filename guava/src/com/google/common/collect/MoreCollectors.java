@@ -186,7 +186,7 @@ operator|.
 name|UNORDERED
 argument_list|)
 decl_stmt|;
-comment|/**    * A collector that converts a stream of zero or one elements to an {@code Optional}. The returned    * collector throws an {@code IllegalArgumentException} if the stream consists of two or more    * elements, and a {@code NullPointerException} if the stream consists of exactly one element,    * which is null.    */
+comment|/**    * A collector that converts a stream of zero or one elements to an {@code Optional}.    *    * @throws IllegalArgumentException if the stream consists of two or more elements.    * @throws NullPointerException if any element in the stream is {@code null}.    * @return {@code Optional.of(onlyElement)} if the stream has exactly one element (must not be    *     {@code null}) and returns {@code Optional.empty()} if it has none.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

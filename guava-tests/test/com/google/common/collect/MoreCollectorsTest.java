@@ -263,6 +263,44 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|testToOptionalMultipleWithNull ()
+specifier|public
+name|void
+name|testToOptionalMultipleWithNull
+parameter_list|()
+block|{
+try|try
+block|{
+name|Stream
+operator|.
+name|of
+argument_list|(
+literal|1
+argument_list|,
+literal|null
+argument_list|)
+operator|.
+name|collect
+argument_list|(
+name|MoreCollectors
+operator|.
+name|toOptional
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"Expected NullPointerException"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NullPointerException
+name|expected
+parameter_list|)
+block|{     }
+block|}
 DECL|method|testToOptionalMany ()
 specifier|public
 name|void
