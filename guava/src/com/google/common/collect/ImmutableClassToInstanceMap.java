@@ -793,6 +793,12 @@ literal|"Always throws UnsupportedOperationException"
 argument_list|)
 annotation|@
 name|CheckForNull
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// TODO(cpovirk): Remove after annotating supertype.
 DECL|method|putInstance (Class<T> type, T value)
 specifier|public
 parameter_list|<
