@@ -390,7 +390,7 @@ name|bytes
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the {@link InetAddress} having the given string representation.    *    *<p>This deliberately avoids all nameservice lookups (e.g. no DNS).    *    *<p>Anything after a {@code %} in an IPv6 address is ignored (assumed to be a Scope ID).    *    * @param ipString {@code String} containing an IPv4 or IPv6 string literal, e.g. {@code    *     "192.168.0.1"} or {@code "2001:db8::1"}    * @return {@link InetAddress} representing the argument    * @throws IllegalArgumentException if the argument is not a valid IP string literal    */
+comment|/**    * Returns the {@link InetAddress} having the given string representation.    *    *<p>This deliberately avoids all nameservice lookups (e.g. no DNS).    *    *<p>Anything after a {@code %} in an IPv6 address is ignored (assumed to be a Scope ID).    *    *<p>This method accepts non-ASCII digits, for example {@code "ï¼ï¼ï¼.ï¼ï¼ï¼.ï¼.ï¼"} (those are fullwidth    * characters). That is consistent with {@link InetAddress}, but not with various RFCs. If you    * want to accept ASCII digits only, you can use something like {@code    * CharMatcher.ascii().matchesAllOf(ipString)}.    *    * @param ipString {@code String} containing an IPv4 or IPv6 string literal, e.g. {@code    *     "192.168.0.1"} or {@code "2001:db8::1"}    * @return {@link InetAddress} representing the argument    * @throws IllegalArgumentException if the argument is not a valid IP string literal    */
 DECL|method|forString (String ipString)
 specifier|public
 specifier|static
@@ -434,7 +434,7 @@ name|addr
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if the supplied string is a valid IP string literal, {@code false}    * otherwise.    *    * @param ipString {@code String} to evaluated as an IP string literal    * @return {@code true} if the argument is a valid IP string literal    */
+comment|/**    * Returns {@code true} if the supplied string is a valid IP string literal, {@code false}    * otherwise.    *    *<p>This method accepts non-ASCII digits, for example {@code "ï¼ï¼ï¼.ï¼ï¼ï¼.ï¼.ï¼"} (those are fullwidth    * characters). That is consistent with {@link InetAddress}, but not with various RFCs. If you    * want to accept ASCII digits only, you can use something like {@code    * CharMatcher.ascii().matchesAllOf(ipString)}.    *    * @param ipString {@code String} to evaluated as an IP string literal    * @return {@code true} if the argument is a valid IP string literal    */
 DECL|method|isInetAddress (String ipString)
 specifier|public
 specifier|static
@@ -2045,7 +2045,7 @@ name|ip
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an InetAddress representing the literal IPv4 or IPv6 host portion of a URL, encoded in    * the format specified by RFC 3986 section 3.2.2.    *    *<p>This function is similar to {@link InetAddresses#forString(String)}, however, it requires    * that IPv6 addresses are surrounded by square brackets.    *    *<p>This function is the inverse of {@link InetAddresses#toUriString(java.net.InetAddress)}.    *    * @param hostAddr A RFC 3986 section 3.2.2 encoded IPv4 or IPv6 address    * @return an InetAddress representing the address in {@code hostAddr}    * @throws IllegalArgumentException if {@code hostAddr} is not a valid IPv4 address, or IPv6    *     address surrounded by square brackets    */
+comment|/**    * Returns an InetAddress representing the literal IPv4 or IPv6 host portion of a URL, encoded in    * the format specified by RFC 3986 section 3.2.2.    *    *<p>This method is similar to {@link InetAddresses#forString(String)}, however, it requires that    * IPv6 addresses are surrounded by square brackets.    *    *<p>This method is the inverse of {@link InetAddresses#toUriString(java.net.InetAddress)}.    *    *<p>This method accepts non-ASCII digits, for example {@code "ï¼ï¼ï¼.ï¼ï¼ï¼.ï¼.ï¼"} (those are fullwidth    * characters). That is consistent with {@link InetAddress}, but not with various RFCs. If you    * want to accept ASCII digits only, you can use something like {@code    * CharMatcher.ascii().matchesAllOf(ipString)}.    *    * @param hostAddr A RFC 3986 section 3.2.2 encoded IPv4 or IPv6 address    * @return an InetAddress representing the address in {@code hostAddr}    * @throws IllegalArgumentException if {@code hostAddr} is not a valid IPv4 address, or IPv6    *     address surrounded by square brackets    */
 DECL|method|forUriString (String hostAddr)
 specifier|public
 specifier|static
@@ -2191,7 +2191,7 @@ name|addr
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if the supplied string is a valid URI IP string literal, {@code false}    * otherwise.    *    * @param ipString {@code String} to evaluated as an IP URI host string literal    * @return {@code true} if the argument is a valid IP URI host    */
+comment|/**    * Returns {@code true} if the supplied string is a valid URI IP string literal, {@code false}    * otherwise.    *    *<p>This method accepts non-ASCII digits, for example {@code "ï¼ï¼ï¼.ï¼ï¼ï¼.ï¼.ï¼"} (those are fullwidth    * characters). That is consistent with {@link InetAddress}, but not with various RFCs. If you    * want to accept ASCII digits only, you can use something like {@code    * CharMatcher.ascii().matchesAllOf(ipString)}.    *    * @param ipString {@code String} to evaluated as an IP URI host string literal    * @return {@code true} if the argument is a valid IP URI host    */
 DECL|method|isUriInetAddress (String ipString)
 specifier|public
 specifier|static
@@ -3077,7 +3077,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/**    * Evaluates whether the argument is an "IPv4 mapped" IPv6 address.    *    *<p>An "IPv4 mapped" address is anything in the range ::ffff:0:0/96 (sometimes written as    * ::ffff:0.0.0.0/96), with the last 32 bits interpreted as an IPv4 address.    *    *<p>For more on IPv4 mapped addresses see section 2.5.5.2 of<a target="_parent"    * href="http://tools.ietf.org/html/rfc4291#section-2.5.5.2">RFC 4291</a>.    *    *<p>Note: This method takes a {@code String} argument because {@link InetAddress} automatically    * collapses mapped addresses to IPv4. (It is actually possible to avoid this using one of the    * obscure {@link Inet6Address} methods, but it would be unwise to depend on such a    * poorly-documented feature.)    *    * @param ipString {@code String} to be examined for embedded IPv4-mapped IPv6 address format    * @return {@code true} if the argument is a valid "mapped" address    * @since 10.0    */
+comment|/**    * Evaluates whether the argument is an "IPv4 mapped" IPv6 address.    *    *<p>An "IPv4 mapped" address is anything in the range ::ffff:0:0/96 (sometimes written as    * ::ffff:0.0.0.0/96), with the last 32 bits interpreted as an IPv4 address.    *    *<p>For more on IPv4 mapped addresses see section 2.5.5.2 of<a target="_parent"    * href="http://tools.ietf.org/html/rfc4291#section-2.5.5.2">RFC 4291</a>.    *    *<p>Note: This method takes a {@code String} argument because {@link InetAddress} automatically    * collapses mapped addresses to IPv4. (It is actually possible to avoid this using one of the    * obscure {@link Inet6Address} methods, but it would be unwise to depend on such a    * poorly-documented feature.)    *    *<p>This method accepts non-ASCII digits. That is consistent with {@link InetAddress}, but not    * with various RFCs. If you want to accept ASCII digits only, you can use something like {@code    * CharMatcher.ascii().matchesAllOf(ipString)}.    *    * @param ipString {@code String} to be examined for embedded IPv4-mapped IPv6 address format    * @return {@code true} if the argument is a valid "mapped" address    * @since 10.0    */
 DECL|method|isMappedIPv4Address (String ipString)
 specifier|public
 specifier|static
@@ -3181,7 +3181,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Coerces an IPv6 address into an IPv4 address.    *    *<p>HACK: As long as applications continue to use IPv4 addresses for indexing into tables,    * accounting, et cetera, it may be necessary to<b>coerce</b> IPv6 addresses into IPv4 addresses.    * This function does so by hashing 64 bits of the IPv6 address into {@code 224.0.0.0/3} (64 bits    * into 29 bits):    *    *<ul>    *<li>If the IPv6 address contains an embedded IPv4 address, the function hashes that.    *<li>Otherwise, it hashes the upper 64 bits of the IPv6 address.    *</ul>    *    *<p>A "coerced" IPv4 address is equivalent to itself.    *    *<p>NOTE: This function is failsafe for security purposes: ALL IPv6 addresses (except localhost    * (::1)) are hashed to avoid the security risk associated with extracting an embedded IPv4    * address that might permit elevated privileges.    *    * @param ip {@link InetAddress} to "coerce"    * @return {@link Inet4Address} represented "coerced" address    * @since 7.0    */
+comment|/**    * Coerces an IPv6 address into an IPv4 address.    *    *<p>HACK: As long as applications continue to use IPv4 addresses for indexing into tables,    * accounting, et cetera, it may be necessary to<b>coerce</b> IPv6 addresses into IPv4 addresses.    * This method does so by hashing 64 bits of the IPv6 address into {@code 224.0.0.0/3} (64 bits    * into 29 bits):    *    *<ul>    *<li>If the IPv6 address contains an embedded IPv4 address, the function hashes that.    *<li>Otherwise, it hashes the upper 64 bits of the IPv6 address.    *</ul>    *    *<p>A "coerced" IPv4 address is equivalent to itself.    *    *<p>NOTE: This method is failsafe for security purposes: ALL IPv6 addresses (except localhost    * (::1)) are hashed to avoid the security risk associated with extracting an embedded IPv4    * address that might permit elevated privileges.    *    * @param ip {@link InetAddress} to "coerce"    * @return {@link Inet4Address} represented "coerced" address    * @since 7.0    */
 DECL|method|getCoercedIPv4Address (InetAddress ip)
 specifier|public
 specifier|static

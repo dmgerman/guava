@@ -102,6 +102,20 @@ name|common
 operator|.
 name|base
 operator|.
+name|CharMatcher
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Objects
 import|;
 end_import
@@ -562,6 +576,16 @@ operator|.
 name|startsWith
 argument_list|(
 literal|"+"
+argument_list|)
+operator|&&
+name|CharMatcher
+operator|.
+name|ascii
+argument_list|()
+operator|.
+name|matchesAllOf
+argument_list|(
+name|portString
 argument_list|)
 argument_list|,
 literal|"Unparseable port number: %s"
