@@ -254,7 +254,8 @@ literal|true
 argument_list|)
 annotation|@
 name|Immutable
-comment|// TODO(b/147136275): After adding @CheckForNull below, add @ElementTypesAreNonnullByDefault.
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|InternetDomainName
 specifier|public
 specifier|final
@@ -1003,12 +1004,8 @@ name|NO_SUFFIX_FOUND
 return|;
 block|}
 comment|/**    * Returns the {@linkplain #isPublicSuffix() public suffix} portion of the domain name, or {@code    * null} if no public suffix is present.    *    * @since 6.0    */
-comment|// TODO(b/147136275): After updating callers, add @CheckForNull, and remove @SuppressWarnings.
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"nullness"
-argument_list|)
+name|CheckForNull
 DECL|method|publicSuffix ()
 specifier|public
 name|InternetDomainName
@@ -1116,12 +1113,8 @@ name|NO_SUFFIX_FOUND
 return|;
 block|}
 comment|/**    * Returns the {@linkplain #isRegistrySuffix() registry suffix} portion of the domain name, or    * {@code null} if no registry suffix is present.    *    * @since 23.3    */
-comment|// TODO(b/147136275): After updating callers, add @CheckForNull, and remove @SuppressWarnings.
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"nullness"
-argument_list|)
+name|CheckForNull
 DECL|method|registrySuffix ()
 specifier|public
 name|InternetDomainName
