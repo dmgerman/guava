@@ -257,6 +257,12 @@ comment|/** Emulation for AbstractFuture in GWT. */
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// TODO(b/147136275): Remove once our checker understands& and |.
 DECL|class|AbstractFuture
 specifier|public
 specifier|abstract

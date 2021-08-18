@@ -446,15 +446,18 @@ begin_comment
 comment|/**  * An abstract implementation of {@link ListenableFuture}, intended for advanced users only. More  * common ways to create a {@code ListenableFuture} include instantiating a {@link SettableFuture},  * submitting a task to a {@link ListeningExecutorService}, and deriving a {@code Future} from an  * existing one, typically using methods like {@link Futures#transform(ListenableFuture,  * com.google.common.base.Function, java.util.concurrent.Executor) Futures.transform} and {@link  * Futures#catching(ListenableFuture, Class, com.google.common.base.Function,  * java.util.concurrent.Executor) Futures.catching}.  *  *<p>This class implements all methods in {@code ListenableFuture}. Subclasses should provide a way  * to set the result of the computation through the protected methods {@link #set(Object)}, {@link  * #setFuture(ListenableFuture)} and {@link #setException(Throwable)}. Subclasses may also override  * {@link #afterDone()}, which will be invoked automatically when the future completes. Subclasses  * should rarely override other methods.  *  * @author Sven Mawson  * @author Luke Sandberg  * @since 1.0  */
 end_comment
 
-begin_comment
-comment|// we use non-short circuiting comparisons intentionally
-end_comment
-
 begin_annotation
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"ShortCircuitBoolean"
+block|,
+comment|// we use non-short circuiting comparisons intentionally
+literal|"nullness"
+block|,
+comment|// TODO(b/147136275): Remove once our checker understands& and |.
+block|}
 argument_list|)
 end_annotation
 

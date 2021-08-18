@@ -248,6 +248,18 @@ annotation|@
 name|ElementTypesAreNonnullByDefault
 end_annotation
 
+begin_annotation
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+end_annotation
+
+begin_comment
+comment|// TODO(b/147136275): Remove once our checker understands& and |.
+end_comment
+
 begin_expr_stmt
 DECL|class|AbstractCatchingFuture
 specifier|abstract
