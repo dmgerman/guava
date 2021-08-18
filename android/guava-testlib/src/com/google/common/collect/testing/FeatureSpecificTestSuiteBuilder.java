@@ -386,7 +386,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|getSetUp ()
-specifier|protected
+specifier|public
 name|Runnable
 name|getSetUp
 parameter_list|()
@@ -416,7 +416,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|getTearDown ()
-specifier|protected
+specifier|public
 name|Runnable
 name|getTearDown
 parameter_list|()
@@ -428,6 +428,7 @@ block|}
 comment|// Features
 DECL|field|features
 specifier|private
+specifier|final
 name|Set
 argument_list|<
 name|Feature
@@ -592,6 +593,7 @@ block|}
 comment|// Test suppression
 DECL|field|suppressedTests
 specifier|private
+specifier|final
 name|Set
 argument_list|<
 name|Method
