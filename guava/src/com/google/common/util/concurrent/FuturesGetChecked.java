@@ -717,9 +717,6 @@ name|getBestValidator
 argument_list|()
 decl_stmt|;
 annotation|@
-name|IgnoreJRERequirement
-comment|// getChecked falls back to another implementation if necessary
-annotation|@
 name|J2ObjCIncompatible
 comment|// ClassValue
 DECL|enum|ClassValueValidator

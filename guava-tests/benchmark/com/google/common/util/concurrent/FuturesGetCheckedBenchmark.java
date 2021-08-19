@@ -448,7 +448,7 @@ argument_list|(
 name|classValueValidator
 argument_list|()
 argument_list|)
-block|;
+block|,     ;
 DECL|field|validator
 specifier|final
 name|GetCheckedTypeValidator

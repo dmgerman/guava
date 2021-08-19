@@ -118,24 +118,6 @@ name|concurrent
 operator|.
 name|FuturesGetChecked
 operator|.
-name|classValueValidator
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|FuturesGetChecked
-operator|.
 name|getChecked
 import|;
 end_import
@@ -440,15 +422,7 @@ argument_list|(
 name|weakSetValidator
 argument_list|()
 argument_list|)
-block|,
-DECL|enumConstant|CLASS_VALUE
-DECL|enumConstant|classValueValidator
-name|CLASS_VALUE
-argument_list|(
-name|classValueValidator
-argument_list|()
-argument_list|)
-block|;
+block|,     ;
 DECL|field|validator
 specifier|final
 name|GetCheckedTypeValidator
