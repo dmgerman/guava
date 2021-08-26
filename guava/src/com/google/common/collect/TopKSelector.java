@@ -834,6 +834,8 @@ argument_list|,
 name|left
 argument_list|,
 name|right
+operator|+
+literal|1
 argument_list|,
 name|comparator
 argument_list|)
