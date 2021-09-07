@@ -118,6 +118,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|InlineMeValidationDisabled
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -608,6 +622,18 @@ block|}
 comment|/**    * If a value is present in {@code optional}, returns a stream containing only that element,    * otherwise returns an empty stream.    *    *<p><b>Java 9 users:</b> use {@code optional.stream()} instead.    */
 annotation|@
 name|Beta
+annotation|@
+name|InlineMe
+argument_list|(
+name|replacement
+operator|=
+literal|"optional.stream()"
+argument_list|)
+annotation|@
+name|InlineMeValidationDisabled
+argument_list|(
+literal|"Java 9+ API only"
+argument_list|)
 DECL|method|stream (java.util.Optional<T> optional)
 specifier|public
 specifier|static
@@ -656,6 +682,18 @@ block|}
 comment|/**    * If a value is present in {@code optional}, returns a stream containing only that element,    * otherwise returns an empty stream.    *    *<p><b>Java 9 users:</b> use {@code optional.stream()} instead.    */
 annotation|@
 name|Beta
+annotation|@
+name|InlineMe
+argument_list|(
+name|replacement
+operator|=
+literal|"optional.stream()"
+argument_list|)
+annotation|@
+name|InlineMeValidationDisabled
+argument_list|(
+literal|"Java 9+ API only"
+argument_list|)
 DECL|method|stream (OptionalInt optional)
 specifier|public
 specifier|static
@@ -691,6 +729,18 @@ block|}
 comment|/**    * If a value is present in {@code optional}, returns a stream containing only that element,    * otherwise returns an empty stream.    *    *<p><b>Java 9 users:</b> use {@code optional.stream()} instead.    */
 annotation|@
 name|Beta
+annotation|@
+name|InlineMe
+argument_list|(
+name|replacement
+operator|=
+literal|"optional.stream()"
+argument_list|)
+annotation|@
+name|InlineMeValidationDisabled
+argument_list|(
+literal|"Java 9+ API only"
+argument_list|)
 DECL|method|stream (OptionalLong optional)
 specifier|public
 specifier|static
@@ -726,6 +776,18 @@ block|}
 comment|/**    * If a value is present in {@code optional}, returns a stream containing only that element,    * otherwise returns an empty stream.    *    *<p><b>Java 9 users:</b> use {@code optional.stream()} instead.    */
 annotation|@
 name|Beta
+annotation|@
+name|InlineMe
+argument_list|(
+name|replacement
+operator|=
+literal|"optional.stream()"
+argument_list|)
+annotation|@
+name|InlineMeValidationDisabled
+argument_list|(
+literal|"Java 9+ API only"
+argument_list|)
 DECL|method|stream (OptionalDouble optional)
 specifier|public
 specifier|static
