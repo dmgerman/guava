@@ -123,6 +123,16 @@ name|murmur3_32
 argument_list|()
 argument_list|)
 block|,
+DECL|enumConstant|MURMUR3_32_FIXED
+DECL|enumConstant|Hashing.murmur3_32_fixed
+name|MURMUR3_32_FIXED
+argument_list|(
+name|Hashing
+operator|.
+name|murmur3_32_fixed
+argument_list|()
+argument_list|)
+block|,
 DECL|enumConstant|SHA1
 DECL|enumConstant|Hashing.sha1
 name|SHA1

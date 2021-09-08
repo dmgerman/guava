@@ -236,8 +236,28 @@ operator|new
 name|Murmur3_32HashFunction
 argument_list|(
 literal|0
+argument_list|,
+comment|/* supplementaryPlaneFix= */
+literal|false
 argument_list|)
 decl_stmt|;
+DECL|field|MURMUR3_32_FIXED
+specifier|static
+specifier|final
+name|HashFunction
+name|MURMUR3_32_FIXED
+init|=
+operator|new
+name|Murmur3_32HashFunction
+argument_list|(
+literal|0
+argument_list|,
+comment|/* supplementaryPlaneFix= */
+literal|true
+argument_list|)
+decl_stmt|;
+comment|// We can include the non-BMP fix here because Hashing.goodFastHash stresses that the hash is a
+comment|// temporary-use one. Therefore it shouldn't be persisted.
 DECL|field|GOOD_FAST_HASH_32
 specifier|static
 specifier|final
@@ -250,6 +270,9 @@ argument_list|(
 name|Hashing
 operator|.
 name|GOOD_FAST_HASH_SEED
+argument_list|,
+comment|/* supplementaryPlaneFix= */
+literal|true
 argument_list|)
 decl_stmt|;
 DECL|field|CHUNK_SIZE
@@ -285,11 +308,20 @@ specifier|final
 name|int
 name|seed
 decl_stmt|;
-DECL|method|Murmur3_32HashFunction (int seed)
+DECL|field|supplementaryPlaneFix
+specifier|private
+specifier|final
+name|boolean
+name|supplementaryPlaneFix
+decl_stmt|;
+DECL|method|Murmur3_32HashFunction (int seed, boolean supplementaryPlaneFix)
 name|Murmur3_32HashFunction
 parameter_list|(
 name|int
 name|seed
+parameter_list|,
+name|boolean
+name|supplementaryPlaneFix
 parameter_list|)
 block|{
 name|this
@@ -297,6 +329,12 @@ operator|.
 name|seed
 operator|=
 name|seed
+expr_stmt|;
+name|this
+operator|.
+name|supplementaryPlaneFix
+operator|=
+name|supplementaryPlaneFix
 expr_stmt|;
 block|}
 annotation|@
@@ -377,6 +415,12 @@ operator|==
 name|other
 operator|.
 name|seed
+operator|&&
+name|supplementaryPlaneFix
+operator|==
+name|other
+operator|.
+name|supplementaryPlaneFix
 return|;
 block|}
 return|return
@@ -998,6 +1042,17 @@ argument_list|)
 operator|<<
 name|shift
 expr_stmt|;
+if|if
+condition|(
+name|supplementaryPlaneFix
+condition|)
+block|{
+comment|// bug compatibility: earlier versions did not have this add
+name|shift
+operator|+=
+literal|32
+expr_stmt|;
+block|}
 name|len
 operator|+=
 literal|4

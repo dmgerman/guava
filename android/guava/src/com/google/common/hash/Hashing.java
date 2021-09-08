@@ -340,7 +340,9 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-comment|/**    * Returns a hash function implementing the<a    * href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">32-bit murmur3    * algorithm, x86 variant</a> (little-endian variant), using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    */
+comment|/**    * Returns a hash function implementing the<a    * href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">32-bit murmur3    * algorithm, x86 variant</a> (little-endian variant), using the given seed value,<b>with a known    * bug</b> as described in the deprecation text.    *    *<p>The C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A), which however does not    * have the bug.    *    * @deprecated This implementation produces incorrect hash values from the {@link    *     HashFunction#hashString} method if the string contains non-BMP characters. Use {@link    *     #murmur3_32_fixed(int)} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|murmur3_32 (int seed)
 specifier|public
 specifier|static
@@ -356,10 +358,15 @@ operator|new
 name|Murmur3_32HashFunction
 argument_list|(
 name|seed
+argument_list|,
+comment|/* supplementaryPlaneFix= */
+literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the<a    * href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">32-bit murmur3    * algorithm, x86 variant</a> (little-endian variant), using a seed value of zero.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    */
+comment|/**    * Returns a hash function implementing the<a    * href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">32-bit murmur3    * algorithm, x86 variant</a> (little-endian variant), using the given seed value,<b>with a known    * bug</b> as described in the deprecation text.    *    *<p>The C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A), which however does not    * have the bug.    *    * @deprecated This implementation produces incorrect hash values from the {@link    *     HashFunction#hashString} method if the string contains non-BMP characters. Use {@link    *     #murmur3_32_fixed()} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|murmur3_32 ()
 specifier|public
 specifier|static
@@ -371,6 +378,42 @@ return|return
 name|Murmur3_32HashFunction
 operator|.
 name|MURMUR3_32
+return|;
+block|}
+comment|/**    * Returns a hash function implementing the<a    * href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">32-bit murmur3    * algorithm, x86 variant</a> (little-endian variant), using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    *    *<p>This method is called {@code murmur3_32_fixed} because it fixes a bug in the {@code    * HashFunction} returned by the original {@code murmur3_32} method.    *    * @since NEXT    */
+DECL|method|murmur3_32_fixed (int seed)
+specifier|public
+specifier|static
+name|HashFunction
+name|murmur3_32_fixed
+parameter_list|(
+name|int
+name|seed
+parameter_list|)
+block|{
+return|return
+operator|new
+name|Murmur3_32HashFunction
+argument_list|(
+name|seed
+argument_list|,
+comment|/* supplementaryPlaneFix= */
+literal|true
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a hash function implementing the<a    * href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">32-bit murmur3    * algorithm, x86 variant</a> (little-endian variant), using a seed value of zero.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    *    *<p>This method is called {@code murmur3_32_fixed} because it fixes a bug in the {@code    * HashFunction} returned by the original {@code murmur3_32} method.    *    * @since NEXT    */
+DECL|method|murmur3_32_fixed ()
+specifier|public
+specifier|static
+name|HashFunction
+name|murmur3_32_fixed
+parameter_list|()
+block|{
+return|return
+name|Murmur3_32HashFunction
+operator|.
+name|MURMUR3_32_FIXED
 return|;
 block|}
 comment|/**    * Returns a hash function implementing the<a    * href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">128-bit murmur3    * algorithm, x64 variant</a> (little-endian variant), using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x64_128 function (Murmur3F).    */
