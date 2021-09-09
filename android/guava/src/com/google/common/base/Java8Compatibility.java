@@ -4,7 +4,7 @@ comment|/*  * Copyright (C) 2020 The Guava Authors  *  * Licensed under the Apac
 end_comment
 
 begin_package
-DECL|package|com.google.common.io
+DECL|package|com.google.common.base
 package|package
 name|com
 operator|.
@@ -12,7 +12,7 @@ name|google
 operator|.
 name|common
 operator|.
-name|io
+name|base
 package|;
 end_package
 
@@ -104,21 +104,6 @@ name|limit
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|mark (Buffer b)
-specifier|static
-name|void
-name|mark
-parameter_list|(
-name|Buffer
-name|b
-parameter_list|)
-block|{
-name|b
-operator|.
-name|mark
-argument_list|()
-expr_stmt|;
-block|}
 DECL|method|position (Buffer b, int position)
 specifier|static
 name|void
@@ -137,21 +122,6 @@ name|position
 argument_list|(
 name|position
 argument_list|)
-expr_stmt|;
-block|}
-DECL|method|reset (Buffer b)
-specifier|static
-name|void
-name|reset
-parameter_list|(
-name|Buffer
-name|b
-parameter_list|)
-block|{
-name|b
-operator|.
-name|reset
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|Java8Compatibility ()
