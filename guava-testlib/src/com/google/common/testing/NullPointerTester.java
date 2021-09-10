@@ -2656,6 +2656,8 @@ range|:
 name|bounds
 control|)
 block|{
+comment|// Until Java 15, the isNullableTypeVariable case here won't help:
+comment|// https://bugs.openjdk.java.net/browse/JDK-8202469
 if|if
 condition|(
 name|isNullable
