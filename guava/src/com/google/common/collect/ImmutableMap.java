@@ -1612,7 +1612,75 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|// looking for of() with> 10 entries? Use the builder instead.
+comment|// looking for of() with> 10 entries? Use the builder or ofEntries instead.
+comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys are provided    * @since NEXT    */
+annotation|@
+name|SafeVarargs
+DECL|method|ofEntries (Entry<? extends K, ? extends V>.... entries)
+specifier|public
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|ImmutableMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|ofEntries
+parameter_list|(
+name|Entry
+argument_list|<
+name|?
+extends|extends
+name|K
+argument_list|,
+name|?
+extends|extends
+name|V
+argument_list|>
+modifier|...
+name|entries
+parameter_list|)
+block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// we will only ever read these
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+index|[]
+name|entries2
+init|=
+operator|(
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+index|[]
+operator|)
+name|entries
+decl_stmt|;
+return|return
+name|RegularImmutableMap
+operator|.
+name|fromEntries
+argument_list|(
+name|entries2
+argument_list|)
+return|;
+block|}
 comment|/**    * Verifies that {@code key} and {@code value} are non-null, and returns a new immutable entry    * with those values.    *    *<p>A call to {@link Entry#setValue} on the returned entry will always throw {@link    * UnsupportedOperationException}.    */
 DECL|method|entryOf (K key, V value)
 specifier|static

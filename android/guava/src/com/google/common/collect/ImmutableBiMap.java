@@ -110,6 +110,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collection
 import|;
 end_import
@@ -1516,7 +1526,78 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|// looking for of() with> 10 entries? Use the builder instead.
+comment|// looking for of() with> 10 entries? Use the builder or ofEntries instead.
+comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys or values are provided    * @since NEXT    */
+annotation|@
+name|SafeVarargs
+DECL|method|ofEntries (Entry<? extends K, ? extends V>.... entries)
+specifier|public
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|ImmutableBiMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|ofEntries
+parameter_list|(
+name|Entry
+argument_list|<
+name|?
+extends|extends
+name|K
+argument_list|,
+name|?
+extends|extends
+name|V
+argument_list|>
+modifier|...
+name|entries
+parameter_list|)
+block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// we will only ever read these
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+index|[]
+name|entries2
+init|=
+operator|(
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+index|[]
+operator|)
+name|entries
+decl_stmt|;
+return|return
+name|copyOf
+argument_list|(
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|entries2
+argument_list|)
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns a new builder. The generated builder is equivalent to the builder created by the {@link    * Builder} constructor.    */
 DECL|method|builder ()
 specifier|public

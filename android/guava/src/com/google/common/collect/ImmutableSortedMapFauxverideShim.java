@@ -779,6 +779,50 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+comment|/**    * Not supported. Use {@code ImmutableSortedMap.copyOf(ImmutableMap.ofEntries(...))}.    *    * @deprecated Use {@code ImmutableSortedMap.copyOf(ImmutableMap.ofEntries(...))}.    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"ImmutableSortedMap.ofEntries not currently available; use ImmutableSortedMap.copyOf"
+argument_list|)
+annotation|@
+name|Deprecated
+DECL|method|ofEntries ( Entry<? extends K, ? extends V>.... entries)
+specifier|public
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|ImmutableSortedMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|ofEntries
+parameter_list|(
+name|Entry
+argument_list|<
+name|?
+extends|extends
+name|K
+argument_list|,
+name|?
+extends|extends
+name|V
+argument_list|>
+modifier|...
+name|entries
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 comment|// No copyOf() fauxveride; see ImmutableSortedSetFauxverideShim.
 block|}
 end_class
