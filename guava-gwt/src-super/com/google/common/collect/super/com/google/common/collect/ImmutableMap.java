@@ -2109,6 +2109,22 @@ argument_list|>
 name|build
 parameter_list|()
 block|{
+return|return
+name|buildOrThrow
+argument_list|()
+return|;
+block|}
+DECL|method|buildOrThrow ()
+specifier|public
+name|ImmutableMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|buildOrThrow
+parameter_list|()
+block|{
 if|if
 condition|(
 name|valueComparator

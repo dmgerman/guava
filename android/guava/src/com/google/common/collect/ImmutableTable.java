@@ -552,7 +552,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * A builder for creating immutable table instances, especially {@code public static final} tables    * ("constant tables"). Example:    *    *<pre>{@code    * static final ImmutableTable<Integer, Character, String> SPREADSHEET =    *     new ImmutableTable.Builder<Integer, Character, String>()    *         .put(1, 'A', "foo")    *         .put(1, 'B', "bar")    *         .put(2, 'A', "baz")    *         .build();    * }</pre>    *    *<p>By default, the order in which cells are added to the builder determines the iteration    * ordering of all views in the returned table, with {@link #putAll} following the {@link    * Table#cellSet()} iteration order. However, if {@link #orderRowsBy} or {@link #orderColumnsBy}    * is called, the views are sorted by the supplied comparators.    *    *<p>For empty or single-cell immutable tables, {@link #of()} and {@link #of(Object, Object,    * Object)} are even more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #build} multiple times to build    * multiple tables in series. Each table is a superset of the tables created before it.    *    * @since 11.0    */
+comment|/**    * A builder for creating immutable table instances, especially {@code public static final} tables    * ("constant tables"). Example:    *    *<pre>{@code    * static final ImmutableTable<Integer, Character, String> SPREADSHEET =    *     new ImmutableTable.Builder<Integer, Character, String>()    *         .put(1, 'A', "foo")    *         .put(1, 'B', "bar")    *         .put(2, 'A', "baz")    *         .buildOrThrow();    * }</pre>    *    *<p>By default, the order in which cells are added to the builder determines the iteration    * ordering of all views in the returned table, with {@link #putAll} following the {@link    * Table#cellSet()} iteration order. However, if {@link #orderRowsBy} or {@link #orderColumnsBy}    * is called, the views are sorted by the supplied comparators.    *    *<p>For empty or single-cell immutable tables, {@link #of()} and {@link #of(Object, Object,    * Object)} are even more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #buildOrThrow} multiple times to    * build multiple tables in series. Each table is a superset of the tables created before it.    *    * @since 11.0    */
 annotation|@
 name|DoNotMock
 DECL|class|Builder
@@ -978,7 +978,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Returns a newly-created immutable table.      *      * @throws IllegalArgumentException if duplicate key pairs were added      */
+comment|/**      * Returns a newly-created immutable table.      *      *<p>Prefer the equivalent method {@link #buildOrThrow()} to make it explicit that the method      * will throw an exception if there are duplicate key pairs. The {@code build()} method will      * soon be deprecated.      *      * @throws IllegalArgumentException if duplicate key pairs were added      */
 DECL|method|build ()
 specifier|public
 name|ImmutableTable
@@ -990,6 +990,25 @@ argument_list|,
 name|V
 argument_list|>
 name|build
+parameter_list|()
+block|{
+return|return
+name|buildOrThrow
+argument_list|()
+return|;
+block|}
+comment|/**      * Returns a newly-created immutable table, or throws an exception if duplicate key pairs were      * added.      *      * @throws IllegalArgumentException if duplicate key pairs were added      */
+DECL|method|buildOrThrow ()
+specifier|public
+name|ImmutableTable
+argument_list|<
+name|R
+argument_list|,
+name|C
+argument_list|,
+name|V
+argument_list|>
+name|buildOrThrow
 parameter_list|()
 block|{
 name|int

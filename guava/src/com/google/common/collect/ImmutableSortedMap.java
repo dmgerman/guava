@@ -3064,7 +3064,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * A builder for creating immutable sorted map instances, especially {@code public static final}    * maps ("constant maps"). Example:    *    *<pre>{@code    * static final ImmutableSortedMap<Integer, String> INT_TO_WORD =    *     new ImmutableSortedMap.Builder<Integer, String>(Ordering.natural())    *         .put(1, "one")    *         .put(2, "two")    *         .put(3, "three")    *         .build();    * }</pre>    *    *<p>For<i>small</i> immutable sorted maps, the {@code ImmutableSortedMap.of()} methods are even    * more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #build} multiple times to build    * multiple maps in series. Each map is a superset of the maps created before it.    *    * @since 2.0    */
+comment|/**    * A builder for creating immutable sorted map instances, especially {@code public static final}    * maps ("constant maps"). Example:    *    *<pre>{@code    * static final ImmutableSortedMap<Integer, String> INT_TO_WORD =    *     new ImmutableSortedMap.Builder<Integer, String>(Ordering.natural())    *         .put(1, "one")    *         .put(2, "two")    *         .put(3, "three")    *         .buildOrThrow();    * }</pre>    *    *<p>For<i>small</i> immutable sorted maps, the {@code ImmutableSortedMap.of()} methods are even    * more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #buildOrThrow} multiple times to    * build multiple maps in series. Each map is a superset of the maps created before it.    *    * @since 2.0    */
 DECL|class|Builder
 specifier|public
 specifier|static
@@ -3359,7 +3359,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Returns a newly-created immutable sorted map.      *      * @throws IllegalArgumentException if any two keys are equal according to the comparator (which      *     might be the keys' natural order)      */
+comment|/**      * Returns a newly-created immutable sorted map.      *      *<p>Prefer the equivalent method {@link #buildOrThrow()} to make it explicit that the method      * will throw an exception if there are duplicate keys. The {@code build()} method will soon be      * deprecated.      *      * @throws IllegalArgumentException if any two keys are equal according to the comparator (which      *     might be the keys' natural order)      */
 annotation|@
 name|Override
 DECL|method|build ()
@@ -3371,6 +3371,25 @@ argument_list|,
 name|V
 argument_list|>
 name|build
+parameter_list|()
+block|{
+return|return
+name|buildOrThrow
+argument_list|()
+return|;
+block|}
+comment|/**      * Returns a newly-created immutable sorted map, or throws an exception if any two keys are      * equal.      *      * @throws IllegalArgumentException if any two keys are equal according to the comparator (which      *     might be the keys' natural order)      */
+annotation|@
+name|Override
+DECL|method|buildOrThrow ()
+specifier|public
+name|ImmutableSortedMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|buildOrThrow
 parameter_list|()
 block|{
 switch|switch

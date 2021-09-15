@@ -1432,6 +1432,24 @@ argument_list|>
 name|build
 parameter_list|()
 block|{
+return|return
+name|buildOrThrow
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|buildOrThrow ()
+specifier|public
+name|ImmutableBiMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|buildOrThrow
+parameter_list|()
+block|{
 name|ImmutableMap
 argument_list|<
 name|K
@@ -1442,7 +1460,7 @@ name|map
 init|=
 name|super
 operator|.
-name|build
+name|buildOrThrow
 argument_list|()
 decl_stmt|;
 if|if
@@ -1469,7 +1487,7 @@ argument_list|>
 argument_list|(
 name|super
 operator|.
-name|build
+name|buildOrThrow
 argument_list|()
 argument_list|)
 return|;

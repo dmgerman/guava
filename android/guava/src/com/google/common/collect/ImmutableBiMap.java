@@ -1662,7 +1662,7 @@ name|expectedSize
 argument_list|)
 return|;
 block|}
-comment|/**    * A builder for creating immutable bimap instances, especially {@code public static final} bimaps    * ("constant bimaps"). Example:    *    *<pre>{@code    * static final ImmutableBiMap<String, Integer> WORD_TO_INT =    *     new ImmutableBiMap.Builder<String, Integer>()    *         .put("one", 1)    *         .put("two", 2)    *         .put("three", 3)    *         .build();    * }</pre>    *    *<p>For<i>small</i> immutable bimaps, the {@code ImmutableBiMap.of()} methods are even more    * convenient.    *    *<p>By default, a {@code Builder} will generate bimaps that iterate over entries in the order    * they were inserted into the builder. For example, in the above example, {@code    * WORD_TO_INT.entrySet()} is guaranteed to iterate over the entries in the order {@code "one"=1,    * "two"=2, "three"=3}, and {@code keySet()} and {@code values()} respect the same order. If you    * want a different order, consider using {@link #orderEntriesByValue(Comparator)}, which changes    * this builder to sort entries by value.    *    *<p>Builder instances can be reused - it is safe to call {@link #build} multiple times to build    * multiple bimaps in series. Each bimap is a superset of the bimaps created before it.    *    * @since 2.0    */
+comment|/**    * A builder for creating immutable bimap instances, especially {@code public static final} bimaps    * ("constant bimaps"). Example:    *    *<pre>{@code    * static final ImmutableBiMap<String, Integer> WORD_TO_INT =    *     new ImmutableBiMap.Builder<String, Integer>()    *         .put("one", 1)    *         .put("two", 2)    *         .put("three", 3)    *         .buildOrThrow();    * }</pre>    *    *<p>For<i>small</i> immutable bimaps, the {@code ImmutableBiMap.of()} methods are even more    * convenient.    *    *<p>By default, a {@code Builder} will generate bimaps that iterate over entries in the order    * they were inserted into the builder. For example, in the above example, {@code    * WORD_TO_INT.entrySet()} is guaranteed to iterate over the entries in the order {@code "one"=1,    * "two"=2, "three"=3}, and {@code keySet()} and {@code values()} respect the same order. If you    * want a different order, consider using {@link #orderEntriesByValue(Comparator)}, which changes    * this builder to sort entries by value.    *    *<p>Builder instances can be reused - it is safe to call {@link #buildOrThrow} multiple times to    * build multiple bimaps in series. Each bimap is a superset of the bimaps created before it.    *    * @since 2.0    */
 DECL|class|Builder
 specifier|public
 specifier|static
@@ -1938,7 +1938,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Returns a newly-created immutable bimap. The iteration order of the returned bimap is the      * order in which entries were inserted into the builder, unless {@link #orderEntriesByValue}      * was called, in which case entries are sorted by value.      *      * @throws IllegalArgumentException if duplicate keys or values were added      */
+comment|/**      * Returns a newly-created immutable bimap. The iteration order of the returned bimap is the      * order in which entries were inserted into the builder, unless {@link #orderEntriesByValue}      * was called, in which case entries are sorted by value.      *      *<p>Prefer the equivalent method {@link #buildOrThrow()} to make it explicit that the method      * will throw an exception if there are duplicate keys or values. The {@code build()} method      * will soon be deprecated.      *      * @throws IllegalArgumentException if duplicate keys or values were added      */
 annotation|@
 name|Override
 DECL|method|build ()
@@ -1950,6 +1950,25 @@ argument_list|,
 name|V
 argument_list|>
 name|build
+parameter_list|()
+block|{
+return|return
+name|buildOrThrow
+argument_list|()
+return|;
+block|}
+comment|/**      * Returns a newly-created immutable bimap, or throws an exception if any key or value was added      * more than once. The iteration order of the returned bimap is the order in which entries were      * inserted into the builder, unless {@link #orderEntriesByValue} was called, in which case      * entries are sorted by value.      *      * @throws IllegalArgumentException if duplicate keys or values were added      */
+annotation|@
+name|Override
+DECL|method|buildOrThrow ()
+specifier|public
+name|ImmutableBiMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|buildOrThrow
 parameter_list|()
 block|{
 if|if

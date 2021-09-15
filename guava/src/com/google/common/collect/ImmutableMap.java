@@ -1867,7 +1867,7 @@ name|entry2
 argument_list|)
 return|;
 block|}
-comment|/**    * A builder for creating immutable map instances, especially {@code public static final} maps    * ("constant maps"). Example:    *    *<pre>{@code    * static final ImmutableMap<String, Integer> WORD_TO_INT =    *     new ImmutableMap.Builder<String, Integer>()    *         .put("one", 1)    *         .put("two", 2)    *         .put("three", 3)    *         .build();    * }</pre>    *    *<p>For<i>small</i> immutable maps, the {@code ImmutableMap.of()} methods are even more    * convenient.    *    *<p>By default, a {@code Builder} will generate maps that iterate over entries in the order they    * were inserted into the builder, equivalently to {@code LinkedHashMap}. For example, in the    * above example, {@code WORD_TO_INT.entrySet()} is guaranteed to iterate over the entries in the    * order {@code "one"=1, "two"=2, "three"=3}, and {@code keySet()} and {@code values()} respect    * the same order. If you want a different order, consider using {@link ImmutableSortedMap} to    * sort by keys, or call {@link #orderEntriesByValue(Comparator)}, which changes this builder to    * sort entries by value.    *    *<p>Builder instances can be reused - it is safe to call {@link #build} multiple times to build    * multiple maps in series. Each map is a superset of the maps created before it.    *    * @since 2.0    */
+comment|/**    * A builder for creating immutable map instances, especially {@code public static final} maps    * ("constant maps"). Example:    *    *<pre>{@code    * static final ImmutableMap<String, Integer> WORD_TO_INT =    *     new ImmutableMap.Builder<String, Integer>()    *         .put("one", 1)    *         .put("two", 2)    *         .put("three", 3)    *         .buildOrThrow();    * }</pre>    *    *<p>For<i>small</i> immutable maps, the {@code ImmutableMap.of()} methods are even more    * convenient.    *    *<p>By default, a {@code Builder} will generate maps that iterate over entries in the order they    * were inserted into the builder, equivalently to {@code LinkedHashMap}. For example, in the    * above example, {@code WORD_TO_INT.entrySet()} is guaranteed to iterate over the entries in the    * order {@code "one"=1, "two"=2, "three"=3}, and {@code keySet()} and {@code values()} respect    * the same order. If you want a different order, consider using {@link ImmutableSortedMap} to    * sort by keys, or call {@link #orderEntriesByValue(Comparator)}, which changes this builder to    * sort entries by value.    *    *<p>Builder instances can be reused - it is safe to call {@link #buildOrThrow} multiple times to    * build multiple maps in series. Each map is a superset of the maps created before it.    *    * @since 2.0    */
 annotation|@
 name|DoNotMock
 DECL|class|Builder
@@ -2355,7 +2355,7 @@ name|this
 return|;
 block|}
 comment|/*      * TODO(kevinb): Should build() and the ImmutableBiMap& ImmutableSortedMap      * versions throw an IllegalStateException instead?      */
-comment|/**      * Returns a newly-created immutable map. The iteration order of the returned map is the order      * in which entries were inserted into the builder, unless {@link #orderEntriesByValue} was      * called, in which case entries are sorted by value.      *      * @throws IllegalArgumentException if duplicate keys were added      */
+comment|/**      * Returns a newly-created immutable map. The iteration order of the returned map is the order      * in which entries were inserted into the builder, unless {@link #orderEntriesByValue} was      * called, in which case entries are sorted by value.      *      *<p>Prefer the equivalent method {@link #buildOrThrow()} to make it explicit that the method      * will throw an exception if there are duplicate keys. The {@code build()} method will soon be      * deprecated.      *      * @throws IllegalArgumentException if duplicate keys were added      */
 DECL|method|build ()
 specifier|public
 name|ImmutableMap
@@ -2365,6 +2365,23 @@ argument_list|,
 name|V
 argument_list|>
 name|build
+parameter_list|()
+block|{
+return|return
+name|buildOrThrow
+argument_list|()
+return|;
+block|}
+comment|/**      * Returns a newly-created immutable map, or throws an exception if any key was added more than      * once. The iteration order of the returned map is the order in which entries were inserted      * into the builder, unless {@link #orderEntriesByValue} was called, in which case entries are      * sorted by value.      *      * @throws IllegalArgumentException if duplicate keys were added      */
+DECL|method|buildOrThrow ()
+specifier|public
+name|ImmutableMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|buildOrThrow
 parameter_list|()
 block|{
 comment|/*        * If entries is full, or if hash flooding is detected, then this implementation may end up        * using the entries array directly and writing over the entry objects with non-terminal        * entries, but this is safe; if this Builder is used further, it will grow the entries array        * (so it can't affect the original array), and future build() calls will always copy any        * entry objects that cannot be safely reused.        */
