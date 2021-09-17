@@ -92,6 +92,34 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|InlineMe
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|InlineMeValidationDisabled
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -388,7 +416,19 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a string consisting of a specific number of concatenated copies of an input string. For    * example, {@code repeat("hey", 3)} returns the string {@code "heyheyhey"}.    *    * @param string any non-null string    * @param count the number of times to repeat it; a nonnegative integer    * @return a string containing {@code string} repeated {@code count} times (the empty string if    *     {@code count} is zero)    * @throws IllegalArgumentException if {@code count} is negative    */
+comment|/**    * Returns a string consisting of a specific number of concatenated copies of an input string. For    * example, {@code repeat("hey", 3)} returns the string {@code "heyheyhey"}.    *    *<p><b>Java 11+ users:</b> use {@code string.repeat(count)} instead.    *    * @param string any non-null string    * @param count the number of times to repeat it; a nonnegative integer    * @return a string containing {@code string} repeated {@code count} times (the empty string if    *     {@code count} is zero)    * @throws IllegalArgumentException if {@code count} is negative    */
+annotation|@
+name|InlineMe
+argument_list|(
+name|replacement
+operator|=
+literal|"string.repeat(count)"
+argument_list|)
+annotation|@
+name|InlineMeValidationDisabled
+argument_list|(
+literal|"Java 11+ API only"
+argument_list|)
 DECL|method|repeat (String string, int count)
 specifier|public
 specifier|static
