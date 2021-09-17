@@ -118,11 +118,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|Benchmark
-DECL|method|oldRepeat (int reps)
+DECL|method|oldRepeat (long reps)
 name|void
 name|oldRepeat
 parameter_list|(
-name|int
+name|long
 name|reps
 parameter_list|)
 block|{
@@ -262,11 +262,11 @@ return|;
 block|}
 annotation|@
 name|Benchmark
-DECL|method|mikeRepeat (int reps)
+DECL|method|mikeRepeat (long reps)
 name|void
 name|mikeRepeat
 parameter_list|(
-name|int
+name|long
 name|reps
 parameter_list|)
 block|{
@@ -478,11 +478,11 @@ return|;
 block|}
 annotation|@
 name|Benchmark
-DECL|method|martinRepeat (int reps)
+DECL|method|martinRepeat (long reps)
 name|void
 name|martinRepeat
 parameter_list|(
-name|int
+name|long
 name|reps
 parameter_list|)
 block|{
