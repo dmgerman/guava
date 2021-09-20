@@ -94,19 +94,6 @@ else|:
 name|OPEN
 return|;
 block|}
-DECL|method|flip ()
-name|BoundType
-name|flip
-parameter_list|()
-block|{
-return|return
-name|forBoolean
-argument_list|(
-operator|!
-name|inclusive
-argument_list|)
-return|;
-block|}
 block|}
 end_enum
 

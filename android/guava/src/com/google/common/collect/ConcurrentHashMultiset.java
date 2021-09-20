@@ -822,7 +822,7 @@ name|checkPositive
 argument_list|(
 name|occurrences
 argument_list|,
-literal|"occurences"
+literal|"occurrences"
 argument_list|)
 expr_stmt|;
 while|while
@@ -1041,7 +1041,7 @@ name|checkPositive
 argument_list|(
 name|occurrences
 argument_list|,
-literal|"occurences"
+literal|"occurrences"
 argument_list|)
 expr_stmt|;
 name|AtomicInteger
@@ -1179,7 +1179,7 @@ name|checkPositive
 argument_list|(
 name|occurrences
 argument_list|,
-literal|"occurences"
+literal|"occurrences"
 argument_list|)
 expr_stmt|;
 name|AtomicInteger

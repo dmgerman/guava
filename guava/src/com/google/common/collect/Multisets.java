@@ -870,7 +870,7 @@ end_function
 begin_function
 annotation|@
 name|Override
-DECL|method|add (@arametricNullness E element, int occurences)
+DECL|method|add (@arametricNullness E element, int occurrences)
 specifier|public
 name|int
 name|add
@@ -881,7 +881,7 @@ name|E
 name|element
 parameter_list|,
 name|int
-name|occurences
+name|occurrences
 parameter_list|)
 block|{
 throw|throw
