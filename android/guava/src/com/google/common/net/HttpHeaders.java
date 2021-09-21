@@ -1078,6 +1078,46 @@ name|X_CONTENT_TYPE_OPTIONS
 init|=
 literal|"X-Content-Type-Options"
 decl_stmt|;
+comment|/**    * The HTTP<a    * href="https://iabtechlab.com/wp-content/uploads/2019/06/VAST_4.2_final_june26.pdf">{@code    * X-Device-IP}</a> header field name. Header used for VAST requests to provide the IP address of    * the device on whose behalf the request is being made.    *    * @since NEXT    */
+DECL|field|X_DEVICE_IP
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|X_DEVICE_IP
+init|=
+literal|"X-Device-IP"
+decl_stmt|;
+comment|/**    * The HTTP<a    * href="https://iabtechlab.com/wp-content/uploads/2019/06/VAST_4.2_final_june26.pdf">{@code    * X-Device-Referer}</a> header field name. Header used for VAST requests to provide the {@link    * #REFERER} header value that the on-behalf-of client would have used when making a request    * itself.    *    * @since NEXT    */
+DECL|field|X_DEVICE_REFERER
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|X_DEVICE_REFERER
+init|=
+literal|"X-Device-Referer"
+decl_stmt|;
+comment|/**    * The HTTP<a    * href="https://iabtechlab.com/wp-content/uploads/2019/06/VAST_4.2_final_june26.pdf">{@code    * X-Device-Accept-Language}</a> header field name. Header used for VAST requests to provide the    * {@link #ACCEPT_LANGUAGE} header value that the on-behalf-of client would have used when making    * a request itself.    *    * @since NEXT    */
+DECL|field|X_DEVICE_ACCEPT_LANGUAGE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|X_DEVICE_ACCEPT_LANGUAGE
+init|=
+literal|"X-Device-Accept-Language"
+decl_stmt|;
+comment|/**    * The HTTP<a    * href="https://iabtechlab.com/wp-content/uploads/2019/06/VAST_4.2_final_june26.pdf">{@code    * X-Device-Requested-With}</a> header field name. Header used for VAST requests to provide the    * {@link #X_REQUESTED_WITH} header value that the on-behalf-of client would have used when making    * a request itself.    *    * @since NEXT    */
+DECL|field|X_DEVICE_REQUESTED_WITH
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|X_DEVICE_REQUESTED_WITH
+init|=
+literal|"X-Device-Requested-With"
+decl_stmt|;
 comment|/** The HTTP {@code X-Do-Not-Track} header field name. */
 DECL|field|X_DO_NOT_TRACK
 specifier|public
