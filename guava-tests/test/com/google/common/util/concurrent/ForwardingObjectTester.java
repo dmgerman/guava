@@ -292,9 +292,6 @@ argument_list|(
 name|forwarderClass
 argument_list|,
 name|CALLS_REAL_METHODS
-operator|.
-name|get
-argument_list|()
 argument_list|)
 decl_stmt|;
 try|try
