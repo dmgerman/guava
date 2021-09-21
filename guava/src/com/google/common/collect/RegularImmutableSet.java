@@ -123,6 +123,8 @@ name|E
 parameter_list|>
 extends|extends
 name|ImmutableSet
+operator|.
+name|CachingAsList
 argument_list|<
 name|E
 argument_list|>

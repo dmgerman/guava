@@ -956,8 +956,6 @@ name|E
 argument_list|>
 argument_list|(
 name|element
-argument_list|,
-name|hashCode
 argument_list|)
 return|;
 block|}

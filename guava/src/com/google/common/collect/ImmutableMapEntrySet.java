@@ -139,6 +139,8 @@ name|V
 parameter_list|>
 extends|extends
 name|ImmutableSet
+operator|.
+name|CachingAsList
 argument_list|<
 name|Entry
 argument_list|<

@@ -46,22 +46,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|concurrent
-operator|.
-name|LazyInit
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|annotation
@@ -123,26 +107,13 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+comment|// We deliberately avoid caching the asList and hashCode here, to ensure that with
+comment|// compressed oops, a SingletonImmutableSet packs all the way down to the optimal 16 bytes.
 DECL|field|element
 specifier|final
 specifier|transient
 name|E
 name|element
-decl_stmt|;
-comment|// This is transient because it will be recalculated on the first
-comment|// call to hashCode().
-comment|//
-comment|// A race condition is avoided since threads will either see that the value
-comment|// is zero and recalculate it themselves, or two threads will see it at
-comment|// the same time, and both recalculate it.  If the cachedHashCode is 0,
-comment|// it will always be recalculated, unfortunately.
-DECL|field|cachedHashCode
-annotation|@
-name|LazyInit
-specifier|private
-specifier|transient
-name|int
-name|cachedHashCode
 decl_stmt|;
 DECL|method|SingletonImmutableSet (E element)
 name|SingletonImmutableSet
@@ -161,28 +132,6 @@ name|checkNotNull
 argument_list|(
 name|element
 argument_list|)
-expr_stmt|;
-block|}
-DECL|method|SingletonImmutableSet (E element, int hashCode)
-name|SingletonImmutableSet
-parameter_list|(
-name|E
-name|element
-parameter_list|,
-name|int
-name|hashCode
-parameter_list|)
-block|{
-comment|// Guaranteed to be non-null by the presence of the pre-computed hash code.
-name|this
-operator|.
-name|element
-operator|=
-name|element
-expr_stmt|;
-name|cachedHashCode
-operator|=
-name|hashCode
 expr_stmt|;
 block|}
 annotation|@
@@ -241,12 +190,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|createAsList ()
+DECL|method|asList ()
+specifier|public
 name|ImmutableList
 argument_list|<
 name|E
 argument_list|>
-name|createAsList
+name|asList
 parameter_list|()
 block|{
 return|return
@@ -307,44 +257,11 @@ name|int
 name|hashCode
 parameter_list|()
 block|{
-comment|// Racy single-check.
-name|int
-name|code
-init|=
-name|cachedHashCode
-decl_stmt|;
-if|if
-condition|(
-name|code
-operator|==
-literal|0
-condition|)
-block|{
-name|cachedHashCode
-operator|=
-name|code
-operator|=
+return|return
 name|element
 operator|.
 name|hashCode
 argument_list|()
-expr_stmt|;
-block|}
-return|return
-name|code
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|isHashCodeFast ()
-name|boolean
-name|isHashCodeFast
-parameter_list|()
-block|{
-return|return
-name|cachedHashCode
-operator|!=
-literal|0
 return|;
 block|}
 annotation|@
