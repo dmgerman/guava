@@ -3353,7 +3353,7 @@ name|coercedHash
 init|=
 name|Hashing
 operator|.
-name|murmur3_32
+name|murmur3_32_fixed
 argument_list|()
 operator|.
 name|hashLong
