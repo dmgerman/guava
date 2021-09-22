@@ -1324,6 +1324,86 @@ name|X_MOZ
 init|=
 literal|"X-Moz"
 decl_stmt|;
+comment|/**    * The HTTP<a    * href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Device-Memory">{@code    * Device-Memory}</a> header field name.    *    * @since NEXT    */
+DECL|field|DEVICE_MEMORY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DEVICE_MEMORY
+init|=
+literal|"Device-Memory"
+decl_stmt|;
+comment|/**    * The HTTP<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Downlink">{@code    * Downlink}</a> header field name.    *    * @since NEXT    */
+DECL|field|DOWNLINK
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DOWNLINK
+init|=
+literal|"Downlink"
+decl_stmt|;
+comment|/**    * The HTTP<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ECT">{@code    * ECT}</a> header field name.    *    * @since NEXT    */
+DECL|field|ECT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ECT
+init|=
+literal|"ECT"
+decl_stmt|;
+comment|/**    * The HTTP<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/RTT">{@code    * RTT}</a> header field name.    *    * @since NEXT    */
+DECL|field|RTT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|RTT
+init|=
+literal|"RTT"
+decl_stmt|;
+comment|/**    * The HTTP<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Save-Data">{@code    * Save-Data}</a> header field name.    *    * @since NEXT    */
+DECL|field|SAVE_DATA
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SAVE_DATA
+init|=
+literal|"Save-Data"
+decl_stmt|;
+comment|/**    * The HTTP<a    * href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Viewport-Width">{@code    * Viewport-Width}</a> header field name.    *    * @since NEXT    */
+DECL|field|VIEWPORT_WIDTH
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|VIEWPORT_WIDTH
+init|=
+literal|"Viewport-Width"
+decl_stmt|;
+comment|/**    * The HTTP<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Width">{@code    * Width}</a> header field name.    *    * @since NEXT    */
+DECL|field|WIDTH
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|WIDTH
+init|=
+literal|"Width"
+decl_stmt|;
+comment|/**    * The HTTP<a href="https://www.w3.org/TR/permissions-policy-1/">{@code Permissions-Policy}</a>    * header field name.    *    * @since NEXT    */
+DECL|field|PERMISSIONS_POLICY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PERMISSIONS_POLICY
+init|=
+literal|"Permissions-Policy"
+decl_stmt|;
 comment|/**    * The HTTP<a    * href="https://wicg.github.io/user-preference-media-features-headers/#sec-ch-prefers-color-scheme">{@code    * Sec-CH-Prefers-Color-Scheme}</a> header field name.    *    *<p>This header is experimental.    *    * @since NEXT    */
 DECL|field|SEC_CH_PREFERS_COLOR_SCHEME
 specifier|public
@@ -1333,6 +1413,26 @@ name|String
 name|SEC_CH_PREFERS_COLOR_SCHEME
 init|=
 literal|"Sec-CH-Prefers-Color-Scheme"
+decl_stmt|;
+comment|/**    * The HTTP<a    * href="https://www.rfc-editor.org/rfc/rfc8942#name-the-accept-ch-response-head">{@code    * Accept-CH}</a> header field name.    *    * @since NEXT    */
+DECL|field|ACCEPT_CH
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ACCEPT_CH
+init|=
+literal|"Accept-CH"
+decl_stmt|;
+comment|/**    * The HTTP<a    * href="https://datatracker.ietf.org/doc/html/draft-davidben-http-client-hint-reliability-03.txt#section-3">{@code    * Critical-CH}</a> header field name.    *    * @since NEXT    */
+DECL|field|CRITICAL_CH
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CRITICAL_CH
+init|=
+literal|"Critical-CH"
 decl_stmt|;
 comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-ua">{@code Sec-CH-UA}</a>    * header field name.    *    * @since 30.0    */
 DECL|field|SEC_CH_UA

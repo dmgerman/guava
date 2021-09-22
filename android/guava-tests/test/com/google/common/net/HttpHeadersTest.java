@@ -262,6 +262,8 @@ literal|"DNT"
 argument_list|,
 literal|"DNS"
 argument_list|,
+literal|"ECT"
+argument_list|,
 literal|"HTTP2"
 argument_list|,
 literal|"IP"
@@ -269,6 +271,8 @@ argument_list|,
 literal|"MD5"
 argument_list|,
 literal|"P3P"
+argument_list|,
+literal|"RTT"
 argument_list|,
 literal|"TE"
 argument_list|,
