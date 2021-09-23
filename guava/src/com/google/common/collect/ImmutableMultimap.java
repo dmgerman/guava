@@ -142,6 +142,20 @@ name|errorprone
 operator|.
 name|annotations
 operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
 name|DoNotMock
 import|;
 end_import
@@ -1655,6 +1669,18 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
+comment|// DoNotCall wants this to be final, but we want to override it to return more specific types.
+comment|// Inheritance is closed, and all subtypes are @DoNotCall, so this is safe to suppress.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DoNotCall"
+argument_list|)
 DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|ImmutableCollection
@@ -1682,6 +1708,18 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
+comment|// DoNotCall wants this to be final, but we want to override it to return more specific types.
+comment|// Inheritance is closed, and all subtypes are @DoNotCall, so this is safe to suppress.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DoNotCall"
+argument_list|)
 DECL|method|replaceValues (K key, Iterable<? extends V> values)
 specifier|public
 name|ImmutableCollection
@@ -1713,8 +1751,14 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|clear ()
 specifier|public
+specifier|final
 name|void
 name|clear
 parameter_list|()
@@ -1761,8 +1805,14 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|put (K key, V value)
 specifier|public
+specifier|final
 name|boolean
 name|put
 parameter_list|(
@@ -1786,8 +1836,14 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|putAll (K key, Iterable<? extends V> values)
 specifier|public
+specifier|final
 name|boolean
 name|putAll
 parameter_list|(
@@ -1816,8 +1872,14 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
 specifier|public
+specifier|final
 name|boolean
 name|putAll
 parameter_list|(
@@ -1847,8 +1909,14 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|remove (@heckForNull Object key, @CheckForNull Object value)
 specifier|public
+specifier|final
 name|boolean
 name|remove
 parameter_list|(
