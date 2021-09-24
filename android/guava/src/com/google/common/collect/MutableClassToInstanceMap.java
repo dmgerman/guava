@@ -134,8 +134,34 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
-comment|/**  * A mutable class-to-instance map backed by an arbitrary user-provided map. See also {@link  * ImmutableClassToInstanceMap}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#classtoinstancemap"> {@code  * ClassToInstanceMap}</a>.  *  * @author Kevin Bourrillion  * @since 2.0  */
+comment|/**  * A mutable class-to-instance map backed by an arbitrary user-provided map. See also {@link  * ImmutableClassToInstanceMap}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#classtoinstancemap">{@code  * ClassToInstanceMap}</a>.  *  *<p>This implementation<i>does</i> support null values, despite how it is annotated; see  * discussion at {@link ClassToInstanceMap}.  *  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
 
 begin_class
@@ -147,6 +173,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// using writeReplace instead of standard serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MutableClassToInstanceMap
 specifier|public
 specifier|final
@@ -587,25 +615,46 @@ index|[]
 name|toArray
 parameter_list|()
 block|{
-return|return
+comment|/*          * standardToArray returns `@Nullable Object[]` rather than `Object[]` but only because it          * can be used with collections that may contain null. This collection is a collection of          * non-null Entry objects (Entry objects that might contain null values but are not          * themselves null), so we can treat it as a plain `Object[]`.          */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+name|Object
+index|[]
+name|result
+init|=
 name|standardToArray
 argument_list|()
+decl_stmt|;
+return|return
+name|result
 return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// b/192354773 in our checker affects toArray declarations
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|array
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|standardToArray
@@ -621,6 +670,8 @@ annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|put (Class<? extends B> key, B value)
 specifier|public
 name|B
@@ -748,6 +799,8 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|putInstance (Class<T> type, T value)
 specifier|public
 parameter_list|<
@@ -784,6 +837,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|getInstance (Class<T> type)
 specifier|public
 parameter_list|<
@@ -815,7 +870,9 @@ return|;
 block|}
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|cast (Class<T> type, B value)
+annotation|@
+name|CheckForNull
+DECL|method|cast (Class<T> type, @CheckForNull B value)
 specifier|private
 specifier|static
 parameter_list|<
@@ -834,6 +891,8 @@ name|T
 argument_list|>
 name|type
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|B
 name|value
 parameter_list|)
