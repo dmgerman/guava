@@ -874,7 +874,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the natural ordering of    * their keys.    *    * @throws IllegalArgumentException if any two keys are equal according to their natural ordering    * @since NEXT    */
+comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the natural ordering of    * their keys.    *    * @throws IllegalArgumentException if any two keys are equal according to their natural ordering    * @since 31.0    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -987,7 +987,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the natural ordering of    * their keys.    *    * @throws IllegalArgumentException if any two keys are equal according to their natural ordering    * @since NEXT    */
+comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the natural ordering of    * their keys.    *    * @throws IllegalArgumentException if any two keys are equal according to their natural ordering    * @since 31.0    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1113,7 +1113,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the natural ordering of    * their keys.    *    * @throws IllegalArgumentException if any two keys are equal according to their natural ordering    * @since NEXT    */
+comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the natural ordering of    * their keys.    *    * @throws IllegalArgumentException if any two keys are equal according to their natural ordering    * @since 31.0    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1252,7 +1252,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the natural ordering of    * their keys.    *    * @throws IllegalArgumentException if any two keys are equal according to their natural ordering    * @since NEXT    */
+comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the natural ordering of    * their keys.    *    * @throws IllegalArgumentException if any two keys are equal according to their natural ordering    * @since 31.0    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1404,7 +1404,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the natural ordering of    * their keys.    *    * @throws IllegalArgumentException if any two keys are equal according to their natural ordering    * @since NEXT    */
+comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the natural ordering of    * their keys.    *    * @throws IllegalArgumentException if any two keys are equal according to their natural ordering    * @since 31.0    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -3348,7 +3348,7 @@ name|buildOrThrow
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns a newly-created immutable sorted map, or throws an exception if any two keys are      * equal.      *      * @throws IllegalArgumentException if any two keys are equal according to the comparator (which      *     might be the keys' natural order)      */
+comment|/**      * Returns a newly-created immutable sorted map, or throws an exception if any two keys are      * equal.      *      * @throws IllegalArgumentException if any two keys are equal according to the comparator (which      *     might be the keys' natural order)      * @since 31.0      */
 annotation|@
 name|Override
 DECL|method|buildOrThrow ()

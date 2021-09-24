@@ -865,7 +865,7 @@ name|LOCATION
 init|=
 literal|"Location"
 decl_stmt|;
-comment|/**    * The HTTP {@code Keep-Alive} header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP {@code Keep-Alive} header field name.    *    * @since 31.0    */
 DECL|field|KEEP_ALIVE
 specifier|public
 specifier|static
@@ -1078,7 +1078,7 @@ name|X_CONTENT_TYPE_OPTIONS
 init|=
 literal|"X-Content-Type-Options"
 decl_stmt|;
-comment|/**    * The HTTP<a    * href="https://iabtechlab.com/wp-content/uploads/2019/06/VAST_4.2_final_june26.pdf">{@code    * X-Device-IP}</a> header field name. Header used for VAST requests to provide the IP address of    * the device on whose behalf the request is being made.    *    * @since NEXT    */
+comment|/**    * The HTTP<a    * href="https://iabtechlab.com/wp-content/uploads/2019/06/VAST_4.2_final_june26.pdf">{@code    * X-Device-IP}</a> header field name. Header used for VAST requests to provide the IP address of    * the device on whose behalf the request is being made.    *    * @since 31.0    */
 DECL|field|X_DEVICE_IP
 specifier|public
 specifier|static
@@ -1088,7 +1088,7 @@ name|X_DEVICE_IP
 init|=
 literal|"X-Device-IP"
 decl_stmt|;
-comment|/**    * The HTTP<a    * href="https://iabtechlab.com/wp-content/uploads/2019/06/VAST_4.2_final_june26.pdf">{@code    * X-Device-Referer}</a> header field name. Header used for VAST requests to provide the {@link    * #REFERER} header value that the on-behalf-of client would have used when making a request    * itself.    *    * @since NEXT    */
+comment|/**    * The HTTP<a    * href="https://iabtechlab.com/wp-content/uploads/2019/06/VAST_4.2_final_june26.pdf">{@code    * X-Device-Referer}</a> header field name. Header used for VAST requests to provide the {@link    * #REFERER} header value that the on-behalf-of client would have used when making a request    * itself.    *    * @since 31.0    */
 DECL|field|X_DEVICE_REFERER
 specifier|public
 specifier|static
@@ -1098,7 +1098,7 @@ name|X_DEVICE_REFERER
 init|=
 literal|"X-Device-Referer"
 decl_stmt|;
-comment|/**    * The HTTP<a    * href="https://iabtechlab.com/wp-content/uploads/2019/06/VAST_4.2_final_june26.pdf">{@code    * X-Device-Accept-Language}</a> header field name. Header used for VAST requests to provide the    * {@link #ACCEPT_LANGUAGE} header value that the on-behalf-of client would have used when making    * a request itself.    *    * @since NEXT    */
+comment|/**    * The HTTP<a    * href="https://iabtechlab.com/wp-content/uploads/2019/06/VAST_4.2_final_june26.pdf">{@code    * X-Device-Accept-Language}</a> header field name. Header used for VAST requests to provide the    * {@link #ACCEPT_LANGUAGE} header value that the on-behalf-of client would have used when making    * a request itself.    *    * @since 31.0    */
 DECL|field|X_DEVICE_ACCEPT_LANGUAGE
 specifier|public
 specifier|static
@@ -1108,7 +1108,7 @@ name|X_DEVICE_ACCEPT_LANGUAGE
 init|=
 literal|"X-Device-Accept-Language"
 decl_stmt|;
-comment|/**    * The HTTP<a    * href="https://iabtechlab.com/wp-content/uploads/2019/06/VAST_4.2_final_june26.pdf">{@code    * X-Device-Requested-With}</a> header field name. Header used for VAST requests to provide the    * {@link #X_REQUESTED_WITH} header value that the on-behalf-of client would have used when making    * a request itself.    *    * @since NEXT    */
+comment|/**    * The HTTP<a    * href="https://iabtechlab.com/wp-content/uploads/2019/06/VAST_4.2_final_june26.pdf">{@code    * X-Device-Requested-With}</a> header field name. Header used for VAST requests to provide the    * {@link #X_REQUESTED_WITH} header value that the on-behalf-of client would have used when making    * a request itself.    *    * @since 31.0    */
 DECL|field|X_DEVICE_REQUESTED_WITH
 specifier|public
 specifier|static
@@ -1324,7 +1324,7 @@ name|X_MOZ
 init|=
 literal|"X-Moz"
 decl_stmt|;
-comment|/**    * The HTTP<a    * href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Device-Memory">{@code    * Device-Memory}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a    * href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Device-Memory">{@code    * Device-Memory}</a> header field name.    *    * @since 31.0    */
 DECL|field|DEVICE_MEMORY
 specifier|public
 specifier|static
@@ -1334,7 +1334,7 @@ name|DEVICE_MEMORY
 init|=
 literal|"Device-Memory"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Downlink">{@code    * Downlink}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Downlink">{@code    * Downlink}</a> header field name.    *    * @since 31.0    */
 DECL|field|DOWNLINK
 specifier|public
 specifier|static
@@ -1344,7 +1344,7 @@ name|DOWNLINK
 init|=
 literal|"Downlink"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ECT">{@code    * ECT}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ECT">{@code    * ECT}</a> header field name.    *    * @since 31.0    */
 DECL|field|ECT
 specifier|public
 specifier|static
@@ -1354,7 +1354,7 @@ name|ECT
 init|=
 literal|"ECT"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/RTT">{@code    * RTT}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/RTT">{@code    * RTT}</a> header field name.    *    * @since 31.0    */
 DECL|field|RTT
 specifier|public
 specifier|static
@@ -1364,7 +1364,7 @@ name|RTT
 init|=
 literal|"RTT"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Save-Data">{@code    * Save-Data}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Save-Data">{@code    * Save-Data}</a> header field name.    *    * @since 31.0    */
 DECL|field|SAVE_DATA
 specifier|public
 specifier|static
@@ -1374,7 +1374,7 @@ name|SAVE_DATA
 init|=
 literal|"Save-Data"
 decl_stmt|;
-comment|/**    * The HTTP<a    * href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Viewport-Width">{@code    * Viewport-Width}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a    * href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Viewport-Width">{@code    * Viewport-Width}</a> header field name.    *    * @since 31.0    */
 DECL|field|VIEWPORT_WIDTH
 specifier|public
 specifier|static
@@ -1384,7 +1384,7 @@ name|VIEWPORT_WIDTH
 init|=
 literal|"Viewport-Width"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Width">{@code    * Width}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Width">{@code    * Width}</a> header field name.    *    * @since 31.0    */
 DECL|field|WIDTH
 specifier|public
 specifier|static
@@ -1394,7 +1394,7 @@ name|WIDTH
 init|=
 literal|"Width"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://www.w3.org/TR/permissions-policy-1/">{@code Permissions-Policy}</a>    * header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://www.w3.org/TR/permissions-policy-1/">{@code Permissions-Policy}</a>    * header field name.    *    * @since 31.0    */
 DECL|field|PERMISSIONS_POLICY
 specifier|public
 specifier|static
@@ -1404,7 +1404,7 @@ name|PERMISSIONS_POLICY
 init|=
 literal|"Permissions-Policy"
 decl_stmt|;
-comment|/**    * The HTTP<a    * href="https://wicg.github.io/user-preference-media-features-headers/#sec-ch-prefers-color-scheme">{@code    * Sec-CH-Prefers-Color-Scheme}</a> header field name.    *    *<p>This header is experimental.    *    * @since NEXT    */
+comment|/**    * The HTTP<a    * href="https://wicg.github.io/user-preference-media-features-headers/#sec-ch-prefers-color-scheme">{@code    * Sec-CH-Prefers-Color-Scheme}</a> header field name.    *    *<p>This header is experimental.    *    * @since 31.0    */
 DECL|field|SEC_CH_PREFERS_COLOR_SCHEME
 specifier|public
 specifier|static
@@ -1414,7 +1414,7 @@ name|SEC_CH_PREFERS_COLOR_SCHEME
 init|=
 literal|"Sec-CH-Prefers-Color-Scheme"
 decl_stmt|;
-comment|/**    * The HTTP<a    * href="https://www.rfc-editor.org/rfc/rfc8942#name-the-accept-ch-response-head">{@code    * Accept-CH}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a    * href="https://www.rfc-editor.org/rfc/rfc8942#name-the-accept-ch-response-head">{@code    * Accept-CH}</a> header field name.    *    * @since 31.0    */
 DECL|field|ACCEPT_CH
 specifier|public
 specifier|static
@@ -1424,7 +1424,7 @@ name|ACCEPT_CH
 init|=
 literal|"Accept-CH"
 decl_stmt|;
-comment|/**    * The HTTP<a    * href="https://datatracker.ietf.org/doc/html/draft-davidben-http-client-hint-reliability-03.txt#section-3">{@code    * Critical-CH}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a    * href="https://datatracker.ietf.org/doc/html/draft-davidben-http-client-hint-reliability-03.txt#section-3">{@code    * Critical-CH}</a> header field name.    *    * @since 31.0    */
 DECL|field|CRITICAL_CH
 specifier|public
 specifier|static
@@ -1504,7 +1504,7 @@ name|SEC_CH_UA_MOBILE
 init|=
 literal|"Sec-CH-UA-Mobile"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-ua-bitness">{@code    * Sec-CH-UA-Bitness}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-ua-bitness">{@code    * Sec-CH-UA-Bitness}</a> header field name.    *    * @since 31.0    */
 DECL|field|SEC_CH_UA_BITNESS
 specifier|public
 specifier|static

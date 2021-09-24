@@ -1233,7 +1233,7 @@ name|buildOrThrow
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns a newly-created immutable table, or throws an exception if duplicate key pairs were      * added.      *      * @throws IllegalArgumentException if duplicate key pairs were added      */
+comment|/**      * Returns a newly-created immutable table, or throws an exception if duplicate key pairs were      * added.      *      * @throws IllegalArgumentException if duplicate key pairs were added      * @since 31.0      */
 DECL|method|buildOrThrow ()
 specifier|public
 name|ImmutableTable

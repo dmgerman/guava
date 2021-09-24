@@ -685,7 +685,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys or values are added    * @since NEXT    */
+comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys or values are added    * @since 31.0    */
 DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5, K k6, V v6)
 specifier|public
 specifier|static
@@ -788,7 +788,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys or values are added    * @since NEXT    */
+comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys or values are added    * @since 31.0    */
 DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5, K k6, V v6, K k7, V v7)
 specifier|public
 specifier|static
@@ -904,7 +904,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys or values are added    * @since NEXT    */
+comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys or values are added    * @since 31.0    */
 DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5, K k6, V v6, K k7, V v7, K k8, V v8)
 specifier|public
 specifier|static
@@ -1033,7 +1033,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys or values are added    * @since NEXT    */
+comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys or values are added    * @since 31.0    */
 DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5, K k6, V v6, K k7, V v7, K k8, V v8, K k9, V v9)
 specifier|public
 specifier|static
@@ -1175,7 +1175,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys or values are added    * @since NEXT    */
+comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys or values are added    * @since 31.0    */
 DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5, K k6, V v6, K k7, V v7, K k8, V v8, K k9, V v9, K k10, V v10)
 specifier|public
 specifier|static
@@ -1331,7 +1331,7 @@ argument_list|)
 return|;
 block|}
 comment|// looking for of() with> 10 entries? Use the builder or ofEntries instead.
-comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys or values are provided    * @since NEXT    */
+comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys or values are provided    * @since 31.0    */
 annotation|@
 name|SafeVarargs
 DECL|method|ofEntries (Entry<? extends K, ? extends V>.... entries)
@@ -1754,7 +1754,7 @@ name|buildOrThrow
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns a newly-created immutable bimap, or throws an exception if any key or value was added      * more than once. The iteration order of the returned bimap is the order in which entries were      * inserted into the builder, unless {@link #orderEntriesByValue} was called, in which case      * entries are sorted by value.      *      * @throws IllegalArgumentException if duplicate keys or values were added      */
+comment|/**      * Returns a newly-created immutable bimap, or throws an exception if any key or value was added      * more than once. The iteration order of the returned bimap is the order in which entries were      * inserted into the builder, unless {@link #orderEntriesByValue} was called, in which case      * entries are sorted by value.      *      * @throws IllegalArgumentException if duplicate keys or values were added      * @since 31.0      */
 annotation|@
 name|Override
 DECL|method|buildOrThrow ()

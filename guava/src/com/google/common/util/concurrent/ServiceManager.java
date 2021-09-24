@@ -1434,7 +1434,7 @@ name|startupTimes
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the service load times. This value will only return startup times for services that    * have finished starting.    *    * @return Map of services and their corresponding startup time, the map entries will be ordered    *     by startup time.    * @since NEXT    */
+comment|/**    * Returns the service load times. This value will only return startup times for services that    * have finished starting.    *    * @return Map of services and their corresponding startup time, the map entries will be ordered    *     by startup time.    * @since 31.0    */
 annotation|@
 name|J2ObjCIncompatible
 DECL|method|startupDurations ()

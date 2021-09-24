@@ -380,7 +380,7 @@ operator|.
 name|MURMUR3_32
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the<a    * href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">32-bit murmur3    * algorithm, x86 variant</a> (little-endian variant), using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    *    *<p>This method is called {@code murmur3_32_fixed} because it fixes a bug in the {@code    * HashFunction} returned by the original {@code murmur3_32} method.    *    * @since NEXT    */
+comment|/**    * Returns a hash function implementing the<a    * href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">32-bit murmur3    * algorithm, x86 variant</a> (little-endian variant), using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    *    *<p>This method is called {@code murmur3_32_fixed} because it fixes a bug in the {@code    * HashFunction} returned by the original {@code murmur3_32} method.    *    * @since 31.0    */
 DECL|method|murmur3_32_fixed (int seed)
 specifier|public
 specifier|static
@@ -402,7 +402,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the<a    * href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">32-bit murmur3    * algorithm, x86 variant</a> (little-endian variant), using a seed value of zero.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    *    *<p>This method is called {@code murmur3_32_fixed} because it fixes a bug in the {@code    * HashFunction} returned by the original {@code murmur3_32} method.    *    * @since NEXT    */
+comment|/**    * Returns a hash function implementing the<a    * href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">32-bit murmur3    * algorithm, x86 variant</a> (little-endian variant), using a seed value of zero.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    *    *<p>This method is called {@code murmur3_32_fixed} because it fixes a bug in the {@code    * HashFunction} returned by the original {@code murmur3_32} method.    *    * @since 31.0    */
 DECL|method|murmur3_32_fixed ()
 specifier|public
 specifier|static
