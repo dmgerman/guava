@@ -128,22 +128,20 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
 begin_comment
 comment|/**  * Thread that finalizes referents. All references should implement {@code  * com.google.common.base.FinalizableReference}.  *  *<p>While this class is public, we consider it to be *internal* and not part of our published API.  * It is public so we can access it reflectively across class loaders in secure environments.  *  *<p>This class can't depend on other Guava code. If we were to load this class in the same class  * loader as the rest of Guava, this thread would keep an indirect strong reference to the class  * loader and prevent it from being garbage collected. This poses a problem for environments where  * you want to throw away the class loader. For example, dynamically reloading a web application or  * unloading an OSGi bundle.  *  *<p>{@code com.google.common.base.FinalizableReferenceQueue} loads this class in its own class  * loader. That way, this class doesn't prevent the main class loader from getting garbage  * collected, and this class can detect when the main class loader has been garbage collected and  * stop itself.  */
+end_comment
+
+begin_comment
+comment|// no @ElementTypesAreNonNullByDefault for the reasons discussed above
 end_comment
 
 begin_class
@@ -434,12 +432,12 @@ decl_stmt|;
 comment|// By preference, we will use the Thread constructor that has an `inheritThreadLocals` parameter.
 comment|// But before Java 9, our only way not to inherit ThreadLocals is to zap them after the thread
 comment|// is created, by accessing a private field.
+annotation|@
+name|CheckForNull
 DECL|field|bigThreadConstructor
 specifier|private
 specifier|static
 specifier|final
-annotation|@
-name|Nullable
 name|Constructor
 argument_list|<
 name|Thread
@@ -449,12 +447,12 @@ init|=
 name|getBigThreadConstructor
 argument_list|()
 decl_stmt|;
+annotation|@
+name|CheckForNull
 DECL|field|inheritableThreadLocals
 specifier|private
 specifier|static
 specifier|final
-annotation|@
-name|Nullable
 name|Field
 name|inheritableThreadLocals
 init|=
@@ -670,10 +668,10 @@ literal|true
 return|;
 block|}
 comment|/** Looks up FinalizableReference.finalizeReferent() method. */
+annotation|@
+name|CheckForNull
 DECL|method|getFinalizeReferentMethod ()
 specifier|private
-annotation|@
-name|Nullable
 name|Method
 name|getFinalizeReferentMethod
 parameter_list|()
@@ -727,11 +725,11 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|CheckForNull
 DECL|method|getInheritableThreadLocalsField ()
 specifier|private
 specifier|static
-annotation|@
-name|Nullable
 name|Field
 name|getInheritableThreadLocalsField
 parameter_list|()
@@ -785,11 +783,11 @@ literal|null
 return|;
 block|}
 block|}
+annotation|@
+name|CheckForNull
 DECL|method|getBigThreadConstructor ()
 specifier|private
 specifier|static
-annotation|@
-name|Nullable
 name|Constructor
 argument_list|<
 name|Thread
