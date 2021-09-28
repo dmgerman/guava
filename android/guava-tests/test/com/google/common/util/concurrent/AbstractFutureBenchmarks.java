@@ -124,17 +124,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -676,13 +670,13 @@ block|}
 comment|/**      * Subclasses should invoke this method to set the result of the computation to {@code value}.      * This will set the state of the future to {@link OldAbstractFuture.Sync#COMPLETED} and invoke      * the listeners if the state was successfully changed.      *      * @param value the value that was the result of the task.      * @return true if the state was successfully changed.      */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|set (@ullableDecl V value)
+DECL|method|set (@heckForNull V value)
 specifier|protected
 name|boolean
 name|set
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -1069,12 +1063,12 @@ name|INTERRUPTED
 return|;
 block|}
 comment|/** Transition to the COMPLETED state and set the value. */
-DECL|method|set (@ullableDecl V v)
+DECL|method|set (@heckForNull V v)
 name|boolean
 name|set
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|v
 parameter_list|)
@@ -1135,18 +1129,18 @@ argument_list|)
 return|;
 block|}
 comment|/**        * Implementation of completing a task. Either {@code v} or {@code t} will be set but not        * both. The {@code finalState} is the state to change to from {@link #RUNNING}. If the state        * is not in the RUNNING state we return {@code false} after waiting for the state to be set        * to a valid final state ({@link #COMPLETED}, {@link #CANCELLED}, or {@link #INTERRUPTED}).        *        * @param v the value to set as the result of the computation.        * @param t the exception to set as the result of the computation.        * @param finalState the state to transition to.        */
-DECL|method|complete (@ullableDecl V v, @NullableDecl Throwable t, int finalState)
+DECL|method|complete (@heckForNull V v, @CheckForNull Throwable t, int finalState)
 specifier|private
 name|boolean
 name|complete
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|v
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Throwable
 name|t
 parameter_list|,
@@ -1233,19 +1227,19 @@ name|doCompletion
 return|;
 block|}
 block|}
-DECL|method|cancellationExceptionWithCause ( @ullableDecl String message, @NullableDecl Throwable cause)
+DECL|method|cancellationExceptionWithCause ( @heckForNull String message, @CheckForNull Throwable cause)
 specifier|static
 specifier|final
 name|CancellationException
 name|cancellationExceptionWithCause
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|message
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Throwable
 name|cause
 parameter_list|)

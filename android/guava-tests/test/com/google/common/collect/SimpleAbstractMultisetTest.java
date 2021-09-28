@@ -202,6 +202,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -227,22 +237,6 @@ operator|.
 name|framework
 operator|.
 name|TestSuite
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|checkerframework
-operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
 import|;
 end_import
 
@@ -597,13 +591,13 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|count (@ullableDecl Object element)
+DECL|method|count (@heckForNull Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -649,13 +643,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|add (@ullableDecl E element, int occurrences)
+DECL|method|add (@heckForNull E element, int occurrences)
 specifier|public
 name|int
 name|add
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|element
 parameter_list|,

@@ -158,27 +158,21 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|javax
 operator|.
-name|framework
+name|annotation
 operator|.
-name|AssertionFailedError
+name|CheckForNull
 import|;
 end_import
 
 begin_import
 import|import
-name|org
+name|junit
 operator|.
-name|checkerframework
+name|framework
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|AssertionFailedError
 import|;
 end_import
 
@@ -686,13 +680,13 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Asserts that a prior call that had caused this thread to block or wait has since returned    * normally.    */
-DECL|method|assertPriorCallReturns (@ullableDecl String methodName)
+DECL|method|assertPriorCallReturns (@heckForNull String methodName)
 specifier|public
 name|void
 name|assertPriorCallReturns
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|methodName
 parameter_list|)
@@ -714,7 +708,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Asserts that a prior call that had caused this thread to block or wait has since returned the    * expected boolean value.    */
-DECL|method|assertPriorCallReturns (boolean expected, @NullableDecl String methodName)
+DECL|method|assertPriorCallReturns (boolean expected, @CheckForNull String methodName)
 specifier|public
 name|void
 name|assertPriorCallReturns
@@ -723,7 +717,7 @@ name|boolean
 name|expected
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|methodName
 parameter_list|)

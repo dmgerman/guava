@@ -908,17 +908,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -1184,7 +1178,7 @@ decl_stmt|;
 comment|/** The default cache loader to use on loading operations. */
 DECL|field|defaultLoader
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|final
 name|CacheLoader
 argument_list|<
@@ -1197,7 +1191,7 @@ argument_list|>
 name|defaultLoader
 decl_stmt|;
 comment|/**    * Creates a new, empty map with the specified strategy, initial capacity and concurrency level.    */
-DECL|method|LocalCache ( CacheBuilder<? super K, ? super V> builder, @NullableDecl CacheLoader<? super K, V> loader)
+DECL|method|LocalCache ( CacheBuilder<? super K, ? super V> builder, @CheckForNull CacheLoader<? super K, V> loader)
 name|LocalCache
 parameter_list|(
 name|CacheBuilder
@@ -1213,7 +1207,7 @@ argument_list|>
 name|builder
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|CacheLoader
 argument_list|<
 name|?
@@ -2219,7 +2213,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -2277,7 +2271,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -2405,7 +2399,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -2533,7 +2527,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -2668,7 +2662,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -2730,7 +2724,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -2862,7 +2856,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -2994,7 +2988,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -3207,7 +3201,7 @@ index|]
 return|;
 block|}
 comment|/**      * Creates a new entry.      *      * @param segment to create the entry for      * @param key of the entry      * @param hash of the key      * @param next entry in the same bucket      */
-DECL|method|newEntry ( Segment<K, V> segment, K key, int hash, @NullableDecl ReferenceEntry<K, V> next)
+DECL|method|newEntry ( Segment<K, V> segment, K key, int hash, @CheckForNull ReferenceEntry<K, V> next)
 specifier|abstract
 parameter_list|<
 name|K
@@ -3237,7 +3231,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -3450,7 +3444,7 @@ parameter_list|>
 block|{
 comment|/** Returns the value. Does not block or throw exceptions. */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|get ()
 name|V
 name|get
@@ -3472,7 +3466,7 @@ parameter_list|()
 function_decl|;
 comment|/**      * Returns the entry associated with this value reference, or {@code null} if this value      * reference is independent of any entry.      */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getEntry ()
 name|ReferenceEntry
 argument_list|<
@@ -3484,7 +3478,7 @@ name|getEntry
 parameter_list|()
 function_decl|;
 comment|/**      * Creates a copy of this reference for the given entry.      *      *<p>{@code value} may be null only for a loading reference.      */
-DECL|method|copyFor ( ReferenceQueue<V> queue, @NullableDecl V value, ReferenceEntry<K, V> entry)
+DECL|method|copyFor ( ReferenceQueue<V> queue, @CheckForNull V value, ReferenceEntry<K, V> entry)
 name|ValueReference
 argument_list|<
 name|K
@@ -3500,7 +3494,7 @@ argument_list|>
 name|queue
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|,
@@ -3514,12 +3508,12 @@ name|entry
 parameter_list|)
 function_decl|;
 comment|/**      * Notify pending loads that a new value was set. This is only relevant to loading value      * references.      */
-DECL|method|notifyNewValue (@ullableDecl V newValue)
+DECL|method|notifyNewValue (@heckForNull V newValue)
 name|void
 name|notifyNewValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|newValue
 parameter_list|)
@@ -3614,7 +3608,7 @@ argument_list|>
 name|queue
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
 parameter_list|,
@@ -4483,7 +4477,7 @@ specifier|final
 name|K
 name|key
 decl_stmt|;
-DECL|method|StrongEntry (K key, int hash, @NullableDecl ReferenceEntry<K, V> next)
+DECL|method|StrongEntry (K key, int hash, @CheckForNull ReferenceEntry<K, V> next)
 name|StrongEntry
 parameter_list|(
 name|K
@@ -4493,7 +4487,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -4544,7 +4538,7 @@ name|hash
 decl_stmt|;
 DECL|field|next
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|final
 name|ReferenceEntry
 argument_list|<
@@ -4655,7 +4649,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|StrongAccessEntry (K key, int hash, @NullableDecl ReferenceEntry<K, V> next)
+DECL|method|StrongAccessEntry (K key, int hash, @CheckForNull ReferenceEntry<K, V> next)
 name|StrongAccessEntry
 parameter_list|(
 name|K
@@ -4665,7 +4659,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -4854,7 +4848,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|StrongWriteEntry (K key, int hash, @NullableDecl ReferenceEntry<K, V> next)
+DECL|method|StrongWriteEntry (K key, int hash, @CheckForNull ReferenceEntry<K, V> next)
 name|StrongWriteEntry
 parameter_list|(
 name|K
@@ -4864,7 +4858,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -5053,7 +5047,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|StrongAccessWriteEntry (K key, int hash, @NullableDecl ReferenceEntry<K, V> next)
+DECL|method|StrongAccessWriteEntry (K key, int hash, @CheckForNull ReferenceEntry<K, V> next)
 name|StrongAccessWriteEntry
 parameter_list|(
 name|K
@@ -5063,7 +5057,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -5407,7 +5401,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|WeakEntry (ReferenceQueue<K> queue, K key, int hash, @NullableDecl ReferenceEntry<K, V> next)
+DECL|method|WeakEntry (ReferenceQueue<K> queue, K key, int hash, @CheckForNull ReferenceEntry<K, V> next)
 name|WeakEntry
 parameter_list|(
 name|ReferenceQueue
@@ -5423,7 +5417,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -5703,7 +5697,7 @@ name|hash
 decl_stmt|;
 DECL|field|next
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|final
 name|ReferenceEntry
 argument_list|<
@@ -5814,7 +5808,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|WeakAccessEntry ( ReferenceQueue<K> queue, K key, int hash, @NullableDecl ReferenceEntry<K, V> next)
+DECL|method|WeakAccessEntry ( ReferenceQueue<K> queue, K key, int hash, @CheckForNull ReferenceEntry<K, V> next)
 name|WeakAccessEntry
 parameter_list|(
 name|ReferenceQueue
@@ -5830,7 +5824,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -6021,7 +6015,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|WeakWriteEntry ( ReferenceQueue<K> queue, K key, int hash, @NullableDecl ReferenceEntry<K, V> next)
+DECL|method|WeakWriteEntry ( ReferenceQueue<K> queue, K key, int hash, @CheckForNull ReferenceEntry<K, V> next)
 name|WeakWriteEntry
 parameter_list|(
 name|ReferenceQueue
@@ -6037,7 +6031,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -6228,7 +6222,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|WeakAccessWriteEntry ( ReferenceQueue<K> queue, K key, int hash, @NullableDecl ReferenceEntry<K, V> next)
+DECL|method|WeakAccessWriteEntry ( ReferenceQueue<K> queue, K key, int hash, @CheckForNull ReferenceEntry<K, V> next)
 name|WeakAccessWriteEntry
 parameter_list|(
 name|ReferenceQueue
@@ -6244,7 +6238,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -7483,7 +7477,7 @@ block|}
 comment|/**    * This method is a convenience for testing. Code should call {@link Segment#newEntry} directly.    */
 annotation|@
 name|VisibleForTesting
-DECL|method|newEntry (K key, int hash, @NullableDecl ReferenceEntry<K, V> next)
+DECL|method|newEntry (K key, int hash, @CheckForNull ReferenceEntry<K, V> next)
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -7499,7 +7493,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -7665,12 +7659,12 @@ name|weight
 argument_list|)
 return|;
 block|}
-DECL|method|hash (@ullableDecl Object key)
+DECL|method|hash (@heckForNull Object key)
 name|int
 name|hash
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -7880,7 +7874,7 @@ return|;
 block|}
 comment|/**    * Gets the value from an entry. Returns null if the entry is invalid, partially-collected,    * loading, or expired. Unlike {@link Segment#getLiveValue} this method does not attempt to    * cleanup stale entries. As such it should only be called outside of a segment context, such as    * during iteration.    */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getLiveValue (ReferenceEntry<K, V> entry, long now)
 name|V
 name|getLiveValue
@@ -8350,7 +8344,7 @@ decl_stmt|;
 comment|/** The per-segment table. */
 DECL|field|table
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|volatile
 name|AtomicReferenceArray
 argument_list|<
@@ -8372,7 +8366,7 @@ decl_stmt|;
 comment|/**      * The key reference queue contains entries whose keys have been garbage collected, and which      * need to be cleaned up internally.      */
 DECL|field|keyReferenceQueue
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|final
 name|ReferenceQueue
 argument_list|<
@@ -8383,7 +8377,7 @@ decl_stmt|;
 comment|/**      * The value reference queue contains value references whose values have been garbage collected,      * and which need to be cleaned up internally.      */
 DECL|field|valueReferenceQueue
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|final
 name|ReferenceQueue
 argument_list|<
@@ -8721,7 +8715,7 @@ name|GuardedBy
 argument_list|(
 literal|"this"
 argument_list|)
-DECL|method|newEntry (K key, int hash, @NullableDecl ReferenceEntry<K, V> next)
+DECL|method|newEntry (K key, int hash, @CheckForNull ReferenceEntry<K, V> next)
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -8737,7 +8731,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -9239,7 +9233,7 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|get (Object key, int hash)
 name|V
 name|get
@@ -10313,7 +10307,7 @@ return|;
 block|}
 comment|/**      * Refreshes the value associated with {@code key}, unless another thread is already doing so.      * Returns the newly refreshed value associated with {@code key} if it was refreshed inline, or      * {@code null} if another thread is performing the refresh or if an error occurs during      * refresh.      */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|refresh (K key, int hash, CacheLoader<? super K, V> loader, boolean checkTime)
 name|V
 name|refresh
@@ -10418,7 +10412,7 @@ return|;
 block|}
 comment|/**      * Returns a newly inserted {@code LoadingValueReference}, or null if the live value reference      * is already loading.      */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|insertLoadingValueReference ( final K key, final int hash, boolean checkTime)
 name|LoadingValueReference
 argument_list|<
@@ -11369,12 +11363,12 @@ name|GuardedBy
 argument_list|(
 literal|"this"
 argument_list|)
-DECL|method|enqueueNotification ( @ullableDecl K key, int hash, @NullableDecl V value, int weight, RemovalCause cause)
+DECL|method|enqueueNotification ( @heckForNull K key, int hash, @CheckForNull V value, int weight, RemovalCause cause)
 name|void
 name|enqueueNotification
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|K
 name|key
 parameter_list|,
@@ -11382,7 +11376,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|,
@@ -11675,7 +11669,7 @@ return|;
 block|}
 comment|// Specialized implementations of map methods
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getEntry (Object key, int hash)
 name|ReferenceEntry
 argument_list|<
@@ -11775,7 +11769,7 @@ literal|null
 return|;
 block|}
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getLiveEntry (Object key, int hash, long now)
 name|ReferenceEntry
 argument_list|<
@@ -12163,7 +12157,7 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|put (K key, int hash, V value, boolean onlyIfAbsent)
 name|V
 name|put
@@ -13275,7 +13269,7 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|replace (K key, int hash, V newValue)
 name|V
 name|replace
@@ -13573,7 +13567,7 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|remove (Object key, int hash)
 name|V
 name|remove
@@ -14762,8 +14756,8 @@ argument_list|(
 literal|"this"
 argument_list|)
 annotation|@
-name|NullableDecl
-DECL|method|removeValueFromChain ( ReferenceEntry<K, V> first, ReferenceEntry<K, V> entry, @NullableDecl K key, int hash, V value, ValueReference<K, V> valueReference, RemovalCause cause)
+name|CheckForNull
+DECL|method|removeValueFromChain ( ReferenceEntry<K, V> first, ReferenceEntry<K, V> entry, @CheckForNull K key, int hash, V value, ValueReference<K, V> valueReference, RemovalCause cause)
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -14789,7 +14783,7 @@ argument_list|>
 name|entry
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|K
 name|key
 parameter_list|,
@@ -14878,7 +14872,7 @@ argument_list|(
 literal|"this"
 argument_list|)
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|removeEntryFromChain ( ReferenceEntry<K, V> first, ReferenceEntry<K, V> entry)
 name|ReferenceEntry
 argument_list|<
@@ -16165,13 +16159,13 @@ name|getWeight
 argument_list|()
 return|;
 block|}
-DECL|method|set (@ullableDecl V newValue)
+DECL|method|set (@heckForNull V newValue)
 specifier|public
 name|boolean
 name|set
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|newValue
 parameter_list|)
@@ -16226,13 +16220,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|notifyNewValue (@ullableDecl V newValue)
+DECL|method|notifyNewValue (@heckForNull V newValue)
 specifier|public
 name|void
 name|notifyNewValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|newValue
 parameter_list|)
@@ -16536,7 +16530,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copyFor ( ReferenceQueue<V> queue, @NullableDecl V value, ReferenceEntry<K, V> entry)
+DECL|method|copyFor ( ReferenceQueue<V> queue, @CheckForNull V value, ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -16553,7 +16547,7 @@ argument_list|>
 name|queue
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|,
@@ -18094,14 +18088,14 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|get (@ullableDecl Object key)
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -18187,7 +18181,7 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getIfPresent (Object key)
 specifier|public
 name|V
@@ -18259,19 +18253,19 @@ literal|"MissingOverride"
 argument_list|)
 comment|// Supermethod will not exist if we build with --release 7.
 annotation|@
-name|NullableDecl
-DECL|method|getOrDefault (@ullableDecl Object key, @NullableDecl V defaultValue)
+name|CheckForNull
+DECL|method|getOrDefault (@heckForNull Object key, @CheckForNull V defaultValue)
 specifier|public
 name|V
 name|getOrDefault
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|defaultValue
 parameter_list|)
@@ -18689,7 +18683,7 @@ block|}
 block|}
 comment|/**    * Returns the result of calling {@link CacheLoader#loadAll}, or null if {@code loader} doesn't    * implement {@code loadAll}.    */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|loadAll (Set<? extends K> keys, CacheLoader<? super K, V> loader)
 name|Map
 argument_list|<
@@ -19036,7 +19030,7 @@ name|result
 return|;
 block|}
 comment|/**    * Returns the internal entry for the specified key. The entry may be loading, expired, or    * partially collected.    */
-DECL|method|getEntry (@ullableDecl Object key)
+DECL|method|getEntry (@heckForNull Object key)
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -19046,7 +19040,7 @@ argument_list|>
 name|getEntry
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -19123,13 +19117,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -19170,13 +19164,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullableDecl Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -19546,13 +19540,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object key)
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -19592,18 +19586,18 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object key, @NullableDecl Object value)
+DECL|method|remove (@heckForNull Object key, @CheckForNull Object value)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -19649,7 +19643,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|replace (K key, @NullableDecl V oldValue, V newValue)
+DECL|method|replace (K key, @CheckForNull V oldValue, V newValue)
 specifier|public
 name|boolean
 name|replace
@@ -19658,7 +19652,7 @@ name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|oldValue
 parameter_list|,
@@ -19820,7 +19814,7 @@ DECL|field|keySet
 annotation|@
 name|RetainedWith
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Set
 argument_list|<
 name|K
@@ -19869,7 +19863,7 @@ DECL|field|values
 annotation|@
 name|RetainedWith
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Collection
 argument_list|<
 name|V
@@ -19918,7 +19912,7 @@ DECL|field|entrySet
 annotation|@
 name|RetainedWith
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Set
 argument_list|<
 name|Entry
@@ -20005,7 +19999,7 @@ name|nextTableIndex
 decl_stmt|;
 DECL|field|currentSegment
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Segment
 argument_list|<
 name|K
@@ -20016,7 +20010,7 @@ name|currentSegment
 decl_stmt|;
 DECL|field|currentTable
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|AtomicReferenceArray
 argument_list|<
 name|ReferenceEntry
@@ -20030,7 +20024,7 @@ name|currentTable
 decl_stmt|;
 DECL|field|nextEntry
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -20041,13 +20035,13 @@ name|nextEntry
 decl_stmt|;
 DECL|field|nextExternal
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|WriteThroughEntry
 name|nextExternal
 decl_stmt|;
 DECL|field|lastReturned
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|WriteThroughEntry
 name|lastReturned
 decl_stmt|;
@@ -20543,13 +20537,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -21403,7 +21397,7 @@ name|removalListener
 decl_stmt|;
 DECL|field|ticker
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|final
 name|Ticker
 name|ticker
@@ -21422,7 +21416,7 @@ name|loader
 decl_stmt|;
 DECL|field|delegate
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|transient
 name|Cache
 argument_list|<
@@ -21924,7 +21918,7 @@ literal|1
 decl_stmt|;
 DECL|field|autoDelegate
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|transient
 name|LoadingCache
 argument_list|<
@@ -22204,7 +22198,7 @@ comment|// Cache methods
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getIfPresent (Object key)
 specifier|public
 name|V

@@ -210,27 +210,21 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|javax
 operator|.
-name|framework
+name|annotation
 operator|.
-name|TestCase
+name|CheckForNull
 import|;
 end_import
 
 begin_import
 import|import
-name|org
+name|junit
 operator|.
-name|checkerframework
+name|framework
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|TestCase
 import|;
 end_import
 
@@ -4038,11 +4032,11 @@ argument_list|(
 literal|"unused"
 argument_list|)
 comment|// called by reflection
-DECL|method|InnerWithAnnotatedConstructorParameter (@ullableDecl String s)
+DECL|method|InnerWithAnnotatedConstructorParameter (@heckForNull String s)
 name|InnerWithAnnotatedConstructorParameter
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|s
 parameter_list|)
@@ -5022,7 +5016,7 @@ comment|// called by reflection
 name|LocalWithAnnotatedConstructorParameter
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|s
 parameter_list|)

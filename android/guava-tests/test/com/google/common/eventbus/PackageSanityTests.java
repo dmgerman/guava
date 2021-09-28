@@ -44,17 +44,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -151,13 +145,13 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Subscribe
-DECL|method|handle (@ullableDecl Object anything)
+DECL|method|handle (@heckForNull Object anything)
 specifier|public
 name|void
 name|handle
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|anything
 parameter_list|)

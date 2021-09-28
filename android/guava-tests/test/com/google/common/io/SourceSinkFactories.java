@@ -254,17 +254,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -1439,12 +1433,12 @@ name|byte
 index|[]
 name|initialBytes
 decl_stmt|;
-DECL|method|FileByteSinkFactory (@ullableDecl byte[] initialBytes)
+DECL|method|FileByteSinkFactory (@heckForNull byte[] initialBytes)
 specifier|private
 name|FileByteSinkFactory
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|byte
 index|[]
 name|initialBytes
@@ -1815,12 +1809,12 @@ specifier|final
 name|String
 name|initialString
 decl_stmt|;
-DECL|method|FileCharSinkFactory (@ullableDecl String initialString)
+DECL|method|FileCharSinkFactory (@heckForNull String initialString)
 specifier|private
 name|FileCharSinkFactory
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|initialString
 parameter_list|)

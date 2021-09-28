@@ -202,27 +202,21 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|javax
 operator|.
-name|framework
+name|annotation
 operator|.
-name|TestCase
+name|CheckForNull
 import|;
 end_import
 
 begin_import
 import|import
-name|org
+name|junit
 operator|.
-name|checkerframework
+name|framework
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|TestCase
 import|;
 end_import
 
@@ -2302,12 +2296,12 @@ name|IOException
 argument_list|()
 throw|;
 block|}
-DECL|method|TestCloseable (@ullableDecl Throwable throwOnClose)
+DECL|method|TestCloseable (@heckForNull Throwable throwOnClose)
 specifier|private
 name|TestCloseable
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Throwable
 name|throwOnClose
 parameter_list|)

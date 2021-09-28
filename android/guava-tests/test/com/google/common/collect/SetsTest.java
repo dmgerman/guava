@@ -740,6 +740,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -765,22 +775,6 @@ operator|.
 name|framework
 operator|.
 name|TestSuite
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|checkerframework
-operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
 import|;
 end_import
 
@@ -7726,7 +7720,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Utility method to verify that the given SortedSet is equal to and hashes identically to a set    * constructed with the elements in the given iterable. Also verifies that the comparator is the    * same as the given comparator.    */
-DECL|method|verifySortedSetContents ( SortedSet<E> set, Iterable<E> iterable, @NullableDecl Comparator<E> comparator)
+DECL|method|verifySortedSetContents ( SortedSet<E> set, Iterable<E> iterable, @CheckForNull Comparator<E> comparator)
 specifier|private
 specifier|static
 parameter_list|<
@@ -7748,7 +7742,7 @@ argument_list|>
 name|iterable
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|E

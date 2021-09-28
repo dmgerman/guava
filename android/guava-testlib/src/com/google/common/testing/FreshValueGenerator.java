@@ -1272,17 +1272,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -1550,7 +1544,7 @@ expr_stmt|;
 block|}
 comment|/**    * Returns a fresh instance for {@code type} if possible. The returned instance could be:    *    *<ul>    *<li>exactly of the given type, including generic type parameters, such as {@code    *       ImmutableList<String>};    *<li>of the raw type;    *<li>null if no value can be generated.    *</ul>    */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|generateFresh (TypeToken<?> type)
 specifier|final
 name|Object
@@ -1589,7 +1583,7 @@ name|generated
 return|;
 block|}
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|generateFresh (Class<T> type)
 specifier|final
 parameter_list|<
@@ -2259,13 +2253,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -3591,7 +3585,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateIterable (@ullableDecl E freshElement)
+DECL|method|generateIterable (@heckForNull E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -3603,7 +3597,7 @@ argument_list|>
 name|generateIterable
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|freshElement
 parameter_list|)
@@ -3617,7 +3611,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateCollection (@ullableDecl E freshElement)
+DECL|method|generateCollection (@heckForNull E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -3629,7 +3623,7 @@ argument_list|>
 name|generateCollection
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|freshElement
 parameter_list|)
@@ -3643,7 +3637,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateList (@ullableDecl E freshElement)
+DECL|method|generateList (@heckForNull E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -3655,7 +3649,7 @@ argument_list|>
 name|generateList
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|freshElement
 parameter_list|)
@@ -3669,7 +3663,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateArrayList (@ullableDecl E freshElement)
+DECL|method|generateArrayList (@heckForNull E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -3681,7 +3675,7 @@ argument_list|>
 name|generateArrayList
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|freshElement
 parameter_list|)
@@ -3710,7 +3704,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateLinkedList (@ullableDecl E freshElement)
+DECL|method|generateLinkedList (@heckForNull E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -3722,7 +3716,7 @@ argument_list|>
 name|generateLinkedList
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|freshElement
 parameter_list|)
@@ -3801,7 +3795,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateSet (@ullableDecl E freshElement)
+DECL|method|generateSet (@heckForNull E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -3813,7 +3807,7 @@ argument_list|>
 name|generateSet
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|freshElement
 parameter_list|)
@@ -3827,7 +3821,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateHashSet (@ullableDecl E freshElement)
+DECL|method|generateHashSet (@heckForNull E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -3839,7 +3833,7 @@ argument_list|>
 name|generateHashSet
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|freshElement
 parameter_list|)
@@ -3853,7 +3847,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateLinkedHashSet (@ullableDecl E freshElement)
+DECL|method|generateLinkedHashSet (@heckForNull E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -3865,7 +3859,7 @@ argument_list|>
 name|generateLinkedHashSet
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|freshElement
 parameter_list|)
@@ -4061,7 +4055,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateMultiset (@ullableDecl E freshElement)
+DECL|method|generateMultiset (@heckForNull E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -4073,7 +4067,7 @@ argument_list|>
 name|generateMultiset
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|freshElement
 parameter_list|)
@@ -4087,7 +4081,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateHashMultiset (@ullableDecl E freshElement)
+DECL|method|generateHashMultiset (@heckForNull E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -4099,7 +4093,7 @@ argument_list|>
 name|generateHashMultiset
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|freshElement
 parameter_list|)
@@ -4128,7 +4122,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateLinkedHashMultiset (@ullableDecl E freshElement)
+DECL|method|generateLinkedHashMultiset (@heckForNull E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -4140,7 +4134,7 @@ argument_list|>
 name|generateLinkedHashMultiset
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|freshElement
 parameter_list|)
@@ -4299,7 +4293,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateMap (@ullableDecl K key, @NullableDecl V value)
+DECL|method|generateMap (@heckForNull K key, @CheckForNull V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4315,12 +4309,12 @@ argument_list|>
 name|generateMap
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -4336,7 +4330,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateHashdMap (@ullableDecl K key, @NullableDecl V value)
+DECL|method|generateHashdMap (@heckForNull K key, @CheckForNull V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4352,12 +4346,12 @@ argument_list|>
 name|generateHashdMap
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -4373,7 +4367,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateLinkedHashMap ( @ullableDecl K key, @NullableDecl V value)
+DECL|method|generateLinkedHashMap ( @heckForNull K key, @CheckForNull V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4389,12 +4383,12 @@ argument_list|>
 name|generateLinkedHashMap
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -4537,7 +4531,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateSortedMap ( K key, @NullableDecl V value)
+DECL|method|generateSortedMap ( K key, @CheckForNull V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4563,7 +4557,7 @@ name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -4579,7 +4573,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateNavigableMap ( K key, @NullableDecl V value)
+DECL|method|generateNavigableMap ( K key, @CheckForNull V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4605,7 +4599,7 @@ name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -4621,7 +4615,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateTreeMap ( K key, @NullableDecl V value)
+DECL|method|generateTreeMap ( K key, @CheckForNull V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4647,7 +4641,7 @@ name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -4722,7 +4716,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateMultimap (@ullableDecl K key, @NullableDecl V value)
+DECL|method|generateMultimap (@heckForNull K key, @CheckForNull V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4738,12 +4732,12 @@ argument_list|>
 name|generateMultimap
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -4794,7 +4788,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateListMultimap ( @ullableDecl K key, @NullableDecl V value)
+DECL|method|generateListMultimap ( @heckForNull K key, @CheckForNull V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4810,12 +4804,12 @@ argument_list|>
 name|generateListMultimap
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -4831,7 +4825,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateArrayListMultimap ( @ullableDecl K key, @NullableDecl V value)
+DECL|method|generateArrayListMultimap ( @heckForNull K key, @CheckForNull V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4847,12 +4841,12 @@ argument_list|>
 name|generateArrayListMultimap
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -4920,7 +4914,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateSetMultimap (@ullableDecl K key, @NullableDecl V value)
+DECL|method|generateSetMultimap (@heckForNull K key, @CheckForNull V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4936,12 +4930,12 @@ argument_list|>
 name|generateSetMultimap
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -4957,7 +4951,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateHashMultimap ( @ullableDecl K key, @NullableDecl V value)
+DECL|method|generateHashMultimap ( @heckForNull K key, @CheckForNull V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4973,12 +4967,12 @@ argument_list|>
 name|generateHashMultimap
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -5011,7 +5005,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateLinkedHashMultimap ( @ullableDecl K key, @NullableDecl V value)
+DECL|method|generateLinkedHashMultimap ( @heckForNull K key, @CheckForNull V value)
 specifier|static
 parameter_list|<
 name|K
@@ -5027,12 +5021,12 @@ argument_list|>
 name|generateLinkedHashMultimap
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -5100,7 +5094,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateBimap (@ullableDecl K key, @NullableDecl V value)
+DECL|method|generateBimap (@heckForNull K key, @CheckForNull V value)
 specifier|static
 parameter_list|<
 name|K
@@ -5116,12 +5110,12 @@ argument_list|>
 name|generateBimap
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -5137,7 +5131,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateHashBiMap (@ullableDecl K key, @NullableDecl V value)
+DECL|method|generateHashBiMap (@heckForNull K key, @CheckForNull V value)
 specifier|static
 parameter_list|<
 name|K
@@ -5153,12 +5147,12 @@ argument_list|>
 name|generateHashBiMap
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -5226,7 +5220,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateTable ( @ullableDecl R row, @NullableDecl C column, @NullableDecl V value)
+DECL|method|generateTable ( @heckForNull R row, @CheckForNull C column, @CheckForNull V value)
 specifier|static
 parameter_list|<
 name|R
@@ -5246,17 +5240,17 @@ argument_list|>
 name|generateTable
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|R
 name|row
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|C
 name|column
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|)
@@ -5274,7 +5268,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateHashBasedTable ( @ullableDecl R row, @NullableDecl C column, @NullableDecl V value)
+DECL|method|generateHashBasedTable ( @heckForNull R row, @CheckForNull C column, @CheckForNull V value)
 specifier|static
 parameter_list|<
 name|R
@@ -5294,17 +5288,17 @@ argument_list|>
 name|generateHashBasedTable
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|R
 name|row
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|C
 name|column
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|value
 parameter_list|)

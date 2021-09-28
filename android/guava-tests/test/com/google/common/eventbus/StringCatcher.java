@@ -42,27 +42,21 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|javax
 operator|.
-name|framework
+name|annotation
 operator|.
-name|Assert
+name|CheckForNull
 import|;
 end_import
 
 begin_import
 import|import
-name|org
+name|junit
 operator|.
-name|checkerframework
+name|framework
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|Assert
 import|;
 end_import
 
@@ -91,13 +85,13 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Subscribe
-DECL|method|hereHaveAString (@ullableDecl String string)
+DECL|method|hereHaveAString (@heckForNull String string)
 specifier|public
 name|void
 name|hereHaveAString
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|string
 parameter_list|)
@@ -110,13 +104,13 @@ name|string
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|methodWithoutAnnotation (@ullableDecl String string)
+DECL|method|methodWithoutAnnotation (@heckForNull String string)
 specifier|public
 name|void
 name|methodWithoutAnnotation
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|string
 parameter_list|)

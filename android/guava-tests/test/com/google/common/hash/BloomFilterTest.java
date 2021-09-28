@@ -264,27 +264,21 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|javax
 operator|.
-name|framework
+name|annotation
 operator|.
-name|TestCase
+name|CheckForNull
 import|;
 end_import
 
 begin_import
 import|import
-name|org
+name|junit
 operator|.
-name|checkerframework
+name|framework
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|TestCase
 import|;
 end_import
 
@@ -2606,13 +2600,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)

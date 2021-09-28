@@ -476,6 +476,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -501,22 +511,6 @@ operator|.
 name|framework
 operator|.
 name|TestSuite
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|checkerframework
-operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
 import|;
 end_import
 
@@ -3427,7 +3421,7 @@ name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|string
 parameter_list|)
@@ -3475,7 +3469,7 @@ name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|string
 parameter_list|)

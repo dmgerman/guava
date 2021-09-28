@@ -152,6 +152,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -167,22 +177,6 @@ operator|.
 name|framework
 operator|.
 name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|checkerframework
-operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
 import|;
 end_import
 
@@ -426,13 +420,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -483,13 +477,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|add (@ullableDecl E o)
+DECL|method|add (@heckForNull E o)
 specifier|public
 name|boolean
 name|add
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|o
 parameter_list|)
@@ -574,13 +568,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -665,13 +659,13 @@ block|}
 comment|/* Don't test iterator(); it may or may not hold the mutex. */
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object o)
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)

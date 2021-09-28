@@ -290,27 +290,21 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|javax
 operator|.
-name|framework
+name|annotation
 operator|.
-name|TestCase
+name|CheckForNull
 import|;
 end_import
 
 begin_import
 import|import
-name|org
+name|junit
 operator|.
-name|checkerframework
+name|framework
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|TestCase
 import|;
 end_import
 
@@ -2762,7 +2756,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertFailsToDecode ( BaseEncoding encoding, String cannotDecode, @NullableDecl String expectedMessage)
+DECL|method|assertFailsToDecode ( BaseEncoding encoding, String cannotDecode, @CheckForNull String expectedMessage)
 specifier|private
 specifier|static
 name|void
@@ -2775,7 +2769,7 @@ name|String
 name|cannotDecode
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|expectedMessage
 parameter_list|)
@@ -2830,7 +2824,7 @@ name|String
 name|cannotDecode
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|expectedMessage
 parameter_list|)
@@ -2914,7 +2908,7 @@ name|String
 name|cannotDecode
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|expectedMessage
 parameter_list|)
@@ -2947,7 +2941,7 @@ name|String
 name|cannotDecode
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|expectedMessage
 parameter_list|)
@@ -3016,7 +3010,7 @@ name|String
 name|cannotDecode
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|expectedMessage
 parameter_list|)
@@ -3067,7 +3061,7 @@ block|}
 block|}
 block|}
 block|;
-DECL|method|assertFailsToDecode ( BaseEncoding encoding, String cannotDecode, @NullableDecl String expectedMessage)
+DECL|method|assertFailsToDecode ( BaseEncoding encoding, String cannotDecode, @CheckForNull String expectedMessage)
 specifier|abstract
 name|void
 name|assertFailsToDecode
@@ -3079,7 +3073,7 @@ name|String
 name|cannotDecode
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|expectedMessage
 parameter_list|)

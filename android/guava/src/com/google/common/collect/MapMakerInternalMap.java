@@ -412,17 +412,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -1286,7 +1280,7 @@ name|maxSegmentSize
 parameter_list|)
 function_decl|;
 comment|/**      * Returns a freshly created entry, typed at the {@code E} type, for the given {@code segment}.      */
-DECL|method|newEntry (S segment, K key, int hash, @NullableDecl E next)
+DECL|method|newEntry (S segment, K key, int hash, @CheckForNull E next)
 name|E
 name|newEntry
 parameter_list|(
@@ -1300,13 +1294,13 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|next
 parameter_list|)
 function_decl|;
 comment|/**      * Returns a freshly created entry, typed at the {@code E} type, for the given {@code segment},      * that is a copy of the given {@code entry}.      */
-DECL|method|copy (S segment, E entry, @NullableDecl E newNext)
+DECL|method|copy (S segment, E entry, @CheckForNull E newNext)
 name|E
 name|copy
 parameter_list|(
@@ -1317,7 +1311,7 @@ name|E
 name|entry
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|newNext
 parameter_list|)
@@ -1429,12 +1423,12 @@ name|hash
 decl_stmt|;
 DECL|field|next
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|final
 name|E
 name|next
 decl_stmt|;
-DECL|method|AbstractStrongKeyEntry (K key, int hash, @NullableDecl E next)
+DECL|method|AbstractStrongKeyEntry (K key, int hash, @CheckForNull E next)
 name|AbstractStrongKeyEntry
 parameter_list|(
 name|K
@@ -1444,7 +1438,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|next
 parameter_list|)
@@ -1678,7 +1672,7 @@ argument_list|>
 block|{
 DECL|field|value
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|volatile
 name|V
@@ -1686,7 +1680,7 @@ name|value
 init|=
 literal|null
 decl_stmt|;
-DECL|method|StrongKeyStrongValueEntry (K key, int hash, @NullableDecl StrongKeyStrongValueEntry<K, V> next)
+DECL|method|StrongKeyStrongValueEntry (K key, int hash, @CheckForNull StrongKeyStrongValueEntry<K, V> next)
 name|StrongKeyStrongValueEntry
 parameter_list|(
 name|K
@@ -1696,7 +1690,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|StrongKeyStrongValueEntry
 argument_list|<
 name|K
@@ -1719,7 +1713,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getValue ()
 specifier|public
 name|V
@@ -1965,7 +1959,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copy ( StrongKeyStrongValueSegment<K, V> segment, StrongKeyStrongValueEntry<K, V> entry, @NullableDecl StrongKeyStrongValueEntry<K, V> newNext)
+DECL|method|copy ( StrongKeyStrongValueSegment<K, V> segment, StrongKeyStrongValueEntry<K, V> entry, @CheckForNull StrongKeyStrongValueEntry<K, V> newNext)
 specifier|public
 name|StrongKeyStrongValueEntry
 argument_list|<
@@ -1992,7 +1986,7 @@ argument_list|>
 name|entry
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|StrongKeyStrongValueEntry
 argument_list|<
 name|K
@@ -2048,7 +2042,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|newEntry ( StrongKeyStrongValueSegment<K, V> segment, K key, int hash, @NullableDecl StrongKeyStrongValueEntry<K, V> next)
+DECL|method|newEntry ( StrongKeyStrongValueSegment<K, V> segment, K key, int hash, @CheckForNull StrongKeyStrongValueEntry<K, V> next)
 specifier|public
 name|StrongKeyStrongValueEntry
 argument_list|<
@@ -2073,7 +2067,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|StrongKeyStrongValueEntry
 argument_list|<
 name|K
@@ -2159,7 +2153,7 @@ init|=
 name|unsetWeakValueReference
 argument_list|()
 decl_stmt|;
-DECL|method|StrongKeyWeakValueEntry (K key, int hash, @NullableDecl StrongKeyWeakValueEntry<K, V> next)
+DECL|method|StrongKeyWeakValueEntry (K key, int hash, @CheckForNull StrongKeyWeakValueEntry<K, V> next)
 name|StrongKeyWeakValueEntry
 parameter_list|(
 name|K
@@ -2169,7 +2163,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|StrongKeyWeakValueEntry
 argument_list|<
 name|K
@@ -2523,7 +2517,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copy ( StrongKeyWeakValueSegment<K, V> segment, StrongKeyWeakValueEntry<K, V> entry, @NullableDecl StrongKeyWeakValueEntry<K, V> newNext)
+DECL|method|copy ( StrongKeyWeakValueSegment<K, V> segment, StrongKeyWeakValueEntry<K, V> entry, @CheckForNull StrongKeyWeakValueEntry<K, V> newNext)
 specifier|public
 name|StrongKeyWeakValueEntry
 argument_list|<
@@ -2550,7 +2544,7 @@ argument_list|>
 name|entry
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|StrongKeyWeakValueEntry
 argument_list|<
 name|K
@@ -2628,7 +2622,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|newEntry ( StrongKeyWeakValueSegment<K, V> segment, K key, int hash, @NullableDecl StrongKeyWeakValueEntry<K, V> next)
+DECL|method|newEntry ( StrongKeyWeakValueSegment<K, V> segment, K key, int hash, @CheckForNull StrongKeyWeakValueEntry<K, V> next)
 specifier|public
 name|StrongKeyWeakValueEntry
 argument_list|<
@@ -2653,7 +2647,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|StrongKeyWeakValueEntry
 argument_list|<
 name|K
@@ -2712,7 +2706,7 @@ name|K
 argument_list|>
 argument_list|>
 block|{
-DECL|method|StrongKeyDummyValueEntry (K key, int hash, @NullableDecl StrongKeyDummyValueEntry<K> next)
+DECL|method|StrongKeyDummyValueEntry (K key, int hash, @CheckForNull StrongKeyDummyValueEntry<K> next)
 name|StrongKeyDummyValueEntry
 parameter_list|(
 name|K
@@ -2722,7 +2716,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|StrongKeyDummyValueEntry
 argument_list|<
 name|K
@@ -2944,7 +2938,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copy ( StrongKeyDummyValueSegment<K> segment, StrongKeyDummyValueEntry<K> entry, @NullableDecl StrongKeyDummyValueEntry<K> newNext)
+DECL|method|copy ( StrongKeyDummyValueSegment<K> segment, StrongKeyDummyValueEntry<K> entry, @CheckForNull StrongKeyDummyValueEntry<K> newNext)
 specifier|public
 name|StrongKeyDummyValueEntry
 argument_list|<
@@ -2965,7 +2959,7 @@ argument_list|>
 name|entry
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|StrongKeyDummyValueEntry
 argument_list|<
 name|K
@@ -3007,7 +3001,7 @@ parameter_list|)
 block|{}
 annotation|@
 name|Override
-DECL|method|newEntry ( StrongKeyDummyValueSegment<K> segment, K key, int hash, @NullableDecl StrongKeyDummyValueEntry<K> next)
+DECL|method|newEntry ( StrongKeyDummyValueSegment<K> segment, K key, int hash, @CheckForNull StrongKeyDummyValueEntry<K> next)
 specifier|public
 name|StrongKeyDummyValueEntry
 argument_list|<
@@ -3028,7 +3022,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|StrongKeyDummyValueEntry
 argument_list|<
 name|K
@@ -3097,12 +3091,12 @@ name|hash
 decl_stmt|;
 DECL|field|next
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|final
 name|E
 name|next
 decl_stmt|;
-DECL|method|AbstractWeakKeyEntry (ReferenceQueue<K> queue, K key, int hash, @NullableDecl E next)
+DECL|method|AbstractWeakKeyEntry (ReferenceQueue<K> queue, K key, int hash, @CheckForNull E next)
 name|AbstractWeakKeyEntry
 parameter_list|(
 name|ReferenceQueue
@@ -3118,7 +3112,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|next
 parameter_list|)
@@ -3215,7 +3209,7 @@ name|K
 argument_list|>
 argument_list|>
 block|{
-DECL|method|WeakKeyDummyValueEntry ( ReferenceQueue<K> queue, K key, int hash, @NullableDecl WeakKeyDummyValueEntry<K> next)
+DECL|method|WeakKeyDummyValueEntry ( ReferenceQueue<K> queue, K key, int hash, @CheckForNull WeakKeyDummyValueEntry<K> next)
 name|WeakKeyDummyValueEntry
 parameter_list|(
 name|ReferenceQueue
@@ -3231,7 +3225,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|WeakKeyDummyValueEntry
 argument_list|<
 name|K
@@ -3462,7 +3456,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copy ( WeakKeyDummyValueSegment<K> segment, WeakKeyDummyValueEntry<K> entry, @NullableDecl WeakKeyDummyValueEntry<K> newNext)
+DECL|method|copy ( WeakKeyDummyValueSegment<K> segment, WeakKeyDummyValueEntry<K> entry, @CheckForNull WeakKeyDummyValueEntry<K> newNext)
 specifier|public
 name|WeakKeyDummyValueEntry
 argument_list|<
@@ -3483,7 +3477,7 @@ argument_list|>
 name|entry
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|WeakKeyDummyValueEntry
 argument_list|<
 name|K
@@ -3544,7 +3538,7 @@ parameter_list|)
 block|{}
 annotation|@
 name|Override
-DECL|method|newEntry ( WeakKeyDummyValueSegment<K> segment, K key, int hash, @NullableDecl WeakKeyDummyValueEntry<K> next)
+DECL|method|newEntry ( WeakKeyDummyValueSegment<K> segment, K key, int hash, @CheckForNull WeakKeyDummyValueEntry<K> next)
 specifier|public
 name|WeakKeyDummyValueEntry
 argument_list|<
@@ -3565,7 +3559,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|WeakKeyDummyValueEntry
 argument_list|<
 name|K
@@ -3636,7 +3630,7 @@ argument_list|>
 block|{
 DECL|field|value
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|volatile
 name|V
@@ -3644,7 +3638,7 @@ name|value
 init|=
 literal|null
 decl_stmt|;
-DECL|method|WeakKeyStrongValueEntry ( ReferenceQueue<K> queue, K key, int hash, @NullableDecl WeakKeyStrongValueEntry<K, V> next)
+DECL|method|WeakKeyStrongValueEntry ( ReferenceQueue<K> queue, K key, int hash, @CheckForNull WeakKeyStrongValueEntry<K, V> next)
 name|WeakKeyStrongValueEntry
 parameter_list|(
 name|ReferenceQueue
@@ -3660,7 +3654,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|WeakKeyStrongValueEntry
 argument_list|<
 name|K
@@ -3685,7 +3679,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getValue ()
 specifier|public
 name|V
@@ -3937,7 +3931,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copy ( WeakKeyStrongValueSegment<K, V> segment, WeakKeyStrongValueEntry<K, V> entry, @NullableDecl WeakKeyStrongValueEntry<K, V> newNext)
+DECL|method|copy ( WeakKeyStrongValueSegment<K, V> segment, WeakKeyStrongValueEntry<K, V> entry, @CheckForNull WeakKeyStrongValueEntry<K, V> newNext)
 specifier|public
 name|WeakKeyStrongValueEntry
 argument_list|<
@@ -3964,7 +3958,7 @@ argument_list|>
 name|entry
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|WeakKeyStrongValueEntry
 argument_list|<
 name|K
@@ -4039,7 +4033,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|newEntry ( WeakKeyStrongValueSegment<K, V> segment, K key, int hash, @NullableDecl WeakKeyStrongValueEntry<K, V> next)
+DECL|method|newEntry ( WeakKeyStrongValueSegment<K, V> segment, K key, int hash, @CheckForNull WeakKeyStrongValueEntry<K, V> next)
 specifier|public
 name|WeakKeyStrongValueEntry
 argument_list|<
@@ -4064,7 +4058,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|WeakKeyStrongValueEntry
 argument_list|<
 name|K
@@ -4154,7 +4148,7 @@ init|=
 name|unsetWeakValueReference
 argument_list|()
 decl_stmt|;
-DECL|method|WeakKeyWeakValueEntry ( ReferenceQueue<K> queue, K key, int hash, @NullableDecl WeakKeyWeakValueEntry<K, V> next)
+DECL|method|WeakKeyWeakValueEntry ( ReferenceQueue<K> queue, K key, int hash, @CheckForNull WeakKeyWeakValueEntry<K, V> next)
 name|WeakKeyWeakValueEntry
 parameter_list|(
 name|ReferenceQueue
@@ -4170,7 +4164,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|WeakKeyWeakValueEntry
 argument_list|<
 name|K
@@ -4537,7 +4531,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copy ( WeakKeyWeakValueSegment<K, V> segment, WeakKeyWeakValueEntry<K, V> entry, @NullableDecl WeakKeyWeakValueEntry<K, V> newNext)
+DECL|method|copy ( WeakKeyWeakValueSegment<K, V> segment, WeakKeyWeakValueEntry<K, V> entry, @CheckForNull WeakKeyWeakValueEntry<K, V> newNext)
 specifier|public
 name|WeakKeyWeakValueEntry
 argument_list|<
@@ -4564,7 +4558,7 @@ argument_list|>
 name|entry
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|WeakKeyWeakValueEntry
 argument_list|<
 name|K
@@ -4661,7 +4655,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|newEntry ( WeakKeyWeakValueSegment<K, V> segment, K key, int hash, @NullableDecl WeakKeyWeakValueEntry<K, V> next)
+DECL|method|newEntry ( WeakKeyWeakValueSegment<K, V> segment, K key, int hash, @CheckForNull WeakKeyWeakValueEntry<K, V> next)
 specifier|public
 name|WeakKeyWeakValueEntry
 argument_list|<
@@ -4686,7 +4680,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|WeakKeyWeakValueEntry
 argument_list|<
 name|K
@@ -4738,7 +4732,7 @@ parameter_list|>
 block|{
 comment|/**      * Returns the current value being referenced, or {@code null} if there is none (e.g. because      * either it got collected, or {@link #clear} was called, or it wasn't set in the first place).      */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|get ()
 name|V
 name|get
@@ -5525,7 +5519,7 @@ decl_stmt|;
 comment|/** The per-segment table. */
 DECL|field|table
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|volatile
 name|AtomicReferenceArray
 argument_list|<
@@ -5928,7 +5922,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Unsafely returns a copy of the given entry. */
-DECL|method|copyForTesting (InternalEntry<K, V, ?> entry, @NullableDecl InternalEntry<K, V, ?> newNext)
+DECL|method|copyForTesting (InternalEntry<K, V, ?> entry, @CheckForNull InternalEntry<K, V, ?> newNext)
 name|E
 name|copyForTesting
 parameter_list|(
@@ -5943,7 +5937,7 @@ argument_list|>
 name|entry
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|InternalEntry
 argument_list|<
 name|K
@@ -6019,7 +6013,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Unsafely returns a fresh entry. */
-DECL|method|newEntryForTesting (K key, int hash, @NullableDecl InternalEntry<K, V, ?> next)
+DECL|method|newEntryForTesting (K key, int hash, @CheckForNull InternalEntry<K, V, ?> next)
 name|E
 name|newEntryForTesting
 parameter_list|(
@@ -6030,7 +6024,7 @@ name|int
 name|hash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|InternalEntry
 argument_list|<
 name|K
@@ -6136,7 +6130,7 @@ return|;
 block|}
 comment|/**      * Unsafely returns the value of the given entry if it's still live, or {@code null} otherwise.      */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getLiveValueForTesting (InternalEntry<K, V, ?> entry)
 name|V
 name|getLiveValueForTesting
@@ -9126,7 +9120,7 @@ return|;
 block|}
 comment|/**      * Gets the value from an entry. Returns {@code null} if the entry is invalid or      * partially-collected.      */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getLiveValue (E entry)
 name|V
 name|getLiveValue
@@ -11075,13 +11069,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object key)
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -11120,12 +11114,12 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the internal entry for the specified key. The entry may be computing or partially    * collected. Does not impact recency ordering.    */
-DECL|method|getEntry (@ullableDecl Object key)
+DECL|method|getEntry (@heckForNull Object key)
 name|E
 name|getEntry
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -11165,13 +11159,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -11211,13 +11205,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullableDecl Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -11581,13 +11575,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object key)
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -11629,18 +11623,18 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object key, @NullableDecl Object value)
+DECL|method|remove (@heckForNull Object key, @CheckForNull Object value)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -11688,7 +11682,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|replace (K key, @NullableDecl V oldValue, V newValue)
+DECL|method|replace (K key, @CheckForNull V oldValue, V newValue)
 specifier|public
 name|boolean
 name|replace
@@ -11697,7 +11691,7 @@ name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|oldValue
 parameter_list|,
@@ -11836,7 +11830,7 @@ block|}
 block|}
 DECL|field|keySet
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|transient
 name|Set
 argument_list|<
@@ -11883,7 +11877,7 @@ return|;
 block|}
 DECL|field|values
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|transient
 name|Collection
 argument_list|<
@@ -11930,7 +11924,7 @@ return|;
 block|}
 DECL|field|entrySet
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|transient
 name|Set
 argument_list|<
@@ -12014,7 +12008,7 @@ name|nextTableIndex
 decl_stmt|;
 DECL|field|currentSegment
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Segment
 argument_list|<
 name|K
@@ -12029,7 +12023,7 @@ name|currentSegment
 decl_stmt|;
 DECL|field|currentTable
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|AtomicReferenceArray
 argument_list|<
 name|E
@@ -12038,19 +12032,19 @@ name|currentTable
 decl_stmt|;
 DECL|field|nextEntry
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|nextEntry
 decl_stmt|;
 DECL|field|nextExternal
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|WriteThroughEntry
 name|nextExternal
 decl_stmt|;
 DECL|field|lastReturned
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|WriteThroughEntry
 name|lastReturned
 decl_stmt|;
@@ -12531,13 +12525,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)

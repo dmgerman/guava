@@ -386,6 +386,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -401,22 +411,6 @@ operator|.
 name|framework
 operator|.
 name|AssertionFailedError
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|checkerframework
-operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
 import|;
 end_import
 
@@ -833,13 +827,13 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Verifies that {@code method} produces a {@link NullPointerException} or {@link    * UnsupportedOperationException} whenever<i>any</i> of its non-nullable parameters are null.    *    * @param instance the instance to invoke {@code method} on, or null if {@code method} is static    */
-DECL|method|testMethod (@ullableDecl Object instance, Method method)
+DECL|method|testMethod (@heckForNull Object instance, Method method)
 specifier|public
 name|void
 name|testMethod
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|instance
 parameter_list|,
@@ -977,13 +971,13 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Verifies that {@code method} produces a {@link NullPointerException} or {@link    * UnsupportedOperationException} when the parameter in position {@code paramIndex} is null. If    * this parameter is marked nullable, this method does nothing.    *    * @param instance the instance to invoke {@code method} on, or null if {@code method} is static    */
-DECL|method|testMethodParameter ( @ullableDecl final Object instance, final Method method, int paramIndex)
+DECL|method|testMethodParameter ( @heckForNull final Object instance, final Method method, int paramIndex)
 specifier|public
 name|void
 name|testMethodParameter
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|final
 name|Object
 name|instance
@@ -2391,7 +2385,7 @@ name|type
 argument_list|)
 return|;
 block|}
-DECL|method|invokable (@ullableDecl Object instance, Method method)
+DECL|method|invokable (@heckForNull Object instance, Method method)
 specifier|private
 specifier|static
 name|Invokable
@@ -2403,7 +2397,7 @@ argument_list|>
 name|invokable
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|instance
 parameter_list|,

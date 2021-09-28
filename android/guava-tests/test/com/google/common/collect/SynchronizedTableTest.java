@@ -58,17 +58,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -162,13 +156,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -269,13 +263,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullableDecl Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)

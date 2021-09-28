@@ -100,17 +100,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -148,14 +142,14 @@ decl_stmt|;
 comment|/** Adds the most recently logged record to our list. */
 annotation|@
 name|Override
-DECL|method|publish (@ullableDecl LogRecord record)
+DECL|method|publish (@heckForNull LogRecord record)
 specifier|public
 specifier|synchronized
 name|void
 name|publish
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|LogRecord
 name|record
 parameter_list|)

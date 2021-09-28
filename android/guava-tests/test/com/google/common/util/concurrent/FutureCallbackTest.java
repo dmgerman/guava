@@ -124,27 +124,21 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|javax
 operator|.
-name|framework
+name|annotation
 operator|.
-name|TestCase
+name|CheckForNull
 import|;
 end_import
 
 begin_import
 import|import
-name|org
+name|junit
 operator|.
-name|checkerframework
+name|framework
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|TestCase
 import|;
 end_import
 
@@ -920,7 +914,7 @@ argument_list|>
 block|{
 DECL|field|value
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 name|String
 name|value
@@ -929,7 +923,7 @@ literal|null
 decl_stmt|;
 DECL|field|failure
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 name|Throwable
 name|failure

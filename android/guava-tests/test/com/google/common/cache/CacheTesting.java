@@ -396,17 +396,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -2327,12 +2321,12 @@ parameter_list|<
 name|T
 parameter_list|>
 block|{
-DECL|method|accept (@ullableDecl T object)
+DECL|method|accept (@heckForNull T object)
 name|void
 name|accept
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|T
 name|object
 parameter_list|)
