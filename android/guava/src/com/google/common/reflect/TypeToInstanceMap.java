@@ -70,22 +70,16 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
 begin_comment
-comment|/**  * A map, each entry of which maps a {@link TypeToken} to an instance of that type. In addition to  * implementing {@code Map}, the additional type-safe operations {@link #putInstance} and {@link  * #getInstance} are available.  *  *<p>Generally, implementations don't support {@link #put} and {@link #putAll} because there is no  * way to check an object at runtime to be an instance of a {@link TypeToken}. Instead, caller  * should use the type safe {@link #putInstance}.  *  *<p>Also, if caller suppresses unchecked warnings and passes in an {@code Iterable<String>} for  * type {@code Iterable<Integer>}, the map won't be able to detect and throw type error.  *  *<p>Like any other {@code Map<Class, Object>}, this map may contain entries for primitive types,  * and a primitive type and its corresponding wrapper type may map to different values.  *  * @param<B> the common supertype that all entries must share; often this is simply {@link Object}  * @author Ben Yu  * @since 13.0  */
+comment|/**  * A map, each entry of which maps a {@link TypeToken} to an instance of that type. In addition to  * implementing {@code Map}, the additional type-safe operations {@link #putInstance} and {@link  * #getInstance} are available.  *  *<p>Generally, implementations don't support {@link #put} and {@link #putAll} because there is no  * way to check an object at runtime to be an instance of a {@link TypeToken}. Instead, caller  * should use the type safe {@link #putInstance}.  *  *<p>Also, if caller suppresses unchecked warnings and passes in an {@code Iterable<String>} for  * type {@code Iterable<Integer>}, the map won't be able to detect and throw type error.  *  *<p>Like any other {@code Map<Class, Object>}, this map may contain entries for primitive types,  * and a primitive type and its corresponding wrapper type may map to different values.  *  *<p>This class's support for {@code null} requires some explanation. For details, see {@link  * ClassToInstanceMap}. Its explanation applies equally well to {@code TypeToInstanceMap}.  *  * @param<B> the common supertype that all entries must share; often this is simply {@link Object}  * @author Ben Yu  * @since 13.0  */
 end_comment
 
 begin_interface
@@ -96,6 +90,8 @@ name|DoNotMock
 argument_list|(
 literal|"Use ImmutableTypeToInstanceMap or MutableTypeToInstanceMap"
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|TypeToInstanceMap
 specifier|public
 interface|interface
@@ -118,7 +114,7 @@ argument_list|>
 block|{
 comment|/**    * Returns the value the specified class is mapped to, or {@code null} if no entry for this class    * is present. This will only return a value that was bound to this specific class, not a value    * that may have been bound to a subtype.    *    *<p>{@code getInstance(Foo.class)} is equivalent to {@code    * getInstance(TypeToken.of(Foo.class))}.    */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getInstance (Class<T> type)
 argument_list|<
 name|T
@@ -137,7 +133,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Returns the value the specified type is mapped to, or {@code null} if no entry for this type is    * present. This will only return a value that was bound to this specific type, not a value that    * may have been bound to a subtype.    */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getInstance (TypeToken<T> type)
 argument_list|<
 name|T
@@ -158,8 +154,8 @@ comment|/**    * Maps the specified class to the specified value. Does<i>not</i>
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
-name|NullableDecl
-DECL|method|putInstance (Class<T> type, @NullableDecl T value)
+name|CheckForNull
+DECL|method|putInstance (Class<T> type, T value)
 argument_list|<
 name|T
 extends|extends
@@ -174,8 +170,6 @@ name|T
 argument_list|>
 name|type
 parameter_list|,
-annotation|@
-name|NullableDecl
 name|T
 name|value
 parameter_list|)
@@ -184,8 +178,8 @@ comment|/**    * Maps the specified type to the specified value. Does<i>not</i> 
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
-name|NullableDecl
-DECL|method|putInstance (TypeToken<T> type, @NullableDecl T value)
+name|CheckForNull
+DECL|method|putInstance (TypeToken<T> type, T value)
 argument_list|<
 name|T
 extends|extends
@@ -200,8 +194,6 @@ name|T
 argument_list|>
 name|type
 parameter_list|,
-annotation|@
-name|NullableDecl
 name|T
 name|value
 parameter_list|)

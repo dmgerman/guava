@@ -96,6 +96,16 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * A type-to-instance map backed by an {@link ImmutableMap}. See also {@link  * MutableTypeToInstanceMap}.  *  * @author Ben Yu  * @since 13.0  */
 end_comment
@@ -103,6 +113,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableTypeToInstanceMap
 specifier|public
 specifier|final
@@ -385,6 +397,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|getInstance (TypeToken<T> type)
 specifier|public
 parameter_list|<
@@ -414,6 +428,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|getInstance (Class<T> type)
 specifier|public
 parameter_list|<
@@ -455,6 +471,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|putInstance (TypeToken<T> type, T value)
 specifier|public
 parameter_list|<
@@ -493,6 +511,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|putInstance (Class<T> type, T value)
 specifier|public
 parameter_list|<
@@ -531,6 +551,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|put (TypeToken<? extends B> key, B value)
 specifier|public
 name|B
@@ -621,6 +643,8 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// value could not get in if not a T
+annotation|@
+name|CheckForNull
 DECL|method|trustedGet (TypeToken<T> type)
 specifier|private
 parameter_list|<

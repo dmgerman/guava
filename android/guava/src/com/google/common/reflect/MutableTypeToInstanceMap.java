@@ -190,6 +190,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -198,19 +208,21 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
 begin_comment
-comment|/**  * A mutable type-to-instance map. See also {@link ImmutableTypeToInstanceMap}.  *  * @author Ben Yu  * @since 13.0  */
+comment|/**  * A mutable type-to-instance map. See also {@link ImmutableTypeToInstanceMap}.  *  *<p>This implementation<i>does</i> support null values, despite how it is annotated; see  * discussion at {@link TypeToInstanceMap}.  *  * @author Ben Yu  * @since 13.0  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MutableTypeToInstanceMap
 specifier|public
 specifier|final
@@ -261,7 +273,7 @@ decl_stmt|;
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getInstance (Class<T> type)
 specifier|public
 parameter_list|<
@@ -294,7 +306,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getInstance (TypeToken<T> type)
 specifier|public
 parameter_list|<
@@ -327,8 +339,8 @@ name|Override
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
-name|NullableDecl
-DECL|method|putInstance (Class<T> type, @NullableDecl T value)
+name|CheckForNull
+DECL|method|putInstance (Class<T> type, T value)
 specifier|public
 parameter_list|<
 name|T
@@ -344,8 +356,6 @@ name|T
 argument_list|>
 name|type
 parameter_list|,
-annotation|@
-name|NullableDecl
 name|T
 name|value
 parameter_list|)
@@ -369,8 +379,8 @@ name|Override
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
-name|NullableDecl
-DECL|method|putInstance (TypeToken<T> type, @NullableDecl T value)
+name|CheckForNull
+DECL|method|putInstance (TypeToken<T> type, T value)
 specifier|public
 parameter_list|<
 name|T
@@ -386,8 +396,6 @@ name|T
 argument_list|>
 name|type
 parameter_list|,
-annotation|@
-name|NullableDecl
 name|T
 name|value
 parameter_list|)
@@ -416,6 +424,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|put (TypeToken<? extends B> key, B value)
 specifier|public
 name|B
@@ -544,8 +554,8 @@ literal|"unchecked"
 argument_list|)
 comment|// value could not get in if not a T
 annotation|@
-name|NullableDecl
-DECL|method|trustedPut (TypeToken<T> type, @NullableDecl T value)
+name|CheckForNull
+DECL|method|trustedPut (TypeToken<T> type, T value)
 specifier|private
 parameter_list|<
 name|T
@@ -561,8 +571,6 @@ name|T
 argument_list|>
 name|type
 parameter_list|,
-annotation|@
-name|NullableDecl
 name|T
 name|value
 parameter_list|)
@@ -588,7 +596,7 @@ literal|"unchecked"
 argument_list|)
 comment|// value could not get in if not a T
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|trustedGet (TypeToken<T> type)
 specifier|private
 parameter_list|<
@@ -748,25 +756,46 @@ index|[]
 name|toArray
 parameter_list|()
 block|{
-return|return
+comment|/*            * standardToArray returns `@Nullable Object[]` rather than `Object[]` but only because it            * can be used with collections that may contain null. This collection is a collection of            * non-null Entry objects (Entry objects that might contain null values but are not            * themselves null), so we can treat it as a plain `Object[]`.            */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+name|Object
+index|[]
+name|result
+init|=
 name|standardToArray
 argument_list|()
+decl_stmt|;
+return|return
+name|result
 return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// b/192354773 in our checker affects toArray declarations
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|array
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|standardToArray
