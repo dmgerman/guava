@@ -233,12 +233,12 @@ argument_list|(
 name|c
 argument_list|)
 decl_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
 name|str
 argument_list|,
 name|c
-operator|==
+argument_list|,
 name|Ascii
 operator|.
 name|toLowerCase
@@ -247,12 +247,12 @@ name|c
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
 name|str
 argument_list|,
 name|c
-operator|==
+argument_list|,
 name|Ascii
 operator|.
 name|toUpperCase
@@ -670,15 +670,8 @@ name|void
 name|testTruncateIllegalArguments
 parameter_list|()
 block|{
-name|String
-name|truncated
-init|=
-literal|null
-decl_stmt|;
 try|try
 block|{
-name|truncated
-operator|=
 name|Ascii
 operator|.
 name|truncate
@@ -702,8 +695,6 @@ parameter_list|)
 block|{     }
 try|try
 block|{
-name|truncated
-operator|=
 name|Ascii
 operator|.
 name|truncate
@@ -727,8 +718,6 @@ parameter_list|)
 block|{     }
 try|try
 block|{
-name|truncated
-operator|=
 name|Ascii
 operator|.
 name|truncate
@@ -753,8 +742,6 @@ parameter_list|)
 block|{     }
 try|try
 block|{
-name|truncated
-operator|=
 name|Ascii
 operator|.
 name|truncate
