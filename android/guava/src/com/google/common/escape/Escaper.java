@@ -107,33 +107,9 @@ name|String
 argument_list|>
 name|asFunction
 init|=
-operator|new
-name|Function
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|String
-name|apply
-parameter_list|(
-name|String
-name|from
-parameter_list|)
-block|{
-return|return
+name|this
+operator|::
 name|escape
-argument_list|(
-name|from
-argument_list|)
-return|;
-block|}
-block|}
 decl_stmt|;
 comment|/** Returns a {@link Function} that invokes {@link #escape(String)} on this escaper. */
 DECL|method|asFunction ()

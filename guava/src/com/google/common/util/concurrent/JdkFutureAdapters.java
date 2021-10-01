@@ -526,20 +526,12 @@ name|adapterExecutor
 operator|.
 name|execute
 argument_list|(
-operator|new
-name|Runnable
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
 parameter_list|()
+lambda|->
 block|{
 try|try
 block|{
-comment|/*                    * Threads from our private pool are never interrupted. Threads from a                    * user-supplied executor might be, but... what can we do? This is another reason                    * to return a proper ListenableFuture instead of using listenInPoolThread.                    */
+comment|/*                  * Threads from our private pool are never interrupted. Threads from a                  * user-supplied executor might be, but... what can we do? This is another reason                  * to return a proper ListenableFuture instead of using listenInPoolThread.                  */
 name|getUninterruptibly
 argument_list|(
 name|delegate
@@ -560,7 +552,6 @@ operator|.
 name|execute
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 argument_list|)
 expr_stmt|;

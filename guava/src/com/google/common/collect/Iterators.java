@@ -5157,21 +5157,6 @@ argument_list|>
 argument_list|>
 name|heapComparator
 operator|=
-operator|new
-name|Comparator
-argument_list|<
-name|PeekingIterator
-argument_list|<
-name|T
-argument_list|>
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|int
-name|compare
 parameter_list|(
 name|PeekingIterator
 argument_list|<
@@ -5185,8 +5170,7 @@ name|T
 argument_list|>
 name|o2
 parameter_list|)
-block|{
-return|return
+lambda|->
 name|itemComparator
 operator|.
 name|compare
@@ -5201,13 +5185,7 @@ operator|.
 name|peek
 argument_list|()
 argument_list|)
-return|;
-block|}
-block|}
-expr_stmt|;
-end_expr_stmt
-
-begin_expr_stmt
+block|;
 name|queue
 operator|=
 operator|new
@@ -5218,10 +5196,7 @@ literal|2
 argument_list|,
 name|heapComparator
 argument_list|)
-expr_stmt|;
-end_expr_stmt
-
-begin_for
+block|;
 for|for
 control|(
 name|Iterator
@@ -5257,7 +5232,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-end_for
+end_expr_stmt
 
 begin_function
 unit|}      @

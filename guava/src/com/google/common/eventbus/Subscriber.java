@@ -257,16 +257,8 @@ name|executor
 operator|.
 name|execute
 argument_list|(
-operator|new
-name|Runnable
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
 parameter_list|()
+lambda|->
 block|{
 try|try
 block|{
@@ -297,7 +289,6 @@ name|event
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 argument_list|)

@@ -429,9 +429,6 @@ name|Collector
 operator|.
 name|of
 argument_list|(
-parameter_list|()
-lambda|->
-operator|new
 name|ImmutableTableCollectorState
 argument_list|<
 name|R
@@ -440,8 +437,8 @@ name|C
 argument_list|,
 name|V
 argument_list|>
-argument_list|()
-comment|/* GWT isn't currently playing nicely with constructor references? */
+operator|::
+operator|new
 argument_list|,
 parameter_list|(
 name|state

@@ -699,16 +699,8 @@ begin_decl_stmt
 name|Runnable
 name|listener
 init|=
-operator|new
-name|Runnable
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
 parameter_list|()
+lambda|->
 block|{
 if|if
 condition|(
@@ -776,7 +768,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 decl_stmt|;

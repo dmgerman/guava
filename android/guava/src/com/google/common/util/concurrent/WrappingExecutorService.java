@@ -308,16 +308,8 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 return|return
-operator|new
-name|Runnable
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
 parameter_list|()
+lambda|->
 block|{
 try|try
 block|{
@@ -345,7 +337,6 @@ argument_list|(
 name|e
 argument_list|)
 throw|;
-block|}
 block|}
 block|}
 return|;

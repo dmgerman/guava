@@ -79,7 +79,7 @@ name|RemovalListeners
 parameter_list|()
 block|{}
 comment|/**    * Returns a {@code RemovalListener} which processes all eviction notifications using {@code    * executor}.    *    * @param listener the backing listener    * @param executor the executor with which removal notifications are asynchronously executed    */
-DECL|method|asynchronous ( final RemovalListener<K, V> listener, final Executor executor)
+DECL|method|asynchronous ( RemovalListener<K, V> listener, Executor executor)
 specifier|public
 specifier|static
 parameter_list|<
@@ -95,7 +95,6 @@ name|V
 argument_list|>
 name|asynchronous
 parameter_list|(
-specifier|final
 name|RemovalListener
 argument_list|<
 name|K
@@ -104,7 +103,6 @@ name|V
 argument_list|>
 name|listener
 parameter_list|,
-specifier|final
 name|Executor
 name|executor
 parameter_list|)
@@ -120,22 +118,7 @@ name|executor
 argument_list|)
 expr_stmt|;
 return|return
-operator|new
-name|RemovalListener
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|onRemoval
 parameter_list|(
-specifier|final
 name|RemovalNotification
 argument_list|<
 name|K
@@ -144,35 +127,20 @@ name|V
 argument_list|>
 name|notification
 parameter_list|)
-block|{
+lambda|->
 name|executor
 operator|.
 name|execute
 argument_list|(
-operator|new
-name|Runnable
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
 parameter_list|()
-block|{
+lambda|->
 name|listener
 operator|.
 name|onRemoval
 argument_list|(
 name|notification
 argument_list|)
-expr_stmt|;
-block|}
-block|}
 argument_list|)
-expr_stmt|;
-block|}
-block|}
 return|;
 block|}
 block|}

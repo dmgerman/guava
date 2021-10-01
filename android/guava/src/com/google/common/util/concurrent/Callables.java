@@ -167,42 +167,15 @@ name|value
 argument_list|)
 block|{
 return|return
-operator|new
-name|Callable
-argument_list|<
-name|T
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-annotation|@
-name|ParametricNullness
-specifier|public
-name|T
-name|call
 parameter_list|()
-block|{
-return|return
+lambda|->
 name|value
 return|;
 block|}
-block|}
-end_class
-
-begin_empty_stmt
-empty_stmt|;
-end_empty_stmt
-
-begin_comment
-unit|}
 comment|/**    * Creates an {@link AsyncCallable} from a {@link Callable}.    *    *<p>The {@link AsyncCallable} returns the {@link ListenableFuture} resulting from {@link    * ListeningExecutorService#submit(Callable)}.    *    * @since 20.0    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|Beta
-expr|@
+annotation|@
 name|GwtIncompatible
 DECL|method|asAsyncCallable ( final Callable<T> callable, final ListeningExecutorService listeningExecutorService)
 specifier|public
@@ -242,26 +215,8 @@ name|listeningExecutorService
 argument_list|)
 block|;
 return|return
-operator|new
-name|AsyncCallable
-argument_list|<
-name|T
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|ListenableFuture
-argument_list|<
-name|T
-argument_list|>
-name|call
 parameter_list|()
-throws|throws
-name|Exception
-block|{
-return|return
+lambda|->
 name|listeningExecutorService
 operator|.
 name|submit
@@ -270,15 +225,8 @@ name|callable
 argument_list|)
 return|;
 block|}
-end_expr_stmt
-
-begin_comment
-unit|};   }
 comment|/**    * Wraps the given callable such that for the duration of {@link Callable#call} the thread that is    * running will have the given name.    *    * @param callable The callable to wrap    * @param nameSupplier The supplier of thread names, {@link Supplier#get get} will be called once    *     for each invocation of the wrapped callable.    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|GwtIncompatible
 comment|// threads
 DECL|method|threadRenaming ( final Callable<T> callable, final Supplier<String> nameSupplier)
@@ -321,23 +269,8 @@ name|callable
 argument_list|)
 block|;
 return|return
-operator|new
-name|Callable
-argument_list|<
-name|T
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-annotation|@
-name|ParametricNullness
-specifier|public
-name|T
-name|call
 parameter_list|()
-throws|throws
-name|Exception
+lambda|->
 block|{
 name|Thread
 name|currentThread
@@ -377,9 +310,6 @@ name|call
 argument_list|()
 return|;
 block|}
-end_expr_stmt
-
-begin_finally
 finally|finally
 block|{
 if|if
@@ -399,10 +329,10 @@ argument_list|)
 decl_stmt|;
 block|}
 block|}
-end_finally
+block|}
+end_class
 
 begin_empty_stmt
-unit|}     }
 empty_stmt|;
 end_empty_stmt
 
@@ -443,16 +373,8 @@ name|task
 argument_list|)
 expr_stmt|;
 return|return
-operator|new
-name|Runnable
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
 parameter_list|()
+lambda|->
 block|{
 name|Thread
 name|currentThread
@@ -508,7 +430,6 @@ argument_list|,
 name|currentThread
 argument_list|)
 decl_stmt|;
-block|}
 block|}
 block|}
 block|}

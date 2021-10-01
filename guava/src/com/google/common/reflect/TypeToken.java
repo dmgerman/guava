@@ -2838,41 +2838,14 @@ argument_list|)
 operator|.
 name|filter
 argument_list|(
-operator|new
-name|Predicate
-argument_list|<
 name|Class
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|apply
-parameter_list|(
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|type
-parameter_list|)
-block|{
-return|return
-name|type
-operator|.
+operator|::
 name|isInterface
+argument_list|)
+operator|.
+name|toSet
 argument_list|()
 return|;
-block|}
-block|}
-block|)
-function|.toSet
-parameter_list|()
-function|;
 block|}
 annotation|@
 name|Override
@@ -2914,9 +2887,6 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-end_class
-
-begin_class
 DECL|class|ClassSet
 specifier|private
 specifier|final
@@ -3158,9 +3128,6 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-end_class
-
-begin_enum
 DECL|enum|TypeFilter
 specifier|private
 enum|enum
@@ -3237,13 +3204,7 @@ return|;
 block|}
 block|}
 block|}
-end_enum
-
-begin_comment
 comment|/**    * Returns true if {@code o} is another {@code TypeToken} that represents the same {@link Type}.    */
-end_comment
-
-begin_function
 annotation|@
 name|Override
 DECL|method|equals (@heckForNull Object o)
@@ -3293,9 +3254,6 @@ return|return
 literal|false
 return|;
 block|}
-end_function
-
-begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -3311,9 +3269,6 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-end_function
-
-begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -3331,13 +3286,7 @@ name|runtimeType
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/** Implemented to support serialization of subclasses. */
-end_comment
-
-begin_function
 DECL|method|writeReplace ()
 specifier|protected
 name|Object
@@ -3360,13 +3309,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Ensures that this type token doesn't contain type variables, which can cause unchecked type    * errors for callers like {@link TypeToInstanceMap}.    */
-end_comment
-
-begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|rejectTypeVariables ()
@@ -3485,9 +3428,6 @@ return|return
 name|this
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|someRawTypeIsSubclassOf (Class<?> superclass)
 specifier|private
 name|boolean
@@ -3531,9 +3471,6 @@ return|return
 literal|false
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|isSubtypeOfParameterizedType (ParameterizedType supertype)
 specifier|private
 name|boolean
@@ -3694,9 +3631,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|isSubtypeOfArrayType (GenericArrayType supertype)
 specifier|private
 name|boolean
@@ -3799,9 +3733,6 @@ literal|false
 return|;
 block|}
 block|}
-end_function
-
-begin_function
 DECL|method|isSupertypeOfArray (GenericArrayType subtype)
 specifier|private
 name|boolean
@@ -3909,13 +3840,7 @@ literal|false
 return|;
 block|}
 block|}
-end_function
-
-begin_comment
 comment|/**    * {@code A.is(B)} is defined as {@code Foo<A>.isSubtypeOf(Foo<B>)}.    *    *<p>Specifically, returns true if any of the following conditions is met:    *    *<ol>    *<li>'this' and {@code formalType} are equal.    *<li>'this' and {@code formalType} have equal canonical form.    *<li>{@code formalType} is {@code<? extends Foo>} and 'this' is a subtype of {@code Foo}.    *<li>{@code formalType} is {@code<? super Foo>} and 'this' is a supertype of {@code Foo}.    *</ol>    *    * Note that condition 2 isn't technically accurate under the context of a recursively bounded    * type variables. For example, {@code Enum<? extends Enum<E>>} canonicalizes to {@code Enum<?>}    * where {@code E} is the type variable declared on the {@code Enum} class declaration. It's    * technically<em>not</em> true that {@code Foo<Enum<? extends Enum<E>>>} is a subtype of {@code    * Foo<Enum<?>>} according to JLS. See testRecursiveWildcardSubtypeBug() for a real example.    *    *<p>It appears that properly handling recursive type bounds in the presence of implicit type    * bounds is not easy. For now we punt, hoping that this defect should rarely cause issues in real    * code.    *    * @param formalType is {@code Foo<formalType>} a supertype of {@code Foo<T>}?    * @param declaration The type variable in the context of a parameterized type. Used to infer type    *     bound when {@code formalType} is a wildcard with implicit upper bound.    */
-end_comment
-
-begin_function
 DECL|method|is (Type formalType, TypeVariable<?> declaration)
 specifier|private
 name|boolean
@@ -4013,13 +3938,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * In reflection, {@code Foo<?>.getUpperBounds()[0]} is always {@code Object.class}, even when Foo    * is defined as {@code Foo<T extends String>}. Thus directly calling {@code<?>.is(String.class)}    * will return false. To mitigate, we canonicalize wildcards by enforcing the following    * invariants:    *    *<ol>    *<li>{@code canonicalize(t)} always produces the equal result for equivalent types. For    *       example both {@code Enum<?>} and {@code Enum<? extends Enum<?>>} canonicalize to {@code    *       Enum<? extends Enum<E>}.    *<li>{@code canonicalize(t)} produces a "literal" supertype of t. For example: {@code Enum<?    *       extends Enum<?>>} canonicalizes to {@code Enum<?>}, which is a supertype (if we disregard    *       the upper bound is implicitly an Enum too).    *<li>If {@code canonicalize(A) == canonicalize(B)}, then {@code Foo<A>.isSubtypeOf(Foo<B>)}    *       and vice versa. i.e. {@code A.is(B)} and {@code B.is(A)}.    *<li>{@code canonicalize(canonicalize(A)) == canonicalize(A)}.    *</ol>    */
-end_comment
-
-begin_function
 DECL|method|canonicalizeTypeArg (TypeVariable<?> declaration, Type typeArg)
 specifier|private
 specifier|static
@@ -4059,9 +3978,6 @@ name|typeArg
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|canonicalizeWildcardsInType (Type type)
 specifier|private
 specifier|static
@@ -4120,21 +4036,9 @@ return|return
 name|type
 return|;
 block|}
-end_function
-
-begin_comment
 comment|// WARNING: the returned type may have empty upper bounds, which may violate common expectations
-end_comment
-
-begin_comment
 comment|// by user code or even some of our own code. It's fine for the purpose of checking subtypes.
-end_comment
-
-begin_comment
 comment|// Just don't ever let the user access it.
-end_comment
-
-begin_function
 DECL|method|canonicalizeWildcardType ( TypeVariable<?> declaration, WildcardType type)
 specifier|private
 specifier|static
@@ -4232,9 +4136,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|canonicalizeWildcardsInParameterizedType ( ParameterizedType type)
 specifier|private
 specifier|static
@@ -4335,9 +4236,6 @@ name|typeArgs
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|every (Type[] bounds)
 specifier|private
 specifier|static
@@ -4360,9 +4258,6 @@ literal|false
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|any (Type[] bounds)
 specifier|private
 specifier|static
@@ -4385,9 +4280,6 @@ literal|true
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_class
 DECL|class|Bounds
 specifier|private
 specifier|static
@@ -4522,9 +4414,6 @@ name|target
 return|;
 block|}
 block|}
-end_class
-
-begin_function
 DECL|method|getRawTypes ()
 specifier|private
 name|ImmutableSet
@@ -4716,9 +4605,6 @@ return|return
 name|result
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|isOwnedBySubtypeOf (Type supertype)
 specifier|private
 name|boolean
@@ -4774,13 +4660,7 @@ return|return
 literal|false
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Returns the owner type of a {@link ParameterizedType} or enclosing class of a {@link Class}, or    * null otherwise.    */
-end_comment
-
-begin_function
 annotation|@
 name|CheckForNull
 DECL|method|getOwnerTypeIfPresent ()
@@ -4841,13 +4721,7 @@ literal|null
 return|;
 block|}
 block|}
-end_function
-
-begin_comment
 comment|/**    * Returns the type token representing the generic type declaration of {@code cls}. For example:    * {@code TypeToken.getGenericType(Iterable.class)} returns {@code Iterable<T>}.    *    *<p>If {@code cls} isn't parameterized and isn't a generic array, the type token of the class is    * returned.    */
-end_comment
-
-begin_function
 annotation|@
 name|VisibleForTesting
 DECL|method|toGenericType (Class<T> cls)
@@ -5050,9 +4924,6 @@ argument_list|)
 return|;
 block|}
 block|}
-end_function
-
-begin_function
 DECL|method|getCovariantTypeResolver ()
 specifier|private
 name|TypeResolver
@@ -5089,9 +4960,6 @@ return|return
 name|resolver
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|getInvariantTypeResolver ()
 specifier|private
 name|TypeResolver
@@ -5128,9 +4996,6 @@ return|return
 name|resolver
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|getSupertypeFromUpperBounds ( Class<? super T> supertype, Type[] upperBounds)
 specifier|private
 name|TypeToken
@@ -5244,9 +5109,6 @@ name|this
 argument_list|)
 throw|;
 block|}
-end_function
-
-begin_function
 DECL|method|getSubtypeFromLowerBounds (Class<?> subclass, Type[] lowerBounds)
 specifier|private
 name|TypeToken
@@ -5329,9 +5191,6 @@ name|this
 argument_list|)
 throw|;
 block|}
-end_function
-
-begin_function
 DECL|method|getArraySupertype (Class<? super T> supertype)
 specifier|private
 name|TypeToken
@@ -5448,9 +5307,6 @@ return|return
 name|result
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|getArraySubtype (Class<?> subclass)
 specifier|private
 name|TypeToken
@@ -5554,9 +5410,6 @@ return|return
 name|result
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|resolveTypeArgsForSubclass (Class<?> subclass)
 specifier|private
 name|Type
@@ -5673,13 +5526,7 @@ name|runtimeType
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Creates an array class if {@code componentType} is a class, or else, a {@link    * GenericArrayType}. This is what Java7 does for generic array type parameters.    */
-end_comment
-
-begin_function
 DECL|method|newArrayClassOrGenericArrayType (Type componentType)
 specifier|private
 specifier|static
@@ -5703,9 +5550,6 @@ name|componentType
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_class
 DECL|class|SimpleTypeToken
 specifier|private
 specifier|static
@@ -5744,13 +5588,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-end_class
-
-begin_comment
 comment|/**    * Collects parent types from a sub type.    *    * @param<K> The type "kind". Either a TypeToken, or Class.    */
-end_comment
-
-begin_class
 DECL|class|TypeCollector
 specifier|private
 specifier|abstract
@@ -6542,17 +6380,8 @@ return|;
 block|}
 block|}
 block|}
-end_class
-
-begin_comment
 comment|// This happens to be the hash of the class as of now. So setting it makes a backward compatible
-end_comment
-
-begin_comment
 comment|// change. Going forward, if any incompatible change is added, we can change the UID back to 1.
-end_comment
-
-begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -6562,8 +6391,8 @@ name|serialVersionUID
 init|=
 literal|3637540370352322684L
 decl_stmt|;
-end_decl_stmt
+block|}
+end_class
 
-unit|}
 end_unit
 

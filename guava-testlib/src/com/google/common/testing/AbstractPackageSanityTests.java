@@ -428,21 +428,6 @@ argument_list|>
 argument_list|>
 name|UNDERSCORE_IN_NAME
 init|=
-operator|new
-name|Predicate
-argument_list|<
-name|Class
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|apply
 parameter_list|(
 name|Class
 argument_list|<
@@ -450,8 +435,7 @@ name|?
 argument_list|>
 name|c
 parameter_list|)
-block|{
-return|return
+lambda|->
 name|c
 operator|.
 name|getSimpleName
@@ -461,10 +445,7 @@ name|contains
 argument_list|(
 literal|"_"
 argument_list|)
-return|;
-block|}
-block|}
-empty_stmt|;
+decl_stmt|;
 comment|/* The names of the expected method that tests null checks. */
 DECL|field|NULL_TEST_METHOD_NAMES
 specifier|private
@@ -626,21 +607,6 @@ argument_list|>
 argument_list|>
 name|classFilter
 init|=
-operator|new
-name|Predicate
-argument_list|<
-name|Class
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|apply
 parameter_list|(
 name|Class
 argument_list|<
@@ -648,8 +614,7 @@ name|?
 argument_list|>
 name|cls
 parameter_list|)
-block|{
-return|return
+lambda|->
 name|visibility
 operator|.
 name|isVisible
@@ -659,10 +624,7 @@ operator|.
 name|getModifiers
 argument_list|()
 argument_list|)
-return|;
-block|}
-block|}
-empty_stmt|;
+decl_stmt|;
 comment|/**    * Restricts the sanity tests for public API only. By default, package-private API are also    * covered.    */
 DECL|method|publicApiOnly ()
 specifier|protected

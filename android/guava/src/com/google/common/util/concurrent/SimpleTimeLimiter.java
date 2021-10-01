@@ -463,25 +463,8 @@ name|Object
 argument_list|>
 name|callable
 init|=
-operator|new
-name|Callable
-argument_list|<
-annotation|@
-name|Nullable
-name|Object
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-annotation|@
-name|CheckForNull
-specifier|public
-name|Object
-name|call
 parameter_list|()
-throws|throws
-name|Exception
+lambda|->
 block|{
 try|try
 block|{
@@ -511,7 +494,6 @@ literal|false
 comment|/* combineStackTraces */
 argument_list|)
 throw|;
-block|}
 block|}
 block|}
 decl_stmt|;
