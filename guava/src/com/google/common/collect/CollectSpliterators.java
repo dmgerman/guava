@@ -1191,11 +1191,7 @@ block|;
 return|return
 operator|new
 name|FlatMapSpliteratorOfObject
-argument_list|<
-name|InElementT
-argument_list|,
-name|OutElementT
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|null
 argument_list|,
@@ -1297,9 +1293,7 @@ block|;
 return|return
 operator|new
 name|FlatMapSpliteratorOfInt
-argument_list|<
-name|InElementT
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|null
 argument_list|,
@@ -1401,9 +1395,7 @@ block|;
 return|return
 operator|new
 name|FlatMapSpliteratorOfLong
-argument_list|<
-name|InElementT
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|null
 argument_list|,
@@ -1505,9 +1497,7 @@ block|;
 return|return
 operator|new
 name|FlatMapSpliteratorOfDouble
-argument_list|<
-name|InElementT
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|null
 argument_list|,

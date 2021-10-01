@@ -347,9 +347,7 @@ block|{
 return|return
 operator|new
 name|NotPredicate
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|predicate
 argument_list|)
@@ -388,9 +386,7 @@ block|{
 return|return
 operator|new
 name|AndPredicate
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|defensiveCopy
 argument_list|(
@@ -477,9 +473,7 @@ block|{
 return|return
 operator|new
 name|AndPredicate
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Predicates
 operator|.
@@ -534,9 +528,7 @@ block|{
 return|return
 operator|new
 name|OrPredicate
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|defensiveCopy
 argument_list|(
@@ -623,9 +615,7 @@ block|{
 return|return
 operator|new
 name|OrPredicate
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Predicates
 operator|.
@@ -790,9 +780,7 @@ block|{
 return|return
 operator|new
 name|InPredicate
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|target
 argument_list|)
@@ -3166,9 +3154,7 @@ name|list
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

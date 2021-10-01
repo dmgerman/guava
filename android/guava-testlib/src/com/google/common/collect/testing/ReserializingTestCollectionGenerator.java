@@ -170,9 +170,7 @@ block|{
 return|return
 operator|new
 name|ReserializingTestCollectionGenerator
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|delegate
 argument_list|)

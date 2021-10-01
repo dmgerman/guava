@@ -547,9 +547,7 @@ block|{
 return|return
 operator|new
 name|TreeSet
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|valueComparator
 argument_list|)

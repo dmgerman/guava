@@ -538,9 +538,7 @@ block|{
 return|return
 operator|new
 name|StringConverter
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|enumClass
 argument_list|)

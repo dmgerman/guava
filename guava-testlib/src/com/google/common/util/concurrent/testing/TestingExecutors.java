@@ -520,9 +520,7 @@ block|{
 return|return
 operator|new
 name|NeverScheduledFuture
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|()
 return|;
 block|}

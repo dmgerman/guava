@@ -305,9 +305,7 @@ block|{
 return|return
 operator|new
 name|ElementOrder
-argument_list|<
-name|S
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Type
 operator|.
@@ -334,9 +332,7 @@ block|{
 return|return
 operator|new
 name|ElementOrder
-argument_list|<
-name|S
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Type
 operator|.
@@ -363,9 +359,7 @@ block|{
 return|return
 operator|new
 name|ElementOrder
-argument_list|<
-name|S
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Type
 operator|.
@@ -399,9 +393,7 @@ block|{
 return|return
 operator|new
 name|ElementOrder
-argument_list|<
-name|S
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Type
 operator|.
@@ -440,9 +432,7 @@ block|{
 return|return
 operator|new
 name|ElementOrder
-argument_list|<
-name|S
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Type
 operator|.

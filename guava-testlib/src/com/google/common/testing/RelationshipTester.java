@@ -730,9 +730,7 @@ block|{
 return|return
 operator|new
 name|Item
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|groups
 operator|.

@@ -212,9 +212,7 @@ name|delegate
 operator|=
 operator|new
 name|ArrayDeque
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|maxSize
 argument_list|)
@@ -246,9 +244,7 @@ block|{
 return|return
 operator|new
 name|EvictingQueue
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|maxSize
 argument_list|)

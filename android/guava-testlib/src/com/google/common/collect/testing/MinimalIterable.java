@@ -105,9 +105,7 @@ comment|// Make sure to get an unmodifiable iterator
 return|return
 operator|new
 name|MinimalIterable
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Arrays
 operator|.

@@ -1140,10 +1140,7 @@ name|bufs
 init|=
 operator|new
 name|ArrayDeque
-argument_list|<
-name|byte
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|(
 name|TO_BYTE_ARRAY_DEQUE_SIZE
 operator|+

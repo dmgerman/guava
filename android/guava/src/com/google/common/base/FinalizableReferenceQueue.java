@@ -301,9 +301,7 @@ name|frqRef
 operator|=
 operator|new
 name|PhantomReference
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 argument_list|,

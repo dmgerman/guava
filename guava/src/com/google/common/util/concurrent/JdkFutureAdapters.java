@@ -218,9 +218,7 @@ block|}
 return|return
 operator|new
 name|ListenableFutureAdapter
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|future
 argument_list|)
@@ -286,9 +284,7 @@ begin_return
 return|return
 operator|new
 name|ListenableFutureAdapter
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|future
 argument_list|,

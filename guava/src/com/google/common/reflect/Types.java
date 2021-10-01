@@ -1765,9 +1765,7 @@ name|typeVariableImpl
 init|=
 operator|new
 name|TypeVariableImpl
-argument_list|<
-name|D
-argument_list|>
+argument_list|<>
 argument_list|(
 name|genericDeclaration
 argument_list|,

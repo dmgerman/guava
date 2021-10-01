@@ -241,9 +241,7 @@ name|delegate
 operator|=
 operator|new
 name|RelationshipTester
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|equivalence
 argument_list|,
@@ -281,9 +279,7 @@ block|{
 return|return
 operator|new
 name|EquivalenceTester
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|equivalence
 argument_list|)

@@ -1444,9 +1444,7 @@ name|queue
 init|=
 operator|new
 name|ReferenceQueue
-argument_list|<
-name|L
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|SmallLazyStriped (int stripes, Supplier<L> supplier)
@@ -1591,9 +1589,7 @@ name|newRef
 init|=
 operator|new
 name|ArrayReference
-argument_list|<
-name|L
-argument_list|>
+argument_list|<>
 argument_list|(
 name|created
 argument_list|,

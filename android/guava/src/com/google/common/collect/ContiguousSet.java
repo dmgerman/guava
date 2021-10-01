@@ -941,9 +941,7 @@ block|{
 return|return
 operator|new
 name|DescendingImmutableSortedSet
-argument_list|<
-name|C
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 argument_list|)

@@ -1013,9 +1013,7 @@ name|samples
 operator|=
 operator|new
 name|SampleElements
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|mapSamples
 operator|.

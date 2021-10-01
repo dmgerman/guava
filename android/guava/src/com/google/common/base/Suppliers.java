@@ -904,9 +904,7 @@ block|{
 return|return
 operator|new
 name|ExpiringMemoizingSupplier
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|delegate
 argument_list|,
@@ -1205,9 +1203,7 @@ block|{
 return|return
 operator|new
 name|SupplierOfInstance
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|instance
 argument_list|)
@@ -1407,9 +1403,7 @@ block|{
 return|return
 operator|new
 name|ThreadSafeSupplier
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|delegate
 argument_list|)

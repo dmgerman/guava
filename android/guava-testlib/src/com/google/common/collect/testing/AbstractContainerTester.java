@@ -604,9 +604,7 @@ expr_stmt|;
 return|return
 operator|new
 name|ArrayWithDuplicate
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|elements
 argument_list|,
@@ -689,9 +687,7 @@ name|list
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

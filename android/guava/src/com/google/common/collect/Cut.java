@@ -1235,9 +1235,7 @@ block|{
 return|return
 operator|new
 name|BelowValue
-argument_list|<
-name|C
-argument_list|>
+argument_list|<>
 argument_list|(
 name|endpoint
 argument_list|)
@@ -1623,9 +1621,7 @@ block|{
 return|return
 operator|new
 name|AboveValue
-argument_list|<
-name|C
-argument_list|>
+argument_list|<>
 argument_list|(
 name|endpoint
 argument_list|)

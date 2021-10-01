@@ -158,9 +158,7 @@ block|{
 return|return
 operator|new
 name|ImmutableTypeToInstanceMap
-argument_list|<
-name|B
-argument_list|>
+argument_list|<>
 argument_list|(
 name|ImmutableMap
 operator|.
@@ -196,9 +194,7 @@ block|{
 return|return
 operator|new
 name|Builder
-argument_list|<
-name|B
-argument_list|>
+argument_list|<>
 argument_list|()
 return|;
 block|}
@@ -342,9 +338,7 @@ block|{
 return|return
 operator|new
 name|ImmutableTypeToInstanceMap
-argument_list|<
-name|B
-argument_list|>
+argument_list|<>
 argument_list|(
 name|mapBuilder
 operator|.

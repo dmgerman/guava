@@ -991,9 +991,7 @@ decl_stmt|;
 return|return
 operator|new
 name|FieldSetter
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|field
 argument_list|)

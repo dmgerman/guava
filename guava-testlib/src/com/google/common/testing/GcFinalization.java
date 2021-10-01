@@ -726,9 +726,7 @@ name|ref
 init|=
 operator|new
 name|WeakReference
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|Object

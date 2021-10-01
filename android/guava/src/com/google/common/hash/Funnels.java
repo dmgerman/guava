@@ -594,9 +594,7 @@ block|{
 return|return
 operator|new
 name|SequentialFunnel
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|elementFunnel
 argument_list|)

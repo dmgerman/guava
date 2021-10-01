@@ -331,9 +331,7 @@ block|{
 return|return
 operator|new
 name|ImmutableGraph
-argument_list|<
-name|N
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 argument_list|)

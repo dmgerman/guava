@@ -348,9 +348,7 @@ comment|// Range would reject our attempt to create (x, x).
 return|return
 operator|new
 name|EmptyContiguousSet
-argument_list|<
-name|C
-argument_list|>
+argument_list|<>
 argument_list|(
 name|domain
 argument_list|)
@@ -1283,9 +1281,7 @@ block|{
 return|return
 operator|new
 name|RegularContiguousSet
-argument_list|<
-name|C
-argument_list|>
+argument_list|<>
 argument_list|(
 name|range
 argument_list|,
@@ -1307,9 +1303,7 @@ block|{
 return|return
 operator|new
 name|SerializedForm
-argument_list|<
-name|C
-argument_list|>
+argument_list|<>
 argument_list|(
 name|range
 argument_list|,

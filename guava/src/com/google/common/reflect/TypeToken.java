@@ -620,9 +620,7 @@ block|{
 return|return
 operator|new
 name|SimpleTypeToken
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|type
 argument_list|)
@@ -780,9 +778,7 @@ comment|// If there's any type error, we'd report now rather than later.
 return|return
 operator|new
 name|SimpleTypeToken
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|resolver
 operator|.

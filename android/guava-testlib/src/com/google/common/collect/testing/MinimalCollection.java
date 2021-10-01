@@ -113,9 +113,7 @@ block|{
 return|return
 operator|new
 name|MinimalCollection
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Object
 operator|.
@@ -156,9 +154,7 @@ block|{
 return|return
 operator|new
 name|MinimalCollection
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|type
 argument_list|,

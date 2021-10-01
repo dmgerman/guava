@@ -2287,9 +2287,7 @@ block|{
 return|return
 operator|new
 name|ConcatenatedIterator
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|inputs
 argument_list|)
@@ -4323,9 +4321,7 @@ begin_return
 return|return
 operator|new
 name|ArrayItr
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|array
 argument_list|,
@@ -4962,9 +4958,7 @@ begin_return
 return|return
 operator|new
 name|PeekingImpl
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|iterator
 argument_list|)
@@ -5074,9 +5068,7 @@ block|;
 return|return
 operator|new
 name|MergingIterator
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|iterators
 argument_list|,

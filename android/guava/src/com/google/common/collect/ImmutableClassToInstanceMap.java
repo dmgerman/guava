@@ -295,9 +295,7 @@ decl_stmt|;
 return|return
 operator|new
 name|ImmutableClassToInstanceMap
-argument_list|<
-name|B
-argument_list|>
+argument_list|<>
 argument_list|(
 name|map
 argument_list|)
@@ -320,9 +318,7 @@ block|{
 return|return
 operator|new
 name|Builder
-argument_list|<
-name|B
-argument_list|>
+argument_list|<>
 argument_list|()
 return|;
 block|}
@@ -581,9 +577,7 @@ block|{
 return|return
 operator|new
 name|ImmutableClassToInstanceMap
-argument_list|<
-name|B
-argument_list|>
+argument_list|<>
 argument_list|(
 name|map
 argument_list|)

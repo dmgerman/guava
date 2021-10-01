@@ -276,9 +276,7 @@ block|{
 return|return
 operator|new
 name|Present
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|checkNotNull
 argument_list|(

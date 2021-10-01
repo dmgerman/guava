@@ -245,9 +245,7 @@ name|setContents
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -281,9 +279,7 @@ block|}
 return|return
 operator|new
 name|MinimalSet
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|type
 argument_list|,

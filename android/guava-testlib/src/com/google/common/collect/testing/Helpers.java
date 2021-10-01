@@ -333,9 +333,7 @@ name|list
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|addAll
@@ -408,9 +406,7 @@ name|set
 init|=
 operator|new
 name|LinkedHashSet
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|addAll
@@ -2289,9 +2285,7 @@ name|list
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

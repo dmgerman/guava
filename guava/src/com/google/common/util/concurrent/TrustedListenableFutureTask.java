@@ -185,9 +185,7 @@ block|{
 return|return
 operator|new
 name|TrustedListenableFutureTask
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|callable
 argument_list|)
@@ -217,9 +215,7 @@ block|{
 return|return
 operator|new
 name|TrustedListenableFutureTask
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|callable
 argument_list|)
@@ -258,9 +254,7 @@ block|{
 return|return
 operator|new
 name|TrustedListenableFutureTask
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Executors
 operator|.

@@ -225,9 +225,7 @@ block|{
 return|return
 operator|new
 name|Ordered
-argument_list|<
-name|N
-argument_list|>
+argument_list|<>
 argument_list|(
 name|source
 argument_list|,
@@ -259,9 +257,7 @@ comment|// Swap nodes on purpose to prevent callers from relying on the "orderin
 return|return
 operator|new
 name|Unordered
-argument_list|<
-name|N
-argument_list|>
+argument_list|<>
 argument_list|(
 name|nodeV
 argument_list|,

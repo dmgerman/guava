@@ -277,9 +277,7 @@ block|{
 return|return
 operator|new
 name|SampleElements
-argument_list|<
-name|K
-argument_list|>
+argument_list|<>
 argument_list|(
 name|k0
 argument_list|()
@@ -310,9 +308,7 @@ block|{
 return|return
 operator|new
 name|SampleElements
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|v0
 argument_list|()

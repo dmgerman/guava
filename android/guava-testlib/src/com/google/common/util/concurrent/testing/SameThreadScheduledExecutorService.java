@@ -864,9 +864,7 @@ decl_stmt|;
 return|return
 operator|new
 name|ImmediateScheduledFuture
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|delegateFuture
 argument_list|)

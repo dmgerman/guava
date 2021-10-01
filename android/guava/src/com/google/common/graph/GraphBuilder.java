@@ -470,9 +470,7 @@ block|{
 return|return
 operator|new
 name|StandardMutableGraph
-argument_list|<
-name|N1
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 argument_list|)

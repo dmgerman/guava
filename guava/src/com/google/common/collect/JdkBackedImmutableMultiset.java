@@ -426,9 +426,7 @@ name|elementSet
 operator|=
 operator|new
 name|ElementSet
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|entries
 argument_list|,

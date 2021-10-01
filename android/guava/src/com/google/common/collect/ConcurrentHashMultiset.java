@@ -436,9 +436,7 @@ comment|// an AbstractConcurrentMapMultiset.
 return|return
 operator|new
 name|ConcurrentHashMultiset
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|ConcurrentHashMap
@@ -524,9 +522,7 @@ block|{
 return|return
 operator|new
 name|ConcurrentHashMultiset
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|countMap
 argument_list|)

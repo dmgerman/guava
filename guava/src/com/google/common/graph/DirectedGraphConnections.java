@@ -801,12 +801,7 @@ name|orderedNodeConnections
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|NodeConnection
-argument_list|<
-name|N
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 break|break;
@@ -825,11 +820,7 @@ block|}
 return|return
 operator|new
 name|DirectedGraphConnections
-argument_list|<
-name|N
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 comment|/* adjacentNodeValues = */
 operator|new

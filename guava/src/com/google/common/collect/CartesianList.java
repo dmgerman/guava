@@ -261,9 +261,7 @@ block|}
 return|return
 operator|new
 name|CartesianList
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|axesBuilder
 operator|.

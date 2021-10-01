@@ -449,9 +449,7 @@ name|result
 init|=
 operator|new
 name|SortedMultisetTestSuiteBuilder
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|result
@@ -1316,9 +1314,7 @@ name|allEntries
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|allEntries

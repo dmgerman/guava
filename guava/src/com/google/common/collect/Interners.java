@@ -268,9 +268,7 @@ block|}
 return|return
 operator|new
 name|InternerImpl
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|mapMaker
 argument_list|)
@@ -540,9 +538,7 @@ block|{
 return|return
 operator|new
 name|InternerFunction
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|checkNotNull
 argument_list|(

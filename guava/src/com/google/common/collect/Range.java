@@ -410,9 +410,7 @@ block|{
 return|return
 operator|new
 name|Range
-argument_list|<
-name|C
-argument_list|>
+argument_list|<>
 argument_list|(
 name|lowerBound
 argument_list|,

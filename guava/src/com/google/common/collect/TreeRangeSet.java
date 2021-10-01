@@ -278,9 +278,7 @@ block|{
 return|return
 operator|new
 name|TreeRangeSet
-argument_list|<
-name|C
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|TreeMap
@@ -1814,9 +1812,7 @@ block|{
 return|return
 operator|new
 name|RangesByUpperBound
-argument_list|<
-name|C
-argument_list|>
+argument_list|<>
 argument_list|(
 name|rangesByLowerBound
 argument_list|,
@@ -2870,9 +2866,7 @@ name|positiveRangesByUpperBound
 operator|=
 operator|new
 name|RangesByUpperBound
-argument_list|<
-name|C
-argument_list|>
+argument_list|<>
 argument_list|(
 name|positiveRangesByLowerBound
 argument_list|)
@@ -2942,9 +2936,7 @@ expr_stmt|;
 return|return
 operator|new
 name|ComplementRangesByLowerBound
-argument_list|<
-name|C
-argument_list|>
+argument_list|<>
 argument_list|(
 name|positiveRangesByLowerBound
 argument_list|,
@@ -4336,9 +4328,7 @@ name|rangesByUpperBound
 operator|=
 operator|new
 name|RangesByUpperBound
-argument_list|<
-name|C
-argument_list|>
+argument_list|<>
 argument_list|(
 name|rangesByLowerBound
 argument_list|)
@@ -4393,9 +4383,7 @@ block|{
 return|return
 operator|new
 name|SubRangeSetRangesByLowerBound
-argument_list|<
-name|C
-argument_list|>
+argument_list|<>
 argument_list|(
 name|lowerBoundWindow
 operator|.

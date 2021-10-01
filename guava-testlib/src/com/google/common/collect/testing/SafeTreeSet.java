@@ -544,9 +544,7 @@ block|{
 return|return
 operator|new
 name|SafeTreeSet
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|delegate
 operator|.
@@ -636,9 +634,7 @@ block|{
 return|return
 operator|new
 name|SafeTreeSet
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|delegate
 operator|.
@@ -888,9 +884,7 @@ block|{
 return|return
 operator|new
 name|SafeTreeSet
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|delegate
 operator|.
@@ -986,9 +980,7 @@ block|{
 return|return
 operator|new
 name|SafeTreeSet
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|delegate
 operator|.

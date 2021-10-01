@@ -677,9 +677,7 @@ block|{
 return|return
 operator|new
 name|NavigableElementSet
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|multiset
 argument_list|()
@@ -792,9 +790,7 @@ block|{
 return|return
 operator|new
 name|NavigableElementSet
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|multiset
 argument_list|()
@@ -847,9 +843,7 @@ block|{
 return|return
 operator|new
 name|NavigableElementSet
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|multiset
 argument_list|()
@@ -893,9 +887,7 @@ block|{
 return|return
 operator|new
 name|NavigableElementSet
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|multiset
 argument_list|()

@@ -278,9 +278,7 @@ operator|new
 name|SortedMultisets
 operator|.
 name|NavigableElementSet
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 argument_list|)

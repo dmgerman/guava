@@ -293,9 +293,7 @@ name|result
 operator|=
 operator|new
 name|UnmodifiableSortedMultiset
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|delegate
 argument_list|()

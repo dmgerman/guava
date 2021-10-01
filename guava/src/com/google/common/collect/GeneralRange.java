@@ -287,9 +287,7 @@ block|;
 return|return
 operator|new
 name|GeneralRange
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Ordering
 operator|.
@@ -343,9 +341,7 @@ block|{
 return|return
 operator|new
 name|GeneralRange
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|comparator
 argument_list|,
@@ -404,9 +400,7 @@ block|{
 return|return
 operator|new
 name|GeneralRange
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|comparator
 argument_list|,
@@ -465,9 +459,7 @@ block|{
 return|return
 operator|new
 name|GeneralRange
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|comparator
 argument_list|,
@@ -534,9 +526,7 @@ block|{
 return|return
 operator|new
 name|GeneralRange
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|comparator
 argument_list|,
@@ -1370,9 +1360,7 @@ block|}
 return|return
 operator|new
 name|GeneralRange
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|comparator
 argument_list|,
@@ -1582,9 +1570,7 @@ name|result
 operator|=
 operator|new
 name|GeneralRange
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Ordering
 operator|.
