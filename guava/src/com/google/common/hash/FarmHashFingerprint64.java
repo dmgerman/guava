@@ -1135,7 +1135,6 @@ name|int
 name|length
 parameter_list|)
 block|{
-specifier|final
 name|int
 name|seed
 init|=

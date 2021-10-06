@@ -1116,7 +1116,7 @@ return|return
 name|modified
 return|;
 block|}
-DECL|method|reverse (final List<T> list)
+DECL|method|reverse (List<T> list)
 specifier|static
 parameter_list|<
 name|T
@@ -1127,7 +1127,6 @@ name|T
 argument_list|>
 name|reverse
 parameter_list|(
-specifier|final
 name|List
 argument_list|<
 name|T
@@ -1153,7 +1152,6 @@ argument_list|>
 name|iterator
 parameter_list|()
 block|{
-specifier|final
 name|ListIterator
 argument_list|<
 name|T
@@ -1225,7 +1223,7 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|cycle (final Iterable<T> iterable)
+DECL|method|cycle (Iterable<T> iterable)
 specifier|static
 parameter_list|<
 name|T
@@ -1236,7 +1234,6 @@ name|T
 argument_list|>
 name|cycle
 parameter_list|(
-specifier|final
 name|Iterable
 argument_list|<
 name|T
@@ -1410,7 +1407,7 @@ throw|throw
 name|assertionFailedError
 throw|;
 block|}
-DECL|method|entryComparator ( final Comparator<? super K> keyComparator)
+DECL|method|entryComparator ( Comparator<? super K> keyComparator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1429,7 +1426,6 @@ argument_list|>
 argument_list|>
 name|entryComparator
 parameter_list|(
-specifier|final
 name|Comparator
 argument_list|<
 name|?
@@ -1963,7 +1959,7 @@ block|}
 block|}
 block|}
 comment|/**    * Returns a collection that simulates concurrent modification by having its size method return    * incorrect values. This is useful for testing methods that must treat the return value from    * size() as a hint only.    *    * @param delta the difference between the true size of the collection and the values returned by    *     the size method    */
-DECL|method|misleadingSizeCollection (final int delta)
+DECL|method|misleadingSizeCollection (int delta)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1975,7 +1971,6 @@ name|T
 argument_list|>
 name|misleadingSizeCollection
 parameter_list|(
-specifier|final
 name|int
 name|delta
 parameter_list|)
@@ -2018,7 +2013,7 @@ block|}
 return|;
 block|}
 comment|/**    * Returns a "nefarious" map entry with the specified key and value, meaning an entry that is    * suitable for testing that map entries cannot be modified via a nefarious implementation of    * equals. This is used for testing unmodifiable collections of map entries; for example, it    * should not be possible to access the raw (modifiable) map entry via a nefarious equals method.    */
-DECL|method|nefariousMapEntry (final K key, final V value)
+DECL|method|nefariousMapEntry (K key, V value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2034,11 +2029,9 @@ name|V
 argument_list|>
 name|nefariousMapEntry
 parameter_list|(
-specifier|final
 name|K
 name|key
 parameter_list|,
-specifier|final
 name|V
 name|value
 parameter_list|)

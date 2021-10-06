@@ -590,7 +590,7 @@ name|INSTANCE
 return|;
 block|}
 comment|/** Returns an unmodifiable view of {@code iterator}. */
-DECL|method|unmodifiableIterator ( final Iterator<? extends T> iterator)
+DECL|method|unmodifiableIterator ( Iterator<? extends T> iterator)
 specifier|public
 specifier|static
 operator|<
@@ -605,7 +605,6 @@ name|T
 argument_list|>
 name|unmodifiableIterator
 argument_list|(
-name|final
 name|Iterator
 argument_list|<
 name|?
@@ -1688,7 +1687,7 @@ comment|/**    * Returns an iterator that cycles indefinitely over the elements 
 end_comment
 
 begin_expr_stmt
-DECL|method|cycle (final Iterable<T> iterable)
+DECL|method|cycle (Iterable<T> iterable)
 specifier|public
 specifier|static
 operator|<
@@ -1703,7 +1702,6 @@ name|T
 argument_list|>
 name|cycle
 argument_list|(
-name|final
 name|Iterable
 argument_list|<
 name|T
@@ -1870,7 +1868,7 @@ comment|/**    * Returns an Iterator that walks the specified array, nulling out
 end_comment
 
 begin_function
-DECL|method|consumingForArray ( final @Nullable I... elements)
+DECL|method|consumingForArray (@ullable I... elements)
 specifier|private
 specifier|static
 parameter_list|<
@@ -1887,7 +1885,6 @@ name|I
 argument_list|>
 name|consumingForArray
 parameter_list|(
-specifier|final
 annotation|@
 name|Nullable
 name|I
@@ -2456,7 +2453,7 @@ block|}
 end_expr_stmt
 
 begin_expr_stmt
-DECL|method|partitionImpl ( final Iterator<T> iterator, final int size, final boolean pad)
+DECL|method|partitionImpl ( Iterator<T> iterator, int size, boolean pad)
 specifier|private
 specifier|static
 operator|<
@@ -2476,18 +2473,15 @@ argument_list|>
 argument_list|>
 name|partitionImpl
 argument_list|(
-name|final
 name|Iterator
 argument_list|<
 name|T
 argument_list|>
 name|iterator
 argument_list|,
-name|final
 name|int
 name|size
 argument_list|,
-name|final
 name|boolean
 name|pad
 argument_list|)
@@ -2714,7 +2708,7 @@ comment|/**    * Returns a view of {@code unfiltered} containing all elements th
 end_comment
 
 begin_expr_stmt
-DECL|method|filter ( final Iterator<T> unfiltered, final Predicate<? super T> retainIfTrue)
+DECL|method|filter ( Iterator<T> unfiltered, Predicate<? super T> retainIfTrue)
 unit|public
 specifier|static
 operator|<
@@ -2729,14 +2723,12 @@ name|T
 argument_list|>
 name|filter
 argument_list|(
-name|final
 name|Iterator
 argument_list|<
 name|T
 argument_list|>
 name|unfiltered
 argument_list|,
-name|final
 name|Predicate
 argument_list|<
 name|?
@@ -3358,7 +3350,7 @@ comment|/**    * Returns a view containing the result of applying {@code functio
 end_comment
 
 begin_expr_stmt
-DECL|method|transform ( final Iterator<F> fromIterator, final Function<? super F, ? extends T> function)
+DECL|method|transform ( Iterator<F> fromIterator, Function<? super F, ? extends T> function)
 unit|public
 specifier|static
 operator|<
@@ -3378,14 +3370,12 @@ name|T
 argument_list|>
 name|transform
 argument_list|(
-name|final
 name|Iterator
 argument_list|<
 name|F
 argument_list|>
 name|fromIterator
 argument_list|,
-name|final
 name|Function
 argument_list|<
 name|?
@@ -3851,7 +3841,7 @@ comment|/**    * Returns a view containing the first {@code limitSize} elements 
 end_comment
 
 begin_expr_stmt
-DECL|method|limit ( final Iterator<T> iterator, final int limitSize)
+DECL|method|limit ( Iterator<T> iterator, int limitSize)
 specifier|public
 specifier|static
 operator|<
@@ -3866,14 +3856,12 @@ name|T
 argument_list|>
 name|limit
 argument_list|(
-name|final
 name|Iterator
 argument_list|<
 name|T
 argument_list|>
 name|iterator
 argument_list|,
-name|final
 name|int
 name|limitSize
 argument_list|)
@@ -3980,7 +3968,7 @@ comment|/**    * Returns a view of the supplied {@code iterator} that removes ea
 end_comment
 
 begin_expr_stmt
-DECL|method|consumingIterator ( final Iterator<T> iterator)
+DECL|method|consumingIterator (Iterator<T> iterator)
 unit|public
 specifier|static
 operator|<
@@ -3995,7 +3983,6 @@ name|T
 argument_list|>
 name|consumingIterator
 argument_list|(
-name|final
 name|Iterator
 argument_list|<
 name|T
@@ -4193,7 +4180,7 @@ name|SafeVarargs
 end_annotation
 
 begin_expr_stmt
-DECL|method|forArray (final T... array)
+DECL|method|forArray (T... array)
 specifier|public
 specifier|static
 operator|<
@@ -4208,7 +4195,6 @@ name|T
 argument_list|>
 name|forArray
 argument_list|(
-name|final
 name|T
 operator|...
 name|array
@@ -4236,7 +4222,7 @@ comment|/**    * Returns a list iterator containing the elements in the specifie
 end_comment
 
 begin_expr_stmt
-DECL|method|forArray ( final T[] array, final int offset, int length, int index)
+DECL|method|forArray ( T[] array, int offset, int length, int index)
 specifier|static
 operator|<
 name|T
@@ -4250,12 +4236,10 @@ name|T
 argument_list|>
 name|forArray
 argument_list|(
-name|final
 name|T
 index|[]
 name|array
 argument_list|,
-name|final
 name|int
 name|offset
 argument_list|,
@@ -4458,7 +4442,7 @@ comment|/**    * Returns an iterator containing only {@code value}.    *    *<p>
 end_comment
 
 begin_expr_stmt
-DECL|method|singletonIterator ( @arametricNullness final T value)
+DECL|method|singletonIterator ( @arametricNullness T value)
 unit|public
 specifier|static
 operator|<
@@ -4475,7 +4459,6 @@ name|singletonIterator
 argument_list|(
 annotation|@
 name|ParametricNullness
-name|final
 name|T
 name|value
 argument_list|)
@@ -4546,7 +4529,7 @@ comment|/**    * Adapts an {@code Enumeration} to the {@code Iterator} interface
 end_comment
 
 begin_expr_stmt
-DECL|method|forEnumeration ( final Enumeration<T> enumeration)
+DECL|method|forEnumeration ( Enumeration<T> enumeration)
 unit|public
 specifier|static
 operator|<
@@ -4561,7 +4544,6 @@ name|T
 argument_list|>
 name|forEnumeration
 argument_list|(
-name|final
 name|Enumeration
 argument_list|<
 name|T
@@ -4620,7 +4602,7 @@ comment|/**    * Adapts an {@code Iterator} to the {@code Enumeration} interface
 end_comment
 
 begin_expr_stmt
-DECL|method|asEnumeration ( final Iterator<T> iterator)
+DECL|method|asEnumeration (Iterator<T> iterator)
 unit|public
 specifier|static
 operator|<
@@ -4635,7 +4617,6 @@ name|T
 argument_list|>
 name|asEnumeration
 argument_list|(
-name|final
 name|Iterator
 argument_list|<
 name|T
@@ -5111,7 +5092,7 @@ argument_list|>
 argument_list|>
 name|queue
 block|;
-DECL|method|MergingIterator ( Iterable<? extends Iterator<? extends T>> iterators, final Comparator<? super T> itemComparator)
+DECL|method|MergingIterator ( Iterable<? extends Iterator<? extends T>> iterators, Comparator<? super T> itemComparator)
 specifier|public
 name|MergingIterator
 argument_list|(
@@ -5128,7 +5109,6 @@ argument_list|>
 argument_list|>
 name|iterators
 operator|,
-name|final
 name|Comparator
 argument_list|<
 name|?

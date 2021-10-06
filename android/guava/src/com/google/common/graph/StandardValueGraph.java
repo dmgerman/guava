@@ -480,7 +480,6 @@ name|N
 name|node
 parameter_list|)
 block|{
-specifier|final
 name|GraphConnections
 argument_list|<
 name|N

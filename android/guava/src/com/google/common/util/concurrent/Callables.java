@@ -144,7 +144,7 @@ name|Callables
 parameter_list|()
 block|{}
 comment|/** Creates a {@code Callable} which immediately returns a preset value each time it is called. */
-DECL|method|returning ( @arametricNullness final T value)
+DECL|method|returning (@arametricNullness T value)
 specifier|public
 specifier|static
 operator|<
@@ -161,7 +161,6 @@ name|returning
 argument_list|(
 annotation|@
 name|ParametricNullness
-name|final
 name|T
 name|value
 argument_list|)
@@ -177,7 +176,7 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
-DECL|method|asAsyncCallable ( final Callable<T> callable, final ListeningExecutorService listeningExecutorService)
+DECL|method|asAsyncCallable ( Callable<T> callable, ListeningExecutorService listeningExecutorService)
 specifier|public
 specifier|static
 operator|<
@@ -192,14 +191,12 @@ name|T
 argument_list|>
 name|asAsyncCallable
 argument_list|(
-name|final
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|callable
 argument_list|,
-name|final
 name|ListeningExecutorService
 name|listeningExecutorService
 argument_list|)
@@ -229,7 +226,7 @@ comment|/**    * Wraps the given callable such that for the duration of {@link C
 annotation|@
 name|GwtIncompatible
 comment|// threads
-DECL|method|threadRenaming ( final Callable<T> callable, final Supplier<String> nameSupplier)
+DECL|method|threadRenaming ( Callable<T> callable, Supplier<String> nameSupplier)
 specifier|static
 operator|<
 name|T
@@ -243,14 +240,12 @@ name|T
 argument_list|>
 name|threadRenaming
 argument_list|(
-name|final
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|callable
 argument_list|,
-name|final
 name|Supplier
 argument_list|<
 name|String
@@ -345,16 +340,14 @@ begin_function
 unit|@
 name|GwtIncompatible
 comment|// threads
-DECL|method|threadRenaming (final Runnable task, final Supplier<String> nameSupplier)
+DECL|method|threadRenaming (Runnable task, Supplier<String> nameSupplier)
 specifier|static
 name|Runnable
 name|threadRenaming
 parameter_list|(
-specifier|final
 name|Runnable
 name|task
 parameter_list|,
-specifier|final
 name|Supplier
 argument_list|<
 name|String
@@ -445,13 +438,12 @@ begin_function
 annotation|@
 name|GwtIncompatible
 comment|// threads
-DECL|method|trySetName (final String threadName, Thread currentThread)
+DECL|method|trySetName (String threadName, Thread currentThread)
 specifier|private
 specifier|static
 name|boolean
 name|trySetName
 parameter_list|(
-specifier|final
 name|String
 name|threadName
 parameter_list|,

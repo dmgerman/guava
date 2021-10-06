@@ -1022,7 +1022,6 @@ argument_list|(
 name|type
 argument_list|)
 expr_stmt|;
-specifier|final
 name|AtomicReference
 argument_list|<
 annotation|@

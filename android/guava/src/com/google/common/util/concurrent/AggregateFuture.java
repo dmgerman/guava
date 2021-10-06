@@ -593,7 +593,6 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-specifier|final
 name|ListenableFuture
 argument_list|<
 name|?
@@ -605,7 +604,6 @@ range|:
 name|futures
 control|)
 block|{
-specifier|final
 name|int
 name|index
 init|=
@@ -672,7 +670,6 @@ block|}
 else|else
 block|{
 comment|/*        * We'll call the user callback or collect the values only when all inputs complete,        * regardless of whether some failed. This lets us avoid calling expensive methods like        * Future.get() when we don't need to (specifically, for whenAllComplete().call*()), and it        * lets all futures share the same listener.        *        * We store `localFutures` inside the listener because `this.futures` might be nulled out by        * the time the listener runs for the final future -- at which point we need to check all        * inputs for exceptions *if* we're collecting values. If we're not, then the listener doesn't        * need access to the futures again, so we can just pass `null`.        *        * TODO(b/112550045): Allocating a single, cheaper listener is (I think) only an optimization.        * If we make some other optimizations, this one will no longer be necessary. The optimization        * could actually hurt in some cases, as it forces us to keep all inputs in memory until the        * final input completes.        */
-specifier|final
 name|ImmutableCollection
 argument_list|<
 name|?

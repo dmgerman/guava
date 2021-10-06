@@ -1557,17 +1557,15 @@ specifier|static
 class|class
 name|Chopper
 block|{
-DECL|method|or (final Chopper you)
+DECL|method|or (Chopper you)
 specifier|final
 name|Chopper
 name|or
 parameter_list|(
-specifier|final
 name|Chopper
 name|you
 parameter_list|)
 block|{
-specifier|final
 name|Chopper
 name|i
 init|=
@@ -1624,12 +1622,11 @@ name|String
 name|str
 parameter_list|)
 function_decl|;
-DECL|method|suffix (final String suffix)
+DECL|method|suffix (String suffix)
 specifier|static
 name|Chopper
 name|suffix
 parameter_list|(
-specifier|final
 name|String
 name|suffix
 parameter_list|)

@@ -577,13 +577,12 @@ argument_list|)
 return|;
 block|}
 comment|/** Private helper to wrap a CharEscaper as a UnicodeEscaper. */
-DECL|method|wrap (final CharEscaper escaper)
+DECL|method|wrap (CharEscaper escaper)
 specifier|private
 specifier|static
 name|UnicodeEscaper
 name|wrap
 parameter_list|(
-specifier|final
 name|CharEscaper
 name|escaper
 parameter_list|)

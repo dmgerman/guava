@@ -859,12 +859,11 @@ comment|/**    * Returns a joiner with the same behavior as this one, except aut
 end_comment
 
 begin_function
-DECL|method|useForNull (final String nullText)
+DECL|method|useForNull (String nullText)
 specifier|public
 name|Joiner
 name|useForNull
 parameter_list|(
-specifier|final
 name|String
 name|nullText
 parameter_list|)
@@ -1788,7 +1787,7 @@ block|}
 end_function
 
 begin_function
-DECL|method|iterable ( @heckForNull final Object first, @CheckForNull final Object second, final @Nullable Object[] rest)
+DECL|method|iterable ( @heckForNull Object first, @CheckForNull Object second, @Nullable Object[] rest)
 specifier|private
 specifier|static
 name|Iterable
@@ -1801,17 +1800,14 @@ name|iterable
 parameter_list|(
 annotation|@
 name|CheckForNull
-specifier|final
 name|Object
 name|first
 parameter_list|,
 annotation|@
 name|CheckForNull
-specifier|final
 name|Object
 name|second
 parameter_list|,
-specifier|final
 annotation|@
 name|Nullable
 name|Object

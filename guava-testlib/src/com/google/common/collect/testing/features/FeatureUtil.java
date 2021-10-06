@@ -603,7 +603,6 @@ parameter_list|)
 throws|throws
 name|ConflictingRequirementsException
 block|{
-specifier|final
 name|TesterRequirements
 name|declaredRequirements
 init|=
@@ -636,7 +635,6 @@ return|;
 block|}
 else|else
 block|{
-specifier|final
 name|TesterRequirements
 name|clonedBaseRequirements
 init|=
@@ -733,7 +731,6 @@ operator|.
 name|annotationType
 argument_list|()
 decl_stmt|;
-specifier|final
 name|Feature
 argument_list|<
 name|?
@@ -741,7 +738,6 @@ argument_list|>
 index|[]
 name|presentFeatures
 decl_stmt|;
-specifier|final
 name|Feature
 argument_list|<
 name|?

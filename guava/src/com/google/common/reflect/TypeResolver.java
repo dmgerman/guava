@@ -473,13 +473,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|populateTypeMappings ( final Map<TypeVariableKey, Type> mappings, final Type from, final Type to)
+DECL|method|populateTypeMappings ( Map<TypeVariableKey, Type> mappings, Type from, Type to)
 specifier|private
 specifier|static
 name|void
 name|populateTypeMappings
 parameter_list|(
-specifier|final
 name|Map
 argument_list|<
 name|TypeVariableKey
@@ -488,11 +487,9 @@ name|Type
 argument_list|>
 name|mappings
 parameter_list|,
-specifier|final
 name|Type
 name|from
 parameter_list|,
-specifier|final
 name|Type
 name|to
 parameter_list|)
@@ -1527,12 +1524,11 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|resolve (final TypeVariable<?> var)
+DECL|method|resolve (TypeVariable<?> var)
 specifier|final
 name|Type
 name|resolve
 parameter_list|(
-specifier|final
 name|TypeVariable
 argument_list|<
 name|?
@@ -1540,7 +1536,6 @@ argument_list|>
 name|var
 parameter_list|)
 block|{
-specifier|final
 name|TypeTable
 name|unguarded
 init|=
@@ -1990,16 +1985,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|map (final TypeVariableKey var, final Type arg)
+DECL|method|map (TypeVariableKey var, Type arg)
 specifier|private
 name|void
 name|map
 parameter_list|(
-specifier|final
 name|TypeVariableKey
 name|var
 parameter_list|,
-specifier|final
 name|Type
 name|arg
 parameter_list|)
@@ -2453,12 +2446,11 @@ name|upperBounds
 argument_list|)
 return|;
 block|}
-DECL|method|forTypeVariable (final TypeVariable<?> typeParam)
+DECL|method|forTypeVariable (TypeVariable<?> typeParam)
 specifier|private
 name|WildcardCapturer
 name|forTypeVariable
 parameter_list|(
-specifier|final
 name|TypeVariable
 argument_list|<
 name|?

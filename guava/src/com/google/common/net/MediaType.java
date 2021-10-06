@@ -3611,7 +3611,6 @@ argument_list|(
 literal|'='
 argument_list|)
 expr_stmt|;
-specifier|final
 name|String
 name|value
 decl_stmt|;

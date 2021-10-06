@@ -954,7 +954,7 @@ comment|// Secret sauce for setting final fields; don't make it public.
 end_comment
 
 begin_function
-DECL|method|getFieldSetter (final Class<T> clazz, String fieldName)
+DECL|method|getFieldSetter (Class<T> clazz, String fieldName)
 unit|static
 parameter_list|<
 name|T
@@ -965,7 +965,6 @@ name|T
 argument_list|>
 name|getFieldSetter
 parameter_list|(
-specifier|final
 name|Class
 argument_list|<
 name|T

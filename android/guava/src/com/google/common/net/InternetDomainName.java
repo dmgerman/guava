@@ -538,7 +538,6 @@ argument_list|>
 name|desiredType
 parameter_list|)
 block|{
-specifier|final
 name|int
 name|partsSize
 init|=
@@ -680,7 +679,6 @@ argument_list|>
 name|parts
 parameter_list|)
 block|{
-specifier|final
 name|int
 name|lastIndex
 init|=

@@ -402,7 +402,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|incidentEdgeIterator (final N thisNode)
+DECL|method|incidentEdgeIterator (N thisNode)
 specifier|public
 name|Iterator
 argument_list|<
@@ -413,7 +413,6 @@ argument_list|>
 argument_list|>
 name|incidentEdgeIterator
 parameter_list|(
-specifier|final
 name|N
 name|thisNode
 parameter_list|)

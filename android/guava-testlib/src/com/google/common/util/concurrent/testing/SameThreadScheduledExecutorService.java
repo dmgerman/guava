@@ -807,7 +807,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|schedule ( final Callable<V> callable, long delay, TimeUnit unit)
+DECL|method|schedule ( Callable<V> callable, long delay, TimeUnit unit)
 specifier|public
 parameter_list|<
 name|V
@@ -818,7 +818,6 @@ name|V
 argument_list|>
 name|schedule
 parameter_list|(
-specifier|final
 name|Callable
 argument_list|<
 name|V

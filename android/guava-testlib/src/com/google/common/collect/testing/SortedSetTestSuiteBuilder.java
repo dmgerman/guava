@@ -452,12 +452,11 @@ name|derivedSuites
 return|;
 block|}
 comment|/**    * Creates a suite whose set has some elements filtered out of view.    *    *<p>Because the set may be ascending or descending, this test must derive the relative order of    * these extreme values rather than relying on their regular sort ordering.    */
-DECL|method|createSubsetSuite ( final FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder, final Bound from, final Bound to)
+DECL|method|createSubsetSuite ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder, Bound from, Bound to)
 specifier|final
 name|TestSuite
 name|createSubsetSuite
 parameter_list|(
-specifier|final
 name|FeatureSpecificTestSuiteBuilder
 argument_list|<
 name|?
@@ -476,16 +475,13 @@ argument_list|>
 argument_list|>
 name|parentBuilder
 parameter_list|,
-specifier|final
 name|Bound
 name|from
 parameter_list|,
-specifier|final
 name|Bound
 name|to
 parameter_list|)
 block|{
-specifier|final
 name|TestSortedSetGenerator
 argument_list|<
 name|E

@@ -910,7 +910,6 @@ operator|.
 name|getEnumConstants
 argument_list|()
 decl_stmt|;
-specifier|final
 name|int
 name|numKeys
 init|=

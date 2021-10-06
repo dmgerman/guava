@@ -808,7 +808,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@code Striped<Semaphore>} with eagerly initialized, strongly referenced semaphores,    * with the specified number of permits.    *    * @param stripes the minimum number of stripes (semaphores) required    * @param permits the number of permits in each semaphore    * @return a new {@code Striped<Semaphore>}    */
-DECL|method|semaphore (int stripes, final int permits)
+DECL|method|semaphore (int stripes, int permits)
 specifier|public
 specifier|static
 name|Striped
@@ -820,7 +820,6 @@ parameter_list|(
 name|int
 name|stripes
 parameter_list|,
-specifier|final
 name|int
 name|permits
 parameter_list|)
@@ -841,7 +840,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@code Striped<Semaphore>} with lazily initialized, weakly referenced semaphores,    * with the specified number of permits.    *    * @param stripes the minimum number of stripes (semaphores) required    * @param permits the number of permits in each semaphore    * @return a new {@code Striped<Semaphore>}    */
-DECL|method|lazyWeakSemaphore (int stripes, final int permits)
+DECL|method|lazyWeakSemaphore (int stripes, int permits)
 specifier|public
 specifier|static
 name|Striped
@@ -853,7 +852,6 @@ parameter_list|(
 name|int
 name|stripes
 parameter_list|,
-specifier|final
 name|int
 name|permits
 parameter_list|)

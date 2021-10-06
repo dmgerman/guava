@@ -701,7 +701,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (final int index)
+DECL|method|get (int index)
 specifier|public
 name|ImmutableList
 argument_list|<
@@ -709,7 +709,6 @@ name|E
 argument_list|>
 name|get
 parameter_list|(
-specifier|final
 name|int
 name|index
 parameter_list|)

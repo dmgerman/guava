@@ -126,7 +126,7 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// Es come in, Es go out
-DECL|method|from (final Collection<E> elements)
+DECL|method|from (Collection<E> elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -138,7 +138,6 @@ name|E
 argument_list|>
 name|from
 parameter_list|(
-specifier|final
 name|Collection
 argument_list|<
 name|E

@@ -288,7 +288,6 @@ name|Runnable
 name|command
 parameter_list|)
 block|{
-specifier|final
 name|Callable
 argument_list|<
 name|Object

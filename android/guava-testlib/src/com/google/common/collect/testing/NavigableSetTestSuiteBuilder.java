@@ -757,12 +757,11 @@ argument_list|)
 return|;
 block|}
 comment|/** Create a suite whose maps are descending views of other maps. */
-DECL|method|createDescendingSuite ( final FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
+DECL|method|createDescendingSuite ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
 specifier|private
 name|TestSuite
 name|createDescendingSuite
 parameter_list|(
-specifier|final
 name|FeatureSpecificTestSuiteBuilder
 argument_list|<
 name|?
@@ -782,7 +781,6 @@ argument_list|>
 name|parentBuilder
 parameter_list|)
 block|{
-specifier|final
 name|TestSetGenerator
 argument_list|<
 name|E

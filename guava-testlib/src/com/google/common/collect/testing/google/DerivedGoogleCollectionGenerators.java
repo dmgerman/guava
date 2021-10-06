@@ -988,7 +988,6 @@ name|mapGenerator
 operator|=
 name|mapGenerator
 expr_stmt|;
-specifier|final
 name|SampleElements
 argument_list|<
 name|Entry
@@ -1211,7 +1210,6 @@ name|int
 name|length
 parameter_list|)
 block|{
-specifier|final
 name|V
 index|[]
 name|vs

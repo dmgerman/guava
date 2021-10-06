@@ -298,7 +298,6 @@ name|isCancelled
 argument_list|()
 argument_list|)
 expr_stmt|;
-specifier|final
 name|CountDownLatch
 name|successLatch
 init|=
@@ -308,7 +307,6 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
-specifier|final
 name|Throwable
 index|[]
 name|badness
@@ -496,7 +494,6 @@ name|isCancelled
 argument_list|()
 argument_list|)
 expr_stmt|;
-specifier|final
 name|CountDownLatch
 name|successLatch
 init|=
@@ -614,7 +611,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-specifier|final
 name|CountDownLatch
 name|successLatch
 init|=
@@ -624,7 +620,6 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
-specifier|final
 name|CountDownLatch
 name|listenerLatch
 init|=
@@ -790,7 +785,6 @@ name|listenerCount
 init|=
 literal|20
 decl_stmt|;
-specifier|final
 name|CountDownLatch
 name|listenerLatch
 init|=

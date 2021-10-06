@@ -719,7 +719,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Verifies that a multiset is immutable.    *    *<p>A multiset is considered immutable if:    *    *<ol>    *<li>All its mutation methods result in UnsupportedOperationException, and do not change the    *       underlying contents.    *<li>All methods that return objects that can indirectly mutate the multiset throw    *       UnsupportedOperationException when those mutators are called.    *</ol>    *    * @param multiset the presumed-immutable multiset    * @param sampleElement an element of the same type as that contained by {@code multiset}. {@code    *     multiset} may or may not have {@code sampleElement} as a member.    */
-DECL|method|assertMultisetIsUnmodifiable (Multiset<E> multiset, final E sampleElement)
+DECL|method|assertMultisetIsUnmodifiable (Multiset<E> multiset, E sampleElement)
 specifier|public
 specifier|static
 parameter_list|<
@@ -734,7 +734,6 @@ name|E
 argument_list|>
 name|multiset
 parameter_list|,
-specifier|final
 name|E
 name|sampleElement
 parameter_list|)
@@ -908,7 +907,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Verifies that a multimap is immutable.    *    *<p>A multimap is considered immutable if:    *    *<ol>    *<li>All its mutation methods result in UnsupportedOperationException, and do not change the    *       underlying contents.    *<li>All methods that return objects that can indirectly mutate the multimap throw    *       UnsupportedOperationException when those mutators    *</ol>    *    * @param multimap the presumed-immutable multimap    * @param sampleKey a key of the same type as that contained by {@code multimap}. {@code multimap}    *     may or may not have {@code sampleKey} as a key.    * @param sampleValue a key of the same type as that contained by {@code multimap}. {@code    *     multimap} may or may not have {@code sampleValue} as a key.    */
-DECL|method|assertMultimapIsUnmodifiable ( Multimap<K, V> multimap, final K sampleKey, final V sampleValue)
+DECL|method|assertMultimapIsUnmodifiable ( Multimap<K, V> multimap, K sampleKey, V sampleValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -927,11 +926,9 @@ name|V
 argument_list|>
 name|multimap
 parameter_list|,
-specifier|final
 name|K
 name|sampleKey
 parameter_list|,
-specifier|final
 name|V
 name|sampleValue
 parameter_list|)

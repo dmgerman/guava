@@ -1254,7 +1254,6 @@ argument_list|>
 name|iterator
 parameter_list|()
 block|{
-specifier|final
 name|Iterator
 argument_list|<
 name|NodeConnection
@@ -1269,7 +1268,6 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-specifier|final
 name|Set
 argument_list|<
 name|N
@@ -1424,7 +1422,6 @@ operator|==
 literal|null
 condition|)
 block|{
-specifier|final
 name|Iterator
 argument_list|<
 name|Entry
@@ -1511,7 +1508,6 @@ return|;
 block|}
 else|else
 block|{
-specifier|final
 name|Iterator
 argument_list|<
 name|NodeConnection
@@ -1661,7 +1657,6 @@ operator|==
 literal|null
 condition|)
 block|{
-specifier|final
 name|Iterator
 argument_list|<
 name|Entry
@@ -1748,7 +1743,6 @@ return|;
 block|}
 else|else
 block|{
-specifier|final
 name|Iterator
 argument_list|<
 name|NodeConnection
@@ -1864,7 +1858,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|incidentEdgeIterator (final N thisNode)
+DECL|method|incidentEdgeIterator (N thisNode)
 specifier|public
 name|Iterator
 argument_list|<
@@ -1875,7 +1869,6 @@ argument_list|>
 argument_list|>
 name|incidentEdgeIterator
 parameter_list|(
-specifier|final
 name|N
 name|thisNode
 parameter_list|)
@@ -1885,7 +1878,6 @@ argument_list|(
 name|thisNode
 argument_list|)
 expr_stmt|;
-specifier|final
 name|Iterator
 argument_list|<
 name|EndpointPair
@@ -2023,7 +2015,6 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-specifier|final
 name|AtomicBoolean
 name|alreadySeenSelfLoop
 init|=

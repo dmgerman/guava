@@ -259,14 +259,12 @@ condition|)
 block|{
 return|return;
 block|}
-specifier|final
 name|long
 name|timeoutSeconds
 init|=
 name|timeoutSeconds
 argument_list|()
 decl_stmt|;
-specifier|final
 name|long
 name|deadline
 init|=
@@ -394,14 +392,12 @@ condition|)
 block|{
 return|return;
 block|}
-specifier|final
 name|long
 name|timeoutSeconds
 init|=
 name|timeoutSeconds
 argument_list|()
 decl_stmt|;
-specifier|final
 name|long
 name|deadline
 init|=
@@ -508,14 +504,12 @@ condition|)
 block|{
 return|return;
 block|}
-specifier|final
 name|long
 name|timeoutSeconds
 init|=
 name|timeoutSeconds
 argument_list|()
 decl_stmt|;
-specifier|final
 name|long
 name|deadline
 init|=
@@ -611,13 +605,12 @@ argument_list|)
 throw|;
 block|}
 comment|/**    * Creates a garbage object that counts down the latch in its finalizer. Sequestered into a    * separate method to make it somewhat more likely to be unreachable.    */
-DECL|method|createUnreachableLatchFinalizer (final CountDownLatch latch)
+DECL|method|createUnreachableLatchFinalizer (CountDownLatch latch)
 specifier|private
 specifier|static
 name|void
 name|createUnreachableLatchFinalizer
 parameter_list|(
-specifier|final
 name|CountDownLatch
 name|latch
 parameter_list|)
@@ -660,13 +653,12 @@ parameter_list|()
 function_decl|;
 block|}
 comment|/**    * Waits until the given weak reference is cleared, invoking the garbage collector as necessary to    * try to ensure that this will happen.    *    *<p>This is a convenience method, equivalent to:    *    *<pre>{@code    * awaitDone(new FinalizationPredicate() {    *   public boolean isDone() {    *     return ref.get() == null;    *   }    * });    * }</pre>    *    * @throws RuntimeException if timed out or interrupted while waiting    */
-DECL|method|awaitClear (final WeakReference<?> ref)
+DECL|method|awaitClear (WeakReference<?> ref)
 specifier|public
 specifier|static
 name|void
 name|awaitClear
 parameter_list|(
-specifier|final
 name|WeakReference
 argument_list|<
 name|?
@@ -708,7 +700,6 @@ name|void
 name|awaitFullGc
 parameter_list|()
 block|{
-specifier|final
 name|CountDownLatch
 name|finalizerRan
 init|=

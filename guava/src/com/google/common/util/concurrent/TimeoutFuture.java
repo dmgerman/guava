@@ -656,7 +656,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-specifier|final
 name|long
 name|delay
 init|=

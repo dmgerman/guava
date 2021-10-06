@@ -472,13 +472,12 @@ comment|/**    * Returns a {@code ByteSink} that writes base-encoded bytes to th
 annotation|@
 name|GwtIncompatible
 comment|// ByteSink,CharSink
-DECL|method|encodingSink (final CharSink encodedSink)
+DECL|method|encodingSink (CharSink encodedSink)
 specifier|public
 specifier|final
 name|ByteSink
 name|encodingSink
 parameter_list|(
-specifier|final
 name|CharSink
 name|encodedSink
 parameter_list|)
@@ -693,13 +692,12 @@ comment|/**    * Returns a {@code ByteSource} that reads base-encoded bytes from
 annotation|@
 name|GwtIncompatible
 comment|// ByteSource,CharSource
-DECL|method|decodingSource (final CharSource encodedSource)
+DECL|method|decodingSource (CharSource encodedSource)
 specifier|public
 specifier|final
 name|ByteSource
 name|decodingSource
 parameter_list|(
-specifier|final
 name|CharSource
 name|encodedSource
 parameter_list|)
@@ -1948,12 +1946,11 @@ name|GwtIncompatible
 comment|// Writer,OutputStream
 annotation|@
 name|Override
-DECL|method|encodingStream (final Writer out)
+DECL|method|encodingStream (Writer out)
 specifier|public
 name|OutputStream
 name|encodingStream
 parameter_list|(
-specifier|final
 name|Writer
 name|out
 parameter_list|)
@@ -2337,7 +2334,6 @@ expr_stmt|;
 comment|// Add additional zero byte in the end.
 block|}
 comment|// Position of first character is length of bitBuffer minus bitsPerChar.
-specifier|final
 name|int
 name|bitOffset
 init|=
@@ -2788,7 +2784,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|final
 name|int
 name|minOffset
 init|=
@@ -2858,12 +2853,11 @@ name|Override
 annotation|@
 name|GwtIncompatible
 comment|// Reader,InputStream
-DECL|method|decodingStream (final Reader reader)
+DECL|method|decodingStream (Reader reader)
 specifier|public
 name|InputStream
 name|decodingStream
 parameter_list|(
-specifier|final
 name|Reader
 name|reader
 parameter_list|)
@@ -4541,16 +4535,14 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-DECL|method|ignoringReader (final Reader delegate, final String toIgnore)
+DECL|method|ignoringReader (Reader delegate, String toIgnore)
 specifier|static
 name|Reader
 name|ignoringReader
 parameter_list|(
-specifier|final
 name|Reader
 name|delegate
 parameter_list|,
-specifier|final
 name|String
 name|toIgnore
 parameter_list|)
@@ -4659,20 +4651,17 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|separatingAppendable ( final Appendable delegate, final String separator, final int afterEveryChars)
+DECL|method|separatingAppendable ( Appendable delegate, String separator, int afterEveryChars)
 specifier|static
 name|Appendable
 name|separatingAppendable
 parameter_list|(
-specifier|final
 name|Appendable
 name|delegate
 parameter_list|,
-specifier|final
 name|String
 name|separator
 parameter_list|,
-specifier|final
 name|int
 name|afterEveryChars
 parameter_list|)
@@ -4797,25 +4786,21 @@ block|}
 annotation|@
 name|GwtIncompatible
 comment|// Writer
-DECL|method|separatingWriter ( final Writer delegate, final String separator, final int afterEveryChars)
+DECL|method|separatingWriter (Writer delegate, String separator, int afterEveryChars)
 specifier|static
 name|Writer
 name|separatingWriter
 parameter_list|(
-specifier|final
 name|Writer
 name|delegate
 parameter_list|,
-specifier|final
 name|String
 name|separator
 parameter_list|,
-specifier|final
 name|int
 name|afterEveryChars
 parameter_list|)
 block|{
-specifier|final
 name|Appendable
 name|separatingAppendable
 init|=
@@ -5060,12 +5045,11 @@ name|GwtIncompatible
 comment|// Writer,OutputStream
 annotation|@
 name|Override
-DECL|method|encodingStream (final Writer output)
+DECL|method|encodingStream (Writer output)
 specifier|public
 name|OutputStream
 name|encodingStream
 parameter_list|(
-specifier|final
 name|Writer
 name|output
 parameter_list|)
@@ -5317,12 +5301,11 @@ name|Override
 annotation|@
 name|GwtIncompatible
 comment|// Reader,InputStream
-DECL|method|decodingStream (final Reader reader)
+DECL|method|decodingStream (Reader reader)
 specifier|public
 name|InputStream
 name|decodingStream
 parameter_list|(
-specifier|final
 name|Reader
 name|reader
 parameter_list|)

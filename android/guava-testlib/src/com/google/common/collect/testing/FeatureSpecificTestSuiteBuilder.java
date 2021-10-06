@@ -777,7 +777,6 @@ range|:
 name|testers
 control|)
 block|{
-specifier|final
 name|TestSuite
 name|testerSuite
 init|=
@@ -898,7 +897,6 @@ name|Test
 name|test
 parameter_list|)
 block|{
-specifier|final
 name|Method
 name|method
 decl_stmt|;
@@ -969,7 +967,6 @@ return|return
 literal|false
 return|;
 block|}
-specifier|final
 name|TesterRequirements
 name|requirements
 decl_stmt|;
@@ -1282,7 +1279,6 @@ argument_list|>
 name|testerClass
 parameter_list|)
 block|{
-specifier|final
 name|TestSuite
 name|candidateTests
 init|=
@@ -1292,7 +1288,6 @@ argument_list|(
 name|testerClass
 argument_list|)
 decl_stmt|;
-specifier|final
 name|TestSuite
 name|suite
 init|=
@@ -1398,7 +1393,6 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-specifier|final
 name|Enumeration
 argument_list|<
 name|?

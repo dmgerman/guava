@@ -232,7 +232,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a new traverser for the given general {@code graph}.    *    *<p>Traversers created using this method are guaranteed to visit each node reachable from the    * start node(s) at most once.    *    *<p>If you know that no node in {@code graph} is reachable by more than one path from the start    * node(s), consider using {@link #forTree(SuccessorsFunction)} instead.    *    *<p><b>Performance notes</b>    *    *<ul>    *<li>Traversals require<i>O(n)</i> time (where<i>n</i> is the number of nodes reachable from    *       the start node), assuming that the node objects have<i>O(1)</i> {@code equals()} and    *       {@code hashCode()} implementations. (See the<a    *       href="https://github.com/google/guava/wiki/GraphsExplained#elements-must-be-useable-as-map-keys">    *       notes on element objects</a> for more information.)    *<li>While traversing, the traverser will use<i>O(n)</i> space (where<i>n</i> is the number    *       of nodes that have thus far been visited), plus<i>O(H)</i> space (where<i>H</i> is the    *       number of nodes that have been seen but not yet visited, that is, the "horizon").    *</ul>    *    * @param graph {@link SuccessorsFunction} representing a general graph that may have cycles.    */
-DECL|method|forGraph (final SuccessorsFunction<N> graph)
+DECL|method|forGraph (SuccessorsFunction<N> graph)
 specifier|public
 specifier|static
 parameter_list|<
@@ -244,7 +244,6 @@ name|N
 argument_list|>
 name|forGraph
 parameter_list|(
-specifier|final
 name|SuccessorsFunction
 argument_list|<
 name|N
@@ -284,7 +283,7 @@ block|}
 return|;
 block|}
 comment|/**    * Creates a new traverser for a directed acyclic graph that has at most one path from the start    * node(s) to any node reachable from the start node(s), and has no paths from any start node to    * any other start node, such as a tree or forest.    *    *<p>{@code forTree()} is especially useful (versus {@code forGraph()}) in cases where the data    * structure being traversed is, in addition to being a tree/forest, also defined<a    * href="https://github.com/google/guava/wiki/GraphsExplained#non-recursiveness">recursively</a>.    * This is because the {@code forTree()}-based implementations don't keep track of visited nodes,    * and therefore don't need to call `equals()` or `hashCode()` on the node objects; this saves    * both time and space versus traversing the same graph using {@code forGraph()}.    *    *<p>Providing a graph to be traversed for which there is more than one path from the start    * node(s) to any node may lead to:    *    *<ul>    *<li>Traversal not terminating (if the graph has cycles)    *<li>Nodes being visited multiple times (if multiple paths exist from any start node to any    *       node reachable from any start node)    *</ul>    *    *<p><b>Performance notes</b>    *    *<ul>    *<li>Traversals require<i>O(n)</i> time (where<i>n</i> is the number of nodes reachable from    *       the start node).    *<li>While traversing, the traverser will use<i>O(H)</i> space (where<i>H</i> is the number    *       of nodes that have been seen but not yet visited, that is, the "horizon").    *</ul>    *    *<p><b>Examples</b> (all edges are directed facing downwards)    *    *<p>The graph below would be valid input with start nodes of {@code a, f, c}. However, if {@code    * b} were<i>also</i> a start node, then there would be multiple paths to reach {@code e} and    * {@code h}.    *    *<pre>{@code    *    a     b      c    *   / \   / \     |    *  /   \ /   \    |    * d     e     f   g    *       |    *       |    *       h    * }</pre>    *    *<p>.    *    *<p>The graph below would be a valid input with start nodes of {@code a, f}. However, if {@code    * b} were a start node, there would be multiple paths to {@code f}.    *    *<pre>{@code    *    a     b    *   / \   / \    *  /   \ /   \    * c     d     e    *        \   /    *         \ /    *          f    * }</pre>    *    *<p><b>Note on binary trees</b>    *    *<p>This method can be used to traverse over a binary tree. Given methods {@code    * leftChild(node)} and {@code rightChild(node)}, this method can be called as    *    *<pre>{@code    * Traverser.forTree(node -> ImmutableList.of(leftChild(node), rightChild(node)));    * }</pre>    *    * @param tree {@link SuccessorsFunction} representing a directed acyclic graph that has at most    *     one path between any two nodes    */
-DECL|method|forTree (final SuccessorsFunction<N> tree)
+DECL|method|forTree (SuccessorsFunction<N> tree)
 specifier|public
 specifier|static
 parameter_list|<
@@ -296,7 +295,6 @@ name|N
 argument_list|>
 name|forTree
 parameter_list|(
-specifier|final
 name|SuccessorsFunction
 argument_list|<
 name|N
@@ -434,7 +432,6 @@ argument_list|>
 name|startNodes
 parameter_list|)
 block|{
-specifier|final
 name|ImmutableSet
 argument_list|<
 name|N
@@ -525,7 +522,6 @@ argument_list|>
 name|startNodes
 parameter_list|)
 block|{
-specifier|final
 name|ImmutableSet
 argument_list|<
 name|N
@@ -616,7 +612,6 @@ argument_list|>
 name|startNodes
 parameter_list|)
 block|{
-specifier|final
 name|ImmutableSet
 argument_list|<
 name|N
@@ -781,7 +776,6 @@ argument_list|>
 name|graph
 parameter_list|)
 block|{
-specifier|final
 name|Set
 argument_list|<
 name|N
@@ -1032,7 +1026,7 @@ argument_list|)
 return|;
 block|}
 comment|/**      * In top-down traversal, an ancestor node is always traversed before any of its descendant      * nodes. The traversal order among descendant nodes (particularly aunts and nieces) are      * determined by the {@code InsertionOrder} parameter: nieces are placed at the FRONT before      * aunts for pre-order; while in BFS they are placed at the BACK after aunts.      */
-DECL|method|topDown (Iterator<? extends N> startNodes, final InsertionOrder order)
+DECL|method|topDown (Iterator<? extends N> startNodes, InsertionOrder order)
 specifier|private
 name|Iterator
 argument_list|<
@@ -1048,12 +1042,10 @@ name|N
 argument_list|>
 name|startNodes
 parameter_list|,
-specifier|final
 name|InsertionOrder
 name|order
 parameter_list|)
 block|{
-specifier|final
 name|Deque
 argument_list|<
 name|Iterator
@@ -1188,7 +1180,6 @@ argument_list|>
 name|startNodes
 parameter_list|)
 block|{
-specifier|final
 name|Deque
 argument_list|<
 name|N
@@ -1200,7 +1191,6 @@ name|ArrayDeque
 argument_list|<>
 argument_list|()
 decl_stmt|;
-specifier|final
 name|Deque
 argument_list|<
 name|Iterator

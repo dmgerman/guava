@@ -352,7 +352,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|newProxy ( final T target, Class<T> interfaceType, final long timeoutDuration, final TimeUnit timeoutUnit)
+DECL|method|newProxy ( T target, Class<T> interfaceType, long timeoutDuration, TimeUnit timeoutUnit)
 specifier|public
 parameter_list|<
 name|T
@@ -360,7 +360,6 @@ parameter_list|>
 name|T
 name|newProxy
 parameter_list|(
-specifier|final
 name|T
 name|target
 parameter_list|,
@@ -370,11 +369,9 @@ name|T
 argument_list|>
 name|interfaceType
 parameter_list|,
-specifier|final
 name|long
 name|timeoutDuration
 parameter_list|,
-specifier|final
 name|TimeUnit
 name|timeoutUnit
 parameter_list|)
@@ -409,7 +406,6 @@ argument_list|,
 literal|"interfaceType must be an interface type"
 argument_list|)
 expr_stmt|;
-specifier|final
 name|Set
 argument_list|<
 name|Method
@@ -439,13 +435,11 @@ parameter_list|(
 name|Object
 name|obj
 parameter_list|,
-specifier|final
 name|Method
 name|method
 parameter_list|,
 annotation|@
 name|CheckForNull
-specifier|final
 annotation|@
 name|Nullable
 name|Object

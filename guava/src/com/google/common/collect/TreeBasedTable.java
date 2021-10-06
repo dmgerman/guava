@@ -1351,7 +1351,6 @@ argument_list|>
 name|createColumnKeyIterator
 parameter_list|()
 block|{
-specifier|final
 name|Comparator
 argument_list|<
 name|?
@@ -1363,7 +1362,6 @@ init|=
 name|columnComparator
 argument_list|()
 decl_stmt|;
-specifier|final
 name|Iterator
 argument_list|<
 name|C

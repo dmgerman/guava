@@ -956,7 +956,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 comment|// invokeAccessibleNonThrowingMethod
-DECL|method|jlaStackTrace (final Throwable t)
+DECL|method|jlaStackTrace (Throwable t)
 specifier|private
 specifier|static
 name|List
@@ -965,7 +965,6 @@ name|StackTraceElement
 argument_list|>
 name|jlaStackTrace
 parameter_list|(
-specifier|final
 name|Throwable
 name|t
 parameter_list|)

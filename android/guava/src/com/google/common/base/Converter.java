@@ -420,7 +420,7 @@ comment|/**    * Returns an iterable that applies {@code convert} to each elemen
 annotation|@
 name|CanIgnoreReturnValue
 comment|/*    * Just as Converter could implement `Function<@Nullable A, @Nullable B>` instead of `Function<A,    * B>`, convertAll could accept and return iterables with nullable element types. In both cases,    * we've chosen to instead use a signature that benefits existing users -- and is still safe.    *    * For convertAll, I haven't looked as closely at *how* much existing users benefit, so we should    * keep an eye out for problems that new users encounter. Note also that convertAll could support    * both use cases by using @PolyNull. (By contrast, we can't use @PolyNull for our superinterface    * (`implements Function<@PolyNull A, @PolyNull B>`), at least as far as I know.)    */
-DECL|method|convertAll (final Iterable<? extends A> fromIterable)
+DECL|method|convertAll (Iterable<? extends A> fromIterable)
 specifier|public
 name|Iterable
 argument_list|<
@@ -428,7 +428,6 @@ name|B
 argument_list|>
 name|convertAll
 parameter_list|(
-specifier|final
 name|Iterable
 argument_list|<
 name|?

@@ -2192,7 +2192,6 @@ name|entryIterator
 parameter_list|()
 block|{
 comment|/*        * We want to start the iteration at the first range where the upper bound is in        * upperBoundWindow.        */
-specifier|final
 name|Iterator
 argument_list|<
 name|Range
@@ -2503,7 +2502,6 @@ name|values
 argument_list|()
 expr_stmt|;
 block|}
-specifier|final
 name|PeekingIterator
 argument_list|<
 name|Range
@@ -3207,7 +3205,6 @@ name|values
 argument_list|()
 expr_stmt|;
 block|}
-specifier|final
 name|PeekingIterator
 argument_list|<
 name|Range
@@ -3227,7 +3224,6 @@ name|iterator
 argument_list|()
 argument_list|)
 decl_stmt|;
-specifier|final
 name|Cut
 argument_list|<
 name|C
@@ -3534,7 +3530,6 @@ name|BoundType
 operator|.
 name|CLOSED
 decl_stmt|;
-specifier|final
 name|PeekingIterator
 argument_list|<
 name|Range
@@ -3673,7 +3668,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-specifier|final
 name|Cut
 argument_list|<
 name|C
@@ -4839,7 +4833,6 @@ name|emptyIterator
 argument_list|()
 return|;
 block|}
-specifier|final
 name|Iterator
 argument_list|<
 name|Range
@@ -4939,7 +4932,6 @@ name|iterator
 argument_list|()
 expr_stmt|;
 block|}
-specifier|final
 name|Cut
 argument_list|<
 name|Cut
@@ -5145,7 +5137,6 @@ name|upperBound
 argument_list|)
 argument_list|)
 decl_stmt|;
-specifier|final
 name|Iterator
 argument_list|<
 name|Range

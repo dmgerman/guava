@@ -927,7 +927,7 @@ return|return
 name|derivedSuites
 return|;
 block|}
-DECL|method|createSubMultisetSuite ( SortedMultisetTestSuiteBuilder<E> parentBuilder, final Bound from, final Bound to)
+DECL|method|createSubMultisetSuite ( SortedMultisetTestSuiteBuilder<E> parentBuilder, Bound from, Bound to)
 specifier|private
 name|TestSuite
 name|createSubMultisetSuite
@@ -938,16 +938,13 @@ name|E
 argument_list|>
 name|parentBuilder
 parameter_list|,
-specifier|final
 name|Bound
 name|from
 parameter_list|,
-specifier|final
 name|Bound
 name|to
 parameter_list|)
 block|{
-specifier|final
 name|TestMultisetGenerator
 argument_list|<
 name|E
@@ -1041,7 +1038,6 @@ operator|.
 name|create
 argument_list|()
 decl_stmt|;
-specifier|final
 name|Comparator
 argument_list|<
 name|?
@@ -1116,7 +1112,6 @@ argument_list|,
 name|comparator
 argument_list|)
 expr_stmt|;
-specifier|final
 name|E
 name|firstInclusive
 init|=
@@ -1127,7 +1122,6 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-specifier|final
 name|E
 name|lastInclusive
 init|=
@@ -1554,7 +1548,6 @@ argument_list|>
 name|parentBuilder
 parameter_list|)
 block|{
-specifier|final
 name|TestMultisetGenerator
 argument_list|<
 name|E
@@ -1747,7 +1740,6 @@ argument_list|>
 name|parentBuilder
 parameter_list|)
 block|{
-specifier|final
 name|TestMultisetGenerator
 argument_list|<
 name|E

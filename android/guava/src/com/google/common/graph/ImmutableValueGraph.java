@@ -424,7 +424,7 @@ name|build
 argument_list|()
 return|;
 block|}
-DECL|method|connectionsOf ( final ValueGraph<N, V> graph, final N node)
+DECL|method|connectionsOf (ValueGraph<N, V> graph, N node)
 specifier|private
 specifier|static
 parameter_list|<
@@ -440,7 +440,6 @@ name|V
 argument_list|>
 name|connectionsOf
 parameter_list|(
-specifier|final
 name|ValueGraph
 argument_list|<
 name|N
@@ -449,7 +448,6 @@ name|V
 argument_list|>
 name|graph
 parameter_list|,
-specifier|final
 name|N
 name|node
 parameter_list|)

@@ -1318,7 +1318,6 @@ name|void
 name|testClear
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -1396,7 +1395,6 @@ name|void
 name|testContainsKey
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -1405,7 +1403,6 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|K
 name|unmappedKey
 decl_stmt|;
@@ -1530,7 +1527,6 @@ name|void
 name|testContainsValue
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -1539,7 +1535,6 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|V
 name|unmappedValue
 decl_stmt|;
@@ -1643,7 +1638,6 @@ name|void
 name|testEntrySet
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -1652,7 +1646,6 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|Set
 argument_list|<
 name|Entry
@@ -1692,11 +1685,9 @@ operator|.
 name|entrySet
 argument_list|()
 expr_stmt|;
-specifier|final
 name|K
 name|unmappedKey
 decl_stmt|;
-specifier|final
 name|V
 name|unmappedValue
 decl_stmt|;
@@ -1768,7 +1759,6 @@ name|void
 name|testEntrySetForEmptyMap
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -1805,7 +1795,6 @@ name|void
 name|testEntrySetContainsEntryIncompatibleKey
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -1814,7 +1803,6 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|Set
 argument_list|<
 name|Entry
@@ -1854,7 +1842,6 @@ operator|.
 name|entrySet
 argument_list|()
 expr_stmt|;
-specifier|final
 name|V
 name|unmappedValue
 decl_stmt|;
@@ -1928,7 +1915,6 @@ condition|)
 block|{
 return|return;
 block|}
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -1937,7 +1923,6 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|Set
 argument_list|<
 name|Entry
@@ -1977,7 +1962,6 @@ operator|.
 name|entrySet
 argument_list|()
 expr_stmt|;
-specifier|final
 name|V
 name|unmappedValue
 decl_stmt|;
@@ -2053,7 +2037,6 @@ name|void
 name|testEntrySetContainsEntryNullKeyMissing
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -2062,7 +2045,6 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|Set
 argument_list|<
 name|Entry
@@ -2102,7 +2084,6 @@ operator|.
 name|entrySet
 argument_list|()
 expr_stmt|;
-specifier|final
 name|V
 name|unmappedValue
 decl_stmt|;
@@ -2201,7 +2182,6 @@ name|void
 name|testEntrySetIteratorRemove
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -2400,7 +2380,6 @@ name|void
 name|testEntrySetRemove
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -2530,7 +2509,6 @@ name|void
 name|testEntrySetRemoveMissingKey
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -2539,7 +2517,6 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|K
 name|key
 decl_stmt|;
@@ -2684,7 +2661,6 @@ name|void
 name|testEntrySetRemoveDifferentValue
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -2857,7 +2833,6 @@ condition|)
 block|{
 return|return;
 block|}
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -2866,7 +2841,6 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|Set
 argument_list|<
 name|Entry
@@ -2906,7 +2880,6 @@ operator|.
 name|entrySet
 argument_list|()
 expr_stmt|;
-specifier|final
 name|V
 name|unmappedValue
 decl_stmt|;
@@ -3009,7 +2982,6 @@ name|void
 name|testEntrySetRemoveNullKeyMissing
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -3159,7 +3131,6 @@ name|void
 name|testEntrySetRemoveAll
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -3350,7 +3321,6 @@ name|void
 name|testEntrySetRemoveAllNullFromEmpty
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -3458,7 +3428,6 @@ name|void
 name|testEntrySetRetainAll
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -3632,7 +3601,6 @@ name|void
 name|testEntrySetRetainAllNullFromEmpty
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -3732,7 +3700,6 @@ name|void
 name|testEntrySetClear
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -3826,7 +3793,6 @@ name|void
 name|testEntrySetAddAndAddAll
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -3854,7 +3820,6 @@ operator|.
 name|entrySet
 argument_list|()
 decl_stmt|;
-specifier|final
 name|Entry
 argument_list|<
 name|K
@@ -3950,7 +3915,6 @@ condition|)
 block|{
 return|return;
 block|}
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -3959,7 +3923,6 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|V
 name|valueToSet
 decl_stmt|;
@@ -4016,7 +3979,6 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-specifier|final
 name|V
 name|oldValue
 init|=
@@ -4025,7 +3987,6 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
-specifier|final
 name|V
 name|returnedValue
 init|=
@@ -4098,7 +4059,6 @@ condition|)
 block|{
 return|return;
 block|}
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -4155,7 +4115,6 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-specifier|final
 name|V
 name|oldValue
 init|=
@@ -4164,7 +4123,6 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
-specifier|final
 name|V
 name|returnedValue
 init|=
@@ -4227,7 +4185,6 @@ name|void
 name|testEqualsForEqualMap
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -4306,7 +4263,6 @@ condition|)
 block|{
 return|return;
 block|}
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -4315,7 +4271,6 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -4381,7 +4336,6 @@ condition|)
 block|{
 return|return;
 block|}
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -4390,7 +4344,6 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -4453,7 +4406,6 @@ name|void
 name|testEqualsForEmptyMap
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -4534,7 +4486,6 @@ name|void
 name|testGet
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -4632,7 +4583,6 @@ name|void
 name|testGetForEmptyMap
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -4761,7 +4711,6 @@ name|void
 name|testHashCode
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -4798,7 +4747,6 @@ name|void
 name|testHashCodeForEmptyMap
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -4835,7 +4783,6 @@ name|void
 name|testPutNewKey
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -4847,11 +4794,9 @@ init|=
 name|makeEitherMap
 argument_list|()
 decl_stmt|;
-specifier|final
 name|K
 name|keyToPut
 decl_stmt|;
-specifier|final
 name|V
 name|valueToPut
 decl_stmt|;
@@ -4989,7 +4934,6 @@ name|void
 name|testPutExistingKey
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -4998,11 +4942,9 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|K
 name|keyToPut
 decl_stmt|;
-specifier|final
 name|V
 name|valueToPut
 decl_stmt|;
@@ -5151,7 +5093,6 @@ condition|)
 block|{
 return|return;
 block|}
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -5163,7 +5104,6 @@ init|=
 name|makeEitherMap
 argument_list|()
 decl_stmt|;
-specifier|final
 name|V
 name|valueToPut
 decl_stmt|;
@@ -5188,7 +5128,6 @@ condition|(
 name|allowsNullKeys
 condition|)
 block|{
-specifier|final
 name|V
 name|oldValue
 init|=
@@ -5199,7 +5138,6 @@ argument_list|(
 literal|null
 argument_list|)
 decl_stmt|;
-specifier|final
 name|V
 name|returnedValue
 init|=
@@ -5298,7 +5236,6 @@ condition|)
 block|{
 return|return;
 block|}
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -5310,7 +5247,6 @@ init|=
 name|makeEitherMap
 argument_list|()
 decl_stmt|;
-specifier|final
 name|K
 name|keyToPut
 decl_stmt|;
@@ -5343,7 +5279,6 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
-specifier|final
 name|V
 name|oldValue
 init|=
@@ -5354,7 +5289,6 @@ argument_list|(
 name|keyToPut
 argument_list|)
 decl_stmt|;
-specifier|final
 name|V
 name|returnedValue
 init|=
@@ -5463,7 +5397,6 @@ condition|)
 block|{
 return|return;
 block|}
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -5472,7 +5405,6 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|K
 name|keyToPut
 decl_stmt|;
@@ -5518,7 +5450,6 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
-specifier|final
 name|V
 name|oldValue
 init|=
@@ -5529,7 +5460,6 @@ argument_list|(
 name|keyToPut
 argument_list|)
 decl_stmt|;
-specifier|final
 name|V
 name|returnedValue
 init|=
@@ -5628,7 +5558,6 @@ name|void
 name|testPutAllNewKey
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -5640,11 +5569,9 @@ init|=
 name|makeEitherMap
 argument_list|()
 decl_stmt|;
-specifier|final
 name|K
 name|keyToPut
 decl_stmt|;
-specifier|final
 name|V
 name|valueToPut
 decl_stmt|;
@@ -5669,7 +5596,6 @@ parameter_list|)
 block|{
 return|return;
 block|}
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -5788,7 +5714,6 @@ name|void
 name|testPutAllExistingKey
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -5797,11 +5722,9 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|K
 name|keyToPut
 decl_stmt|;
-specifier|final
 name|V
 name|valueToPut
 decl_stmt|;
@@ -5839,7 +5762,6 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -5956,7 +5878,6 @@ name|void
 name|testRemove
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -5965,7 +5886,6 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|K
 name|keyToRemove
 decl_stmt|;
@@ -6097,7 +6017,6 @@ name|void
 name|testRemoveMissingKey
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -6106,7 +6025,6 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|K
 name|keyToRemove
 decl_stmt|;
@@ -6214,7 +6132,6 @@ name|void
 name|testKeySetRemove
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -6340,7 +6257,6 @@ name|void
 name|testKeySetRemoveAll
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -6479,7 +6395,6 @@ name|void
 name|testKeySetRetainAll
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -6605,7 +6520,6 @@ name|void
 name|testKeySetClear
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -6694,7 +6608,6 @@ name|void
 name|testKeySetRemoveAllNullFromEmpty
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -6797,7 +6710,6 @@ name|void
 name|testKeySetRetainAllNullFromEmpty
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -6892,7 +6804,6 @@ name|void
 name|testValues
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -6901,7 +6812,6 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|Collection
 argument_list|<
 name|V
@@ -6936,7 +6846,6 @@ operator|.
 name|values
 argument_list|()
 expr_stmt|;
-specifier|final
 name|V
 name|unmappedValue
 decl_stmt|;
@@ -6982,7 +6891,6 @@ name|void
 name|testValuesIteratorRemove
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -7131,7 +7039,6 @@ name|void
 name|testValuesRemove
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -7251,7 +7158,6 @@ name|void
 name|testValuesRemoveMissing
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -7260,7 +7166,6 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-specifier|final
 name|V
 name|valueToRemove
 decl_stmt|;
@@ -7366,7 +7271,6 @@ name|void
 name|testValuesRemoveAll
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -7506,7 +7410,6 @@ name|void
 name|testValuesRemoveAllNullFromEmpty
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -7601,7 +7504,6 @@ name|void
 name|testValuesRetainAll
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -7741,7 +7643,6 @@ name|void
 name|testValuesRetainAllNullFromEmpty
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -7836,7 +7737,6 @@ name|void
 name|testValuesClear
 parameter_list|()
 block|{
-specifier|final
 name|Map
 argument_list|<
 name|K

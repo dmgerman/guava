@@ -197,7 +197,6 @@ name|void
 name|testTailMapWriteThrough
 parameter_list|()
 block|{
-specifier|final
 name|SortedMap
 argument_list|<
 name|K
@@ -375,7 +374,6 @@ name|void
 name|testTailMapRemoveThrough
 parameter_list|()
 block|{
-specifier|final
 name|SortedMap
 argument_list|<
 name|K
@@ -552,7 +550,6 @@ name|void
 name|testTailMapClearThrough
 parameter_list|()
 block|{
-specifier|final
 name|SortedMap
 argument_list|<
 name|K

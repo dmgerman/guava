@@ -369,7 +369,7 @@ name|nextExecutor
 decl_stmt|;
 block|}
 comment|/**    * Enqueues a task to run when the previous task (if any) completes.    *    *<p>Cancellation does not propagate from the output future to a callable that has begun to    * execute, but if the output future is cancelled before {@link Callable#call()} is invoked,    * {@link Callable#call()} will not be invoked.    */
-DECL|method|submit ( final Callable<T> callable, Executor executor)
+DECL|method|submit ( Callable<T> callable, Executor executor)
 specifier|public
 operator|<
 name|T
@@ -383,7 +383,6 @@ name|T
 argument_list|>
 name|submit
 argument_list|(
-name|final
 name|Callable
 argument_list|<
 name|T
@@ -472,7 +471,7 @@ comment|/**    * Enqueues a task to run when the previous task (if any) complete
 end_comment
 
 begin_expr_stmt
-DECL|method|submitAsync ( final AsyncCallable<T> callable, final Executor executor)
+DECL|method|submitAsync ( AsyncCallable<T> callable, Executor executor)
 unit|public
 operator|<
 name|T
@@ -486,14 +485,12 @@ name|T
 argument_list|>
 name|submitAsync
 argument_list|(
-name|final
 name|AsyncCallable
 argument_list|<
 name|T
 argument_list|>
 name|callable
 argument_list|,
-name|final
 name|Executor
 name|executor
 argument_list|)
@@ -508,7 +505,6 @@ argument_list|(
 name|executor
 argument_list|)
 block|;
-name|final
 name|TaskNonReentrantExecutor
 name|taskExecutor
 operator|=
@@ -520,7 +516,6 @@ argument_list|,
 name|this
 argument_list|)
 block|;
-name|final
 name|AsyncCallable
 argument_list|<
 name|T
@@ -594,7 +589,6 @@ comment|/*      * Four futures are at play here:      * taskFuture is the future
 end_comment
 
 begin_decl_stmt
-specifier|final
 name|SettableFuture
 argument_list|<
 annotation|@
@@ -611,7 +605,6 @@ decl_stmt|;
 end_decl_stmt
 
 begin_decl_stmt
-specifier|final
 name|ListenableFuture
 argument_list|<
 annotation|@
@@ -634,7 +627,6 @@ comment|// Invoke our task once the previous future completes.
 end_comment
 
 begin_decl_stmt
-specifier|final
 name|TrustedListenableFutureTask
 argument_list|<
 name|T
@@ -663,7 +655,6 @@ expr_stmt|;
 end_expr_stmt
 
 begin_decl_stmt
-specifier|final
 name|ListenableFuture
 argument_list|<
 name|T

@@ -290,7 +290,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Uses a hash table to map keys to value collections, initialized to expect the specified number    * of keys.    *    * @throws IllegalArgumentException if {@code expectedKeys< 0}    */
-DECL|method|hashKeys (final int expectedKeys)
+DECL|method|hashKeys (int expectedKeys)
 specifier|public
 specifier|static
 name|MultimapBuilderWithKeys
@@ -301,7 +301,6 @@ name|Object
 argument_list|>
 name|hashKeys
 argument_list|(
-name|final
 name|int
 name|expectedKeys
 argument_list|)
@@ -391,7 +390,7 @@ comment|/**    * Uses an hash table to map keys to value collections, initialize
 end_comment
 
 begin_function
-DECL|method|linkedHashKeys (final int expectedKeys)
+DECL|method|linkedHashKeys (int expectedKeys)
 specifier|public
 specifier|static
 name|MultimapBuilderWithKeys
@@ -402,7 +401,6 @@ name|Object
 argument_list|>
 name|linkedHashKeys
 parameter_list|(
-specifier|final
 name|int
 name|expectedKeys
 parameter_list|)
@@ -500,7 +498,7 @@ comment|/**    * Uses a {@link TreeMap} sorted by the specified comparator to ma
 end_comment
 
 begin_expr_stmt
-DECL|method|treeKeys ( final Comparator<K0> comparator)
+DECL|method|treeKeys ( Comparator<K0> comparator)
 specifier|public
 specifier|static
 operator|<
@@ -515,7 +513,6 @@ name|K0
 argument_list|>
 name|treeKeys
 argument_list|(
-name|final
 name|Comparator
 argument_list|<
 name|K0
@@ -577,7 +574,7 @@ comment|/**    * Uses an {@link EnumMap} to map keys to value collections.    * 
 end_comment
 
 begin_function
-DECL|method|enumKeys ( final Class<K0> keyClass)
+DECL|method|enumKeys (Class<K0> keyClass)
 unit|public
 specifier|static
 parameter_list|<
@@ -594,7 +591,6 @@ name|K0
 argument_list|>
 name|enumKeys
 parameter_list|(
-specifier|final
 name|Class
 argument_list|<
 name|K0
@@ -1206,7 +1202,7 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Uses an {@link ArrayList} to store value collections, initialized to expect the specified      * number of values per key.      *      * @throws IllegalArgumentException if {@code expectedValuesPerKey< 0}      */
-DECL|method|arrayListValues ( final int expectedValuesPerKey)
+DECL|method|arrayListValues (int expectedValuesPerKey)
 specifier|public
 name|ListMultimapBuilder
 argument_list|<
@@ -1218,7 +1214,6 @@ name|Object
 argument_list|>
 name|arrayListValues
 argument_list|(
-name|final
 name|int
 name|expectedValuesPerKey
 argument_list|)
@@ -1411,7 +1406,7 @@ comment|/**      * Uses a hash-based {@code Set} to store value collections, ini
 end_comment
 
 begin_function
-DECL|method|hashSetValues (final int expectedValuesPerKey)
+DECL|method|hashSetValues (int expectedValuesPerKey)
 specifier|public
 name|SetMultimapBuilder
 argument_list|<
@@ -1423,7 +1418,6 @@ name|Object
 argument_list|>
 name|hashSetValues
 parameter_list|(
-specifier|final
 name|int
 name|expectedValuesPerKey
 parameter_list|)
@@ -1534,7 +1528,7 @@ comment|/**      * Uses an insertion-ordered hash-based {@code Set} to store val
 end_comment
 
 begin_function
-DECL|method|linkedHashSetValues ( final int expectedValuesPerKey)
+DECL|method|linkedHashSetValues (int expectedValuesPerKey)
 specifier|public
 name|SetMultimapBuilder
 argument_list|<
@@ -1546,7 +1540,6 @@ name|Object
 argument_list|>
 name|linkedHashSetValues
 parameter_list|(
-specifier|final
 name|int
 name|expectedValuesPerKey
 parameter_list|)
@@ -1663,7 +1656,7 @@ comment|/**      * Uses a {@link TreeSet} ordered by the specified comparator to
 end_comment
 
 begin_expr_stmt
-DECL|method|treeSetValues ( final Comparator<V0> comparator)
+DECL|method|treeSetValues ( Comparator<V0> comparator)
 specifier|public
 operator|<
 name|V0
@@ -1679,7 +1672,6 @@ name|V0
 argument_list|>
 name|treeSetValues
 argument_list|(
-name|final
 name|Comparator
 argument_list|<
 name|V0
@@ -1761,7 +1753,7 @@ comment|/** Uses an {@link EnumSet} to store value collections. */
 end_comment
 
 begin_function
-DECL|method|enumSetValues ( final Class<V0> valueClass)
+DECL|method|enumSetValues (Class<V0> valueClass)
 unit|public
 parameter_list|<
 name|V0
@@ -1779,7 +1771,6 @@ name|V0
 argument_list|>
 name|enumSetValues
 parameter_list|(
-specifier|final
 name|Class
 argument_list|<
 name|V0

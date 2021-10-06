@@ -139,7 +139,6 @@ parameter_list|)
 block|{
 comment|// Verify that no port was specified, and strip optional brackets from
 comment|// IPv6 literals.
-specifier|final
 name|HostAndPort
 name|parsedHost
 init|=
@@ -161,7 +160,6 @@ name|hasPort
 argument_list|()
 argument_list|)
 expr_stmt|;
-specifier|final
 name|String
 name|host
 init|=
@@ -221,7 +219,6 @@ return|;
 block|}
 comment|// It is not any kind of IP address; must be a domain name or invalid.
 comment|// TODO(user): different versions of this for different factories?
-specifier|final
 name|InternetDomainName
 name|domain
 init|=
@@ -381,7 +378,6 @@ operator|instanceof
 name|HostSpecifier
 condition|)
 block|{
-specifier|final
 name|HostSpecifier
 name|that
 init|=

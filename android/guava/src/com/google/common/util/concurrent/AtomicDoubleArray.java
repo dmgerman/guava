@@ -169,7 +169,6 @@ index|[]
 name|array
 parameter_list|)
 block|{
-specifier|final
 name|int
 name|len
 init|=

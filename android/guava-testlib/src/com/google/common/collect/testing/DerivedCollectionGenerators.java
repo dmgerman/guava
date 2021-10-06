@@ -624,7 +624,6 @@ name|mapGenerator
 operator|=
 name|mapGenerator
 expr_stmt|;
-specifier|final
 name|SampleElements
 argument_list|<
 name|Entry
@@ -1287,7 +1286,6 @@ name|mapGenerator
 operator|=
 name|mapGenerator
 expr_stmt|;
-specifier|final
 name|SampleElements
 argument_list|<
 name|Entry
@@ -1511,7 +1509,6 @@ name|length
 parameter_list|)
 block|{
 comment|// noinspection UnnecessaryLocalVariable
-specifier|final
 name|V
 index|[]
 name|vs
@@ -1557,7 +1554,6 @@ argument_list|>
 name|insertionOrder
 parameter_list|)
 block|{
-specifier|final
 name|List
 argument_list|<
 name|Entry

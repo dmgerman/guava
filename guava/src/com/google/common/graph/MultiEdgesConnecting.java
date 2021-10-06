@@ -194,7 +194,6 @@ argument_list|>
 name|iterator
 parameter_list|()
 block|{
-specifier|final
 name|Iterator
 argument_list|<
 name|?

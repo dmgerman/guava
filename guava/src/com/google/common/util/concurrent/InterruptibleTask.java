@@ -837,7 +837,6 @@ init|=
 name|get
 argument_list|()
 decl_stmt|;
-specifier|final
 name|String
 name|result
 decl_stmt|;

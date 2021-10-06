@@ -642,7 +642,7 @@ name|V
 argument_list|>
 name|delegate
 decl_stmt|;
-DECL|method|transformEntries (final Set<Entry<K, V>> entries)
+DECL|method|transformEntries (Set<Entry<K, V>> entries)
 specifier|static
 parameter_list|<
 name|K
@@ -660,7 +660,6 @@ argument_list|>
 argument_list|>
 name|transformEntries
 parameter_list|(
-specifier|final
 name|Set
 argument_list|<
 name|Entry

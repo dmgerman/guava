@@ -664,7 +664,7 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|sourceNodeFn (final Network<N, E> network)
+DECL|method|sourceNodeFn (Network<N, E> network)
 specifier|private
 specifier|static
 parameter_list|<
@@ -680,7 +680,6 @@ name|N
 argument_list|>
 name|sourceNodeFn
 parameter_list|(
-specifier|final
 name|Network
 argument_list|<
 name|N
@@ -707,7 +706,7 @@ name|source
 argument_list|()
 return|;
 block|}
-DECL|method|targetNodeFn (final Network<N, E> network)
+DECL|method|targetNodeFn (Network<N, E> network)
 specifier|private
 specifier|static
 parameter_list|<
@@ -723,7 +722,6 @@ name|N
 argument_list|>
 name|targetNodeFn
 parameter_list|(
-specifier|final
 name|Network
 argument_list|<
 name|N
@@ -750,7 +748,7 @@ name|target
 argument_list|()
 return|;
 block|}
-DECL|method|adjacentNodeFn (final Network<N, E> network, final N node)
+DECL|method|adjacentNodeFn (Network<N, E> network, N node)
 specifier|private
 specifier|static
 parameter_list|<
@@ -766,7 +764,6 @@ name|N
 argument_list|>
 name|adjacentNodeFn
 parameter_list|(
-specifier|final
 name|Network
 argument_list|<
 name|N
@@ -775,7 +772,6 @@ name|E
 argument_list|>
 name|network
 parameter_list|,
-specifier|final
 name|N
 name|node
 parameter_list|)

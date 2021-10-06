@@ -1164,7 +1164,6 @@ index|[]
 name|right
 parameter_list|)
 block|{
-specifier|final
 name|int
 name|stride
 init|=

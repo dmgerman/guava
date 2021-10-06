@@ -248,14 +248,12 @@ init|=
 name|createSamplesArray
 argument_list|()
 decl_stmt|;
-specifier|final
 name|int
 name|nullKeyLocation
 init|=
 name|getNullLocation
 argument_list|()
 decl_stmt|;
-specifier|final
 name|Entry
 argument_list|<
 name|K
@@ -315,14 +313,12 @@ init|=
 name|createSamplesArray
 argument_list|()
 decl_stmt|;
-specifier|final
 name|int
 name|nullValueLocation
 init|=
 name|getNullLocation
 argument_list|()
 decl_stmt|;
-specifier|final
 name|Entry
 argument_list|<
 name|K
@@ -382,7 +378,6 @@ init|=
 name|createSamplesArray
 argument_list|()
 decl_stmt|;
-specifier|final
 name|int
 name|nullValueLocation
 init|=

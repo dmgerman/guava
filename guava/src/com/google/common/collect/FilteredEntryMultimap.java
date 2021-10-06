@@ -711,7 +711,7 @@ end_function
 begin_function
 annotation|@
 name|Override
-DECL|method|get (@arametricNullness final K key)
+DECL|method|get (@arametricNullness K key)
 specifier|public
 name|Collection
 argument_list|<
@@ -721,7 +721,6 @@ name|get
 parameter_list|(
 annotation|@
 name|ParametricNullness
-specifier|final
 name|K
 name|key
 parameter_list|)
@@ -2329,7 +2328,6 @@ specifier|private
 name|boolean
 name|removeEntriesIf
 parameter_list|(
-specifier|final
 name|Predicate
 argument_list|<
 name|?

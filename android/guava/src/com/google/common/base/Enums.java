@@ -508,7 +508,7 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a converter that converts between strings and {@code enum} values of type {@code    * enumClass} using {@link Enum#valueOf(Class, String)} and {@link Enum#name()}. The converter    * will throw an {@code IllegalArgumentException} if the argument is not the name of any enum    * constant in the specified enum.    *    * @since 16.0    */
-DECL|method|stringConverter (final Class<T> enumClass)
+DECL|method|stringConverter (Class<T> enumClass)
 specifier|public
 specifier|static
 parameter_list|<
@@ -527,7 +527,6 @@ name|T
 argument_list|>
 name|stringConverter
 parameter_list|(
-specifier|final
 name|Class
 argument_list|<
 name|T

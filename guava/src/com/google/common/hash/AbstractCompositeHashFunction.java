@@ -298,12 +298,11 @@ name|hashers
 argument_list|)
 return|;
 block|}
-DECL|method|fromHashers (final Hasher[] hashers)
+DECL|method|fromHashers (Hasher[] hashers)
 specifier|private
 name|Hasher
 name|fromHashers
 parameter_list|(
-specifier|final
 name|Hasher
 index|[]
 name|hashers

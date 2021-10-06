@@ -243,12 +243,11 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/** Dispatches {@code event} to this subscriber using the proper executor. */
-DECL|method|dispatchEvent (final Object event)
+DECL|method|dispatchEvent (Object event)
 specifier|final
 name|void
 name|dispatchEvent
 parameter_list|(
-specifier|final
 name|Object
 name|event
 parameter_list|)

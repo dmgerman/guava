@@ -1718,7 +1718,6 @@ argument_list|>
 name|createElementSet
 parameter_list|()
 block|{
-specifier|final
 name|Set
 argument_list|<
 name|E
@@ -1936,7 +1935,6 @@ parameter_list|()
 block|{
 comment|// AbstractIterator makes this fairly clean, but it doesn't support remove(). To support
 comment|// remove(), we create an AbstractIterator, and then use ForwardingIterator to delegate to it.
-specifier|final
 name|Iterator
 argument_list|<
 name|Entry

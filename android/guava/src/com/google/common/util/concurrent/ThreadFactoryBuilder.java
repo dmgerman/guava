@@ -423,7 +423,6 @@ name|ThreadFactoryBuilder
 name|builder
 parameter_list|)
 block|{
-specifier|final
 name|String
 name|nameFormat
 init|=
@@ -431,7 +430,6 @@ name|builder
 operator|.
 name|nameFormat
 decl_stmt|;
-specifier|final
 name|Boolean
 name|daemon
 init|=
@@ -439,7 +437,6 @@ name|builder
 operator|.
 name|daemon
 decl_stmt|;
-specifier|final
 name|Integer
 name|priority
 init|=
@@ -447,7 +444,6 @@ name|builder
 operator|.
 name|priority
 decl_stmt|;
-specifier|final
 name|UncaughtExceptionHandler
 name|uncaughtExceptionHandler
 init|=
@@ -455,7 +451,6 @@ name|builder
 operator|.
 name|uncaughtExceptionHandler
 decl_stmt|;
-specifier|final
 name|ThreadFactory
 name|backingThreadFactory
 init|=
@@ -476,7 +471,6 @@ operator|.
 name|defaultThreadFactory
 argument_list|()
 decl_stmt|;
-specifier|final
 name|AtomicLong
 name|count
 init|=

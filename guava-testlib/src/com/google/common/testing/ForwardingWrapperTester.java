@@ -686,7 +686,6 @@ argument_list|>
 name|wrapperFunction
 parameter_list|)
 block|{
-specifier|final
 name|RuntimeException
 name|exception
 init|=
@@ -970,7 +969,6 @@ operator|new
 name|FreshValueGenerator
 argument_list|()
 decl_stmt|;
-specifier|final
 name|List
 argument_list|<
 name|Object

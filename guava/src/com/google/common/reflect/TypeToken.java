@@ -4424,7 +4424,6 @@ argument_list|>
 name|getRawTypes
 parameter_list|()
 block|{
-specifier|final
 name|ImmutableSet
 operator|.
 name|Builder
@@ -6129,7 +6128,7 @@ operator|+
 literal|1
 return|;
 block|}
-DECL|method|sortKeysByValue ( final Map<K, V> map, final Comparator<? super V> valueComparator)
+DECL|method|sortKeysByValue ( Map<K, V> map, Comparator<? super V> valueComparator)
 specifier|private
 specifier|static
 parameter_list|<
@@ -6143,7 +6142,6 @@ name|K
 argument_list|>
 name|sortKeysByValue
 parameter_list|(
-specifier|final
 name|Map
 argument_list|<
 name|K
@@ -6152,7 +6150,6 @@ name|V
 argument_list|>
 name|map
 parameter_list|,
-specifier|final
 name|Comparator
 argument_list|<
 name|?

@@ -3147,7 +3147,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Discards up to {@code n} bytes of data from the input stream. This method will block until    * either the full amount has been skipped or until the end of the stream is reached, whichever    * happens first. Returns the total number of bytes skipped.    */
-DECL|method|skipUpTo (InputStream in, final long n)
+DECL|method|skipUpTo (InputStream in, long n)
 specifier|static
 name|long
 name|skipUpTo
@@ -3155,7 +3155,6 @@ parameter_list|(
 name|InputStream
 name|in
 parameter_list|,
-specifier|final
 name|long
 name|n
 parameter_list|)

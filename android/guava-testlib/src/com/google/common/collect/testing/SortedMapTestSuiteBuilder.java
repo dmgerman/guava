@@ -584,12 +584,11 @@ return|;
 block|}
 block|}
 comment|/**    * Creates a suite whose map has some elements filtered out of view.    *    *<p>Because the map may be ascending or descending, this test must derive the relative order of    * these extreme values rather than relying on their regular sort ordering.    */
-DECL|method|createSubmapSuite ( final FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>>> parentBuilder, final Bound from, final Bound to)
+DECL|method|createSubmapSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>>> parentBuilder, Bound from, Bound to)
 specifier|final
 name|TestSuite
 name|createSubmapSuite
 parameter_list|(
-specifier|final
 name|FeatureSpecificTestSuiteBuilder
 argument_list|<
 name|?
@@ -615,16 +614,13 @@ argument_list|>
 argument_list|>
 name|parentBuilder
 parameter_list|,
-specifier|final
 name|Bound
 name|from
 parameter_list|,
-specifier|final
 name|Bound
 name|to
 parameter_list|)
 block|{
-specifier|final
 name|TestSortedMapGenerator
 argument_list|<
 name|K

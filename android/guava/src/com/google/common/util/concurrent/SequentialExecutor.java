@@ -403,12 +403,11 @@ block|}
 comment|/**    * Adds a task to the queue and makes sure a worker thread is running.    *    *<p>If this method throws, e.g. a {@code RejectedExecutionException} from the delegate executor,    * execution of tasks will stop until a call to this method is made.    */
 annotation|@
 name|Override
-DECL|method|execute (final Runnable task)
+DECL|method|execute (Runnable task)
 specifier|public
 name|void
 name|execute
 parameter_list|(
-specifier|final
 name|Runnable
 name|task
 parameter_list|)
@@ -418,11 +417,9 @@ argument_list|(
 name|task
 argument_list|)
 expr_stmt|;
-specifier|final
 name|Runnable
 name|submittedTask
 decl_stmt|;
-specifier|final
 name|long
 name|oldRunCount
 decl_stmt|;
