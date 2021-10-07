@@ -2148,6 +2148,11 @@ block|,
 DECL|enumConstant|D
 name|D
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DoNotCall"
+argument_list|)
 DECL|method|testImmutableEnumSet ()
 specifier|public
 name|void

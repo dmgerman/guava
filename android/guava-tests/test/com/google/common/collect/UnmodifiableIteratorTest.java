@@ -74,6 +74,11 @@ name|UnmodifiableIteratorTest
 extends|extends
 name|TestCase
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DoNotCall"
+argument_list|)
 DECL|method|testRemove ()
 specifier|public
 name|void

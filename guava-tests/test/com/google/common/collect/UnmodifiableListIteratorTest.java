@@ -84,6 +84,11 @@ name|UnmodifiableListIteratorTest
 extends|extends
 name|TestCase
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DoNotCall"
+argument_list|)
 DECL|method|testRemove ()
 specifier|public
 name|void
@@ -135,6 +140,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DoNotCall"
+argument_list|)
 DECL|method|testAdd ()
 specifier|public
 name|void
@@ -208,6 +218,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DoNotCall"
+argument_list|)
 DECL|method|testSet ()
 specifier|public
 name|void

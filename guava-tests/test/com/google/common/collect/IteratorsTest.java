@@ -608,6 +608,11 @@ return|return
 name|suite
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DoNotCall"
+argument_list|)
 DECL|method|testEmptyIterator ()
 specifier|public
 name|void
@@ -672,6 +677,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DoNotCall"
+argument_list|)
 DECL|method|testEmptyListIterator ()
 specifier|public
 name|void
@@ -7516,6 +7526,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DoNotCall"
+argument_list|)
 DECL|method|testForArrayTypical ()
 specifier|public
 name|void
@@ -8055,6 +8070,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DoNotCall"
+argument_list|)
 DECL|method|testForEnumerationSingleton ()
 specifier|public
 name|void

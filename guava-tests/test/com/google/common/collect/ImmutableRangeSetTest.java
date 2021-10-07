@@ -2509,6 +2509,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DoNotCall"
+argument_list|)
 DECL|method|testAddUnsupported ()
 specifier|public
 name|void
@@ -2585,6 +2590,11 @@ block|{
 comment|// success
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DoNotCall"
+argument_list|)
 DECL|method|testAddAllUnsupported ()
 specifier|public
 name|void
@@ -2660,6 +2670,11 @@ block|{
 comment|// success
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DoNotCall"
+argument_list|)
 DECL|method|testRemoveUnsupported ()
 specifier|public
 name|void
@@ -2736,6 +2751,11 @@ block|{
 comment|// success
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DoNotCall"
+argument_list|)
 DECL|method|testRemoveAllUnsupported ()
 specifier|public
 name|void

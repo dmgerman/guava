@@ -4431,6 +4431,11 @@ name|BiMapSpecificTests
 extends|extends
 name|TestCase
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DoNotCall"
+argument_list|)
 DECL|method|testForcePut ()
 specifier|public
 name|void
